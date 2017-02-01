@@ -1,0 +1,102 @@
+Package br.com.ufs.pascalito;
+
+Helpers 
+    digito = ['0' .. '9'];
+    letra = ['a' .. 'z'] | ['A' .. 'Z'];
+    tab = 9;
+    cr = 13;
+    lf = 10;
+    eol = cr lf | cr | lf;
+    blank = (' ' | tab | eol)+;
+    ascii = [0 .. 0x7F];
+    ascii_sem_newline = [ascii - [cr + lf]];
+    ascii_sem_asterisco = [ascii - '*'];
+    ascii_sem_asterico_barra = [ascii_sem_asterisco - '/'];
+    ascii_sem_aspa_simples_newline = [ascii_sem_newline - '''];
+    
+    coment_linha = '//' ascii_sem_newline* eol;
+    coment_bloco_inicio = '/*';
+    
+    a = 'a' | 'A';
+	b = 'b' | 'B';
+	c = 'c' | 'C';
+	d = 'd' | 'D';
+	e = 'e' | 'E';
+	f = 'f' | 'F';
+	g = 'g' | 'G';
+	h = 'h' | 'H';
+	i = 'i' | 'I';
+	j = 'j' | 'J';
+	k = 'k' | 'K';
+	l = 'l' | 'L';
+	m = 'm' | 'M';
+	n = 'n' | 'N';
+	o = 'o' | 'O';
+	p = 'p' | 'P';
+	q = 'q' | 'Q';
+	r = 'r' | 'R';
+	s = 's' | 'S';
+	t = 't' | 'T';
+	u = 'u' | 'U';
+	v = 'v' | 'V';
+	w = 'w' | 'W';
+	x = 'x' | 'X';
+	y = 'y' | 'Y';
+	z = 'z' | 'Z';
+    
+States
+	normal,
+	comment;
+
+Tokens
+{normal}    integer = i n t e g e r;
+{normal}    string = s t r i n g;
+{normal}    real = r e a l;
+{normal}    boolean = b o o l e a n;
+{normal}    array = a r r a y;
+{normal}    if = i f;
+{normal}    then = t h e n;
+{normal}    else = e l s e;
+{normal}    while = w h i l e;
+{normal}    for = f o r;
+{normal}    case = c a s e;
+{normal}    of = o f;
+{normal}    begin = b e g i n;
+{normal}    end = e n d;
+{normal}    program = p r o g r a m;
+{normal}    var = v a r;
+
+{normal}	const_booleana = t r u e | f a l s e;
+{normal}    identificador = letra (letra | digito)*;
+{normal}	ponto_e_virgula = ';';
+{normal}	ponto = '.';
+{normal}	ponto_ponto = '..';
+{normal}	abre_parenteses = '(';
+{normal}	fecha_parenteses = ')';
+{normal}	virgula = ',';
+{normal}	atribuicao = ':=';
+{normal}	dois_pontos = ':';
+{normal}	abre_colchete = '[';
+{normal}	fecha_colchete = ']';
+{normal}	num = digito digito* | digito digito* '.' digito digito*;
+{normal}    blank = blank;
+{normal}    const_string = ''' ascii_sem_aspa_simples_newline* ''';
+{normal}	operador_relacional = '<' | '>' | '<=' | '>=' | '=' | '<>';
+{normal}	adicao = '+';
+{normal}	subtracao = '-';
+{normal}	not = n o t;
+{normal}	or = o r;
+{normal}	operador_multiplicativo = '*' | '/' | a n d | m o d;
+
+{normal}	coment_linha = coment_linha;
+
+{normal->comment, comment}	coment_bloco = coment_bloco_inicio;
+{comment, normal}	coment_bloco_fim = '*/';
+{comment}	coment_bloco_corpo = ascii_sem_asterico_barra*;
+{comment}	asterico = '*';
+{comment}	barra = '/';
+
+Ignored Tokens
+	blank,
+	coment_bloco,
+	coment_linha;
