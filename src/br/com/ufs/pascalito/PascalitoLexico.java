@@ -1,11 +1,10 @@
 package br.com.ufs.pascalito;
 
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PushbackReader;
-import java.io.Writer;
+import java.io.StringReader;
 import java.text.MessageFormat;
 
 import br.com.ufs.pascalito.exception.PascalitoException;
@@ -17,22 +16,21 @@ import br.com.ufs.pascalito.node.InvalidToken;
 import br.com.ufs.pascalito.node.TBlank;
 import br.com.ufs.pascalito.node.Token;
 
-public class Pascalito {
+public class PascalitoLexico {
 	private static final int PUSHBACK_BUFFER_LENGTH = 1024;
 	
 	public static void main(String[] args) throws IOException {
-		if (args.length == 0) {
-			System.err.println("Uso: java br.com.ufs.pascalito.Pascalito <arquivo>");
+		if (args.length < 2 || (!args[0].equals("-i") && !args[0].equals("-f")) || (args[0].equals("-f") && args.length > 2)) {
+			System.err.println("Uso: java br.com.ufs.pascalito.PascalitoLexico -f <arquivo> "
+					+ "ou java br.com.ufs.pascalito.PascalitoLexico -i <programa>");
 			System.exit(-1);
 		}
 		
-		PushbackReader reader = new PushbackReader(new FileReader(args[0]), PUSHBACK_BUFFER_LENGTH);
-		File outFile = new File(args[0] + ".out");
-		FileWriter writer = new FileWriter(outFile);
+		PushbackReader reader = createPushbackReader(args);
 		try {
 			PascalitoLexer lexer = new PascalitoLexer(reader);
-			printTokens(lexer, writer);
-			System.out.println("Sintaxe válida! Saída salva no arquivo " + outFile.getAbsolutePath());
+			printTokens(lexer);
+			System.out.println();
 		} catch (PascalitoLexerException e) {
 			String template = "[Linha {0}, Pos {1}]: {2}";
 			InvalidToken invalidToken = e.getInvalidToken();
@@ -42,11 +40,23 @@ public class Pascalito {
 			e.printStackTrace();
 		} finally {
 			reader.close();
-			writer.close();
 		}
 	}
 	
-	private static void printTokens(PascalitoLexer lexer, Writer writer) throws IOException {
+	private static PushbackReader createPushbackReader(String[] args) throws FileNotFoundException {
+		if (args[0].equals("-i")) {
+			StringBuilder builder = new StringBuilder();
+			for (int i = 1; i < args.length; i++) {
+				builder.append(args[i]);
+			}
+			
+			return new PushbackReader(new StringReader(builder.toString()), PUSHBACK_BUFFER_LENGTH);
+		} else {
+			return new PushbackReader(new FileReader(args[1]), PUSHBACK_BUFFER_LENGTH);
+		}
+	}
+	
+	private static void printTokens(PascalitoLexer lexer) throws IOException {
 		try {
 			Token token = lexer.next();
 			Token lastToken = null;
@@ -61,7 +71,6 @@ public class Pascalito {
 					text = " " + text;
 				}
 				System.out.print(text);
-				writer.write(text);
 				lastToken = token;
 				token = lexer.next();
 			}
