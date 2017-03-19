@@ -69,6 +69,30 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseStart(Start node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProgram(AProgram node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACabecalhoPrograma(ACabecalhoPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABloco(ABloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);

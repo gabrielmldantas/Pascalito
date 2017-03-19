@@ -101,3 +101,8 @@ Ignored Tokens
 	blank,
 	coment_bloco,
 	coment_linha;
+	
+Productions
+	program = cabecalho_programa ponto_e_virgula bloco ponto;
+	cabecalho_programa = T.program identificador;
+	bloco = num+;
