@@ -165,6 +165,30 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTFunction(TFunction node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTLabel(TLabel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTProcedure(TProcedure node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTDo(TDo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTConstBooleana(TConstBooleana node)
     {
         defaultCase(node);
@@ -261,31 +285,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTAdicao(TAdicao node)
+    public void caseTOperadorLogico(TOperadorLogico node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTSubtracao(TSubtracao node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTNot(TNot node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTOr(TOr node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTOperadorMultiplicativo(TOperadorMultiplicativo node)
+    public void caseTOperadorAritmetico(TOperadorAritmetico node)
     {
         defaultCase(node);
     }

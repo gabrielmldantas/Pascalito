@@ -5,14 +5,14 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TOr extends Token
+public final class TProcedure extends Token
 {
-    public TOr(String text)
+    public TProcedure(String text)
     {
         setText(text);
     }
 
-    public TOr(String text, int line, int pos)
+    public TProcedure(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TOr extends Token
     @Override
     public Object clone()
     {
-      return new TOr(getText(), getLine(), getPos());
+      return new TProcedure(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTOr(this);
+        ((Analysis) sw).caseTProcedure(this);
     }
 }

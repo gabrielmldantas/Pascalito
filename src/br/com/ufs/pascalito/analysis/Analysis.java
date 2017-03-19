@@ -27,6 +27,10 @@ public interface Analysis extends Switch
     void caseTEnd(TEnd node);
     void caseTProgram(TProgram node);
     void caseTVar(TVar node);
+    void caseTFunction(TFunction node);
+    void caseTLabel(TLabel node);
+    void caseTProcedure(TProcedure node);
+    void caseTDo(TDo node);
     void caseTConstBooleana(TConstBooleana node);
     void caseTIdentificador(TIdentificador node);
     void caseTPontoEVirgula(TPontoEVirgula node);
@@ -43,11 +47,8 @@ public interface Analysis extends Switch
     void caseTBlank(TBlank node);
     void caseTConstString(TConstString node);
     void caseTOperadorRelacional(TOperadorRelacional node);
-    void caseTAdicao(TAdicao node);
-    void caseTSubtracao(TSubtracao node);
-    void caseTNot(TNot node);
-    void caseTOr(TOr node);
-    void caseTOperadorMultiplicativo(TOperadorMultiplicativo node);
+    void caseTOperadorLogico(TOperadorLogico node);
+    void caseTOperadorAritmetico(TOperadorAritmetico node);
     void caseTComentLinha(TComentLinha node);
     void caseTComentBloco(TComentBloco node);
     void caseTComentBlocoFim(TComentBlocoFim node);

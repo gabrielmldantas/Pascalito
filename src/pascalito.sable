@@ -65,6 +65,10 @@ Tokens
 {normal}    end = e n d;
 {normal}    program = p r o g r a m;
 {normal}    var = v a r;
+{normal}	function = f u n c t i o n;
+{normal}	label = l a b e l;
+{normal}	procedure = p r o c e d u r e;
+{normal}	do = d o;
 
 {normal}	const_booleana = t r u e | f a l s e;
 {normal}    identificador = letra (letra | digito)*;
@@ -78,15 +82,12 @@ Tokens
 {normal}	dois_pontos = ':';
 {normal}	abre_colchete = '[';
 {normal}	fecha_colchete = ']';
-{normal}	num = digito digito* | digito digito* '.' digito digito*;
+{normal}	num = (digito digito* | digito* '.' digito digito*) (e ('+' | '-')? digito digito*)? ;
 {normal}    blank = blank;
 {normal}    const_string = ''' ascii_sem_aspa_simples_newline* ''';
 {normal}	operador_relacional = '<' | '>' | '<=' | '>=' | '=' | '<>';
-{normal}	adicao = '+';
-{normal}	subtracao = '-';
-{normal}	not = n o t;
-{normal}	or = o r;
-{normal}	operador_multiplicativo = '*' | '/' | a n d | m o d;
+{normal}	operador_logico = n o t | o r | a n d;
+{normal}	operador_aritmetico = '+' | '-' | '*' | '/' | d i v | m o d;
 
 {normal}	coment_linha = coment_linha;
 
