@@ -82,7 +82,8 @@ Tokens
 {normal}	dois_pontos = ':';
 {normal}	abre_colchete = '[';
 {normal}	fecha_colchete = ']';
-{normal}	num = (digito digito* | digito* '.' digito digito*) (e ('+' | '-')? digito digito*)? ;
+{normal}	const_inteiro = digito digito*;
+{normal}	const_real = digito* '.' digito digito* (e ('+' | '-')? digito digito*)?;
 {normal}    blank = blank;
 {normal}    const_string = ''' ascii_sem_aspa_simples_newline* ''';
 {normal}	operador_relacional = '<' | '>' | '<=' | '>=' | '=' | '<>';
@@ -105,5 +106,8 @@ Ignored Tokens
 Productions
 	program = cabecalho_programa ponto_e_virgula bloco ponto;
 	cabecalho_programa = {unico} T.program identificador | {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses;
-	bloco = num+;
+	bloco = declaracao_labels;
 	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
+	declaracao_labels = T.label labels ponto_e_virgula | {empty};
+	labels = {unico} P.label | {multiplo} labels virgula P.label;
+	label = const_inteiro;

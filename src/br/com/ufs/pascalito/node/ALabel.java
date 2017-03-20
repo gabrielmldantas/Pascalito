@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ABloco extends PBloco
+public final class ALabel extends PLabel
 {
-    private PDeclaracaoLabels _declaracaoLabels_;
+    private TConstInteiro _constInteiro_;
 
-    public ABloco()
+    public ALabel()
     {
         // Constructor
     }
 
-    public ABloco(
-        @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_)
+    public ALabel(
+        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
     {
         // Constructor
-        setDeclaracaoLabels(_declaracaoLabels_);
+        setConstInteiro(_constInteiro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ABloco(
-            cloneNode(this._declaracaoLabels_));
+        return new ALabel(
+            cloneNode(this._constInteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseABloco(this);
+        ((Analysis) sw).caseALabel(this);
     }
 
-    public PDeclaracaoLabels getDeclaracaoLabels()
+    public TConstInteiro getConstInteiro()
     {
-        return this._declaracaoLabels_;
+        return this._constInteiro_;
     }
 
-    public void setDeclaracaoLabels(PDeclaracaoLabels node)
+    public void setConstInteiro(TConstInteiro node)
     {
-        if(this._declaracaoLabels_ != null)
+        if(this._constInteiro_ != null)
         {
-            this._declaracaoLabels_.parent(null);
+            this._constInteiro_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ABloco extends PBloco
             node.parent(this);
         }
 
-        this._declaracaoLabels_ = node;
+        this._constInteiro_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._declaracaoLabels_);
+            + toString(this._constInteiro_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._declaracaoLabels_ == child)
+        if(this._constInteiro_ == child)
         {
-            this._declaracaoLabels_ = null;
+            this._constInteiro_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ABloco extends PBloco
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._declaracaoLabels_ == oldChild)
+        if(this._constInteiro_ == oldChild)
         {
-            setDeclaracaoLabels((PDeclaracaoLabels) newChild);
+            setConstInteiro((TConstInteiro) newChild);
             return;
         }
 

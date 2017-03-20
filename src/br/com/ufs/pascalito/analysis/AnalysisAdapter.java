@@ -111,6 +111,36 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseADeclaracaoLabels(ADeclaracaoLabels node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyDeclaracaoLabels(AEmptyDeclaracaoLabels node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoLabels(AUnicoLabels node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploLabels(AMultiploLabels node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALabel(ALabel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);
@@ -303,7 +333,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTNum(TNum node)
+    public void caseTConstInteiro(TConstInteiro node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTConstReal(TConstReal node)
     {
         defaultCase(node);
     }

@@ -145,13 +145,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABloco(ABloco node)
     {
         inABloco(node);
+        if(node.getDeclaracaoLabels() != null)
         {
-            List<TNum> copy = new ArrayList<TNum>(node.getNum());
-            Collections.reverse(copy);
-            for(TNum e : copy)
-            {
-                e.apply(this);
-            }
+            node.getDeclaracaoLabels().apply(this);
         }
         outABloco(node);
     }
@@ -204,5 +200,122 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getIdentificadores().apply(this);
         }
         outAMultiploIdentificadores(node);
+    }
+
+    public void inADeclaracaoLabels(ADeclaracaoLabels node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoLabels(ADeclaracaoLabels node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoLabels(ADeclaracaoLabels node)
+    {
+        inADeclaracaoLabels(node);
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getLabels() != null)
+        {
+            node.getLabels().apply(this);
+        }
+        if(node.getLabel() != null)
+        {
+            node.getLabel().apply(this);
+        }
+        outADeclaracaoLabels(node);
+    }
+
+    public void inAEmptyDeclaracaoLabels(AEmptyDeclaracaoLabels node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptyDeclaracaoLabels(AEmptyDeclaracaoLabels node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptyDeclaracaoLabels(AEmptyDeclaracaoLabels node)
+    {
+        inAEmptyDeclaracaoLabels(node);
+        outAEmptyDeclaracaoLabels(node);
+    }
+
+    public void inAUnicoLabels(AUnicoLabels node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoLabels(AUnicoLabels node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoLabels(AUnicoLabels node)
+    {
+        inAUnicoLabels(node);
+        if(node.getLabel() != null)
+        {
+            node.getLabel().apply(this);
+        }
+        outAUnicoLabels(node);
+    }
+
+    public void inAMultiploLabels(AMultiploLabels node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploLabels(AMultiploLabels node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploLabels(AMultiploLabels node)
+    {
+        inAMultiploLabels(node);
+        if(node.getLabel() != null)
+        {
+            node.getLabel().apply(this);
+        }
+        if(node.getVirgula() != null)
+        {
+            node.getVirgula().apply(this);
+        }
+        if(node.getLabels() != null)
+        {
+            node.getLabels().apply(this);
+        }
+        outAMultiploLabels(node);
+    }
+
+    public void inALabel(ALabel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALabel(ALabel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALabel(ALabel node)
+    {
+        inALabel(node);
+        if(node.getConstInteiro() != null)
+        {
+            node.getConstInteiro().apply(this);
+        }
+        outALabel(node);
     }
 }

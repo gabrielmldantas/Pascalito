@@ -234,16 +234,34 @@ public class Parser
                 push(goTo(3), list, false);
             }
             break;
-            case 6: /* reduce ATerminal$Num */
+            case 6: /* reduce ADeclaracaoLabels */
             {
                 ArrayList<Object> list = new6();
-                push(goTo(4), list, true);
+                push(goTo(4), list, false);
             }
             break;
-            case 7: /* reduce ANonTerminal$Num */
+            case 7: /* reduce AEmptyDeclaracaoLabels */
             {
                 ArrayList<Object> list = new7();
-                push(goTo(4), list, true);
+                push(goTo(4), list, false);
+            }
+            break;
+            case 8: /* reduce AUnicoLabels */
+            {
+                ArrayList<Object> list = new8();
+                push(goTo(5), list, false);
+            }
+            break;
+            case 9: /* reduce AMultiploLabels */
+            {
+                ArrayList<Object> list = new9();
+                push(goTo(5), list, false);
+            }
+            break;
+            case 10: /* reduce ALabel */
+            {
+                ArrayList<Object> list = new10();
+                push(goTo(6), list, false);
             }
             break;
         }
@@ -344,18 +362,10 @@ public class Parser
         PBloco pblocoNode1;
         {
             // Block
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
-        {
-            // Block
-        LinkedList<Object> listNode2 = new LinkedList<Object>();
-        listNode2 = (LinkedList)nodeArrayList1.get(0);
-	if(listNode2 != null)
-	{
-	  listNode3.addAll(listNode2);
-	}
-        }
+        PDeclaracaoLabels pdeclaracaolabelsNode2;
+        pdeclaracaolabelsNode2 = (PDeclaracaoLabels)nodeArrayList1.get(0);
 
-        pblocoNode1 = new ABloco(listNode3);
+        pblocoNode1 = new ABloco(pdeclaracaolabelsNode2);
         }
 	nodeList.add(pblocoNode1);
         return nodeList;
@@ -410,51 +420,109 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new6() /* reduce ATerminal$Num */
+    ArrayList<Object> new6() /* reduce ADeclaracaoLabels */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        PDeclaracaoLabels pdeclaracaolabelsNode1;
         {
             // Block
-        TNum tnumNode1;
-        tnumNode1 = (TNum)nodeArrayList1.get(0);
-	if(tnumNode1 != null)
-	{
-	  listNode2.add(tnumNode1);
-	}
+        TLabel tlabelNode2;
+        PLabels plabelsNode3;
+        TPontoEVirgula tpontoevirgulaNode4;
+        tlabelNode2 = (TLabel)nodeArrayList1.get(0);
+        plabelsNode3 = (PLabels)nodeArrayList2.get(0);
+        tpontoevirgulaNode4 = (TPontoEVirgula)nodeArrayList3.get(0);
+
+        pdeclaracaolabelsNode1 = new ADeclaracaoLabels(tlabelNode2, plabelsNode3, tpontoevirgulaNode4);
         }
-	nodeList.add(listNode2);
+	nodeList.add(pdeclaracaolabelsNode1);
         return nodeList;
     }
 
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new7() /* reduce ANonTerminal$Num */
+    ArrayList<Object> new7() /* reduce AEmptyDeclaracaoLabels */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
-        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
-        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        PDeclaracaoLabels pdeclaracaolabelsNode1;
         {
             // Block
-        LinkedList<Object> listNode1 = new LinkedList<Object>();
-        TNum tnumNode2;
-        listNode1 = (LinkedList)nodeArrayList1.get(0);
-        tnumNode2 = (TNum)nodeArrayList2.get(0);
-	if(listNode1 != null)
-	{
-	  listNode3.addAll(listNode1);
-	}
-	if(tnumNode2 != null)
-	{
-	  listNode3.add(tnumNode2);
-	}
+
+        pdeclaracaolabelsNode1 = new AEmptyDeclaracaoLabels();
         }
-	nodeList.add(listNode3);
+	nodeList.add(pdeclaracaolabelsNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new8() /* reduce AUnicoLabels */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PLabels plabelsNode1;
+        {
+            // Block
+        PLabel plabelNode2;
+        plabelNode2 = (PLabel)nodeArrayList1.get(0);
+
+        plabelsNode1 = new AUnicoLabels(plabelNode2);
+        }
+	nodeList.add(plabelsNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new9() /* reduce AMultiploLabels */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PLabels plabelsNode1;
+        {
+            // Block
+        PLabels plabelsNode2;
+        TVirgula tvirgulaNode3;
+        PLabel plabelNode4;
+        plabelsNode2 = (PLabels)nodeArrayList1.get(0);
+        tvirgulaNode3 = (TVirgula)nodeArrayList2.get(0);
+        plabelNode4 = (PLabel)nodeArrayList3.get(0);
+
+        plabelsNode1 = new AMultiploLabels(plabelsNode2, tvirgulaNode3, plabelNode4);
+        }
+	nodeList.add(plabelsNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new10() /* reduce ALabel */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PLabel plabelNode1;
+        {
+            // Block
+        TConstInteiro tconstinteiroNode2;
+        tconstinteiroNode2 = (TConstInteiro)nodeArrayList1.get(0);
+
+        plabelNode1 = new ALabel(tconstinteiroNode2);
+        }
+	nodeList.add(plabelNode1);
         return nodeList;
     }
 
@@ -464,21 +532,26 @@ public class Parser
 /*      {
 			{{-1, ERROR, 0}, {14, SHIFT, 1}, },
 			{{-1, ERROR, 1}, {21, SHIFT, 4}, },
-			{{-1, ERROR, 2}, {41, ACCEPT, -1}, },
+			{{-1, ERROR, 2}, {42, ACCEPT, -1}, },
 			{{-1, ERROR, 3}, {22, SHIFT, 5}, },
 			{{-1, REDUCE, 1}, {25, SHIFT, 6}, },
-			{{-1, ERROR, 5}, {32, SHIFT, 7}, },
+			{{-1, REDUCE, 7}, {17, SHIFT, 7}, },
 			{{-1, ERROR, 6}, {21, SHIFT, 10}, },
-			{{-1, REDUCE, 6}, },
-			{{-1, ERROR, 8}, {23, SHIFT, 12}, },
-			{{-1, REDUCE, 3}, {32, SHIFT, 13}, },
+			{{-1, ERROR, 7}, {32, SHIFT, 12}, },
+			{{-1, ERROR, 8}, {23, SHIFT, 15}, },
+			{{-1, REDUCE, 3}, },
 			{{-1, REDUCE, 4}, },
-			{{-1, ERROR, 11}, {26, SHIFT, 14}, {27, SHIFT, 15}, },
+			{{-1, ERROR, 11}, {26, SHIFT, 16}, {27, SHIFT, 17}, },
+			{{-1, REDUCE, 10}, },
+			{{-1, ERROR, 13}, {22, SHIFT, 18}, {27, SHIFT, 19}, },
+			{{-1, REDUCE, 8}, },
 			{{-1, REDUCE, 0}, },
-			{{-1, REDUCE, 7}, },
 			{{-1, REDUCE, 2}, },
-			{{-1, ERROR, 15}, {21, SHIFT, 16}, },
+			{{-1, ERROR, 17}, {21, SHIFT, 20}, },
+			{{-1, REDUCE, 6}, },
+			{{-1, ERROR, 19}, {32, SHIFT, 12}, },
 			{{-1, REDUCE, 5}, },
+			{{-1, REDUCE, 9}, },
         };*/
     private static int[][][] gotoTable;
 /*      {
@@ -487,6 +560,8 @@ public class Parser
 			{{-1, 8}, },
 			{{-1, 11}, },
 			{{-1, 9}, },
+			{{-1, 13}, },
+			{{-1, 14}, {19, 21}, },
         };*/
     private static String[] errorMessages;
 /*      {
@@ -495,14 +570,15 @@ public class Parser
 			"expecting: EOF",
 			"expecting: ';'",
 			"expecting: ';', '('",
-			"expecting: num",
-			"expecting: '.', num",
+			"expecting: label, '.'",
+			"expecting: const inteiro",
 			"expecting: '.'",
 			"expecting: ')', ','",
+			"expecting: ';', ','",
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 3, 4, 5, 1, 6, 7, 6, 8, 8, 2, 6, 3, 1, 8, 
+			0, 1, 2, 3, 4, 5, 1, 6, 7, 7, 8, 8, 9, 9, 9, 2, 3, 1, 7, 6, 8, 9, 
         };*/
 
     static 

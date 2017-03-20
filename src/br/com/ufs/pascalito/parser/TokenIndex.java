@@ -202,62 +202,68 @@ class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTNum(@SuppressWarnings("unused") TNum node)
+    public void caseTConstInteiro(@SuppressWarnings("unused") TConstInteiro node)
     {
         this.index = 32;
     }
 
     @Override
-    public void caseTConstString(@SuppressWarnings("unused") TConstString node)
+    public void caseTConstReal(@SuppressWarnings("unused") TConstReal node)
     {
         this.index = 33;
     }
 
     @Override
-    public void caseTOperadorRelacional(@SuppressWarnings("unused") TOperadorRelacional node)
+    public void caseTConstString(@SuppressWarnings("unused") TConstString node)
     {
         this.index = 34;
     }
 
     @Override
-    public void caseTOperadorLogico(@SuppressWarnings("unused") TOperadorLogico node)
+    public void caseTOperadorRelacional(@SuppressWarnings("unused") TOperadorRelacional node)
     {
         this.index = 35;
     }
 
     @Override
-    public void caseTOperadorAritmetico(@SuppressWarnings("unused") TOperadorAritmetico node)
+    public void caseTOperadorLogico(@SuppressWarnings("unused") TOperadorLogico node)
     {
         this.index = 36;
     }
 
     @Override
-    public void caseTComentBlocoFim(@SuppressWarnings("unused") TComentBlocoFim node)
+    public void caseTOperadorAritmetico(@SuppressWarnings("unused") TOperadorAritmetico node)
     {
         this.index = 37;
     }
 
     @Override
-    public void caseTComentBlocoCorpo(@SuppressWarnings("unused") TComentBlocoCorpo node)
+    public void caseTComentBlocoFim(@SuppressWarnings("unused") TComentBlocoFim node)
     {
         this.index = 38;
     }
 
     @Override
-    public void caseTAsterico(@SuppressWarnings("unused") TAsterico node)
+    public void caseTComentBlocoCorpo(@SuppressWarnings("unused") TComentBlocoCorpo node)
     {
         this.index = 39;
     }
 
     @Override
-    public void caseTBarra(@SuppressWarnings("unused") TBarra node)
+    public void caseTAsterico(@SuppressWarnings("unused") TAsterico node)
     {
         this.index = 40;
     }
 
     @Override
-    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    public void caseTBarra(@SuppressWarnings("unused") TBarra node)
     {
         this.index = 41;
+    }
+
+    @Override
+    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    {
+        this.index = 42;
     }
 }

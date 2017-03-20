@@ -18,6 +18,11 @@ public interface Analysis extends Switch
     void caseABloco(ABloco node);
     void caseAUnicoIdentificadores(AUnicoIdentificadores node);
     void caseAMultiploIdentificadores(AMultiploIdentificadores node);
+    void caseADeclaracaoLabels(ADeclaracaoLabels node);
+    void caseAEmptyDeclaracaoLabels(AEmptyDeclaracaoLabels node);
+    void caseAUnicoLabels(AUnicoLabels node);
+    void caseAMultiploLabels(AMultiploLabels node);
+    void caseALabel(ALabel node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);
@@ -51,7 +56,8 @@ public interface Analysis extends Switch
     void caseTDoisPontos(TDoisPontos node);
     void caseTAbreColchete(TAbreColchete node);
     void caseTFechaColchete(TFechaColchete node);
-    void caseTNum(TNum node);
+    void caseTConstInteiro(TConstInteiro node);
+    void caseTConstReal(TConstReal node);
     void caseTBlank(TBlank node);
     void caseTConstString(TConstString node);
     void caseTOperadorRelacional(TOperadorRelacional node);
