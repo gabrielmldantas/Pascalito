@@ -69,20 +69,20 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAProgram(node);
     }
 
-    public void inACabecalhoPrograma(ACabecalhoPrograma node)
+    public void inAUnicoCabecalhoPrograma(AUnicoCabecalhoPrograma node)
     {
         defaultIn(node);
     }
 
-    public void outACabecalhoPrograma(ACabecalhoPrograma node)
+    public void outAUnicoCabecalhoPrograma(AUnicoCabecalhoPrograma node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseACabecalhoPrograma(ACabecalhoPrograma node)
+    public void caseAUnicoCabecalhoPrograma(AUnicoCabecalhoPrograma node)
     {
-        inACabecalhoPrograma(node);
+        inAUnicoCabecalhoPrograma(node);
         if(node.getProgram() != null)
         {
             node.getProgram().apply(this);
@@ -91,7 +91,44 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getIdentificador().apply(this);
         }
-        outACabecalhoPrograma(node);
+        outAUnicoCabecalhoPrograma(node);
+    }
+
+    public void inAMultiploCabecalhoPrograma(AMultiploCabecalhoPrograma node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploCabecalhoPrograma(AMultiploCabecalhoPrograma node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploCabecalhoPrograma(AMultiploCabecalhoPrograma node)
+    {
+        inAMultiploCabecalhoPrograma(node);
+        if(node.getProgram() != null)
+        {
+            node.getProgram().apply(this);
+        }
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        if(node.getAbreParenteses() != null)
+        {
+            node.getAbreParenteses().apply(this);
+        }
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        if(node.getFechaParenteses() != null)
+        {
+            node.getFechaParenteses().apply(this);
+        }
+        outAMultiploCabecalhoPrograma(node);
     }
 
     public void inABloco(ABloco node)
@@ -116,5 +153,55 @@ public class DepthFirstAdapter extends AnalysisAdapter
             }
         }
         outABloco(node);
+    }
+
+    public void inAUnicoIdentificadores(AUnicoIdentificadores node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoIdentificadores(AUnicoIdentificadores node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoIdentificadores(AUnicoIdentificadores node)
+    {
+        inAUnicoIdentificadores(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAUnicoIdentificadores(node);
+    }
+
+    public void inAMultiploIdentificadores(AMultiploIdentificadores node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploIdentificadores(AMultiploIdentificadores node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploIdentificadores(AMultiploIdentificadores node)
+    {
+        inAMultiploIdentificadores(node);
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        if(node.getVirgula() != null)
+        {
+            node.getVirgula().apply(this);
+        }
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAMultiploIdentificadores(node);
     }
 }

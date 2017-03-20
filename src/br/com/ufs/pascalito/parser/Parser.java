@@ -204,28 +204,46 @@ public class Parser
                 push(goTo(0), list, false);
             }
             break;
-            case 1: /* reduce ACabecalhoPrograma */
+            case 1: /* reduce AUnicoCabecalhoPrograma */
             {
                 ArrayList<Object> list = new1();
                 push(goTo(1), list, false);
             }
             break;
-            case 2: /* reduce ABloco */
+            case 2: /* reduce AMultiploCabecalhoPrograma */
             {
                 ArrayList<Object> list = new2();
+                push(goTo(1), list, false);
+            }
+            break;
+            case 3: /* reduce ABloco */
+            {
+                ArrayList<Object> list = new3();
                 push(goTo(2), list, false);
             }
             break;
-            case 3: /* reduce ATerminal$Num */
-            {
-                ArrayList<Object> list = new3();
-                push(goTo(3), list, true);
-            }
-            break;
-            case 4: /* reduce ANonTerminal$Num */
+            case 4: /* reduce AUnicoIdentificadores */
             {
                 ArrayList<Object> list = new4();
-                push(goTo(3), list, true);
+                push(goTo(3), list, false);
+            }
+            break;
+            case 5: /* reduce AMultiploIdentificadores */
+            {
+                ArrayList<Object> list = new5();
+                push(goTo(3), list, false);
+            }
+            break;
+            case 6: /* reduce ATerminal$Num */
+            {
+                ArrayList<Object> list = new6();
+                push(goTo(4), list, true);
+            }
+            break;
+            case 7: /* reduce ANonTerminal$Num */
+            {
+                ArrayList<Object> list = new7();
+                push(goTo(4), list, true);
             }
             break;
         }
@@ -263,7 +281,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new1() /* reduce ACabecalhoPrograma */
+    ArrayList<Object> new1() /* reduce AUnicoCabecalhoPrograma */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -277,7 +295,7 @@ public class Parser
         tprogramNode2 = (TProgram)nodeArrayList1.get(0);
         tidentificadorNode3 = (TIdentificador)nodeArrayList2.get(0);
 
-        pcabecalhoprogramaNode1 = new ACabecalhoPrograma(tprogramNode2, tidentificadorNode3);
+        pcabecalhoprogramaNode1 = new AUnicoCabecalhoPrograma(tprogramNode2, tidentificadorNode3);
         }
 	nodeList.add(pcabecalhoprogramaNode1);
         return nodeList;
@@ -286,7 +304,39 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new2() /* reduce ABloco */
+    ArrayList<Object> new2() /* reduce AMultiploCabecalhoPrograma */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList5 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList4 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PCabecalhoPrograma pcabecalhoprogramaNode1;
+        {
+            // Block
+        TProgram tprogramNode2;
+        TIdentificador tidentificadorNode3;
+        TAbreParenteses tabreparentesesNode4;
+        PIdentificadores pidentificadoresNode5;
+        TFechaParenteses tfechaparentesesNode6;
+        tprogramNode2 = (TProgram)nodeArrayList1.get(0);
+        tidentificadorNode3 = (TIdentificador)nodeArrayList2.get(0);
+        tabreparentesesNode4 = (TAbreParenteses)nodeArrayList3.get(0);
+        pidentificadoresNode5 = (PIdentificadores)nodeArrayList4.get(0);
+        tfechaparentesesNode6 = (TFechaParenteses)nodeArrayList5.get(0);
+
+        pcabecalhoprogramaNode1 = new AMultiploCabecalhoPrograma(tprogramNode2, tidentificadorNode3, tabreparentesesNode4, pidentificadoresNode5, tfechaparentesesNode6);
+        }
+	nodeList.add(pcabecalhoprogramaNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new3() /* reduce ABloco */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -314,7 +364,53 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new3() /* reduce ATerminal$Num */
+    ArrayList<Object> new4() /* reduce AUnicoIdentificadores */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PIdentificadores pidentificadoresNode1;
+        {
+            // Block
+        TIdentificador tidentificadorNode2;
+        tidentificadorNode2 = (TIdentificador)nodeArrayList1.get(0);
+
+        pidentificadoresNode1 = new AUnicoIdentificadores(tidentificadorNode2);
+        }
+	nodeList.add(pidentificadoresNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new5() /* reduce AMultiploIdentificadores */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PIdentificadores pidentificadoresNode1;
+        {
+            // Block
+        PIdentificadores pidentificadoresNode2;
+        TVirgula tvirgulaNode3;
+        TIdentificador tidentificadorNode4;
+        pidentificadoresNode2 = (PIdentificadores)nodeArrayList1.get(0);
+        tvirgulaNode3 = (TVirgula)nodeArrayList2.get(0);
+        tidentificadorNode4 = (TIdentificador)nodeArrayList3.get(0);
+
+        pidentificadoresNode1 = new AMultiploIdentificadores(pidentificadoresNode2, tvirgulaNode3, tidentificadorNode4);
+        }
+	nodeList.add(pidentificadoresNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new6() /* reduce ATerminal$Num */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -336,7 +432,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new4() /* reduce ANonTerminal$Num */
+    ArrayList<Object> new7() /* reduce ANonTerminal$Num */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -370,20 +466,27 @@ public class Parser
 			{{-1, ERROR, 1}, {21, SHIFT, 4}, },
 			{{-1, ERROR, 2}, {41, ACCEPT, -1}, },
 			{{-1, ERROR, 3}, {22, SHIFT, 5}, },
-			{{-1, REDUCE, 1}, },
-			{{-1, ERROR, 5}, {32, SHIFT, 6}, },
-			{{-1, REDUCE, 3}, },
-			{{-1, ERROR, 7}, {23, SHIFT, 9}, },
-			{{-1, REDUCE, 2}, {32, SHIFT, 10}, },
-			{{-1, REDUCE, 0}, },
+			{{-1, REDUCE, 1}, {25, SHIFT, 6}, },
+			{{-1, ERROR, 5}, {32, SHIFT, 7}, },
+			{{-1, ERROR, 6}, {21, SHIFT, 10}, },
+			{{-1, REDUCE, 6}, },
+			{{-1, ERROR, 8}, {23, SHIFT, 12}, },
+			{{-1, REDUCE, 3}, {32, SHIFT, 13}, },
 			{{-1, REDUCE, 4}, },
+			{{-1, ERROR, 11}, {26, SHIFT, 14}, {27, SHIFT, 15}, },
+			{{-1, REDUCE, 0}, },
+			{{-1, REDUCE, 7}, },
+			{{-1, REDUCE, 2}, },
+			{{-1, ERROR, 15}, {21, SHIFT, 16}, },
+			{{-1, REDUCE, 5}, },
         };*/
     private static int[][][] gotoTable;
 /*      {
 			{{-1, 2}, },
 			{{-1, 3}, },
-			{{-1, 7}, },
 			{{-1, 8}, },
+			{{-1, 11}, },
+			{{-1, 9}, },
         };*/
     private static String[] errorMessages;
 /*      {
@@ -391,13 +494,15 @@ public class Parser
 			"expecting: identificador",
 			"expecting: EOF",
 			"expecting: ';'",
+			"expecting: ';', '('",
 			"expecting: num",
 			"expecting: '.', num",
 			"expecting: '.'",
+			"expecting: ')', ','",
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 3, 3, 4, 5, 6, 5, 2, 5, 
+			0, 1, 2, 3, 4, 5, 1, 6, 7, 6, 8, 8, 2, 6, 3, 1, 8, 
         };*/
 
     static 

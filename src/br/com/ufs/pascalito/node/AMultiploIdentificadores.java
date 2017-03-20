@@ -5,22 +5,26 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ACabecalhoPrograma extends PCabecalhoPrograma
+public final class AMultiploIdentificadores extends PIdentificadores
 {
-    private TProgram _program_;
+    private PIdentificadores _identificadores_;
+    private TVirgula _virgula_;
     private TIdentificador _identificador_;
 
-    public ACabecalhoPrograma()
+    public AMultiploIdentificadores()
     {
         // Constructor
     }
 
-    public ACabecalhoPrograma(
-        @SuppressWarnings("hiding") TProgram _program_,
+    public AMultiploIdentificadores(
+        @SuppressWarnings("hiding") PIdentificadores _identificadores_,
+        @SuppressWarnings("hiding") TVirgula _virgula_,
         @SuppressWarnings("hiding") TIdentificador _identificador_)
     {
         // Constructor
-        setProgram(_program_);
+        setIdentificadores(_identificadores_);
+
+        setVirgula(_virgula_);
 
         setIdentificador(_identificador_);
 
@@ -29,27 +33,28 @@ public final class ACabecalhoPrograma extends PCabecalhoPrograma
     @Override
     public Object clone()
     {
-        return new ACabecalhoPrograma(
-            cloneNode(this._program_),
+        return new AMultiploIdentificadores(
+            cloneNode(this._identificadores_),
+            cloneNode(this._virgula_),
             cloneNode(this._identificador_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseACabecalhoPrograma(this);
+        ((Analysis) sw).caseAMultiploIdentificadores(this);
     }
 
-    public TProgram getProgram()
+    public PIdentificadores getIdentificadores()
     {
-        return this._program_;
+        return this._identificadores_;
     }
 
-    public void setProgram(TProgram node)
+    public void setIdentificadores(PIdentificadores node)
     {
-        if(this._program_ != null)
+        if(this._identificadores_ != null)
         {
-            this._program_.parent(null);
+            this._identificadores_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +67,32 @@ public final class ACabecalhoPrograma extends PCabecalhoPrograma
             node.parent(this);
         }
 
-        this._program_ = node;
+        this._identificadores_ = node;
+    }
+
+    public TVirgula getVirgula()
+    {
+        return this._virgula_;
+    }
+
+    public void setVirgula(TVirgula node)
+    {
+        if(this._virgula_ != null)
+        {
+            this._virgula_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._virgula_ = node;
     }
 
     public TIdentificador getIdentificador()
@@ -94,7 +124,8 @@ public final class ACabecalhoPrograma extends PCabecalhoPrograma
     public String toString()
     {
         return ""
-            + toString(this._program_)
+            + toString(this._identificadores_)
+            + toString(this._virgula_)
             + toString(this._identificador_);
     }
 
@@ -102,9 +133,15 @@ public final class ACabecalhoPrograma extends PCabecalhoPrograma
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._program_ == child)
+        if(this._identificadores_ == child)
         {
-            this._program_ = null;
+            this._identificadores_ = null;
+            return;
+        }
+
+        if(this._virgula_ == child)
+        {
+            this._virgula_ = null;
             return;
         }
 
@@ -121,9 +158,15 @@ public final class ACabecalhoPrograma extends PCabecalhoPrograma
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._program_ == oldChild)
+        if(this._identificadores_ == oldChild)
         {
-            setProgram((TProgram) newChild);
+            setIdentificadores((PIdentificadores) newChild);
+            return;
+        }
+
+        if(this._virgula_ == oldChild)
+        {
+            setVirgula((TVirgula) newChild);
             return;
         }
 

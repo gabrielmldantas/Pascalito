@@ -13,8 +13,11 @@ public interface Analysis extends Switch
 
     void caseStart(Start node);
     void caseAProgram(AProgram node);
-    void caseACabecalhoPrograma(ACabecalhoPrograma node);
+    void caseAUnicoCabecalhoPrograma(AUnicoCabecalhoPrograma node);
+    void caseAMultiploCabecalhoPrograma(AMultiploCabecalhoPrograma node);
     void caseABloco(ABloco node);
+    void caseAUnicoIdentificadores(AUnicoIdentificadores node);
+    void caseAMultiploIdentificadores(AMultiploIdentificadores node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

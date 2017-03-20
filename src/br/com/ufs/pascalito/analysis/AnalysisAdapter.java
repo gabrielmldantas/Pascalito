@@ -81,13 +81,31 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseACabecalhoPrograma(ACabecalhoPrograma node)
+    public void caseAUnicoCabecalhoPrograma(AUnicoCabecalhoPrograma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploCabecalhoPrograma(AMultiploCabecalhoPrograma node)
     {
         defaultCase(node);
     }
 
     @Override
     public void caseABloco(ABloco node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoIdentificadores(AUnicoIdentificadores node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploIdentificadores(AMultiploIdentificadores node)
     {
         defaultCase(node);
     }

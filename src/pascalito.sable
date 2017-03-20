@@ -104,5 +104,6 @@ Ignored Tokens
 	
 Productions
 	program = cabecalho_programa ponto_e_virgula bloco ponto;
-	cabecalho_programa = T.program identificador;
+	cabecalho_programa = {unico} T.program identificador | {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses;
 	bloco = num+;
+	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
