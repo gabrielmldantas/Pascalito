@@ -177,6 +177,30 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringDenotadorTipo(AStringDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealDenotadorTipo(ARealDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABooleanDenotadorTipo(ABooleanDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAOrdinalNovoTipo(AOrdinalNovoTipo node)
     {
         defaultCase(node);

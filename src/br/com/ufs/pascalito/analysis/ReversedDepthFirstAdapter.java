@@ -469,6 +469,90 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outANovoDenotadorTipo(node);
     }
 
+    public void inAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    {
+        inAIntegerDenotadorTipo(node);
+        if(node.getInteger() != null)
+        {
+            node.getInteger().apply(this);
+        }
+        outAIntegerDenotadorTipo(node);
+    }
+
+    public void inAStringDenotadorTipo(AStringDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAStringDenotadorTipo(AStringDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAStringDenotadorTipo(AStringDenotadorTipo node)
+    {
+        inAStringDenotadorTipo(node);
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        outAStringDenotadorTipo(node);
+    }
+
+    public void inARealDenotadorTipo(ARealDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outARealDenotadorTipo(ARealDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseARealDenotadorTipo(ARealDenotadorTipo node)
+    {
+        inARealDenotadorTipo(node);
+        if(node.getReal() != null)
+        {
+            node.getReal().apply(this);
+        }
+        outARealDenotadorTipo(node);
+    }
+
+    public void inABooleanDenotadorTipo(ABooleanDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outABooleanDenotadorTipo(ABooleanDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseABooleanDenotadorTipo(ABooleanDenotadorTipo node)
+    {
+        inABooleanDenotadorTipo(node);
+        if(node.getBoolean() != null)
+        {
+            node.getBoolean().apply(this);
+        }
+        outABooleanDenotadorTipo(node);
+    }
+
     public void inAOrdinalNovoTipo(AOrdinalNovoTipo node)
     {
         defaultIn(node);

@@ -300,69 +300,93 @@ public class Parser
                 push(goTo(9), list, false);
             }
             break;
-            case 17: /* reduce AOrdinalNovoTipo */
+            case 17: /* reduce AIntegerDenotadorTipo */
             {
                 ArrayList<Object> list = new17();
-                push(goTo(10), list, false);
+                push(goTo(9), list, false);
             }
             break;
-            case 18: /* reduce AArrayNovoTipo */
+            case 18: /* reduce AStringDenotadorTipo */
             {
                 ArrayList<Object> list = new18();
+                push(goTo(9), list, false);
+            }
+            break;
+            case 19: /* reduce ARealDenotadorTipo */
+            {
+                ArrayList<Object> list = new19();
+                push(goTo(9), list, false);
+            }
+            break;
+            case 20: /* reduce ABooleanDenotadorTipo */
+            {
+                ArrayList<Object> list = new20();
+                push(goTo(9), list, false);
+            }
+            break;
+            case 21: /* reduce AOrdinalNovoTipo */
+            {
+                ArrayList<Object> list = new21();
                 push(goTo(10), list, false);
             }
             break;
-            case 19: /* reduce ATipoArray */
+            case 22: /* reduce AArrayNovoTipo */
             {
-                ArrayList<Object> list = new19();
+                ArrayList<Object> list = new22();
+                push(goTo(10), list, false);
+            }
+            break;
+            case 23: /* reduce ATipoArray */
+            {
+                ArrayList<Object> list = new23();
                 push(goTo(11), list, false);
             }
             break;
-            case 20: /* reduce AUnicoTiposOrdinais */
-            {
-                ArrayList<Object> list = new20();
-                push(goTo(12), list, false);
-            }
-            break;
-            case 21: /* reduce AMultiploTiposOrdinais */
-            {
-                ArrayList<Object> list = new21();
-                push(goTo(12), list, false);
-            }
-            break;
-            case 22: /* reduce ANovoTipoOrdinal */
-            {
-                ArrayList<Object> list = new22();
-                push(goTo(13), list, false);
-            }
-            break;
-            case 23: /* reduce AExistenteTipoOrdinal */
-            {
-                ArrayList<Object> list = new23();
-                push(goTo(13), list, false);
-            }
-            break;
-            case 24: /* reduce AEnumeradoNovoTipoOrdinal */
+            case 24: /* reduce AUnicoTiposOrdinais */
             {
                 ArrayList<Object> list = new24();
-                push(goTo(14), list, false);
+                push(goTo(12), list, false);
             }
             break;
-            case 25: /* reduce ASubrangeNovoTipoOrdinal */
+            case 25: /* reduce AMultiploTiposOrdinais */
             {
                 ArrayList<Object> list = new25();
+                push(goTo(12), list, false);
+            }
+            break;
+            case 26: /* reduce ANovoTipoOrdinal */
+            {
+                ArrayList<Object> list = new26();
+                push(goTo(13), list, false);
+            }
+            break;
+            case 27: /* reduce AExistenteTipoOrdinal */
+            {
+                ArrayList<Object> list = new27();
+                push(goTo(13), list, false);
+            }
+            break;
+            case 28: /* reduce AEnumeradoNovoTipoOrdinal */
+            {
+                ArrayList<Object> list = new28();
                 push(goTo(14), list, false);
             }
             break;
-            case 26: /* reduce ATipoEnumerado */
+            case 29: /* reduce ASubrangeNovoTipoOrdinal */
             {
-                ArrayList<Object> list = new26();
+                ArrayList<Object> list = new29();
+                push(goTo(14), list, false);
+            }
+            break;
+            case 30: /* reduce ATipoEnumerado */
+            {
+                ArrayList<Object> list = new30();
                 push(goTo(15), list, false);
             }
             break;
-            case 27: /* reduce ATipoSubrange */
+            case 31: /* reduce ATipoSubrange */
             {
-                ArrayList<Object> list = new27();
+                ArrayList<Object> list = new31();
                 push(goTo(16), list, false);
             }
             break;
@@ -769,7 +793,87 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new17() /* reduce AOrdinalNovoTipo */
+    ArrayList<Object> new17() /* reduce AIntegerDenotadorTipo */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDenotadorTipo pdenotadortipoNode1;
+        {
+            // Block
+        TInteger tintegerNode2;
+        tintegerNode2 = (TInteger)nodeArrayList1.get(0);
+
+        pdenotadortipoNode1 = new AIntegerDenotadorTipo(tintegerNode2);
+        }
+	nodeList.add(pdenotadortipoNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new18() /* reduce AStringDenotadorTipo */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDenotadorTipo pdenotadortipoNode1;
+        {
+            // Block
+        TString tstringNode2;
+        tstringNode2 = (TString)nodeArrayList1.get(0);
+
+        pdenotadortipoNode1 = new AStringDenotadorTipo(tstringNode2);
+        }
+	nodeList.add(pdenotadortipoNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new19() /* reduce ARealDenotadorTipo */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDenotadorTipo pdenotadortipoNode1;
+        {
+            // Block
+        TReal trealNode2;
+        trealNode2 = (TReal)nodeArrayList1.get(0);
+
+        pdenotadortipoNode1 = new ARealDenotadorTipo(trealNode2);
+        }
+	nodeList.add(pdenotadortipoNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new20() /* reduce ABooleanDenotadorTipo */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDenotadorTipo pdenotadortipoNode1;
+        {
+            // Block
+        TBoolean tbooleanNode2;
+        tbooleanNode2 = (TBoolean)nodeArrayList1.get(0);
+
+        pdenotadortipoNode1 = new ABooleanDenotadorTipo(tbooleanNode2);
+        }
+	nodeList.add(pdenotadortipoNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new21() /* reduce AOrdinalNovoTipo */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -789,7 +893,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new18() /* reduce AArrayNovoTipo */
+    ArrayList<Object> new22() /* reduce AArrayNovoTipo */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -809,7 +913,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new19() /* reduce ATipoArray */
+    ArrayList<Object> new23() /* reduce ATipoArray */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -844,7 +948,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new20() /* reduce AUnicoTiposOrdinais */
+    ArrayList<Object> new24() /* reduce AUnicoTiposOrdinais */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -864,7 +968,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new21() /* reduce AMultiploTiposOrdinais */
+    ArrayList<Object> new25() /* reduce AMultiploTiposOrdinais */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -890,7 +994,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new22() /* reduce ANovoTipoOrdinal */
+    ArrayList<Object> new26() /* reduce ANovoTipoOrdinal */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -910,7 +1014,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new23() /* reduce AExistenteTipoOrdinal */
+    ArrayList<Object> new27() /* reduce AExistenteTipoOrdinal */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -930,7 +1034,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new24() /* reduce AEnumeradoNovoTipoOrdinal */
+    ArrayList<Object> new28() /* reduce AEnumeradoNovoTipoOrdinal */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -950,7 +1054,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new25() /* reduce ASubrangeNovoTipoOrdinal */
+    ArrayList<Object> new29() /* reduce ASubrangeNovoTipoOrdinal */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -970,7 +1074,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new26() /* reduce ATipoEnumerado */
+    ArrayList<Object> new30() /* reduce ATipoEnumerado */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -996,7 +1100,7 @@ public class Parser
 
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    ArrayList<Object> new27() /* reduce ATipoSubrange */
+    ArrayList<Object> new31() /* reduce ATipoSubrange */
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
@@ -1049,54 +1153,58 @@ public class Parser
 			{{-1, ERROR, 23}, {23, SHIFT, 27}, {28, SHIFT, 28}, },
 			{{-1, REDUCE, 5}, },
 			{{-1, REDUCE, 9}, },
-			{{-1, ERROR, 26}, {4, SHIFT, 29}, {22, SHIFT, 30}, {26, SHIFT, 31}, {33, SHIFT, 32}, },
+			{{-1, ERROR, 26}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
 			{{-1, REDUCE, 11}, },
-			{{-1, ERROR, 28}, {4, SHIFT, 29}, {22, SHIFT, 30}, {26, SHIFT, 31}, {33, SHIFT, 32}, },
-			{{-1, ERROR, 29}, {31, SHIFT, 40}, },
+			{{-1, ERROR, 28}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, REDUCE, 17}, },
+			{{-1, REDUCE, 18}, },
+			{{-1, REDUCE, 19}, },
+			{{-1, REDUCE, 20}, },
+			{{-1, ERROR, 33}, {31, SHIFT, 44}, },
 			{{-1, REDUCE, 15}, },
-			{{-1, ERROR, 31}, {22, SHIFT, 10}, },
-			{{-1, ERROR, 32}, {25, SHIFT, 42}, },
+			{{-1, ERROR, 35}, {22, SHIFT, 10}, },
+			{{-1, ERROR, 36}, {25, SHIFT, 46}, },
 			{{-1, REDUCE, 13}, },
 			{{-1, REDUCE, 16}, },
-			{{-1, REDUCE, 18}, },
-			{{-1, REDUCE, 17}, },
-			{{-1, REDUCE, 24}, },
-			{{-1, REDUCE, 25}, },
-			{{-1, REDUCE, 14}, },
-			{{-1, ERROR, 40}, {22, SHIFT, 43}, {26, SHIFT, 31}, {33, SHIFT, 32}, },
-			{{-1, ERROR, 41}, {27, SHIFT, 47}, {28, SHIFT, 19}, },
-			{{-1, ERROR, 42}, {33, SHIFT, 48}, },
-			{{-1, REDUCE, 23}, },
-			{{-1, ERROR, 44}, {28, SHIFT, 49}, {32, SHIFT, 50}, },
-			{{-1, REDUCE, 20}, },
 			{{-1, REDUCE, 22}, },
-			{{-1, REDUCE, 26}, },
-			{{-1, REDUCE, 27}, },
-			{{-1, ERROR, 49}, {22, SHIFT, 43}, {26, SHIFT, 31}, {33, SHIFT, 32}, },
-			{{-1, ERROR, 50}, {11, SHIFT, 52}, },
 			{{-1, REDUCE, 21}, },
-			{{-1, ERROR, 52}, {4, SHIFT, 29}, {22, SHIFT, 30}, {26, SHIFT, 31}, {33, SHIFT, 32}, },
-			{{-1, REDUCE, 19}, },
+			{{-1, REDUCE, 28}, },
+			{{-1, REDUCE, 29}, },
+			{{-1, REDUCE, 14}, },
+			{{-1, ERROR, 44}, {22, SHIFT, 47}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, ERROR, 45}, {27, SHIFT, 51}, {28, SHIFT, 19}, },
+			{{-1, ERROR, 46}, {33, SHIFT, 52}, },
+			{{-1, REDUCE, 27}, },
+			{{-1, ERROR, 48}, {28, SHIFT, 53}, {32, SHIFT, 54}, },
+			{{-1, REDUCE, 24}, },
+			{{-1, REDUCE, 26}, },
+			{{-1, REDUCE, 30}, },
+			{{-1, REDUCE, 31}, },
+			{{-1, ERROR, 53}, {22, SHIFT, 47}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, ERROR, 54}, {11, SHIFT, 56}, },
+			{{-1, REDUCE, 25}, },
+			{{-1, ERROR, 56}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, REDUCE, 23}, },
         };*/
     private static int[][][] gotoTable;
 /*      {
 			{{-1, 2}, },
 			{{-1, 3}, },
 			{{-1, 8}, },
-			{{-1, 11}, {31, 41}, },
+			{{-1, 11}, {35, 45}, },
 			{{-1, 9}, },
 			{{-1, 13}, },
 			{{-1, 14}, {21, 25}, },
 			{{-1, 17}, },
 			{{-1, 23}, },
-			{{-1, 33}, {28, 39}, {52, 53}, },
-			{{-1, 34}, },
-			{{-1, 35}, },
-			{{-1, 44}, },
-			{{-1, 45}, {49, 51}, },
-			{{-1, 36}, {40, 46}, {49, 46}, },
-			{{-1, 37}, },
+			{{-1, 37}, {28, 43}, {56, 57}, },
 			{{-1, 38}, },
+			{{-1, 39}, },
+			{{-1, 48}, },
+			{{-1, 49}, {53, 55}, },
+			{{-1, 40}, {44, 50}, {53, 50}, },
+			{{-1, 41}, },
+			{{-1, 42}, },
         };*/
     private static String[] errorMessages;
 /*      {
@@ -1112,7 +1220,7 @@ public class Parser
 			"expecting: ')', ','",
 			"expecting: ';', ','",
 			"expecting: '='",
-			"expecting: array, identificador, '(', const inteiro",
+			"expecting: integer, string, real, boolean, array, identificador, '(', const inteiro",
 			"expecting: '['",
 			"expecting: '..'",
 			"expecting: ';', ',', ']'",
@@ -1122,7 +1230,7 @@ public class Parser
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 3, 4, 5, 1, 6, 7, 8, 9, 9, 10, 10, 10, 2, 1, 7, 3, 1, 8, 6, 11, 10, 9, 10, 12, 7, 12, 13, 10, 1, 14, 10, 10, 10, 10, 15, 15, 10, 16, 9, 6, 17, 17, 17, 17, 15, 15, 16, 18, 17, 12, 10, 
+			0, 1, 2, 3, 4, 5, 1, 6, 7, 8, 9, 9, 10, 10, 10, 2, 1, 7, 3, 1, 8, 6, 11, 10, 9, 10, 12, 7, 12, 10, 10, 10, 10, 13, 10, 1, 14, 10, 10, 10, 10, 15, 15, 10, 16, 9, 6, 17, 17, 17, 17, 15, 15, 16, 18, 17, 12, 10, 
         };*/
 
     static 
