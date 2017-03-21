@@ -8,6 +8,7 @@ import br.com.ufs.pascalito.analysis.*;
 public final class ABloco extends PBloco
 {
     private PDeclaracaoLabels _declaracaoLabels_;
+    private PDeclaracaoTipos _declaracaoTipos_;
 
     public ABloco()
     {
@@ -15,10 +16,13 @@ public final class ABloco extends PBloco
     }
 
     public ABloco(
-        @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_)
+        @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_,
+        @SuppressWarnings("hiding") PDeclaracaoTipos _declaracaoTipos_)
     {
         // Constructor
         setDeclaracaoLabels(_declaracaoLabels_);
+
+        setDeclaracaoTipos(_declaracaoTipos_);
 
     }
 
@@ -26,7 +30,8 @@ public final class ABloco extends PBloco
     public Object clone()
     {
         return new ABloco(
-            cloneNode(this._declaracaoLabels_));
+            cloneNode(this._declaracaoLabels_),
+            cloneNode(this._declaracaoTipos_));
     }
 
     @Override
@@ -60,11 +65,37 @@ public final class ABloco extends PBloco
         this._declaracaoLabels_ = node;
     }
 
+    public PDeclaracaoTipos getDeclaracaoTipos()
+    {
+        return this._declaracaoTipos_;
+    }
+
+    public void setDeclaracaoTipos(PDeclaracaoTipos node)
+    {
+        if(this._declaracaoTipos_ != null)
+        {
+            this._declaracaoTipos_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._declaracaoTipos_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
-            + toString(this._declaracaoLabels_);
+            + toString(this._declaracaoLabels_)
+            + toString(this._declaracaoTipos_);
     }
 
     @Override
@@ -74,6 +105,12 @@ public final class ABloco extends PBloco
         if(this._declaracaoLabels_ == child)
         {
             this._declaracaoLabels_ = null;
+            return;
+        }
+
+        if(this._declaracaoTipos_ == child)
+        {
+            this._declaracaoTipos_ = null;
             return;
         }
 
@@ -87,6 +124,12 @@ public final class ABloco extends PBloco
         if(this._declaracaoLabels_ == oldChild)
         {
             setDeclaracaoLabels((PDeclaracaoLabels) newChild);
+            return;
+        }
+
+        if(this._declaracaoTipos_ == oldChild)
+        {
+            setDeclaracaoTipos((PDeclaracaoTipos) newChild);
             return;
         }
 

@@ -141,6 +141,108 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseADeclaracaoTipos(ADeclaracaoTipos node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyDeclaracaoTipos(AEmptyDeclaracaoTipos node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoDefinicaoTipos(AUnicoDefinicaoTipos node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploDefinicaoTipos(AMultiploDefinicaoTipos node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExistenteDenotadorTipo(AExistenteDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANovoDenotadorTipo(ANovoDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOrdinalNovoTipo(AOrdinalNovoTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArrayNovoTipo(AArrayNovoTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoArray(ATipoArray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoTiposOrdinais(AUnicoTiposOrdinais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploTiposOrdinais(AMultiploTiposOrdinais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANovoTipoOrdinal(ANovoTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExistenteTipoOrdinal(AExistenteTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEnumeradoNovoTipoOrdinal(AEnumeradoNovoTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASubrangeNovoTipoOrdinal(ASubrangeNovoTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoEnumerado(ATipoEnumerado node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoSubrange(ATipoSubrange node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);
@@ -261,6 +363,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseTType(TType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTConstBooleana(TConstBooleana node)
     {
         defaultCase(node);
@@ -358,6 +466,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTOperadorRelacional(TOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTIgual(TIgual node)
     {
         defaultCase(node);
     }
