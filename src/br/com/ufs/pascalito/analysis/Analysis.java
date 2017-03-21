@@ -44,6 +44,8 @@ public interface Analysis extends Switch
     void caseASubrangeNovoTipoOrdinal(ASubrangeNovoTipoOrdinal node);
     void caseATipoEnumerado(ATipoEnumerado node);
     void caseATipoSubrange(ATipoSubrange node);
+    void caseAInteiroConstante(AInteiroConstante node);
+    void caseAStringConstante(AStringConstante node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

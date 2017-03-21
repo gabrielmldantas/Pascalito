@@ -125,4 +125,6 @@ Productions
 	tipo_ordinal = {novo} novo_tipo_ordinal | {existente} identificador;
 	novo_tipo_ordinal = {enumerado} tipo_enumerado | {subrange} tipo_subrange;
 	tipo_enumerado = abre_parenteses identificadores fecha_parenteses;
-	tipo_subrange = [inicio]:const_inteiro ponto_ponto [fim]:const_inteiro;
+	tipo_subrange = [inicio]:constante ponto_ponto [fim]:constante;
+	
+	constante = {inteiro} const_inteiro | {string} const_string;

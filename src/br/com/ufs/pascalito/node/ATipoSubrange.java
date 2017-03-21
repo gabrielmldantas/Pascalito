@@ -7,9 +7,9 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class ATipoSubrange extends PTipoSubrange
 {
-    private TConstInteiro _inicio_;
+    private PConstante _inicio_;
     private TPontoPonto _pontoPonto_;
-    private TConstInteiro _fim_;
+    private PConstante _fim_;
 
     public ATipoSubrange()
     {
@@ -17,9 +17,9 @@ public final class ATipoSubrange extends PTipoSubrange
     }
 
     public ATipoSubrange(
-        @SuppressWarnings("hiding") TConstInteiro _inicio_,
+        @SuppressWarnings("hiding") PConstante _inicio_,
         @SuppressWarnings("hiding") TPontoPonto _pontoPonto_,
-        @SuppressWarnings("hiding") TConstInteiro _fim_)
+        @SuppressWarnings("hiding") PConstante _fim_)
     {
         // Constructor
         setInicio(_inicio_);
@@ -45,12 +45,12 @@ public final class ATipoSubrange extends PTipoSubrange
         ((Analysis) sw).caseATipoSubrange(this);
     }
 
-    public TConstInteiro getInicio()
+    public PConstante getInicio()
     {
         return this._inicio_;
     }
 
-    public void setInicio(TConstInteiro node)
+    public void setInicio(PConstante node)
     {
         if(this._inicio_ != null)
         {
@@ -95,12 +95,12 @@ public final class ATipoSubrange extends PTipoSubrange
         this._pontoPonto_ = node;
     }
 
-    public TConstInteiro getFim()
+    public PConstante getFim()
     {
         return this._fim_;
     }
 
-    public void setFim(TConstInteiro node)
+    public void setFim(PConstante node)
     {
         if(this._fim_ != null)
         {
@@ -160,7 +160,7 @@ public final class ATipoSubrange extends PTipoSubrange
         // Replace child
         if(this._inicio_ == oldChild)
         {
-            setInicio((TConstInteiro) newChild);
+            setInicio((PConstante) newChild);
             return;
         }
 
@@ -172,7 +172,7 @@ public final class ATipoSubrange extends PTipoSubrange
 
         if(this._fim_ == oldChild)
         {
-            setFim((TConstInteiro) newChild);
+            setFim((PConstante) newChild);
             return;
         }
 

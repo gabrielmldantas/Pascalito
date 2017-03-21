@@ -827,4 +827,46 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         }
         outATipoSubrange(node);
     }
+
+    public void inAInteiroConstante(AInteiroConstante node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAInteiroConstante(AInteiroConstante node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAInteiroConstante(AInteiroConstante node)
+    {
+        inAInteiroConstante(node);
+        if(node.getConstInteiro() != null)
+        {
+            node.getConstInteiro().apply(this);
+        }
+        outAInteiroConstante(node);
+    }
+
+    public void inAStringConstante(AStringConstante node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAStringConstante(AStringConstante node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAStringConstante(AStringConstante node)
+    {
+        inAStringConstante(node);
+        if(node.getConstString() != null)
+        {
+            node.getConstString().apply(this);
+        }
+        outAStringConstante(node);
+    }
 }

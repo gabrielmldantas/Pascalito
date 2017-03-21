@@ -390,6 +390,18 @@ public class Parser
                 push(goTo(16), list, false);
             }
             break;
+            case 32: /* reduce AInteiroConstante */
+            {
+                ArrayList<Object> list = new32();
+                push(goTo(17), list, false);
+            }
+            break;
+            case 33: /* reduce AStringConstante */
+            {
+                ArrayList<Object> list = new33();
+                push(goTo(17), list, false);
+            }
+            break;
         }
     }
 
@@ -1110,16 +1122,56 @@ public class Parser
         PTipoSubrange ptiposubrangeNode1;
         {
             // Block
-        TConstInteiro tconstinteiroNode2;
+        PConstante pconstanteNode2;
         TPontoPonto tpontopontoNode3;
-        TConstInteiro tconstinteiroNode4;
-        tconstinteiroNode2 = (TConstInteiro)nodeArrayList1.get(0);
+        PConstante pconstanteNode4;
+        pconstanteNode2 = (PConstante)nodeArrayList1.get(0);
         tpontopontoNode3 = (TPontoPonto)nodeArrayList2.get(0);
-        tconstinteiroNode4 = (TConstInteiro)nodeArrayList3.get(0);
+        pconstanteNode4 = (PConstante)nodeArrayList3.get(0);
 
-        ptiposubrangeNode1 = new ATipoSubrange(tconstinteiroNode2, tpontopontoNode3, tconstinteiroNode4);
+        ptiposubrangeNode1 = new ATipoSubrange(pconstanteNode2, tpontopontoNode3, pconstanteNode4);
         }
 	nodeList.add(ptiposubrangeNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new32() /* reduce AInteiroConstante */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PConstante pconstanteNode1;
+        {
+            // Block
+        TConstInteiro tconstinteiroNode2;
+        tconstinteiroNode2 = (TConstInteiro)nodeArrayList1.get(0);
+
+        pconstanteNode1 = new AInteiroConstante(tconstinteiroNode2);
+        }
+	nodeList.add(pconstanteNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new33() /* reduce AStringConstante */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PConstante pconstanteNode1;
+        {
+            // Block
+        TConstString tconststringNode2;
+        tconststringNode2 = (TConstString)nodeArrayList1.get(0);
+
+        pconstanteNode1 = new AStringConstante(tconststringNode2);
+        }
+	nodeList.add(pconstanteNode1);
         return nodeList;
     }
 
@@ -1153,37 +1205,39 @@ public class Parser
 			{{-1, ERROR, 23}, {23, SHIFT, 27}, {28, SHIFT, 28}, },
 			{{-1, REDUCE, 5}, },
 			{{-1, REDUCE, 9}, },
-			{{-1, ERROR, 26}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, ERROR, 26}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
 			{{-1, REDUCE, 11}, },
-			{{-1, ERROR, 28}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, ERROR, 28}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
 			{{-1, REDUCE, 17}, },
 			{{-1, REDUCE, 18}, },
 			{{-1, REDUCE, 19}, },
 			{{-1, REDUCE, 20}, },
-			{{-1, ERROR, 33}, {31, SHIFT, 44}, },
+			{{-1, ERROR, 33}, {31, SHIFT, 46}, },
 			{{-1, REDUCE, 15}, },
 			{{-1, ERROR, 35}, {22, SHIFT, 10}, },
-			{{-1, ERROR, 36}, {25, SHIFT, 46}, },
+			{{-1, REDUCE, 32}, },
+			{{-1, REDUCE, 33}, },
 			{{-1, REDUCE, 13}, },
 			{{-1, REDUCE, 16}, },
 			{{-1, REDUCE, 22}, },
 			{{-1, REDUCE, 21}, },
 			{{-1, REDUCE, 28}, },
 			{{-1, REDUCE, 29}, },
+			{{-1, ERROR, 44}, {25, SHIFT, 48}, },
 			{{-1, REDUCE, 14}, },
-			{{-1, ERROR, 44}, {22, SHIFT, 47}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
-			{{-1, ERROR, 45}, {27, SHIFT, 51}, {28, SHIFT, 19}, },
-			{{-1, ERROR, 46}, {33, SHIFT, 52}, },
+			{{-1, ERROR, 46}, {22, SHIFT, 49}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
+			{{-1, ERROR, 47}, {27, SHIFT, 53}, {28, SHIFT, 19}, },
+			{{-1, ERROR, 48}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
 			{{-1, REDUCE, 27}, },
-			{{-1, ERROR, 48}, {28, SHIFT, 53}, {32, SHIFT, 54}, },
+			{{-1, ERROR, 50}, {28, SHIFT, 55}, {32, SHIFT, 56}, },
 			{{-1, REDUCE, 24}, },
 			{{-1, REDUCE, 26}, },
 			{{-1, REDUCE, 30}, },
 			{{-1, REDUCE, 31}, },
-			{{-1, ERROR, 53}, {22, SHIFT, 47}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
-			{{-1, ERROR, 54}, {11, SHIFT, 56}, },
+			{{-1, ERROR, 55}, {22, SHIFT, 49}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
+			{{-1, ERROR, 56}, {11, SHIFT, 58}, },
 			{{-1, REDUCE, 25}, },
-			{{-1, ERROR, 56}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, },
+			{{-1, ERROR, 58}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
 			{{-1, REDUCE, 23}, },
         };*/
     private static int[][][] gotoTable;
@@ -1191,20 +1245,21 @@ public class Parser
 			{{-1, 2}, },
 			{{-1, 3}, },
 			{{-1, 8}, },
-			{{-1, 11}, {35, 45}, },
+			{{-1, 11}, {35, 47}, },
 			{{-1, 9}, },
 			{{-1, 13}, },
 			{{-1, 14}, {21, 25}, },
 			{{-1, 17}, },
 			{{-1, 23}, },
-			{{-1, 37}, {28, 43}, {56, 57}, },
-			{{-1, 38}, },
+			{{-1, 38}, {28, 45}, {58, 59}, },
 			{{-1, 39}, },
-			{{-1, 48}, },
-			{{-1, 49}, {53, 55}, },
-			{{-1, 40}, {44, 50}, {53, 50}, },
-			{{-1, 41}, },
+			{{-1, 40}, },
+			{{-1, 50}, },
+			{{-1, 51}, {55, 57}, },
+			{{-1, 41}, {46, 52}, {55, 52}, },
 			{{-1, 42}, },
+			{{-1, 43}, },
+			{{-1, 44}, {48, 54}, },
         };*/
     private static String[] errorMessages;
 /*      {
@@ -1220,17 +1275,19 @@ public class Parser
 			"expecting: ')', ','",
 			"expecting: ';', ','",
 			"expecting: '='",
-			"expecting: integer, string, real, boolean, array, identificador, '(', const inteiro",
+			"expecting: integer, string, real, boolean, array, identificador, '(', const inteiro, const string",
 			"expecting: '['",
-			"expecting: '..'",
+			"expecting: ';', '..', ',', ']'",
 			"expecting: ';', ',', ']'",
-			"expecting: identificador, '(', const inteiro",
+			"expecting: '..'",
+			"expecting: identificador, '(', const inteiro, const string",
+			"expecting: const inteiro, const string",
 			"expecting: ',', ']'",
 			"expecting: of",
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 3, 4, 5, 1, 6, 7, 8, 9, 9, 10, 10, 10, 2, 1, 7, 3, 1, 8, 6, 11, 10, 9, 10, 12, 7, 12, 10, 10, 10, 10, 13, 10, 1, 14, 10, 10, 10, 10, 15, 15, 10, 16, 9, 6, 17, 17, 17, 17, 15, 15, 16, 18, 17, 12, 10, 
+			0, 1, 2, 3, 4, 5, 1, 6, 7, 8, 9, 9, 10, 10, 10, 2, 1, 7, 3, 1, 8, 6, 11, 10, 9, 10, 12, 7, 12, 10, 10, 10, 10, 13, 10, 1, 14, 14, 10, 10, 10, 10, 15, 15, 16, 10, 17, 9, 18, 19, 19, 19, 19, 15, 15, 17, 20, 19, 12, 10, 
         };*/
 
     static 

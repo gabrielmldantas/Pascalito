@@ -267,6 +267,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAInteiroConstante(AInteiroConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringConstante(AStringConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);
