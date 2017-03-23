@@ -402,6 +402,36 @@ public class Parser
                 push(goTo(17), list, false);
             }
             break;
+            case 34: /* reduce ADeclaracoesVariaveis */
+            {
+                ArrayList<Object> list = new34();
+                push(goTo(18), list, false);
+            }
+            break;
+            case 35: /* reduce AEmptyDeclaracoesVariaveis */
+            {
+                ArrayList<Object> list = new35();
+                push(goTo(18), list, false);
+            }
+            break;
+            case 36: /* reduce AUnicoDeclaracaoVariaveis */
+            {
+                ArrayList<Object> list = new36();
+                push(goTo(19), list, false);
+            }
+            break;
+            case 37: /* reduce AMultiploDeclaracaoVariaveis */
+            {
+                ArrayList<Object> list = new37();
+                push(goTo(19), list, false);
+            }
+            break;
+            case 38: /* reduce ADeclaracaoVariavel */
+            {
+                ArrayList<Object> list = new38();
+                push(goTo(20), list, false);
+            }
+            break;
         }
     }
 
@@ -496,6 +526,7 @@ public class Parser
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
         PBloco pblocoNode1;
@@ -503,10 +534,12 @@ public class Parser
             // Block
         PDeclaracaoLabels pdeclaracaolabelsNode2;
         PDeclaracaoTipos pdeclaracaotiposNode3;
+        PDeclaracoesVariaveis pdeclaracoesvariaveisNode4;
         pdeclaracaolabelsNode2 = (PDeclaracaoLabels)nodeArrayList1.get(0);
         pdeclaracaotiposNode3 = (PDeclaracaoTipos)nodeArrayList2.get(0);
+        pdeclaracoesvariaveisNode4 = (PDeclaracoesVariaveis)nodeArrayList3.get(0);
 
-        pblocoNode1 = new ABloco(pdeclaracaolabelsNode2, pdeclaracaotiposNode3);
+        pblocoNode1 = new ABloco(pdeclaracaolabelsNode2, pdeclaracaotiposNode3, pdeclaracoesvariaveisNode4);
         }
 	nodeList.add(pblocoNode1);
         return nodeList;
@@ -1177,6 +1210,121 @@ public class Parser
 
 
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new34() /* reduce ADeclaracoesVariaveis */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDeclaracoesVariaveis pdeclaracoesvariaveisNode1;
+        {
+            // Block
+        TVar tvarNode2;
+        PDeclaracaoVariaveis pdeclaracaovariaveisNode3;
+        TPontoEVirgula tpontoevirgulaNode4;
+        tvarNode2 = (TVar)nodeArrayList1.get(0);
+        pdeclaracaovariaveisNode3 = (PDeclaracaoVariaveis)nodeArrayList2.get(0);
+        tpontoevirgulaNode4 = (TPontoEVirgula)nodeArrayList3.get(0);
+
+        pdeclaracoesvariaveisNode1 = new ADeclaracoesVariaveis(tvarNode2, pdeclaracaovariaveisNode3, tpontoevirgulaNode4);
+        }
+	nodeList.add(pdeclaracoesvariaveisNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new35() /* reduce AEmptyDeclaracoesVariaveis */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        PDeclaracoesVariaveis pdeclaracoesvariaveisNode1;
+        {
+            // Block
+
+        pdeclaracoesvariaveisNode1 = new AEmptyDeclaracoesVariaveis();
+        }
+	nodeList.add(pdeclaracoesvariaveisNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new36() /* reduce AUnicoDeclaracaoVariaveis */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDeclaracaoVariaveis pdeclaracaovariaveisNode1;
+        {
+            // Block
+        PDeclaracaoVariavel pdeclaracaovariavelNode2;
+        pdeclaracaovariavelNode2 = (PDeclaracaoVariavel)nodeArrayList1.get(0);
+
+        pdeclaracaovariaveisNode1 = new AUnicoDeclaracaoVariaveis(pdeclaracaovariavelNode2);
+        }
+	nodeList.add(pdeclaracaovariaveisNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new37() /* reduce AMultiploDeclaracaoVariaveis */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDeclaracaoVariaveis pdeclaracaovariaveisNode1;
+        {
+            // Block
+        PDeclaracaoVariaveis pdeclaracaovariaveisNode2;
+        TPontoEVirgula tpontoevirgulaNode3;
+        PDeclaracaoVariavel pdeclaracaovariavelNode4;
+        pdeclaracaovariaveisNode2 = (PDeclaracaoVariaveis)nodeArrayList1.get(0);
+        tpontoevirgulaNode3 = (TPontoEVirgula)nodeArrayList2.get(0);
+        pdeclaracaovariavelNode4 = (PDeclaracaoVariavel)nodeArrayList3.get(0);
+
+        pdeclaracaovariaveisNode1 = new AMultiploDeclaracaoVariaveis(pdeclaracaovariaveisNode2, tpontoevirgulaNode3, pdeclaracaovariavelNode4);
+        }
+	nodeList.add(pdeclaracaovariaveisNode1);
+        return nodeList;
+    }
+
+
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    ArrayList<Object> new38() /* reduce ADeclaracaoVariavel */
+    {
+        @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
+
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
+        @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDeclaracaoVariavel pdeclaracaovariavelNode1;
+        {
+            // Block
+        PIdentificadores pidentificadoresNode2;
+        TDoisPontos tdoispontosNode3;
+        PDenotadorTipo pdenotadortipoNode4;
+        pidentificadoresNode2 = (PIdentificadores)nodeArrayList1.get(0);
+        tdoispontosNode3 = (TDoisPontos)nodeArrayList2.get(0);
+        pdenotadortipoNode4 = (PDenotadorTipo)nodeArrayList3.get(0);
+
+        pdeclaracaovariavelNode1 = new ADeclaracaoVariavel(pidentificadoresNode2, tdoispontosNode3, pdenotadortipoNode4);
+        }
+	nodeList.add(pdeclaracaovariavelNode1);
+        return nodeList;
+    }
+
+
+
     private static int[][][] actionTable;
 /*      {
 			{{-1, ERROR, 0}, {14, SHIFT, 1}, },
@@ -1196,25 +1344,30 @@ public class Parser
 			{{-1, REDUCE, 8}, },
 			{{-1, REDUCE, 0}, },
 			{{-1, ERROR, 16}, {22, SHIFT, 22}, },
-			{{-1, REDUCE, 3}, },
+			{{-1, REDUCE, 35}, {15, SHIFT, 24}, },
 			{{-1, REDUCE, 2}, },
-			{{-1, ERROR, 19}, {22, SHIFT, 24}, },
+			{{-1, ERROR, 19}, {22, SHIFT, 26}, },
 			{{-1, REDUCE, 6}, },
 			{{-1, ERROR, 21}, {33, SHIFT, 12}, },
-			{{-1, ERROR, 22}, {37, SHIFT, 26}, },
-			{{-1, ERROR, 23}, {23, SHIFT, 27}, {28, SHIFT, 28}, },
+			{{-1, ERROR, 22}, {37, SHIFT, 28}, },
+			{{-1, ERROR, 23}, {23, SHIFT, 29}, {28, SHIFT, 30}, },
+			{{-1, ERROR, 24}, {22, SHIFT, 10}, },
+			{{-1, REDUCE, 3}, },
 			{{-1, REDUCE, 5}, },
 			{{-1, REDUCE, 9}, },
-			{{-1, ERROR, 26}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
+			{{-1, ERROR, 28}, {0, SHIFT, 34}, {1, SHIFT, 35}, {2, SHIFT, 36}, {3, SHIFT, 37}, {4, SHIFT, 38}, {22, SHIFT, 39}, {26, SHIFT, 40}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
 			{{-1, REDUCE, 11}, },
-			{{-1, ERROR, 28}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
+			{{-1, ERROR, 30}, {0, SHIFT, 34}, {1, SHIFT, 35}, {2, SHIFT, 36}, {3, SHIFT, 37}, {4, SHIFT, 38}, {22, SHIFT, 39}, {26, SHIFT, 40}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
+			{{-1, ERROR, 31}, {28, SHIFT, 19}, {30, SHIFT, 51}, },
+			{{-1, ERROR, 32}, {23, SHIFT, 52}, },
+			{{-1, REDUCE, 36}, },
 			{{-1, REDUCE, 17}, },
 			{{-1, REDUCE, 18}, },
 			{{-1, REDUCE, 19}, },
 			{{-1, REDUCE, 20}, },
-			{{-1, ERROR, 33}, {31, SHIFT, 46}, },
+			{{-1, ERROR, 38}, {31, SHIFT, 53}, },
 			{{-1, REDUCE, 15}, },
-			{{-1, ERROR, 35}, {22, SHIFT, 10}, },
+			{{-1, ERROR, 40}, {22, SHIFT, 10}, },
 			{{-1, REDUCE, 32}, },
 			{{-1, REDUCE, 33}, },
 			{{-1, REDUCE, 13}, },
@@ -1223,21 +1376,25 @@ public class Parser
 			{{-1, REDUCE, 21}, },
 			{{-1, REDUCE, 28}, },
 			{{-1, REDUCE, 29}, },
-			{{-1, ERROR, 44}, {25, SHIFT, 48}, },
+			{{-1, ERROR, 49}, {25, SHIFT, 55}, },
 			{{-1, REDUCE, 14}, },
-			{{-1, ERROR, 46}, {22, SHIFT, 49}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
-			{{-1, ERROR, 47}, {27, SHIFT, 53}, {28, SHIFT, 19}, },
-			{{-1, ERROR, 48}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
+			{{-1, ERROR, 51}, {0, SHIFT, 34}, {1, SHIFT, 35}, {2, SHIFT, 36}, {3, SHIFT, 37}, {4, SHIFT, 38}, {22, SHIFT, 39}, {26, SHIFT, 40}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
+			{{-1, REDUCE, 34}, {22, SHIFT, 10}, },
+			{{-1, ERROR, 53}, {22, SHIFT, 58}, {26, SHIFT, 40}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
+			{{-1, ERROR, 54}, {27, SHIFT, 62}, {28, SHIFT, 19}, },
+			{{-1, ERROR, 55}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
+			{{-1, REDUCE, 38}, },
+			{{-1, REDUCE, 37}, },
 			{{-1, REDUCE, 27}, },
-			{{-1, ERROR, 50}, {28, SHIFT, 55}, {32, SHIFT, 56}, },
+			{{-1, ERROR, 59}, {28, SHIFT, 64}, {32, SHIFT, 65}, },
 			{{-1, REDUCE, 24}, },
 			{{-1, REDUCE, 26}, },
 			{{-1, REDUCE, 30}, },
 			{{-1, REDUCE, 31}, },
-			{{-1, ERROR, 55}, {22, SHIFT, 49}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
-			{{-1, ERROR, 56}, {11, SHIFT, 58}, },
+			{{-1, ERROR, 64}, {22, SHIFT, 58}, {26, SHIFT, 40}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
+			{{-1, ERROR, 65}, {11, SHIFT, 67}, },
 			{{-1, REDUCE, 25}, },
-			{{-1, ERROR, 58}, {0, SHIFT, 29}, {1, SHIFT, 30}, {2, SHIFT, 31}, {3, SHIFT, 32}, {4, SHIFT, 33}, {22, SHIFT, 34}, {26, SHIFT, 35}, {33, SHIFT, 36}, {35, SHIFT, 37}, },
+			{{-1, ERROR, 67}, {0, SHIFT, 34}, {1, SHIFT, 35}, {2, SHIFT, 36}, {3, SHIFT, 37}, {4, SHIFT, 38}, {22, SHIFT, 39}, {26, SHIFT, 40}, {33, SHIFT, 41}, {35, SHIFT, 42}, },
 			{{-1, REDUCE, 23}, },
         };*/
     private static int[][][] gotoTable;
@@ -1245,21 +1402,24 @@ public class Parser
 			{{-1, 2}, },
 			{{-1, 3}, },
 			{{-1, 8}, },
-			{{-1, 11}, {35, 47}, },
+			{{-1, 31}, {6, 11}, {40, 54}, },
 			{{-1, 9}, },
 			{{-1, 13}, },
-			{{-1, 14}, {21, 25}, },
+			{{-1, 14}, {21, 27}, },
 			{{-1, 17}, },
 			{{-1, 23}, },
-			{{-1, 38}, {28, 45}, {58, 59}, },
-			{{-1, 39}, },
-			{{-1, 40}, },
-			{{-1, 50}, },
-			{{-1, 51}, {55, 57}, },
-			{{-1, 41}, {46, 52}, {55, 52}, },
-			{{-1, 42}, },
-			{{-1, 43}, },
-			{{-1, 44}, {48, 54}, },
+			{{-1, 43}, {30, 50}, {51, 56}, {67, 68}, },
+			{{-1, 44}, },
+			{{-1, 45}, },
+			{{-1, 59}, },
+			{{-1, 60}, {64, 66}, },
+			{{-1, 46}, {53, 61}, {64, 61}, },
+			{{-1, 47}, },
+			{{-1, 48}, },
+			{{-1, 49}, {55, 63}, },
+			{{-1, 25}, },
+			{{-1, 32}, },
+			{{-1, 33}, {52, 57}, },
         };*/
     private static String[] errorMessages;
 /*      {
@@ -1268,18 +1428,22 @@ public class Parser
 			"expecting: EOF",
 			"expecting: ';'",
 			"expecting: ';', '('",
-			"expecting: label, type, '.'",
+			"expecting: var, label, type, '.'",
 			"expecting: const inteiro",
 			"expecting: '.'",
-			"expecting: type, '.'",
+			"expecting: var, type, '.'",
+			"expecting: ')', ',', ':'",
 			"expecting: ')', ','",
 			"expecting: ';', ','",
+			"expecting: var, '.'",
 			"expecting: '='",
 			"expecting: integer, string, real, boolean, array, identificador, '(', const inteiro, const string",
+			"expecting: ',', ':'",
 			"expecting: '['",
 			"expecting: ';', '..', ',', ']'",
 			"expecting: ';', ',', ']'",
 			"expecting: '..'",
+			"expecting: identificador, '.'",
 			"expecting: identificador, '(', const inteiro, const string",
 			"expecting: const inteiro, const string",
 			"expecting: ',', ']'",
@@ -1287,7 +1451,7 @@ public class Parser
         };*/
     private static int[] errors;
 /*      {
-			0, 1, 2, 3, 4, 5, 1, 6, 7, 8, 9, 9, 10, 10, 10, 2, 1, 7, 3, 1, 8, 6, 11, 10, 9, 10, 12, 7, 12, 10, 10, 10, 10, 13, 10, 1, 14, 14, 10, 10, 10, 10, 15, 15, 16, 10, 17, 9, 18, 19, 19, 19, 19, 15, 15, 17, 20, 19, 12, 10, 
+			0, 1, 2, 3, 4, 5, 1, 6, 7, 8, 9, 10, 11, 11, 11, 2, 1, 12, 3, 1, 8, 6, 13, 11, 1, 7, 9, 11, 14, 12, 14, 15, 3, 3, 11, 11, 11, 11, 16, 11, 1, 17, 17, 11, 11, 11, 11, 18, 18, 19, 11, 14, 20, 21, 10, 22, 3, 3, 23, 23, 23, 23, 18, 18, 21, 24, 23, 14, 11, 
         };*/
 
     static 

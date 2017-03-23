@@ -279,6 +279,36 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseADeclaracoesVariaveis(ADeclaracoesVariaveis node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyDeclaracoesVariaveis(AEmptyDeclaracoesVariaveis node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoDeclaracaoVariaveis(AUnicoDeclaracaoVariaveis node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploDeclaracaoVariaveis(AMultiploDeclaracaoVariaveis node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);

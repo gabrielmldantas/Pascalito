@@ -46,6 +46,11 @@ public interface Analysis extends Switch
     void caseATipoSubrange(ATipoSubrange node);
     void caseAInteiroConstante(AInteiroConstante node);
     void caseAStringConstante(AStringConstante node);
+    void caseADeclaracoesVariaveis(ADeclaracoesVariaveis node);
+    void caseAEmptyDeclaracoesVariaveis(AEmptyDeclaracoesVariaveis node);
+    void caseAUnicoDeclaracaoVariaveis(AUnicoDeclaracaoVariaveis node);
+    void caseAMultiploDeclaracaoVariaveis(AMultiploDeclaracaoVariaveis node);
+    void caseADeclaracaoVariavel(ADeclaracaoVariavel node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

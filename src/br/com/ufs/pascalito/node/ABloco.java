@@ -9,6 +9,7 @@ public final class ABloco extends PBloco
 {
     private PDeclaracaoLabels _declaracaoLabels_;
     private PDeclaracaoTipos _declaracaoTipos_;
+    private PDeclaracoesVariaveis _declaracoesVariaveis_;
 
     public ABloco()
     {
@@ -17,12 +18,15 @@ public final class ABloco extends PBloco
 
     public ABloco(
         @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_,
-        @SuppressWarnings("hiding") PDeclaracaoTipos _declaracaoTipos_)
+        @SuppressWarnings("hiding") PDeclaracaoTipos _declaracaoTipos_,
+        @SuppressWarnings("hiding") PDeclaracoesVariaveis _declaracoesVariaveis_)
     {
         // Constructor
         setDeclaracaoLabels(_declaracaoLabels_);
 
         setDeclaracaoTipos(_declaracaoTipos_);
+
+        setDeclaracoesVariaveis(_declaracoesVariaveis_);
 
     }
 
@@ -31,7 +35,8 @@ public final class ABloco extends PBloco
     {
         return new ABloco(
             cloneNode(this._declaracaoLabels_),
-            cloneNode(this._declaracaoTipos_));
+            cloneNode(this._declaracaoTipos_),
+            cloneNode(this._declaracoesVariaveis_));
     }
 
     @Override
@@ -90,12 +95,38 @@ public final class ABloco extends PBloco
         this._declaracaoTipos_ = node;
     }
 
+    public PDeclaracoesVariaveis getDeclaracoesVariaveis()
+    {
+        return this._declaracoesVariaveis_;
+    }
+
+    public void setDeclaracoesVariaveis(PDeclaracoesVariaveis node)
+    {
+        if(this._declaracoesVariaveis_ != null)
+        {
+            this._declaracoesVariaveis_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._declaracoesVariaveis_ = node;
+    }
+
     @Override
     public String toString()
     {
         return ""
             + toString(this._declaracaoLabels_)
-            + toString(this._declaracaoTipos_);
+            + toString(this._declaracaoTipos_)
+            + toString(this._declaracoesVariaveis_);
     }
 
     @Override
@@ -111,6 +142,12 @@ public final class ABloco extends PBloco
         if(this._declaracaoTipos_ == child)
         {
             this._declaracaoTipos_ = null;
+            return;
+        }
+
+        if(this._declaracoesVariaveis_ == child)
+        {
+            this._declaracoesVariaveis_ = null;
             return;
         }
 
@@ -130,6 +167,12 @@ public final class ABloco extends PBloco
         if(this._declaracaoTipos_ == oldChild)
         {
             setDeclaracaoTipos((PDeclaracaoTipos) newChild);
+            return;
+        }
+
+        if(this._declaracoesVariaveis_ == oldChild)
+        {
+            setDeclaracoesVariaveis((PDeclaracoesVariaveis) newChild);
             return;
         }
 

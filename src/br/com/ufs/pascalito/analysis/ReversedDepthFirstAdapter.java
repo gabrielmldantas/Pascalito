@@ -145,6 +145,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABloco(ABloco node)
     {
         inABloco(node);
+        if(node.getDeclaracoesVariaveis() != null)
+        {
+            node.getDeclaracoesVariaveis().apply(this);
+        }
         if(node.getDeclaracaoTipos() != null)
         {
             node.getDeclaracaoTipos().apply(this);
@@ -868,5 +872,130 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getConstString().apply(this);
         }
         outAStringConstante(node);
+    }
+
+    public void inADeclaracoesVariaveis(ADeclaracoesVariaveis node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracoesVariaveis(ADeclaracoesVariaveis node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracoesVariaveis(ADeclaracoesVariaveis node)
+    {
+        inADeclaracoesVariaveis(node);
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getDeclaracaoVariaveis() != null)
+        {
+            node.getDeclaracaoVariaveis().apply(this);
+        }
+        if(node.getVar() != null)
+        {
+            node.getVar().apply(this);
+        }
+        outADeclaracoesVariaveis(node);
+    }
+
+    public void inAEmptyDeclaracoesVariaveis(AEmptyDeclaracoesVariaveis node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptyDeclaracoesVariaveis(AEmptyDeclaracoesVariaveis node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptyDeclaracoesVariaveis(AEmptyDeclaracoesVariaveis node)
+    {
+        inAEmptyDeclaracoesVariaveis(node);
+        outAEmptyDeclaracoesVariaveis(node);
+    }
+
+    public void inAUnicoDeclaracaoVariaveis(AUnicoDeclaracaoVariaveis node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoDeclaracaoVariaveis(AUnicoDeclaracaoVariaveis node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoDeclaracaoVariaveis(AUnicoDeclaracaoVariaveis node)
+    {
+        inAUnicoDeclaracaoVariaveis(node);
+        if(node.getDeclaracaoVariavel() != null)
+        {
+            node.getDeclaracaoVariavel().apply(this);
+        }
+        outAUnicoDeclaracaoVariaveis(node);
+    }
+
+    public void inAMultiploDeclaracaoVariaveis(AMultiploDeclaracaoVariaveis node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploDeclaracaoVariaveis(AMultiploDeclaracaoVariaveis node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploDeclaracaoVariaveis(AMultiploDeclaracaoVariaveis node)
+    {
+        inAMultiploDeclaracaoVariaveis(node);
+        if(node.getDeclaracaoVariavel() != null)
+        {
+            node.getDeclaracaoVariavel().apply(this);
+        }
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getDeclaracaoVariaveis() != null)
+        {
+            node.getDeclaracaoVariaveis().apply(this);
+        }
+        outAMultiploDeclaracaoVariaveis(node);
+    }
+
+    public void inADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        inADeclaracaoVariavel(node);
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        outADeclaracaoVariavel(node);
     }
 }

@@ -108,7 +108,7 @@ Ignored Tokens
 Productions
 	program = cabecalho_programa ponto_e_virgula bloco ponto;
 	cabecalho_programa = {unico} T.program identificador | {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses;
-	bloco = declaracao_labels declaracao_tipos;
+	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis;
 	
 	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
 	
@@ -128,3 +128,7 @@ Productions
 	tipo_subrange = [inicio]:constante ponto_ponto [fim]:constante;
 	
 	constante = {inteiro} const_inteiro | {string} const_string;
+	
+	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
+	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
+	declaracao_variavel = identificadores dois_pontos denotador_tipo;
