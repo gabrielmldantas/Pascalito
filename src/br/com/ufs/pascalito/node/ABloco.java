@@ -2,7 +2,6 @@
 
 package br.com.ufs.pascalito.node;
 
-import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
@@ -11,7 +10,8 @@ public final class ABloco extends PBloco
     private PDeclaracaoLabels _declaracaoLabels_;
     private PDeclaracaoTipos _declaracaoTipos_;
     private PDeclaracoesVariaveis _declaracoesVariaveis_;
-    private final LinkedList<PDeclaracaoProcFuncoes> _declaracaoProcFuncoes_ = new LinkedList<PDeclaracaoProcFuncoes>();
+    private PDeclaracoesProcFuncoes _declaracoesProcFuncoes_;
+    private PSentencaComposta _sentencaComposta_;
 
     public ABloco()
     {
@@ -22,7 +22,8 @@ public final class ABloco extends PBloco
         @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_,
         @SuppressWarnings("hiding") PDeclaracaoTipos _declaracaoTipos_,
         @SuppressWarnings("hiding") PDeclaracoesVariaveis _declaracoesVariaveis_,
-        @SuppressWarnings("hiding") List<?> _declaracaoProcFuncoes_)
+        @SuppressWarnings("hiding") PDeclaracoesProcFuncoes _declaracoesProcFuncoes_,
+        @SuppressWarnings("hiding") PSentencaComposta _sentencaComposta_)
     {
         // Constructor
         setDeclaracaoLabels(_declaracaoLabels_);
@@ -31,7 +32,9 @@ public final class ABloco extends PBloco
 
         setDeclaracoesVariaveis(_declaracoesVariaveis_);
 
-        setDeclaracaoProcFuncoes(_declaracaoProcFuncoes_);
+        setDeclaracoesProcFuncoes(_declaracoesProcFuncoes_);
+
+        setSentencaComposta(_sentencaComposta_);
 
     }
 
@@ -42,7 +45,8 @@ public final class ABloco extends PBloco
             cloneNode(this._declaracaoLabels_),
             cloneNode(this._declaracaoTipos_),
             cloneNode(this._declaracoesVariaveis_),
-            cloneList(this._declaracaoProcFuncoes_));
+            cloneNode(this._declaracoesProcFuncoes_),
+            cloneNode(this._sentencaComposta_));
     }
 
     @Override
@@ -126,30 +130,54 @@ public final class ABloco extends PBloco
         this._declaracoesVariaveis_ = node;
     }
 
-    public LinkedList<PDeclaracaoProcFuncoes> getDeclaracaoProcFuncoes()
+    public PDeclaracoesProcFuncoes getDeclaracoesProcFuncoes()
     {
-        return this._declaracaoProcFuncoes_;
+        return this._declaracoesProcFuncoes_;
     }
 
-    public void setDeclaracaoProcFuncoes(List<?> list)
+    public void setDeclaracoesProcFuncoes(PDeclaracoesProcFuncoes node)
     {
-        for(PDeclaracaoProcFuncoes e : this._declaracaoProcFuncoes_)
+        if(this._declaracoesProcFuncoes_ != null)
         {
-            e.parent(null);
+            this._declaracoesProcFuncoes_.parent(null);
         }
-        this._declaracaoProcFuncoes_.clear();
 
-        for(Object obj_e : list)
+        if(node != null)
         {
-            PDeclaracaoProcFuncoes e = (PDeclaracaoProcFuncoes) obj_e;
-            if(e.parent() != null)
+            if(node.parent() != null)
             {
-                e.parent().removeChild(e);
+                node.parent().removeChild(node);
             }
 
-            e.parent(this);
-            this._declaracaoProcFuncoes_.add(e);
+            node.parent(this);
         }
+
+        this._declaracoesProcFuncoes_ = node;
+    }
+
+    public PSentencaComposta getSentencaComposta()
+    {
+        return this._sentencaComposta_;
+    }
+
+    public void setSentencaComposta(PSentencaComposta node)
+    {
+        if(this._sentencaComposta_ != null)
+        {
+            this._sentencaComposta_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._sentencaComposta_ = node;
     }
 
     @Override
@@ -159,7 +187,8 @@ public final class ABloco extends PBloco
             + toString(this._declaracaoLabels_)
             + toString(this._declaracaoTipos_)
             + toString(this._declaracoesVariaveis_)
-            + toString(this._declaracaoProcFuncoes_);
+            + toString(this._declaracoesProcFuncoes_)
+            + toString(this._sentencaComposta_);
     }
 
     @Override
@@ -184,8 +213,15 @@ public final class ABloco extends PBloco
             return;
         }
 
-        if(this._declaracaoProcFuncoes_.remove(child))
+        if(this._declaracoesProcFuncoes_ == child)
         {
+            this._declaracoesProcFuncoes_ = null;
+            return;
+        }
+
+        if(this._sentencaComposta_ == child)
+        {
+            this._sentencaComposta_ = null;
             return;
         }
 
@@ -214,22 +250,16 @@ public final class ABloco extends PBloco
             return;
         }
 
-        for(ListIterator<PDeclaracaoProcFuncoes> i = this._declaracaoProcFuncoes_.listIterator(); i.hasNext();)
+        if(this._declaracoesProcFuncoes_ == oldChild)
         {
-            if(i.next() == oldChild)
-            {
-                if(newChild != null)
-                {
-                    i.set((PDeclaracaoProcFuncoes) newChild);
-                    newChild.parent(this);
-                    oldChild.parent(null);
-                    return;
-                }
+            setDeclaracoesProcFuncoes((PDeclaracoesProcFuncoes) newChild);
+            return;
+        }
 
-                i.remove();
-                oldChild.parent(null);
-                return;
-            }
+        if(this._sentencaComposta_ == oldChild)
+        {
+            setSentencaComposta((PSentencaComposta) newChild);
+            return;
         }
 
         throw new RuntimeException("Not a child.");

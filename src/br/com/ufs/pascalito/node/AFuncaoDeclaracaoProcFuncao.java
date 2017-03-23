@@ -5,22 +5,22 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AProcedureDeclaracaoProcFuncoes extends PDeclaracaoProcFuncoes
+public final class AFuncaoDeclaracaoProcFuncao extends PDeclaracaoProcFuncao
 {
-    private PDeclaracaoProcedure _declaracaoProcedure_;
+    private PDeclaracaoFuncao _declaracaoFuncao_;
     private TPontoEVirgula _pontoEVirgula_;
 
-    public AProcedureDeclaracaoProcFuncoes()
+    public AFuncaoDeclaracaoProcFuncao()
     {
         // Constructor
     }
 
-    public AProcedureDeclaracaoProcFuncoes(
-        @SuppressWarnings("hiding") PDeclaracaoProcedure _declaracaoProcedure_,
+    public AFuncaoDeclaracaoProcFuncao(
+        @SuppressWarnings("hiding") PDeclaracaoFuncao _declaracaoFuncao_,
         @SuppressWarnings("hiding") TPontoEVirgula _pontoEVirgula_)
     {
         // Constructor
-        setDeclaracaoProcedure(_declaracaoProcedure_);
+        setDeclaracaoFuncao(_declaracaoFuncao_);
 
         setPontoEVirgula(_pontoEVirgula_);
 
@@ -29,27 +29,27 @@ public final class AProcedureDeclaracaoProcFuncoes extends PDeclaracaoProcFuncoe
     @Override
     public Object clone()
     {
-        return new AProcedureDeclaracaoProcFuncoes(
-            cloneNode(this._declaracaoProcedure_),
+        return new AFuncaoDeclaracaoProcFuncao(
+            cloneNode(this._declaracaoFuncao_),
             cloneNode(this._pontoEVirgula_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAProcedureDeclaracaoProcFuncoes(this);
+        ((Analysis) sw).caseAFuncaoDeclaracaoProcFuncao(this);
     }
 
-    public PDeclaracaoProcedure getDeclaracaoProcedure()
+    public PDeclaracaoFuncao getDeclaracaoFuncao()
     {
-        return this._declaracaoProcedure_;
+        return this._declaracaoFuncao_;
     }
 
-    public void setDeclaracaoProcedure(PDeclaracaoProcedure node)
+    public void setDeclaracaoFuncao(PDeclaracaoFuncao node)
     {
-        if(this._declaracaoProcedure_ != null)
+        if(this._declaracaoFuncao_ != null)
         {
-            this._declaracaoProcedure_.parent(null);
+            this._declaracaoFuncao_.parent(null);
         }
 
         if(node != null)
@@ -62,7 +62,7 @@ public final class AProcedureDeclaracaoProcFuncoes extends PDeclaracaoProcFuncoe
             node.parent(this);
         }
 
-        this._declaracaoProcedure_ = node;
+        this._declaracaoFuncao_ = node;
     }
 
     public TPontoEVirgula getPontoEVirgula()
@@ -94,7 +94,7 @@ public final class AProcedureDeclaracaoProcFuncoes extends PDeclaracaoProcFuncoe
     public String toString()
     {
         return ""
-            + toString(this._declaracaoProcedure_)
+            + toString(this._declaracaoFuncao_)
             + toString(this._pontoEVirgula_);
     }
 
@@ -102,9 +102,9 @@ public final class AProcedureDeclaracaoProcFuncoes extends PDeclaracaoProcFuncoe
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._declaracaoProcedure_ == child)
+        if(this._declaracaoFuncao_ == child)
         {
-            this._declaracaoProcedure_ = null;
+            this._declaracaoFuncao_ = null;
             return;
         }
 
@@ -121,9 +121,9 @@ public final class AProcedureDeclaracaoProcFuncoes extends PDeclaracaoProcFuncoe
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._declaracaoProcedure_ == oldChild)
+        if(this._declaracaoFuncao_ == oldChild)
         {
-            setDeclaracaoProcedure((PDeclaracaoProcedure) newChild);
+            setDeclaracaoFuncao((PDeclaracaoFuncao) newChild);
             return;
         }
 

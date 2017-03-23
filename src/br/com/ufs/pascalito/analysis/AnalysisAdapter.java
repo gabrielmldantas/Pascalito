@@ -135,6 +135,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIdentificadorIdentificadorTipo(AIdentificadorIdentificadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOrdinalIdentificadorTipo(AOrdinalIdentificadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseADeclaracaoLabels(ADeclaracaoLabels node)
     {
         defaultCase(node);
@@ -315,13 +327,37 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    public void caseADeclaracoesProcFuncoes(ADeclaracoesProcFuncoes node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    public void caseAEmptyDeclaracoesProcFuncoes(AEmptyDeclaracoesProcFuncoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoDeclaracaoProcFuncoes(AUnicoDeclaracaoProcFuncoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploDeclaracaoProcFuncoes(AMultiploDeclaracaoProcFuncoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProcedureDeclaracaoProcFuncao(AProcedureDeclaracaoProcFuncao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFuncaoDeclaracaoProcFuncao(AFuncaoDeclaracaoProcFuncao node)
     {
         defaultCase(node);
     }
@@ -472,6 +508,90 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAOrdinalTipoResultado(AOrdinalTipoResultado node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaComposta(ASentencaComposta node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoSequenciaSentencas(AUnicoSequenciaSentencas node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploSequenciaSentencas(AMultiploSequenciaSentencas node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentenca(ASentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseALabelSentenca(ALabelSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyLabelSentenca(AEmptyLabelSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASimplesDefinicaoSentenca(ASimplesDefinicaoSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoSentencaSimples(AAtribuicaoSentencaSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptySentencaSimples(AEmptySentencaSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaAtribuicao(ASentencaAtribuicao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaEstruturada(ASentencaEstruturada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAcessoVariavel(AAcessoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressao(AExpressao node)
     {
         defaultCase(node);
     }

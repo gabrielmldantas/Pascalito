@@ -9,7 +9,7 @@ public final class ASpecParamValor extends PSpecParamValor
 {
     private PIdentificadores _identificadores_;
     private TDoisPontos _doisPontos_;
-    private TIdentificador _identificador_;
+    private PIdentificadorTipo _identificadorTipo_;
 
     public ASpecParamValor()
     {
@@ -19,14 +19,14 @@ public final class ASpecParamValor extends PSpecParamValor
     public ASpecParamValor(
         @SuppressWarnings("hiding") PIdentificadores _identificadores_,
         @SuppressWarnings("hiding") TDoisPontos _doisPontos_,
-        @SuppressWarnings("hiding") TIdentificador _identificador_)
+        @SuppressWarnings("hiding") PIdentificadorTipo _identificadorTipo_)
     {
         // Constructor
         setIdentificadores(_identificadores_);
 
         setDoisPontos(_doisPontos_);
 
-        setIdentificador(_identificador_);
+        setIdentificadorTipo(_identificadorTipo_);
 
     }
 
@@ -36,7 +36,7 @@ public final class ASpecParamValor extends PSpecParamValor
         return new ASpecParamValor(
             cloneNode(this._identificadores_),
             cloneNode(this._doisPontos_),
-            cloneNode(this._identificador_));
+            cloneNode(this._identificadorTipo_));
     }
 
     @Override
@@ -95,16 +95,16 @@ public final class ASpecParamValor extends PSpecParamValor
         this._doisPontos_ = node;
     }
 
-    public TIdentificador getIdentificador()
+    public PIdentificadorTipo getIdentificadorTipo()
     {
-        return this._identificador_;
+        return this._identificadorTipo_;
     }
 
-    public void setIdentificador(TIdentificador node)
+    public void setIdentificadorTipo(PIdentificadorTipo node)
     {
-        if(this._identificador_ != null)
+        if(this._identificadorTipo_ != null)
         {
-            this._identificador_.parent(null);
+            this._identificadorTipo_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class ASpecParamValor extends PSpecParamValor
             node.parent(this);
         }
 
-        this._identificador_ = node;
+        this._identificadorTipo_ = node;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class ASpecParamValor extends PSpecParamValor
         return ""
             + toString(this._identificadores_)
             + toString(this._doisPontos_)
-            + toString(this._identificador_);
+            + toString(this._identificadorTipo_);
     }
 
     @Override
@@ -145,9 +145,9 @@ public final class ASpecParamValor extends PSpecParamValor
             return;
         }
 
-        if(this._identificador_ == child)
+        if(this._identificadorTipo_ == child)
         {
-            this._identificador_ = null;
+            this._identificadorTipo_ = null;
             return;
         }
 
@@ -170,9 +170,9 @@ public final class ASpecParamValor extends PSpecParamValor
             return;
         }
 
-        if(this._identificador_ == oldChild)
+        if(this._identificadorTipo_ == oldChild)
         {
-            setIdentificador((TIdentificador) newChild);
+            setIdentificadorTipo((PIdentificadorTipo) newChild);
             return;
         }
 

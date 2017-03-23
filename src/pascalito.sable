@@ -108,10 +108,11 @@ Ignored Tokens
 Productions
 	program = cabecalho_programa ponto_e_virgula bloco ponto;
 	cabecalho_programa = {unico} T.program identificador | {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses;
-	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis declaracao_proc_funcoes+;
+	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta;
 	
 	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
 	identificador_tipo_ordinal = {integer} integer | {string} string | {real} real | {boolean} boolean;
+	identificador_tipo = {identificador} identificador | {ordinal} identificador_tipo_ordinal;
 	
 	declaracao_labels = T.label labels ponto_e_virgula | {empty};
 	labels = {unico} P.label | {multiplo} labels virgula P.label;
@@ -134,7 +135,9 @@ Productions
 	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
 	declaracao_variavel = identificadores dois_pontos denotador_tipo;
 	
-	declaracao_proc_funcoes = {procedure} declaracao_procedure ponto_e_virgula | {funcao} declaracao_funcao ponto_e_virgula;
+	declaracoes_proc_funcoes = declaracao_proc_funcoes | {empty};
+	declaracao_proc_funcoes = {unico} declaracao_proc_funcao | {multiplo} declaracao_proc_funcoes declaracao_proc_funcao;
+	declaracao_proc_funcao = {procedure} declaracao_procedure ponto_e_virgula | {funcao} declaracao_funcao ponto_e_virgula;
 	declaracao_procedure = cabecalho_procedure ponto_e_virgula bloco;
 	declaracao_funcao = cabecalho_funcao ponto_e_virgula bloco;
 	
@@ -145,8 +148,8 @@ Productions
 	secao_parametros_formais = {unico} secao_parametro_formal | {multiplo} secao_parametros_formais ponto_e_virgula secao_parametro_formal;
 	secao_parametro_formal = {valor} spec_param_valor | {variavel} spec_param_variavel | {array} spec_param_array;
 	
-	spec_param_valor = identificadores dois_pontos identificador;
-	spec_param_variavel = var identificadores dois_pontos identificador;
+	spec_param_valor = identificadores dois_pontos identificador_tipo;
+	spec_param_variavel = var identificadores dois_pontos identificador_tipo;
 	spec_param_array = {valor} spec_param_array_valor | {variavel} spec_param_array_variavel;
 	spec_param_array_valor = identificadores dois_pontos schema_array;
 	spec_param_array_variavel = var identificadores dois_pontos schema_array;
@@ -156,4 +159,18 @@ Productions
 	identificador_schema_array = {identificador} identificador | {array} schema_array;
 	
 	tipo_resultado = {existente} identificador | {ordinal} identificador_tipo_ordinal;
+	
+	sentenca_composta = begin sequencia_sentencas end;
+	sequencia_sentencas = {unico} sentenca | {multiplo} sequencia_sentencas ponto_e_virgula sentenca;
+	sentenca = label_sentenca definicao_sentenca;
+	label_sentenca = P.label dois_pontos | {empty};
+	definicao_sentenca = {simples} sentenca_simples | {estruturada} sentenca_estruturada;
+	
+	sentenca_simples = {atribuicao} sentenca_atribuicao | {empty};
+	sentenca_atribuicao = acesso_variavel atribuicao expressao;
+	
+	sentenca_estruturada = sentenca_composta;
+	
+	acesso_variavel = identificador;
+	expressao = identificador;
 	

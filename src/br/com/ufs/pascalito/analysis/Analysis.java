@@ -22,6 +22,8 @@ public interface Analysis extends Switch
     void caseAStringIdentificadorTipoOrdinal(AStringIdentificadorTipoOrdinal node);
     void caseARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node);
     void caseABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node);
+    void caseAIdentificadorIdentificadorTipo(AIdentificadorIdentificadorTipo node);
+    void caseAOrdinalIdentificadorTipo(AOrdinalIdentificadorTipo node);
     void caseADeclaracaoLabels(ADeclaracaoLabels node);
     void caseAEmptyDeclaracaoLabels(AEmptyDeclaracaoLabels node);
     void caseAUnicoLabels(AUnicoLabels node);
@@ -52,8 +54,12 @@ public interface Analysis extends Switch
     void caseAUnicoDeclaracaoVariaveis(AUnicoDeclaracaoVariaveis node);
     void caseAMultiploDeclaracaoVariaveis(AMultiploDeclaracaoVariaveis node);
     void caseADeclaracaoVariavel(ADeclaracaoVariavel node);
-    void caseAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node);
-    void caseAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node);
+    void caseADeclaracoesProcFuncoes(ADeclaracoesProcFuncoes node);
+    void caseAEmptyDeclaracoesProcFuncoes(AEmptyDeclaracoesProcFuncoes node);
+    void caseAUnicoDeclaracaoProcFuncoes(AUnicoDeclaracaoProcFuncoes node);
+    void caseAMultiploDeclaracaoProcFuncoes(AMultiploDeclaracaoProcFuncoes node);
+    void caseAProcedureDeclaracaoProcFuncao(AProcedureDeclaracaoProcFuncao node);
+    void caseAFuncaoDeclaracaoProcFuncao(AFuncaoDeclaracaoProcFuncao node);
     void caseADeclaracaoProcedure(ADeclaracaoProcedure node);
     void caseADeclaracaoFuncao(ADeclaracaoFuncao node);
     void caseACabecalhoProcedure(ACabecalhoProcedure node);
@@ -79,6 +85,20 @@ public interface Analysis extends Switch
     void caseAArrayIdentificadorSchemaArray(AArrayIdentificadorSchemaArray node);
     void caseAExistenteTipoResultado(AExistenteTipoResultado node);
     void caseAOrdinalTipoResultado(AOrdinalTipoResultado node);
+    void caseASentencaComposta(ASentencaComposta node);
+    void caseAUnicoSequenciaSentencas(AUnicoSequenciaSentencas node);
+    void caseAMultiploSequenciaSentencas(AMultiploSequenciaSentencas node);
+    void caseASentenca(ASentenca node);
+    void caseALabelSentenca(ALabelSentenca node);
+    void caseAEmptyLabelSentenca(AEmptyLabelSentenca node);
+    void caseASimplesDefinicaoSentenca(ASimplesDefinicaoSentenca node);
+    void caseAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node);
+    void caseAAtribuicaoSentencaSimples(AAtribuicaoSentencaSimples node);
+    void caseAEmptySentencaSimples(AEmptySentencaSimples node);
+    void caseASentencaAtribuicao(ASentencaAtribuicao node);
+    void caseASentencaEstruturada(ASentencaEstruturada node);
+    void caseAAcessoVariavel(AAcessoVariavel node);
+    void caseAExpressao(AExpressao node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

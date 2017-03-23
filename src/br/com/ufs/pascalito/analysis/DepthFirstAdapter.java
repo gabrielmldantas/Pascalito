@@ -157,12 +157,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getDeclaracoesVariaveis().apply(this);
         }
+        if(node.getDeclaracoesProcFuncoes() != null)
         {
-            List<PDeclaracaoProcFuncoes> copy = new ArrayList<PDeclaracaoProcFuncoes>(node.getDeclaracaoProcFuncoes());
-            for(PDeclaracaoProcFuncoes e : copy)
-            {
-                e.apply(this);
-            }
+            node.getDeclaracoesProcFuncoes().apply(this);
+        }
+        if(node.getSentencaComposta() != null)
+        {
+            node.getSentencaComposta().apply(this);
         }
         outABloco(node);
     }
@@ -299,6 +300,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getBoolean().apply(this);
         }
         outABooleanIdentificadorTipoOrdinal(node);
+    }
+
+    public void inAIdentificadorIdentificadorTipo(AIdentificadorIdentificadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdentificadorIdentificadorTipo(AIdentificadorIdentificadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdentificadorIdentificadorTipo(AIdentificadorIdentificadorTipo node)
+    {
+        inAIdentificadorIdentificadorTipo(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAIdentificadorIdentificadorTipo(node);
+    }
+
+    public void inAOrdinalIdentificadorTipo(AOrdinalIdentificadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOrdinalIdentificadorTipo(AOrdinalIdentificadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOrdinalIdentificadorTipo(AOrdinalIdentificadorTipo node)
+    {
+        inAOrdinalIdentificadorTipo(node);
+        if(node.getIdentificadorTipoOrdinal() != null)
+        {
+            node.getIdentificadorTipoOrdinal().apply(this);
+        }
+        outAOrdinalIdentificadorTipo(node);
     }
 
     public void inADeclaracaoLabels(ADeclaracaoLabels node)
@@ -1027,20 +1070,104 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outADeclaracaoVariavel(node);
     }
 
-    public void inAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    public void inADeclaracoesProcFuncoes(ADeclaracoesProcFuncoes node)
     {
         defaultIn(node);
     }
 
-    public void outAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    public void outADeclaracoesProcFuncoes(ADeclaracoesProcFuncoes node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    public void caseADeclaracoesProcFuncoes(ADeclaracoesProcFuncoes node)
     {
-        inAProcedureDeclaracaoProcFuncoes(node);
+        inADeclaracoesProcFuncoes(node);
+        if(node.getDeclaracaoProcFuncoes() != null)
+        {
+            node.getDeclaracaoProcFuncoes().apply(this);
+        }
+        outADeclaracoesProcFuncoes(node);
+    }
+
+    public void inAEmptyDeclaracoesProcFuncoes(AEmptyDeclaracoesProcFuncoes node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptyDeclaracoesProcFuncoes(AEmptyDeclaracoesProcFuncoes node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptyDeclaracoesProcFuncoes(AEmptyDeclaracoesProcFuncoes node)
+    {
+        inAEmptyDeclaracoesProcFuncoes(node);
+        outAEmptyDeclaracoesProcFuncoes(node);
+    }
+
+    public void inAUnicoDeclaracaoProcFuncoes(AUnicoDeclaracaoProcFuncoes node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoDeclaracaoProcFuncoes(AUnicoDeclaracaoProcFuncoes node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoDeclaracaoProcFuncoes(AUnicoDeclaracaoProcFuncoes node)
+    {
+        inAUnicoDeclaracaoProcFuncoes(node);
+        if(node.getDeclaracaoProcFuncao() != null)
+        {
+            node.getDeclaracaoProcFuncao().apply(this);
+        }
+        outAUnicoDeclaracaoProcFuncoes(node);
+    }
+
+    public void inAMultiploDeclaracaoProcFuncoes(AMultiploDeclaracaoProcFuncoes node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploDeclaracaoProcFuncoes(AMultiploDeclaracaoProcFuncoes node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploDeclaracaoProcFuncoes(AMultiploDeclaracaoProcFuncoes node)
+    {
+        inAMultiploDeclaracaoProcFuncoes(node);
+        if(node.getDeclaracaoProcFuncoes() != null)
+        {
+            node.getDeclaracaoProcFuncoes().apply(this);
+        }
+        if(node.getDeclaracaoProcFuncao() != null)
+        {
+            node.getDeclaracaoProcFuncao().apply(this);
+        }
+        outAMultiploDeclaracaoProcFuncoes(node);
+    }
+
+    public void inAProcedureDeclaracaoProcFuncao(AProcedureDeclaracaoProcFuncao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAProcedureDeclaracaoProcFuncao(AProcedureDeclaracaoProcFuncao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAProcedureDeclaracaoProcFuncao(AProcedureDeclaracaoProcFuncao node)
+    {
+        inAProcedureDeclaracaoProcFuncao(node);
         if(node.getDeclaracaoProcedure() != null)
         {
             node.getDeclaracaoProcedure().apply(this);
@@ -1049,23 +1176,23 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getPontoEVirgula().apply(this);
         }
-        outAProcedureDeclaracaoProcFuncoes(node);
+        outAProcedureDeclaracaoProcFuncao(node);
     }
 
-    public void inAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    public void inAFuncaoDeclaracaoProcFuncao(AFuncaoDeclaracaoProcFuncao node)
     {
         defaultIn(node);
     }
 
-    public void outAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    public void outAFuncaoDeclaracaoProcFuncao(AFuncaoDeclaracaoProcFuncao node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    public void caseAFuncaoDeclaracaoProcFuncao(AFuncaoDeclaracaoProcFuncao node)
     {
-        inAFuncaoDeclaracaoProcFuncoes(node);
+        inAFuncaoDeclaracaoProcFuncao(node);
         if(node.getDeclaracaoFuncao() != null)
         {
             node.getDeclaracaoFuncao().apply(this);
@@ -1074,7 +1201,7 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getPontoEVirgula().apply(this);
         }
-        outAFuncaoDeclaracaoProcFuncoes(node);
+        outAFuncaoDeclaracaoProcFuncao(node);
     }
 
     public void inADeclaracaoProcedure(ADeclaracaoProcedure node)
@@ -1382,9 +1509,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getDoisPontos().apply(this);
         }
-        if(node.getIdentificador() != null)
+        if(node.getIdentificadorTipo() != null)
         {
-            node.getIdentificador().apply(this);
+            node.getIdentificadorTipo().apply(this);
         }
         outASpecParamValor(node);
     }
@@ -1415,9 +1542,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getDoisPontos().apply(this);
         }
-        if(node.getIdentificador() != null)
+        if(node.getIdentificadorTipo() != null)
         {
-            node.getIdentificador().apply(this);
+            node.getIdentificadorTipo().apply(this);
         }
         outASpecParamVariavel(node);
     }
@@ -1744,5 +1871,323 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getIdentificadorTipoOrdinal().apply(this);
         }
         outAOrdinalTipoResultado(node);
+    }
+
+    public void inASentencaComposta(ASentencaComposta node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASentencaComposta(ASentencaComposta node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASentencaComposta(ASentencaComposta node)
+    {
+        inASentencaComposta(node);
+        if(node.getBegin() != null)
+        {
+            node.getBegin().apply(this);
+        }
+        if(node.getSequenciaSentencas() != null)
+        {
+            node.getSequenciaSentencas().apply(this);
+        }
+        if(node.getEnd() != null)
+        {
+            node.getEnd().apply(this);
+        }
+        outASentencaComposta(node);
+    }
+
+    public void inAUnicoSequenciaSentencas(AUnicoSequenciaSentencas node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoSequenciaSentencas(AUnicoSequenciaSentencas node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoSequenciaSentencas(AUnicoSequenciaSentencas node)
+    {
+        inAUnicoSequenciaSentencas(node);
+        if(node.getSentenca() != null)
+        {
+            node.getSentenca().apply(this);
+        }
+        outAUnicoSequenciaSentencas(node);
+    }
+
+    public void inAMultiploSequenciaSentencas(AMultiploSequenciaSentencas node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploSequenciaSentencas(AMultiploSequenciaSentencas node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploSequenciaSentencas(AMultiploSequenciaSentencas node)
+    {
+        inAMultiploSequenciaSentencas(node);
+        if(node.getSequenciaSentencas() != null)
+        {
+            node.getSequenciaSentencas().apply(this);
+        }
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getSentenca() != null)
+        {
+            node.getSentenca().apply(this);
+        }
+        outAMultiploSequenciaSentencas(node);
+    }
+
+    public void inASentenca(ASentenca node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASentenca(ASentenca node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASentenca(ASentenca node)
+    {
+        inASentenca(node);
+        if(node.getLabelSentenca() != null)
+        {
+            node.getLabelSentenca().apply(this);
+        }
+        if(node.getDefinicaoSentenca() != null)
+        {
+            node.getDefinicaoSentenca().apply(this);
+        }
+        outASentenca(node);
+    }
+
+    public void inALabelSentenca(ALabelSentenca node)
+    {
+        defaultIn(node);
+    }
+
+    public void outALabelSentenca(ALabelSentenca node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseALabelSentenca(ALabelSentenca node)
+    {
+        inALabelSentenca(node);
+        if(node.getLabel() != null)
+        {
+            node.getLabel().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        outALabelSentenca(node);
+    }
+
+    public void inAEmptyLabelSentenca(AEmptyLabelSentenca node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptyLabelSentenca(AEmptyLabelSentenca node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptyLabelSentenca(AEmptyLabelSentenca node)
+    {
+        inAEmptyLabelSentenca(node);
+        outAEmptyLabelSentenca(node);
+    }
+
+    public void inASimplesDefinicaoSentenca(ASimplesDefinicaoSentenca node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASimplesDefinicaoSentenca(ASimplesDefinicaoSentenca node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASimplesDefinicaoSentenca(ASimplesDefinicaoSentenca node)
+    {
+        inASimplesDefinicaoSentenca(node);
+        if(node.getSentencaSimples() != null)
+        {
+            node.getSentencaSimples().apply(this);
+        }
+        outASimplesDefinicaoSentenca(node);
+    }
+
+    public void inAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node)
+    {
+        inAEstruturadaDefinicaoSentenca(node);
+        if(node.getSentencaEstruturada() != null)
+        {
+            node.getSentencaEstruturada().apply(this);
+        }
+        outAEstruturadaDefinicaoSentenca(node);
+    }
+
+    public void inAAtribuicaoSentencaSimples(AAtribuicaoSentencaSimples node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAAtribuicaoSentencaSimples(AAtribuicaoSentencaSimples node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoSentencaSimples(AAtribuicaoSentencaSimples node)
+    {
+        inAAtribuicaoSentencaSimples(node);
+        if(node.getSentencaAtribuicao() != null)
+        {
+            node.getSentencaAtribuicao().apply(this);
+        }
+        outAAtribuicaoSentencaSimples(node);
+    }
+
+    public void inAEmptySentencaSimples(AEmptySentencaSimples node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptySentencaSimples(AEmptySentencaSimples node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptySentencaSimples(AEmptySentencaSimples node)
+    {
+        inAEmptySentencaSimples(node);
+        outAEmptySentencaSimples(node);
+    }
+
+    public void inASentencaAtribuicao(ASentencaAtribuicao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASentencaAtribuicao(ASentencaAtribuicao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASentencaAtribuicao(ASentencaAtribuicao node)
+    {
+        inASentencaAtribuicao(node);
+        if(node.getAcessoVariavel() != null)
+        {
+            node.getAcessoVariavel().apply(this);
+        }
+        if(node.getAtribuicao() != null)
+        {
+            node.getAtribuicao().apply(this);
+        }
+        if(node.getExpressao() != null)
+        {
+            node.getExpressao().apply(this);
+        }
+        outASentencaAtribuicao(node);
+    }
+
+    public void inASentencaEstruturada(ASentencaEstruturada node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASentencaEstruturada(ASentencaEstruturada node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASentencaEstruturada(ASentencaEstruturada node)
+    {
+        inASentencaEstruturada(node);
+        if(node.getSentencaComposta() != null)
+        {
+            node.getSentencaComposta().apply(this);
+        }
+        outASentencaEstruturada(node);
+    }
+
+    public void inAAcessoVariavel(AAcessoVariavel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAAcessoVariavel(AAcessoVariavel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAAcessoVariavel(AAcessoVariavel node)
+    {
+        inAAcessoVariavel(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAAcessoVariavel(node);
+    }
+
+    public void inAExpressao(AExpressao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExpressao(AExpressao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExpressao(AExpressao node)
+    {
+        inAExpressao(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAExpressao(node);
     }
 }
