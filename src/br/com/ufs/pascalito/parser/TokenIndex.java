@@ -238,44 +238,50 @@ class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTOperadorLogico(@SuppressWarnings("unused") TOperadorLogico node)
+    public void caseTNot(@SuppressWarnings("unused") TNot node)
     {
         this.index = 38;
     }
 
     @Override
-    public void caseTOperadorAritmetico(@SuppressWarnings("unused") TOperadorAritmetico node)
+    public void caseTOperadorAditivo(@SuppressWarnings("unused") TOperadorAditivo node)
     {
         this.index = 39;
     }
 
     @Override
-    public void caseTComentBlocoFim(@SuppressWarnings("unused") TComentBlocoFim node)
+    public void caseTOperadorMultiplicativo(@SuppressWarnings("unused") TOperadorMultiplicativo node)
     {
         this.index = 40;
     }
 
     @Override
-    public void caseTComentBlocoCorpo(@SuppressWarnings("unused") TComentBlocoCorpo node)
+    public void caseTComentBlocoFim(@SuppressWarnings("unused") TComentBlocoFim node)
     {
         this.index = 41;
     }
 
     @Override
-    public void caseTAsterico(@SuppressWarnings("unused") TAsterico node)
+    public void caseTComentBlocoCorpo(@SuppressWarnings("unused") TComentBlocoCorpo node)
     {
         this.index = 42;
     }
 
     @Override
-    public void caseTBarra(@SuppressWarnings("unused") TBarra node)
+    public void caseTAsterico(@SuppressWarnings("unused") TAsterico node)
     {
         this.index = 43;
     }
 
     @Override
-    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    public void caseTBarra(@SuppressWarnings("unused") TBarra node)
     {
         this.index = 44;
+    }
+
+    @Override
+    public void caseEOF(@SuppressWarnings("unused") EOF node)
+    {
+        this.index = 45;
     }
 }

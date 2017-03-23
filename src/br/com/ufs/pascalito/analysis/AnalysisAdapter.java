@@ -567,6 +567,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAProcedureSentencaSimples(AProcedureSentencaSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAEmptySentencaSimples(AEmptySentencaSimples node)
     {
         defaultCase(node);
@@ -574,6 +580,48 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseASentencaAtribuicao(ASentencaAtribuicao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaProcedure(ASentencaProcedure node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParametrosReais(AParametrosReais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyParametrosReais(AEmptyParametrosReais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoDefinicaoParametrosReais(AUnicoDefinicaoParametrosReais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploDefinicaoParametrosReais(AMultiploDefinicaoParametrosReais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoParametroReal(AExpressaoParametroReal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelParametroReal(AVariavelParametroReal node)
     {
         defaultCase(node);
     }
@@ -591,7 +639,73 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIndexadaAcessoVariavel(AIndexadaAcessoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelIndexada(AVariavelIndexada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoExpressoes(AUnicoExpressoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploExpressoes(AMultiploExpressoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAExpressao(AExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoRelacional(AExpressaoRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyExpressaoRelacional(AEmptyExpressaoRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpressaoSimples(AExpressaoSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoExpressoesAditivas(AUnicoExpressoesAditivas node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploExpressoesAditivas(AMultiploExpressoesAditivas node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAInteiroTermo(AInteiroTermo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealTermo(ARealTermo node)
     {
         defaultCase(node);
     }
@@ -831,13 +945,19 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTOperadorLogico(TOperadorLogico node)
+    public void caseTNot(TNot node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseTOperadorAritmetico(TOperadorAritmetico node)
+    public void caseTOperadorAditivo(TOperadorAditivo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTOperadorMultiplicativo(TOperadorMultiplicativo node)
     {
         defaultCase(node);
     }

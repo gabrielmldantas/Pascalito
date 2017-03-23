@@ -89,8 +89,9 @@ Tokens
 {normal}    const_string = ''' ascii_sem_aspa_simples_newline* ''';
 {normal}	operador_relacional = '<' | '>' | '<=' | '>=' | '<>';
 {normal}	igual = '=';
-{normal}	operador_logico = n o t | o r | a n d;
-{normal}	operador_aritmetico = '+' | '-' | '*' | '/' | d i v | m o d;
+{normal}	not = n o t;
+{normal}	operador_aditivo = '+' | '-' | o r;
+{normal}	operador_multiplicativo = '*' | '/' | d i v | m o d | a n d;
 
 {normal}	coment_linha = coment_linha;
 
@@ -166,11 +167,23 @@ Productions
 	label_sentenca = P.label dois_pontos | {empty};
 	definicao_sentenca = {simples} sentenca_simples | {estruturada} sentenca_estruturada;
 	
-	sentenca_simples = {atribuicao} sentenca_atribuicao | {empty};
+	sentenca_simples = {atribuicao} sentenca_atribuicao | {procedure} sentenca_procedure | {empty};
 	sentenca_atribuicao = acesso_variavel atribuicao expressao;
+	
+	sentenca_procedure = procedure identificador parametros_reais;
+	parametros_reais = abre_parenteses definicao_parametros_reais fecha_parenteses | {empty};
+	definicao_parametros_reais = {unico} parametro_real | {multiplo} definicao_parametros_reais virgula parametro_real;
+	parametro_real = {expressao} expressao | {variavel} acesso_variavel;
 	
 	sentenca_estruturada = sentenca_composta;
 	
-	acesso_variavel = identificador;
-	expressao = identificador;
+	acesso_variavel = identificador | {indexada} variavel_indexada;
+	variavel_indexada = acesso_variavel abre_colchete expressoes fecha_colchete;
+	expressoes = {unico} expressao | {multiplo} expressoes virgula expressao;
+	
+	expressao = expressao_simples expressao_relacional;
+	expressao_relacional = operador_relacional expressao_simples | {empty};
+	expressao_simples = termo expressoes_aditivas;
+	expressoes_aditivas = {unico} termo | {multiplo} operador_aditivo termo;
+	termo = {inteiro} const_inteiro | {real} const_real;
 	

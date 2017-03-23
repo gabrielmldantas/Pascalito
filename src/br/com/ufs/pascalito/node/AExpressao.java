@@ -7,7 +7,8 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AExpressao extends PExpressao
 {
-    private TIdentificador _identificador_;
+    private PExpressaoSimples _expressaoSimples_;
+    private PExpressaoRelacional _expressaoRelacional_;
 
     public AExpressao()
     {
@@ -15,10 +16,13 @@ public final class AExpressao extends PExpressao
     }
 
     public AExpressao(
-        @SuppressWarnings("hiding") TIdentificador _identificador_)
+        @SuppressWarnings("hiding") PExpressaoSimples _expressaoSimples_,
+        @SuppressWarnings("hiding") PExpressaoRelacional _expressaoRelacional_)
     {
         // Constructor
-        setIdentificador(_identificador_);
+        setExpressaoSimples(_expressaoSimples_);
+
+        setExpressaoRelacional(_expressaoRelacional_);
 
     }
 
@@ -26,7 +30,8 @@ public final class AExpressao extends PExpressao
     public Object clone()
     {
         return new AExpressao(
-            cloneNode(this._identificador_));
+            cloneNode(this._expressaoSimples_),
+            cloneNode(this._expressaoRelacional_));
     }
 
     @Override
@@ -35,16 +40,16 @@ public final class AExpressao extends PExpressao
         ((Analysis) sw).caseAExpressao(this);
     }
 
-    public TIdentificador getIdentificador()
+    public PExpressaoSimples getExpressaoSimples()
     {
-        return this._identificador_;
+        return this._expressaoSimples_;
     }
 
-    public void setIdentificador(TIdentificador node)
+    public void setExpressaoSimples(PExpressaoSimples node)
     {
-        if(this._identificador_ != null)
+        if(this._expressaoSimples_ != null)
         {
-            this._identificador_.parent(null);
+            this._expressaoSimples_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +62,55 @@ public final class AExpressao extends PExpressao
             node.parent(this);
         }
 
-        this._identificador_ = node;
+        this._expressaoSimples_ = node;
+    }
+
+    public PExpressaoRelacional getExpressaoRelacional()
+    {
+        return this._expressaoRelacional_;
+    }
+
+    public void setExpressaoRelacional(PExpressaoRelacional node)
+    {
+        if(this._expressaoRelacional_ != null)
+        {
+            this._expressaoRelacional_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._expressaoRelacional_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._identificador_);
+            + toString(this._expressaoSimples_)
+            + toString(this._expressaoRelacional_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._identificador_ == child)
+        if(this._expressaoSimples_ == child)
         {
-            this._identificador_ = null;
+            this._expressaoSimples_ = null;
+            return;
+        }
+
+        if(this._expressaoRelacional_ == child)
+        {
+            this._expressaoRelacional_ = null;
             return;
         }
 
@@ -84,9 +121,15 @@ public final class AExpressao extends PExpressao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._identificador_ == oldChild)
+        if(this._expressaoSimples_ == oldChild)
         {
-            setIdentificador((TIdentificador) newChild);
+            setExpressaoSimples((PExpressaoSimples) newChild);
+            return;
+        }
+
+        if(this._expressaoRelacional_ == oldChild)
+        {
+            setExpressaoRelacional((PExpressaoRelacional) newChild);
             return;
         }
 
