@@ -108,9 +108,10 @@ Ignored Tokens
 Productions
 	program = cabecalho_programa ponto_e_virgula bloco ponto;
 	cabecalho_programa = {unico} T.program identificador | {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses;
-	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis;
+	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis declaracao_proc_funcoes+;
 	
 	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
+	identificador_tipo_ordinal = {integer} integer | {string} string | {real} real | {boolean} boolean;
 	
 	declaracao_labels = T.label labels ponto_e_virgula | {empty};
 	labels = {unico} P.label | {multiplo} labels virgula P.label;
@@ -118,7 +119,7 @@ Productions
 	
 	declaracao_tipos = type definicao_tipos ponto_e_virgula | {empty};
 	definicao_tipos = {unico} identificador igual denotador_tipo | {multiplo} definicao_tipos virgula denotador_tipo;
-	denotador_tipo = {existente} identificador | {novo} novo_tipo | {integer} integer | {string} string | {real} real | {boolean} boolean;
+	denotador_tipo = {existente} identificador | {novo} novo_tipo | {ordinal} identificador_tipo_ordinal;
 	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
 	tipo_array = array abre_colchete tipos_ordinais fecha_colchete of denotador_tipo;
 	tipos_ordinais = {unico} tipo_ordinal | {multiplo} tipos_ordinais virgula tipo_ordinal;
@@ -132,3 +133,27 @@ Productions
 	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
 	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
 	declaracao_variavel = identificadores dois_pontos denotador_tipo;
+	
+	declaracao_proc_funcoes = {procedure} declaracao_procedure ponto_e_virgula | {funcao} declaracao_funcao ponto_e_virgula;
+	declaracao_procedure = cabecalho_procedure ponto_e_virgula bloco;
+	declaracao_funcao = cabecalho_funcao ponto_e_virgula bloco;
+	
+	cabecalho_procedure = procedure identificador parametros_formais;
+	cabecalho_funcao = function identificador parametros_formais dois_pontos tipo_resultado;
+		
+	parametros_formais = abre_parenteses secao_parametros_formais fecha_parenteses | {empty};
+	secao_parametros_formais = {unico} secao_parametro_formal | {multiplo} secao_parametros_formais ponto_e_virgula secao_parametro_formal;
+	secao_parametro_formal = {valor} spec_param_valor | {variavel} spec_param_variavel | {array} spec_param_array;
+	
+	spec_param_valor = identificadores dois_pontos identificador;
+	spec_param_variavel = var identificadores dois_pontos identificador;
+	spec_param_array = {valor} spec_param_array_valor | {variavel} spec_param_array_variavel;
+	spec_param_array_valor = identificadores dois_pontos schema_array;
+	spec_param_array_variavel = var identificadores dois_pontos schema_array;
+	schema_array = array abre_colchete spec_tipos_indices fecha_colchete of abre_parenteses identificador_schema_array fecha_parenteses;
+	spec_tipos_indices = {unico} spec_tipo_indice | {multiplo} spec_tipos_indices ponto_e_virgula spec_tipo_indice;
+	spec_tipo_indice = [inicio]:identificador ponto_ponto [fim]:identificador dois_pontos identificador_tipo_ordinal;
+	identificador_schema_array = {identificador} identificador | {array} schema_array;
+	
+	tipo_resultado = {existente} identificador | {ordinal} identificador_tipo_ordinal;
+	

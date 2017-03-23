@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ARealDenotadorTipo extends PDenotadorTipo
+public final class AUnicoSecaoParametrosFormais extends PSecaoParametrosFormais
 {
-    private TReal _real_;
+    private PSecaoParametroFormal _secaoParametroFormal_;
 
-    public ARealDenotadorTipo()
+    public AUnicoSecaoParametrosFormais()
     {
         // Constructor
     }
 
-    public ARealDenotadorTipo(
-        @SuppressWarnings("hiding") TReal _real_)
+    public AUnicoSecaoParametrosFormais(
+        @SuppressWarnings("hiding") PSecaoParametroFormal _secaoParametroFormal_)
     {
         // Constructor
-        setReal(_real_);
+        setSecaoParametroFormal(_secaoParametroFormal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ARealDenotadorTipo(
-            cloneNode(this._real_));
+        return new AUnicoSecaoParametrosFormais(
+            cloneNode(this._secaoParametroFormal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseARealDenotadorTipo(this);
+        ((Analysis) sw).caseAUnicoSecaoParametrosFormais(this);
     }
 
-    public TReal getReal()
+    public PSecaoParametroFormal getSecaoParametroFormal()
     {
-        return this._real_;
+        return this._secaoParametroFormal_;
     }
 
-    public void setReal(TReal node)
+    public void setSecaoParametroFormal(PSecaoParametroFormal node)
     {
-        if(this._real_ != null)
+        if(this._secaoParametroFormal_ != null)
         {
-            this._real_.parent(null);
+            this._secaoParametroFormal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ARealDenotadorTipo extends PDenotadorTipo
             node.parent(this);
         }
 
-        this._real_ = node;
+        this._secaoParametroFormal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._real_);
+            + toString(this._secaoParametroFormal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._real_ == child)
+        if(this._secaoParametroFormal_ == child)
         {
-            this._real_ = null;
+            this._secaoParametroFormal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ARealDenotadorTipo extends PDenotadorTipo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._real_ == oldChild)
+        if(this._secaoParametroFormal_ == oldChild)
         {
-            setReal((TReal) newChild);
+            setSecaoParametroFormal((PSecaoParametroFormal) newChild);
             return;
         }
 

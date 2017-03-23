@@ -2,6 +2,7 @@
 
 package br.com.ufs.pascalito.node;
 
+import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
@@ -10,6 +11,7 @@ public final class ABloco extends PBloco
     private PDeclaracaoLabels _declaracaoLabels_;
     private PDeclaracaoTipos _declaracaoTipos_;
     private PDeclaracoesVariaveis _declaracoesVariaveis_;
+    private final LinkedList<PDeclaracaoProcFuncoes> _declaracaoProcFuncoes_ = new LinkedList<PDeclaracaoProcFuncoes>();
 
     public ABloco()
     {
@@ -19,7 +21,8 @@ public final class ABloco extends PBloco
     public ABloco(
         @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_,
         @SuppressWarnings("hiding") PDeclaracaoTipos _declaracaoTipos_,
-        @SuppressWarnings("hiding") PDeclaracoesVariaveis _declaracoesVariaveis_)
+        @SuppressWarnings("hiding") PDeclaracoesVariaveis _declaracoesVariaveis_,
+        @SuppressWarnings("hiding") List<?> _declaracaoProcFuncoes_)
     {
         // Constructor
         setDeclaracaoLabels(_declaracaoLabels_);
@@ -27,6 +30,8 @@ public final class ABloco extends PBloco
         setDeclaracaoTipos(_declaracaoTipos_);
 
         setDeclaracoesVariaveis(_declaracoesVariaveis_);
+
+        setDeclaracaoProcFuncoes(_declaracaoProcFuncoes_);
 
     }
 
@@ -36,7 +41,8 @@ public final class ABloco extends PBloco
         return new ABloco(
             cloneNode(this._declaracaoLabels_),
             cloneNode(this._declaracaoTipos_),
-            cloneNode(this._declaracoesVariaveis_));
+            cloneNode(this._declaracoesVariaveis_),
+            cloneList(this._declaracaoProcFuncoes_));
     }
 
     @Override
@@ -120,13 +126,40 @@ public final class ABloco extends PBloco
         this._declaracoesVariaveis_ = node;
     }
 
+    public LinkedList<PDeclaracaoProcFuncoes> getDeclaracaoProcFuncoes()
+    {
+        return this._declaracaoProcFuncoes_;
+    }
+
+    public void setDeclaracaoProcFuncoes(List<?> list)
+    {
+        for(PDeclaracaoProcFuncoes e : this._declaracaoProcFuncoes_)
+        {
+            e.parent(null);
+        }
+        this._declaracaoProcFuncoes_.clear();
+
+        for(Object obj_e : list)
+        {
+            PDeclaracaoProcFuncoes e = (PDeclaracaoProcFuncoes) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._declaracaoProcFuncoes_.add(e);
+        }
+    }
+
     @Override
     public String toString()
     {
         return ""
             + toString(this._declaracaoLabels_)
             + toString(this._declaracaoTipos_)
-            + toString(this._declaracoesVariaveis_);
+            + toString(this._declaracoesVariaveis_)
+            + toString(this._declaracaoProcFuncoes_);
     }
 
     @Override
@@ -148,6 +181,11 @@ public final class ABloco extends PBloco
         if(this._declaracoesVariaveis_ == child)
         {
             this._declaracoesVariaveis_ = null;
+            return;
+        }
+
+        if(this._declaracaoProcFuncoes_.remove(child))
+        {
             return;
         }
 
@@ -174,6 +212,24 @@ public final class ABloco extends PBloco
         {
             setDeclaracoesVariaveis((PDeclaracoesVariaveis) newChild);
             return;
+        }
+
+        for(ListIterator<PDeclaracaoProcFuncoes> i = this._declaracaoProcFuncoes_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PDeclaracaoProcFuncoes) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");

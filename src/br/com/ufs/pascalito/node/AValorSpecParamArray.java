@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ABooleanDenotadorTipo extends PDenotadorTipo
+public final class AValorSpecParamArray extends PSpecParamArray
 {
-    private TBoolean _boolean_;
+    private PSpecParamArrayValor _specParamArrayValor_;
 
-    public ABooleanDenotadorTipo()
+    public AValorSpecParamArray()
     {
         // Constructor
     }
 
-    public ABooleanDenotadorTipo(
-        @SuppressWarnings("hiding") TBoolean _boolean_)
+    public AValorSpecParamArray(
+        @SuppressWarnings("hiding") PSpecParamArrayValor _specParamArrayValor_)
     {
         // Constructor
-        setBoolean(_boolean_);
+        setSpecParamArrayValor(_specParamArrayValor_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ABooleanDenotadorTipo(
-            cloneNode(this._boolean_));
+        return new AValorSpecParamArray(
+            cloneNode(this._specParamArrayValor_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseABooleanDenotadorTipo(this);
+        ((Analysis) sw).caseAValorSpecParamArray(this);
     }
 
-    public TBoolean getBoolean()
+    public PSpecParamArrayValor getSpecParamArrayValor()
     {
-        return this._boolean_;
+        return this._specParamArrayValor_;
     }
 
-    public void setBoolean(TBoolean node)
+    public void setSpecParamArrayValor(PSpecParamArrayValor node)
     {
-        if(this._boolean_ != null)
+        if(this._specParamArrayValor_ != null)
         {
-            this._boolean_.parent(null);
+            this._specParamArrayValor_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ABooleanDenotadorTipo extends PDenotadorTipo
             node.parent(this);
         }
 
-        this._boolean_ = node;
+        this._specParamArrayValor_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._boolean_);
+            + toString(this._specParamArrayValor_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._boolean_ == child)
+        if(this._specParamArrayValor_ == child)
         {
-            this._boolean_ = null;
+            this._specParamArrayValor_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ABooleanDenotadorTipo extends PDenotadorTipo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._boolean_ == oldChild)
+        if(this._specParamArrayValor_ == oldChild)
         {
-            setBoolean((TBoolean) newChild);
+            setSpecParamArrayValor((PSpecParamArrayValor) newChild);
             return;
         }
 

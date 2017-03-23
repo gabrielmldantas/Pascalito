@@ -145,6 +145,14 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABloco(ABloco node)
     {
         inABloco(node);
+        {
+            List<PDeclaracaoProcFuncoes> copy = new ArrayList<PDeclaracaoProcFuncoes>(node.getDeclaracaoProcFuncoes());
+            Collections.reverse(copy);
+            for(PDeclaracaoProcFuncoes e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getDeclaracoesVariaveis() != null)
         {
             node.getDeclaracoesVariaveis().apply(this);
@@ -208,6 +216,90 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getIdentificadores().apply(this);
         }
         outAMultiploIdentificadores(node);
+    }
+
+    public void inAIntegerIdentificadorTipoOrdinal(AIntegerIdentificadorTipoOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIntegerIdentificadorTipoOrdinal(AIntegerIdentificadorTipoOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIntegerIdentificadorTipoOrdinal(AIntegerIdentificadorTipoOrdinal node)
+    {
+        inAIntegerIdentificadorTipoOrdinal(node);
+        if(node.getInteger() != null)
+        {
+            node.getInteger().apply(this);
+        }
+        outAIntegerIdentificadorTipoOrdinal(node);
+    }
+
+    public void inAStringIdentificadorTipoOrdinal(AStringIdentificadorTipoOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAStringIdentificadorTipoOrdinal(AStringIdentificadorTipoOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAStringIdentificadorTipoOrdinal(AStringIdentificadorTipoOrdinal node)
+    {
+        inAStringIdentificadorTipoOrdinal(node);
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        outAStringIdentificadorTipoOrdinal(node);
+    }
+
+    public void inARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
+    {
+        inARealIdentificadorTipoOrdinal(node);
+        if(node.getReal() != null)
+        {
+            node.getReal().apply(this);
+        }
+        outARealIdentificadorTipoOrdinal(node);
+    }
+
+    public void inABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node)
+    {
+        inABooleanIdentificadorTipoOrdinal(node);
+        if(node.getBoolean() != null)
+        {
+            node.getBoolean().apply(this);
+        }
+        outABooleanIdentificadorTipoOrdinal(node);
     }
 
     public void inADeclaracaoLabels(ADeclaracaoLabels node)
@@ -473,88 +565,25 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outANovoDenotadorTipo(node);
     }
 
-    public void inAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    public void inAOrdinalDenotadorTipo(AOrdinalDenotadorTipo node)
     {
         defaultIn(node);
     }
 
-    public void outAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    public void outAOrdinalDenotadorTipo(AOrdinalDenotadorTipo node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
+    public void caseAOrdinalDenotadorTipo(AOrdinalDenotadorTipo node)
     {
-        inAIntegerDenotadorTipo(node);
-        if(node.getInteger() != null)
+        inAOrdinalDenotadorTipo(node);
+        if(node.getIdentificadorTipoOrdinal() != null)
         {
-            node.getInteger().apply(this);
+            node.getIdentificadorTipoOrdinal().apply(this);
         }
-        outAIntegerDenotadorTipo(node);
-    }
-
-    public void inAStringDenotadorTipo(AStringDenotadorTipo node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAStringDenotadorTipo(AStringDenotadorTipo node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAStringDenotadorTipo(AStringDenotadorTipo node)
-    {
-        inAStringDenotadorTipo(node);
-        if(node.getString() != null)
-        {
-            node.getString().apply(this);
-        }
-        outAStringDenotadorTipo(node);
-    }
-
-    public void inARealDenotadorTipo(ARealDenotadorTipo node)
-    {
-        defaultIn(node);
-    }
-
-    public void outARealDenotadorTipo(ARealDenotadorTipo node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseARealDenotadorTipo(ARealDenotadorTipo node)
-    {
-        inARealDenotadorTipo(node);
-        if(node.getReal() != null)
-        {
-            node.getReal().apply(this);
-        }
-        outARealDenotadorTipo(node);
-    }
-
-    public void inABooleanDenotadorTipo(ABooleanDenotadorTipo node)
-    {
-        defaultIn(node);
-    }
-
-    public void outABooleanDenotadorTipo(ABooleanDenotadorTipo node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseABooleanDenotadorTipo(ABooleanDenotadorTipo node)
-    {
-        inABooleanDenotadorTipo(node);
-        if(node.getBoolean() != null)
-        {
-            node.getBoolean().apply(this);
-        }
-        outABooleanDenotadorTipo(node);
+        outAOrdinalDenotadorTipo(node);
     }
 
     public void inAOrdinalNovoTipo(AOrdinalNovoTipo node)
@@ -997,5 +1026,724 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getIdentificadores().apply(this);
         }
         outADeclaracaoVariavel(node);
+    }
+
+    public void inAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    {
+        inAProcedureDeclaracaoProcFuncoes(node);
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getDeclaracaoProcedure() != null)
+        {
+            node.getDeclaracaoProcedure().apply(this);
+        }
+        outAProcedureDeclaracaoProcFuncoes(node);
+    }
+
+    public void inAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    {
+        inAFuncaoDeclaracaoProcFuncoes(node);
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getDeclaracaoFuncao() != null)
+        {
+            node.getDeclaracaoFuncao().apply(this);
+        }
+        outAFuncaoDeclaracaoProcFuncoes(node);
+    }
+
+    public void inADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        inADeclaracaoProcedure(node);
+        if(node.getBloco() != null)
+        {
+            node.getBloco().apply(this);
+        }
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getCabecalhoProcedure() != null)
+        {
+            node.getCabecalhoProcedure().apply(this);
+        }
+        outADeclaracaoProcedure(node);
+    }
+
+    public void inADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        inADeclaracaoFuncao(node);
+        if(node.getBloco() != null)
+        {
+            node.getBloco().apply(this);
+        }
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getCabecalhoFuncao() != null)
+        {
+            node.getCabecalhoFuncao().apply(this);
+        }
+        outADeclaracaoFuncao(node);
+    }
+
+    public void inACabecalhoProcedure(ACabecalhoProcedure node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACabecalhoProcedure(ACabecalhoProcedure node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACabecalhoProcedure(ACabecalhoProcedure node)
+    {
+        inACabecalhoProcedure(node);
+        if(node.getParametrosFormais() != null)
+        {
+            node.getParametrosFormais().apply(this);
+        }
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        if(node.getProcedure() != null)
+        {
+            node.getProcedure().apply(this);
+        }
+        outACabecalhoProcedure(node);
+    }
+
+    public void inACabecalhoFuncao(ACabecalhoFuncao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outACabecalhoFuncao(ACabecalhoFuncao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseACabecalhoFuncao(ACabecalhoFuncao node)
+    {
+        inACabecalhoFuncao(node);
+        if(node.getTipoResultado() != null)
+        {
+            node.getTipoResultado().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getParametrosFormais() != null)
+        {
+            node.getParametrosFormais().apply(this);
+        }
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        if(node.getFunction() != null)
+        {
+            node.getFunction().apply(this);
+        }
+        outACabecalhoFuncao(node);
+    }
+
+    public void inAParametrosFormais(AParametrosFormais node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAParametrosFormais(AParametrosFormais node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAParametrosFormais(AParametrosFormais node)
+    {
+        inAParametrosFormais(node);
+        if(node.getFechaParenteses() != null)
+        {
+            node.getFechaParenteses().apply(this);
+        }
+        if(node.getSecaoParametrosFormais() != null)
+        {
+            node.getSecaoParametrosFormais().apply(this);
+        }
+        if(node.getAbreParenteses() != null)
+        {
+            node.getAbreParenteses().apply(this);
+        }
+        outAParametrosFormais(node);
+    }
+
+    public void inAEmptyParametrosFormais(AEmptyParametrosFormais node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEmptyParametrosFormais(AEmptyParametrosFormais node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEmptyParametrosFormais(AEmptyParametrosFormais node)
+    {
+        inAEmptyParametrosFormais(node);
+        outAEmptyParametrosFormais(node);
+    }
+
+    public void inAUnicoSecaoParametrosFormais(AUnicoSecaoParametrosFormais node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoSecaoParametrosFormais(AUnicoSecaoParametrosFormais node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoSecaoParametrosFormais(AUnicoSecaoParametrosFormais node)
+    {
+        inAUnicoSecaoParametrosFormais(node);
+        if(node.getSecaoParametroFormal() != null)
+        {
+            node.getSecaoParametroFormal().apply(this);
+        }
+        outAUnicoSecaoParametrosFormais(node);
+    }
+
+    public void inAMultiploSecaoParametrosFormais(AMultiploSecaoParametrosFormais node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploSecaoParametrosFormais(AMultiploSecaoParametrosFormais node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploSecaoParametrosFormais(AMultiploSecaoParametrosFormais node)
+    {
+        inAMultiploSecaoParametrosFormais(node);
+        if(node.getSecaoParametroFormal() != null)
+        {
+            node.getSecaoParametroFormal().apply(this);
+        }
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getSecaoParametrosFormais() != null)
+        {
+            node.getSecaoParametrosFormais().apply(this);
+        }
+        outAMultiploSecaoParametrosFormais(node);
+    }
+
+    public void inAValorSecaoParametroFormal(AValorSecaoParametroFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAValorSecaoParametroFormal(AValorSecaoParametroFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAValorSecaoParametroFormal(AValorSecaoParametroFormal node)
+    {
+        inAValorSecaoParametroFormal(node);
+        if(node.getSpecParamValor() != null)
+        {
+            node.getSpecParamValor().apply(this);
+        }
+        outAValorSecaoParametroFormal(node);
+    }
+
+    public void inAVariavelSecaoParametroFormal(AVariavelSecaoParametroFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVariavelSecaoParametroFormal(AVariavelSecaoParametroFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVariavelSecaoParametroFormal(AVariavelSecaoParametroFormal node)
+    {
+        inAVariavelSecaoParametroFormal(node);
+        if(node.getSpecParamVariavel() != null)
+        {
+            node.getSpecParamVariavel().apply(this);
+        }
+        outAVariavelSecaoParametroFormal(node);
+    }
+
+    public void inAArraySecaoParametroFormal(AArraySecaoParametroFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAArraySecaoParametroFormal(AArraySecaoParametroFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAArraySecaoParametroFormal(AArraySecaoParametroFormal node)
+    {
+        inAArraySecaoParametroFormal(node);
+        if(node.getSpecParamArray() != null)
+        {
+            node.getSpecParamArray().apply(this);
+        }
+        outAArraySecaoParametroFormal(node);
+    }
+
+    public void inASpecParamValor(ASpecParamValor node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASpecParamValor(ASpecParamValor node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASpecParamValor(ASpecParamValor node)
+    {
+        inASpecParamValor(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        outASpecParamValor(node);
+    }
+
+    public void inASpecParamVariavel(ASpecParamVariavel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASpecParamVariavel(ASpecParamVariavel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASpecParamVariavel(ASpecParamVariavel node)
+    {
+        inASpecParamVariavel(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        if(node.getVar() != null)
+        {
+            node.getVar().apply(this);
+        }
+        outASpecParamVariavel(node);
+    }
+
+    public void inAValorSpecParamArray(AValorSpecParamArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAValorSpecParamArray(AValorSpecParamArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAValorSpecParamArray(AValorSpecParamArray node)
+    {
+        inAValorSpecParamArray(node);
+        if(node.getSpecParamArrayValor() != null)
+        {
+            node.getSpecParamArrayValor().apply(this);
+        }
+        outAValorSpecParamArray(node);
+    }
+
+    public void inAVariavelSpecParamArray(AVariavelSpecParamArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVariavelSpecParamArray(AVariavelSpecParamArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVariavelSpecParamArray(AVariavelSpecParamArray node)
+    {
+        inAVariavelSpecParamArray(node);
+        if(node.getSpecParamArrayVariavel() != null)
+        {
+            node.getSpecParamArrayVariavel().apply(this);
+        }
+        outAVariavelSpecParamArray(node);
+    }
+
+    public void inASpecParamArrayValor(ASpecParamArrayValor node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASpecParamArrayValor(ASpecParamArrayValor node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASpecParamArrayValor(ASpecParamArrayValor node)
+    {
+        inASpecParamArrayValor(node);
+        if(node.getSchemaArray() != null)
+        {
+            node.getSchemaArray().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        outASpecParamArrayValor(node);
+    }
+
+    public void inASpecParamArrayVariavel(ASpecParamArrayVariavel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASpecParamArrayVariavel(ASpecParamArrayVariavel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASpecParamArrayVariavel(ASpecParamArrayVariavel node)
+    {
+        inASpecParamArrayVariavel(node);
+        if(node.getSchemaArray() != null)
+        {
+            node.getSchemaArray().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getIdentificadores() != null)
+        {
+            node.getIdentificadores().apply(this);
+        }
+        if(node.getVar() != null)
+        {
+            node.getVar().apply(this);
+        }
+        outASpecParamArrayVariavel(node);
+    }
+
+    public void inASchemaArray(ASchemaArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASchemaArray(ASchemaArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASchemaArray(ASchemaArray node)
+    {
+        inASchemaArray(node);
+        if(node.getFechaParenteses() != null)
+        {
+            node.getFechaParenteses().apply(this);
+        }
+        if(node.getIdentificadorSchemaArray() != null)
+        {
+            node.getIdentificadorSchemaArray().apply(this);
+        }
+        if(node.getAbreParenteses() != null)
+        {
+            node.getAbreParenteses().apply(this);
+        }
+        if(node.getOf() != null)
+        {
+            node.getOf().apply(this);
+        }
+        if(node.getFechaColchete() != null)
+        {
+            node.getFechaColchete().apply(this);
+        }
+        if(node.getSpecTiposIndices() != null)
+        {
+            node.getSpecTiposIndices().apply(this);
+        }
+        if(node.getAbreColchete() != null)
+        {
+            node.getAbreColchete().apply(this);
+        }
+        if(node.getArray() != null)
+        {
+            node.getArray().apply(this);
+        }
+        outASchemaArray(node);
+    }
+
+    public void inAUnicoSpecTiposIndices(AUnicoSpecTiposIndices node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAUnicoSpecTiposIndices(AUnicoSpecTiposIndices node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAUnicoSpecTiposIndices(AUnicoSpecTiposIndices node)
+    {
+        inAUnicoSpecTiposIndices(node);
+        if(node.getSpecTipoIndice() != null)
+        {
+            node.getSpecTipoIndice().apply(this);
+        }
+        outAUnicoSpecTiposIndices(node);
+    }
+
+    public void inAMultiploSpecTiposIndices(AMultiploSpecTiposIndices node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploSpecTiposIndices(AMultiploSpecTiposIndices node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploSpecTiposIndices(AMultiploSpecTiposIndices node)
+    {
+        inAMultiploSpecTiposIndices(node);
+        if(node.getSpecTipoIndice() != null)
+        {
+            node.getSpecTipoIndice().apply(this);
+        }
+        if(node.getPontoEVirgula() != null)
+        {
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getSpecTiposIndices() != null)
+        {
+            node.getSpecTiposIndices().apply(this);
+        }
+        outAMultiploSpecTiposIndices(node);
+    }
+
+    public void inASpecTipoIndice(ASpecTipoIndice node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASpecTipoIndice(ASpecTipoIndice node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASpecTipoIndice(ASpecTipoIndice node)
+    {
+        inASpecTipoIndice(node);
+        if(node.getIdentificadorTipoOrdinal() != null)
+        {
+            node.getIdentificadorTipoOrdinal().apply(this);
+        }
+        if(node.getDoisPontos() != null)
+        {
+            node.getDoisPontos().apply(this);
+        }
+        if(node.getFim() != null)
+        {
+            node.getFim().apply(this);
+        }
+        if(node.getPontoPonto() != null)
+        {
+            node.getPontoPonto().apply(this);
+        }
+        if(node.getInicio() != null)
+        {
+            node.getInicio().apply(this);
+        }
+        outASpecTipoIndice(node);
+    }
+
+    public void inAIdentificadorIdentificadorSchemaArray(AIdentificadorIdentificadorSchemaArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdentificadorIdentificadorSchemaArray(AIdentificadorIdentificadorSchemaArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdentificadorIdentificadorSchemaArray(AIdentificadorIdentificadorSchemaArray node)
+    {
+        inAIdentificadorIdentificadorSchemaArray(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAIdentificadorIdentificadorSchemaArray(node);
+    }
+
+    public void inAArrayIdentificadorSchemaArray(AArrayIdentificadorSchemaArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAArrayIdentificadorSchemaArray(AArrayIdentificadorSchemaArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAArrayIdentificadorSchemaArray(AArrayIdentificadorSchemaArray node)
+    {
+        inAArrayIdentificadorSchemaArray(node);
+        if(node.getSchemaArray() != null)
+        {
+            node.getSchemaArray().apply(this);
+        }
+        outAArrayIdentificadorSchemaArray(node);
+    }
+
+    public void inAExistenteTipoResultado(AExistenteTipoResultado node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAExistenteTipoResultado(AExistenteTipoResultado node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAExistenteTipoResultado(AExistenteTipoResultado node)
+    {
+        inAExistenteTipoResultado(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outAExistenteTipoResultado(node);
+    }
+
+    public void inAOrdinalTipoResultado(AOrdinalTipoResultado node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAOrdinalTipoResultado(AOrdinalTipoResultado node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAOrdinalTipoResultado(AOrdinalTipoResultado node)
+    {
+        inAOrdinalTipoResultado(node);
+        if(node.getIdentificadorTipoOrdinal() != null)
+        {
+            node.getIdentificadorTipoOrdinal().apply(this);
+        }
+        outAOrdinalTipoResultado(node);
     }
 }

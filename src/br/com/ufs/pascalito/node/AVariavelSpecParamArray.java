@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AIntegerDenotadorTipo extends PDenotadorTipo
+public final class AVariavelSpecParamArray extends PSpecParamArray
 {
-    private TInteger _integer_;
+    private PSpecParamArrayVariavel _specParamArrayVariavel_;
 
-    public AIntegerDenotadorTipo()
+    public AVariavelSpecParamArray()
     {
         // Constructor
     }
 
-    public AIntegerDenotadorTipo(
-        @SuppressWarnings("hiding") TInteger _integer_)
+    public AVariavelSpecParamArray(
+        @SuppressWarnings("hiding") PSpecParamArrayVariavel _specParamArrayVariavel_)
     {
         // Constructor
-        setInteger(_integer_);
+        setSpecParamArrayVariavel(_specParamArrayVariavel_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AIntegerDenotadorTipo(
-            cloneNode(this._integer_));
+        return new AVariavelSpecParamArray(
+            cloneNode(this._specParamArrayVariavel_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAIntegerDenotadorTipo(this);
+        ((Analysis) sw).caseAVariavelSpecParamArray(this);
     }
 
-    public TInteger getInteger()
+    public PSpecParamArrayVariavel getSpecParamArrayVariavel()
     {
-        return this._integer_;
+        return this._specParamArrayVariavel_;
     }
 
-    public void setInteger(TInteger node)
+    public void setSpecParamArrayVariavel(PSpecParamArrayVariavel node)
     {
-        if(this._integer_ != null)
+        if(this._specParamArrayVariavel_ != null)
         {
-            this._integer_.parent(null);
+            this._specParamArrayVariavel_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AIntegerDenotadorTipo extends PDenotadorTipo
             node.parent(this);
         }
 
-        this._integer_ = node;
+        this._specParamArrayVariavel_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._integer_);
+            + toString(this._specParamArrayVariavel_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._integer_ == child)
+        if(this._specParamArrayVariavel_ == child)
         {
-            this._integer_ = null;
+            this._specParamArrayVariavel_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AIntegerDenotadorTipo extends PDenotadorTipo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._integer_ == oldChild)
+        if(this._specParamArrayVariavel_ == oldChild)
         {
-            setInteger((TInteger) newChild);
+            setSpecParamArrayVariavel((PSpecParamArrayVariavel) newChild);
             return;
         }
 

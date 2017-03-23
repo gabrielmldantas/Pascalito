@@ -111,6 +111,30 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIntegerIdentificadorTipoOrdinal(AIntegerIdentificadorTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringIdentificadorTipoOrdinal(AStringIdentificadorTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseADeclaracaoLabels(ADeclaracaoLabels node)
     {
         defaultCase(node);
@@ -177,25 +201,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAIntegerDenotadorTipo(AIntegerDenotadorTipo node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAStringDenotadorTipo(AStringDenotadorTipo node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseARealDenotadorTipo(ARealDenotadorTipo node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseABooleanDenotadorTipo(ABooleanDenotadorTipo node)
+    public void caseAOrdinalDenotadorTipo(AOrdinalDenotadorTipo node)
     {
         defaultCase(node);
     }
@@ -304,6 +310,168 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProcedureDeclaracaoProcFuncoes(AProcedureDeclaracaoProcFuncoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFuncaoDeclaracaoProcFuncoes(AFuncaoDeclaracaoProcFuncoes node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACabecalhoProcedure(ACabecalhoProcedure node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACabecalhoFuncao(ACabecalhoFuncao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAParametrosFormais(AParametrosFormais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEmptyParametrosFormais(AEmptyParametrosFormais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoSecaoParametrosFormais(AUnicoSecaoParametrosFormais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploSecaoParametrosFormais(AMultiploSecaoParametrosFormais node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAValorSecaoParametroFormal(AValorSecaoParametroFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelSecaoParametroFormal(AVariavelSecaoParametroFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArraySecaoParametroFormal(AArraySecaoParametroFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASpecParamValor(ASpecParamValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASpecParamVariavel(ASpecParamVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAValorSpecParamArray(AValorSpecParamArray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelSpecParamArray(AVariavelSpecParamArray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASpecParamArrayValor(ASpecParamArrayValor node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASpecParamArrayVariavel(ASpecParamArrayVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASchemaArray(ASchemaArray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAUnicoSpecTiposIndices(AUnicoSpecTiposIndices node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploSpecTiposIndices(AMultiploSpecTiposIndices node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASpecTipoIndice(ASpecTipoIndice node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdentificadorIdentificadorSchemaArray(AIdentificadorIdentificadorSchemaArray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAArrayIdentificadorSchemaArray(AArrayIdentificadorSchemaArray node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExistenteTipoResultado(AExistenteTipoResultado node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOrdinalTipoResultado(AOrdinalTipoResultado node)
     {
         defaultCase(node);
     }

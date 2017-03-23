@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AStringDenotadorTipo extends PDenotadorTipo
+public final class AIntegerIdentificadorTipoOrdinal extends PIdentificadorTipoOrdinal
 {
-    private TString _string_;
+    private TInteger _integer_;
 
-    public AStringDenotadorTipo()
+    public AIntegerIdentificadorTipoOrdinal()
     {
         // Constructor
     }
 
-    public AStringDenotadorTipo(
-        @SuppressWarnings("hiding") TString _string_)
+    public AIntegerIdentificadorTipoOrdinal(
+        @SuppressWarnings("hiding") TInteger _integer_)
     {
         // Constructor
-        setString(_string_);
+        setInteger(_integer_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AStringDenotadorTipo(
-            cloneNode(this._string_));
+        return new AIntegerIdentificadorTipoOrdinal(
+            cloneNode(this._integer_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAStringDenotadorTipo(this);
+        ((Analysis) sw).caseAIntegerIdentificadorTipoOrdinal(this);
     }
 
-    public TString getString()
+    public TInteger getInteger()
     {
-        return this._string_;
+        return this._integer_;
     }
 
-    public void setString(TString node)
+    public void setInteger(TInteger node)
     {
-        if(this._string_ != null)
+        if(this._integer_ != null)
         {
-            this._string_.parent(null);
+            this._integer_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AStringDenotadorTipo extends PDenotadorTipo
             node.parent(this);
         }
 
-        this._string_ = node;
+        this._integer_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._string_);
+            + toString(this._integer_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._string_ == child)
+        if(this._integer_ == child)
         {
-            this._string_ = null;
+            this._integer_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AStringDenotadorTipo extends PDenotadorTipo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._string_ == oldChild)
+        if(this._integer_ == oldChild)
         {
-            setString((TString) newChild);
+            setInteger((TInteger) newChild);
             return;
         }
 
