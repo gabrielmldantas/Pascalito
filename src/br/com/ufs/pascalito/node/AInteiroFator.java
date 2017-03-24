@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosReais
+public final class AInteiroFator extends PFator
 {
-    private PExpressao _expressao_;
+    private TConstInteiro _constInteiro_;
 
-    public AUnicoDefinicaoParametrosReais()
+    public AInteiroFator()
     {
         // Constructor
     }
 
-    public AUnicoDefinicaoParametrosReais(
-        @SuppressWarnings("hiding") PExpressao _expressao_)
+    public AInteiroFator(
+        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
     {
         // Constructor
-        setExpressao(_expressao_);
+        setConstInteiro(_constInteiro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AUnicoDefinicaoParametrosReais(
-            cloneNode(this._expressao_));
+        return new AInteiroFator(
+            cloneNode(this._constInteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoDefinicaoParametrosReais(this);
+        ((Analysis) sw).caseAInteiroFator(this);
     }
 
-    public PExpressao getExpressao()
+    public TConstInteiro getConstInteiro()
     {
-        return this._expressao_;
+        return this._constInteiro_;
     }
 
-    public void setExpressao(PExpressao node)
+    public void setConstInteiro(TConstInteiro node)
     {
-        if(this._expressao_ != null)
+        if(this._constInteiro_ != null)
         {
-            this._expressao_.parent(null);
+            this._constInteiro_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
             node.parent(this);
         }
 
-        this._expressao_ = node;
+        this._constInteiro_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressao_);
+            + toString(this._constInteiro_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressao_ == child)
+        if(this._constInteiro_ == child)
         {
-            this._expressao_ = null;
+            this._constInteiro_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressao_ == oldChild)
+        if(this._constInteiro_ == oldChild)
         {
-            setExpressao((PExpressao) newChild);
+            setConstInteiro((TConstInteiro) newChild);
             return;
         }
 

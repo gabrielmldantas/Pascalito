@@ -7,7 +7,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AExpressaoRelacional extends PExpressaoRelacional
 {
-    private TOperadorRelacional _operadorRelacional_;
+    private POperadorRelacional _operadorRelacional_;
     private PExpressaoSimples _expressaoSimples_;
 
     public AExpressaoRelacional()
@@ -16,7 +16,7 @@ public final class AExpressaoRelacional extends PExpressaoRelacional
     }
 
     public AExpressaoRelacional(
-        @SuppressWarnings("hiding") TOperadorRelacional _operadorRelacional_,
+        @SuppressWarnings("hiding") POperadorRelacional _operadorRelacional_,
         @SuppressWarnings("hiding") PExpressaoSimples _expressaoSimples_)
     {
         // Constructor
@@ -40,12 +40,12 @@ public final class AExpressaoRelacional extends PExpressaoRelacional
         ((Analysis) sw).caseAExpressaoRelacional(this);
     }
 
-    public TOperadorRelacional getOperadorRelacional()
+    public POperadorRelacional getOperadorRelacional()
     {
         return this._operadorRelacional_;
     }
 
-    public void setOperadorRelacional(TOperadorRelacional node)
+    public void setOperadorRelacional(POperadorRelacional node)
     {
         if(this._operadorRelacional_ != null)
         {
@@ -123,7 +123,7 @@ public final class AExpressaoRelacional extends PExpressaoRelacional
         // Replace child
         if(this._operadorRelacional_ == oldChild)
         {
-            setOperadorRelacional((TOperadorRelacional) newChild);
+            setOperadorRelacional((POperadorRelacional) newChild);
             return;
         }
 

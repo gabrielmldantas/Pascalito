@@ -72,6 +72,11 @@ Tokens
 {normal}	type = t y p e;
 
 {normal}	const_booleana = t r u e | f a l s e;
+{normal}	and = a n d;
+{normal}	or = o r;
+{normal}	div = d i v;
+{normal}	mod = m o d;
+{normal}	not = n o t;
 {normal}    identificador = letra (letra | digito)*;
 {normal}	ponto_e_virgula = ';';
 {normal}	ponto = '.';
@@ -87,11 +92,16 @@ Tokens
 {normal}	const_real = digito* '.' digito digito* (e ('+' | '-')? digito digito*)?;
 {normal}    blank = blank;
 {normal}    const_string = ''' ascii_sem_aspa_simples_newline* ''';
-{normal}	operador_relacional = '<' | '>' | '<=' | '>=' | '<>';
+{normal}	menor = '<';
+{normal}	menor_igual = '<=';
+{normal}	maior = '>';
+{normal}	maior_igual = '>=';
+{normal}	diferente = '<>';
 {normal}	igual = '=';
-{normal}	not = n o t;
-{normal}	operador_aditivo = '+' | '-' | o r;
-{normal}	operador_multiplicativo = '*' | '/' | d i v | m o d | a n d;
+{normal}	soma = '+';
+{normal}	subtracao = '-';
+{normal}	multiplicacao = '*';
+{normal}	divisao = '/';
 
 {normal}	coment_linha = coment_linha;
 
@@ -170,10 +180,9 @@ Productions
 	sentenca_simples = {atribuicao} sentenca_atribuicao | {procedure} sentenca_procedure | {empty};
 	sentenca_atribuicao = acesso_variavel atribuicao expressao;
 	
-	sentenca_procedure = procedure identificador parametros_reais;
+	sentenca_procedure = identificador parametros_reais;
 	parametros_reais = abre_parenteses definicao_parametros_reais fecha_parenteses | {empty};
-	definicao_parametros_reais = {unico} parametro_real | {multiplo} definicao_parametros_reais virgula parametro_real;
-	parametro_real = {expressao} expressao | {variavel} acesso_variavel;
+	definicao_parametros_reais = {unico} expressao | {multiplo} definicao_parametros_reais virgula expressao;
 	
 	sentenca_estruturada = sentenca_composta;
 	
@@ -183,7 +192,10 @@ Productions
 	
 	expressao = expressao_simples expressao_relacional;
 	expressao_relacional = operador_relacional expressao_simples | {empty};
-	expressao_simples = termo expressoes_aditivas;
-	expressoes_aditivas = {unico} termo | {multiplo} operador_aditivo termo;
-	termo = {inteiro} const_inteiro | {real} const_real;
+	expressao_simples = {unico} termo | {multiplo} expressao_simples operador_aditivo termo;
+	termo = {unico} fator | {multiplo} termo operador_multiplicativo fator;
+	fator = {variavel} acesso_variavel | {inteiro} const_inteiro | {real} const_real | {string} const_string | {expressao} abre_parenteses expressao fecha_parenteses | not fator;
+	operador_relacional = {menor} menor | {menor_igual} menor_igual | {maior} maior | {maior_igual} maior_igual | {igual} igual | {diferente} diferente;
+	operador_aditivo = {soma} soma | {subtracao} subtracao | {or} or;
+	operador_multiplicativo = {multiplicacao} multiplicacao | {divisao} divisao | {and} and | {div} div | {mod} mod;
 	

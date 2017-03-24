@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AInteiroTermo extends PTermo
+public final class AMenorIgualOperadorRelacional extends POperadorRelacional
 {
-    private TConstInteiro _constInteiro_;
+    private TMenorIgual _menorIgual_;
 
-    public AInteiroTermo()
+    public AMenorIgualOperadorRelacional()
     {
         // Constructor
     }
 
-    public AInteiroTermo(
-        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
+    public AMenorIgualOperadorRelacional(
+        @SuppressWarnings("hiding") TMenorIgual _menorIgual_)
     {
         // Constructor
-        setConstInteiro(_constInteiro_);
+        setMenorIgual(_menorIgual_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AInteiroTermo(
-            cloneNode(this._constInteiro_));
+        return new AMenorIgualOperadorRelacional(
+            cloneNode(this._menorIgual_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAInteiroTermo(this);
+        ((Analysis) sw).caseAMenorIgualOperadorRelacional(this);
     }
 
-    public TConstInteiro getConstInteiro()
+    public TMenorIgual getMenorIgual()
     {
-        return this._constInteiro_;
+        return this._menorIgual_;
     }
 
-    public void setConstInteiro(TConstInteiro node)
+    public void setMenorIgual(TMenorIgual node)
     {
-        if(this._constInteiro_ != null)
+        if(this._menorIgual_ != null)
         {
-            this._constInteiro_.parent(null);
+            this._menorIgual_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AInteiroTermo extends PTermo
             node.parent(this);
         }
 
-        this._constInteiro_ = node;
+        this._menorIgual_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._constInteiro_);
+            + toString(this._menorIgual_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._constInteiro_ == child)
+        if(this._menorIgual_ == child)
         {
-            this._constInteiro_ = null;
+            this._menorIgual_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AInteiroTermo extends PTermo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._constInteiro_ == oldChild)
+        if(this._menorIgual_ == oldChild)
         {
-            setConstInteiro((TConstInteiro) newChild);
+            setMenorIgual((TMenorIgual) newChild);
             return;
         }
 

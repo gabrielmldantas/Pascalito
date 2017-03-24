@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosReais
+public final class ADivisaoOperadorMultiplicativo extends POperadorMultiplicativo
 {
-    private PExpressao _expressao_;
+    private TDivisao _divisao_;
 
-    public AUnicoDefinicaoParametrosReais()
+    public ADivisaoOperadorMultiplicativo()
     {
         // Constructor
     }
 
-    public AUnicoDefinicaoParametrosReais(
-        @SuppressWarnings("hiding") PExpressao _expressao_)
+    public ADivisaoOperadorMultiplicativo(
+        @SuppressWarnings("hiding") TDivisao _divisao_)
     {
         // Constructor
-        setExpressao(_expressao_);
+        setDivisao(_divisao_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AUnicoDefinicaoParametrosReais(
-            cloneNode(this._expressao_));
+        return new ADivisaoOperadorMultiplicativo(
+            cloneNode(this._divisao_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoDefinicaoParametrosReais(this);
+        ((Analysis) sw).caseADivisaoOperadorMultiplicativo(this);
     }
 
-    public PExpressao getExpressao()
+    public TDivisao getDivisao()
     {
-        return this._expressao_;
+        return this._divisao_;
     }
 
-    public void setExpressao(PExpressao node)
+    public void setDivisao(TDivisao node)
     {
-        if(this._expressao_ != null)
+        if(this._divisao_ != null)
         {
-            this._expressao_.parent(null);
+            this._divisao_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
             node.parent(this);
         }
 
-        this._expressao_ = node;
+        this._divisao_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressao_);
+            + toString(this._divisao_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressao_ == child)
+        if(this._divisao_ == child)
         {
-            this._expressao_ = null;
+            this._divisao_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressao_ == oldChild)
+        if(this._divisao_ == oldChild)
         {
-            setExpressao((PExpressao) newChild);
+            setDivisao((TDivisao) newChild);
             return;
         }
 

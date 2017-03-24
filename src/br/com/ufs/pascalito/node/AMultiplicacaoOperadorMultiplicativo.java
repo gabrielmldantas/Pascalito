@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVariavelParametroReal extends PParametroReal
+public final class AMultiplicacaoOperadorMultiplicativo extends POperadorMultiplicativo
 {
-    private PAcessoVariavel _acessoVariavel_;
+    private TMultiplicacao _multiplicacao_;
 
-    public AVariavelParametroReal()
+    public AMultiplicacaoOperadorMultiplicativo()
     {
         // Constructor
     }
 
-    public AVariavelParametroReal(
-        @SuppressWarnings("hiding") PAcessoVariavel _acessoVariavel_)
+    public AMultiplicacaoOperadorMultiplicativo(
+        @SuppressWarnings("hiding") TMultiplicacao _multiplicacao_)
     {
         // Constructor
-        setAcessoVariavel(_acessoVariavel_);
+        setMultiplicacao(_multiplicacao_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVariavelParametroReal(
-            cloneNode(this._acessoVariavel_));
+        return new AMultiplicacaoOperadorMultiplicativo(
+            cloneNode(this._multiplicacao_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVariavelParametroReal(this);
+        ((Analysis) sw).caseAMultiplicacaoOperadorMultiplicativo(this);
     }
 
-    public PAcessoVariavel getAcessoVariavel()
+    public TMultiplicacao getMultiplicacao()
     {
-        return this._acessoVariavel_;
+        return this._multiplicacao_;
     }
 
-    public void setAcessoVariavel(PAcessoVariavel node)
+    public void setMultiplicacao(TMultiplicacao node)
     {
-        if(this._acessoVariavel_ != null)
+        if(this._multiplicacao_ != null)
         {
-            this._acessoVariavel_.parent(null);
+            this._multiplicacao_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AVariavelParametroReal extends PParametroReal
             node.parent(this);
         }
 
-        this._acessoVariavel_ = node;
+        this._multiplicacao_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._acessoVariavel_);
+            + toString(this._multiplicacao_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._acessoVariavel_ == child)
+        if(this._multiplicacao_ == child)
         {
-            this._acessoVariavel_ = null;
+            this._multiplicacao_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AVariavelParametroReal extends PParametroReal
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._acessoVariavel_ == oldChild)
+        if(this._multiplicacao_ == oldChild)
         {
-            setAcessoVariavel((PAcessoVariavel) newChild);
+            setMultiplicacao((TMultiplicacao) newChild);
             return;
         }
 

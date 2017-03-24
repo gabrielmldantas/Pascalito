@@ -5,14 +5,14 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class TOperadorMultiplicativo extends Token
+public final class TDiv extends Token
 {
-    public TOperadorMultiplicativo(String text)
+    public TDiv(String text)
     {
         setText(text);
     }
 
-    public TOperadorMultiplicativo(String text, int line, int pos)
+    public TDiv(String text, int line, int pos)
     {
         setText(text);
         setLine(line);
@@ -22,12 +22,12 @@ public final class TOperadorMultiplicativo extends Token
     @Override
     public Object clone()
     {
-      return new TOperadorMultiplicativo(getText(), getLine(), getPos());
+      return new TDiv(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseTOperadorMultiplicativo(this);
+        ((Analysis) sw).caseTDiv(this);
     }
 }

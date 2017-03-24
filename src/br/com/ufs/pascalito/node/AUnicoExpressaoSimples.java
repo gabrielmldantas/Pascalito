@@ -5,23 +5,19 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AMultiploExpressoesAditivas extends PExpressoesAditivas
+public final class AUnicoExpressaoSimples extends PExpressaoSimples
 {
-    private TOperadorAditivo _operadorAditivo_;
     private PTermo _termo_;
 
-    public AMultiploExpressoesAditivas()
+    public AUnicoExpressaoSimples()
     {
         // Constructor
     }
 
-    public AMultiploExpressoesAditivas(
-        @SuppressWarnings("hiding") TOperadorAditivo _operadorAditivo_,
+    public AUnicoExpressaoSimples(
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
-        setOperadorAditivo(_operadorAditivo_);
-
         setTermo(_termo_);
 
     }
@@ -29,40 +25,14 @@ public final class AMultiploExpressoesAditivas extends PExpressoesAditivas
     @Override
     public Object clone()
     {
-        return new AMultiploExpressoesAditivas(
-            cloneNode(this._operadorAditivo_),
+        return new AUnicoExpressaoSimples(
             cloneNode(this._termo_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAMultiploExpressoesAditivas(this);
-    }
-
-    public TOperadorAditivo getOperadorAditivo()
-    {
-        return this._operadorAditivo_;
-    }
-
-    public void setOperadorAditivo(TOperadorAditivo node)
-    {
-        if(this._operadorAditivo_ != null)
-        {
-            this._operadorAditivo_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._operadorAditivo_ = node;
+        ((Analysis) sw).caseAUnicoExpressaoSimples(this);
     }
 
     public PTermo getTermo()
@@ -94,7 +64,6 @@ public final class AMultiploExpressoesAditivas extends PExpressoesAditivas
     public String toString()
     {
         return ""
-            + toString(this._operadorAditivo_)
             + toString(this._termo_);
     }
 
@@ -102,12 +71,6 @@ public final class AMultiploExpressoesAditivas extends PExpressoesAditivas
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._operadorAditivo_ == child)
-        {
-            this._operadorAditivo_ = null;
-            return;
-        }
-
         if(this._termo_ == child)
         {
             this._termo_ = null;
@@ -121,12 +84,6 @@ public final class AMultiploExpressoesAditivas extends PExpressoesAditivas
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._operadorAditivo_ == oldChild)
-        {
-            setOperadorAditivo((TOperadorAditivo) newChild);
-            return;
-        }
-
         if(this._termo_ == oldChild)
         {
             setTermo((PTermo) newChild);

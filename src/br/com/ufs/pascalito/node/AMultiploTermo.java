@@ -5,39 +5,44 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoSimples extends PExpressaoSimples
+public final class AMultiploTermo extends PTermo
 {
     private PTermo _termo_;
-    private PExpressoesAditivas _expressoesAditivas_;
+    private POperadorMultiplicativo _operadorMultiplicativo_;
+    private PFator _fator_;
 
-    public AExpressaoSimples()
+    public AMultiploTermo()
     {
         // Constructor
     }
 
-    public AExpressaoSimples(
+    public AMultiploTermo(
         @SuppressWarnings("hiding") PTermo _termo_,
-        @SuppressWarnings("hiding") PExpressoesAditivas _expressoesAditivas_)
+        @SuppressWarnings("hiding") POperadorMultiplicativo _operadorMultiplicativo_,
+        @SuppressWarnings("hiding") PFator _fator_)
     {
         // Constructor
         setTermo(_termo_);
 
-        setExpressoesAditivas(_expressoesAditivas_);
+        setOperadorMultiplicativo(_operadorMultiplicativo_);
+
+        setFator(_fator_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExpressaoSimples(
+        return new AMultiploTermo(
             cloneNode(this._termo_),
-            cloneNode(this._expressoesAditivas_));
+            cloneNode(this._operadorMultiplicativo_),
+            cloneNode(this._fator_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoSimples(this);
+        ((Analysis) sw).caseAMultiploTermo(this);
     }
 
     public PTermo getTermo()
@@ -65,16 +70,16 @@ public final class AExpressaoSimples extends PExpressaoSimples
         this._termo_ = node;
     }
 
-    public PExpressoesAditivas getExpressoesAditivas()
+    public POperadorMultiplicativo getOperadorMultiplicativo()
     {
-        return this._expressoesAditivas_;
+        return this._operadorMultiplicativo_;
     }
 
-    public void setExpressoesAditivas(PExpressoesAditivas node)
+    public void setOperadorMultiplicativo(POperadorMultiplicativo node)
     {
-        if(this._expressoesAditivas_ != null)
+        if(this._operadorMultiplicativo_ != null)
         {
-            this._expressoesAditivas_.parent(null);
+            this._operadorMultiplicativo_.parent(null);
         }
 
         if(node != null)
@@ -87,7 +92,32 @@ public final class AExpressaoSimples extends PExpressaoSimples
             node.parent(this);
         }
 
-        this._expressoesAditivas_ = node;
+        this._operadorMultiplicativo_ = node;
+    }
+
+    public PFator getFator()
+    {
+        return this._fator_;
+    }
+
+    public void setFator(PFator node)
+    {
+        if(this._fator_ != null)
+        {
+            this._fator_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._fator_ = node;
     }
 
     @Override
@@ -95,7 +125,8 @@ public final class AExpressaoSimples extends PExpressaoSimples
     {
         return ""
             + toString(this._termo_)
-            + toString(this._expressoesAditivas_);
+            + toString(this._operadorMultiplicativo_)
+            + toString(this._fator_);
     }
 
     @Override
@@ -108,9 +139,15 @@ public final class AExpressaoSimples extends PExpressaoSimples
             return;
         }
 
-        if(this._expressoesAditivas_ == child)
+        if(this._operadorMultiplicativo_ == child)
         {
-            this._expressoesAditivas_ = null;
+            this._operadorMultiplicativo_ = null;
+            return;
+        }
+
+        if(this._fator_ == child)
+        {
+            this._fator_ = null;
             return;
         }
 
@@ -127,9 +164,15 @@ public final class AExpressaoSimples extends PExpressaoSimples
             return;
         }
 
-        if(this._expressoesAditivas_ == oldChild)
+        if(this._operadorMultiplicativo_ == oldChild)
         {
-            setExpressoesAditivas((PExpressoesAditivas) newChild);
+            setOperadorMultiplicativo((POperadorMultiplicativo) newChild);
+            return;
+        }
+
+        if(this._fator_ == oldChild)
+        {
+            setFator((PFator) newChild);
             return;
         }
 

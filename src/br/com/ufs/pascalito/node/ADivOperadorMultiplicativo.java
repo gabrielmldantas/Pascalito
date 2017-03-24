@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoExpressoesAditivas extends PExpressoesAditivas
+public final class ADivOperadorMultiplicativo extends POperadorMultiplicativo
 {
-    private PTermo _termo_;
+    private TDiv _div_;
 
-    public AUnicoExpressoesAditivas()
+    public ADivOperadorMultiplicativo()
     {
         // Constructor
     }
 
-    public AUnicoExpressoesAditivas(
-        @SuppressWarnings("hiding") PTermo _termo_)
+    public ADivOperadorMultiplicativo(
+        @SuppressWarnings("hiding") TDiv _div_)
     {
         // Constructor
-        setTermo(_termo_);
+        setDiv(_div_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AUnicoExpressoesAditivas(
-            cloneNode(this._termo_));
+        return new ADivOperadorMultiplicativo(
+            cloneNode(this._div_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoExpressoesAditivas(this);
+        ((Analysis) sw).caseADivOperadorMultiplicativo(this);
     }
 
-    public PTermo getTermo()
+    public TDiv getDiv()
     {
-        return this._termo_;
+        return this._div_;
     }
 
-    public void setTermo(PTermo node)
+    public void setDiv(TDiv node)
     {
-        if(this._termo_ != null)
+        if(this._div_ != null)
         {
-            this._termo_.parent(null);
+            this._div_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AUnicoExpressoesAditivas extends PExpressoesAditivas
             node.parent(this);
         }
 
-        this._termo_ = node;
+        this._div_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._termo_);
+            + toString(this._div_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._termo_ == child)
+        if(this._div_ == child)
         {
-            this._termo_ = null;
+            this._div_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AUnicoExpressoesAditivas extends PExpressoesAditivas
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._termo_ == oldChild)
+        if(this._div_ == oldChild)
         {
-            setTermo((PTermo) newChild);
+            setDiv((TDiv) newChild);
             return;
         }
 

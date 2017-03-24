@@ -7,7 +7,6 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class ASentencaProcedure extends PSentencaProcedure
 {
-    private TProcedure _procedure_;
     private TIdentificador _identificador_;
     private PParametrosReais _parametrosReais_;
 
@@ -17,13 +16,10 @@ public final class ASentencaProcedure extends PSentencaProcedure
     }
 
     public ASentencaProcedure(
-        @SuppressWarnings("hiding") TProcedure _procedure_,
         @SuppressWarnings("hiding") TIdentificador _identificador_,
         @SuppressWarnings("hiding") PParametrosReais _parametrosReais_)
     {
         // Constructor
-        setProcedure(_procedure_);
-
         setIdentificador(_identificador_);
 
         setParametrosReais(_parametrosReais_);
@@ -34,7 +30,6 @@ public final class ASentencaProcedure extends PSentencaProcedure
     public Object clone()
     {
         return new ASentencaProcedure(
-            cloneNode(this._procedure_),
             cloneNode(this._identificador_),
             cloneNode(this._parametrosReais_));
     }
@@ -43,31 +38,6 @@ public final class ASentencaProcedure extends PSentencaProcedure
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseASentencaProcedure(this);
-    }
-
-    public TProcedure getProcedure()
-    {
-        return this._procedure_;
-    }
-
-    public void setProcedure(TProcedure node)
-    {
-        if(this._procedure_ != null)
-        {
-            this._procedure_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._procedure_ = node;
     }
 
     public TIdentificador getIdentificador()
@@ -124,7 +94,6 @@ public final class ASentencaProcedure extends PSentencaProcedure
     public String toString()
     {
         return ""
-            + toString(this._procedure_)
             + toString(this._identificador_)
             + toString(this._parametrosReais_);
     }
@@ -133,12 +102,6 @@ public final class ASentencaProcedure extends PSentencaProcedure
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._procedure_ == child)
-        {
-            this._procedure_ = null;
-            return;
-        }
-
         if(this._identificador_ == child)
         {
             this._identificador_ = null;
@@ -158,12 +121,6 @@ public final class ASentencaProcedure extends PSentencaProcedure
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._procedure_ == oldChild)
-        {
-            setProcedure((TProcedure) newChild);
-            return;
-        }
-
         if(this._identificador_ == oldChild)
         {
             setIdentificador((TIdentificador) newChild);

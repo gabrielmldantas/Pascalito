@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ARealTermo extends PTermo
+public final class AMaiorIgualOperadorRelacional extends POperadorRelacional
 {
-    private TConstReal _constReal_;
+    private TMaiorIgual _maiorIgual_;
 
-    public ARealTermo()
+    public AMaiorIgualOperadorRelacional()
     {
         // Constructor
     }
 
-    public ARealTermo(
-        @SuppressWarnings("hiding") TConstReal _constReal_)
+    public AMaiorIgualOperadorRelacional(
+        @SuppressWarnings("hiding") TMaiorIgual _maiorIgual_)
     {
         // Constructor
-        setConstReal(_constReal_);
+        setMaiorIgual(_maiorIgual_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ARealTermo(
-            cloneNode(this._constReal_));
+        return new AMaiorIgualOperadorRelacional(
+            cloneNode(this._maiorIgual_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseARealTermo(this);
+        ((Analysis) sw).caseAMaiorIgualOperadorRelacional(this);
     }
 
-    public TConstReal getConstReal()
+    public TMaiorIgual getMaiorIgual()
     {
-        return this._constReal_;
+        return this._maiorIgual_;
     }
 
-    public void setConstReal(TConstReal node)
+    public void setMaiorIgual(TMaiorIgual node)
     {
-        if(this._constReal_ != null)
+        if(this._maiorIgual_ != null)
         {
-            this._constReal_.parent(null);
+            this._maiorIgual_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ARealTermo extends PTermo
             node.parent(this);
         }
 
-        this._constReal_ = node;
+        this._maiorIgual_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._constReal_);
+            + toString(this._maiorIgual_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._constReal_ == child)
+        if(this._maiorIgual_ == child)
         {
-            this._constReal_ = null;
+            this._maiorIgual_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ARealTermo extends PTermo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._constReal_ == oldChild)
+        if(this._maiorIgual_ == oldChild)
         {
-            setConstReal((TConstReal) newChild);
+            setMaiorIgual((TMaiorIgual) newChild);
             return;
         }
 

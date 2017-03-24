@@ -9,7 +9,7 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
 {
     private PDefinicaoParametrosReais _definicaoParametrosReais_;
     private TVirgula _virgula_;
-    private PParametroReal _parametroReal_;
+    private PExpressao _expressao_;
 
     public AMultiploDefinicaoParametrosReais()
     {
@@ -19,14 +19,14 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
     public AMultiploDefinicaoParametrosReais(
         @SuppressWarnings("hiding") PDefinicaoParametrosReais _definicaoParametrosReais_,
         @SuppressWarnings("hiding") TVirgula _virgula_,
-        @SuppressWarnings("hiding") PParametroReal _parametroReal_)
+        @SuppressWarnings("hiding") PExpressao _expressao_)
     {
         // Constructor
         setDefinicaoParametrosReais(_definicaoParametrosReais_);
 
         setVirgula(_virgula_);
 
-        setParametroReal(_parametroReal_);
+        setExpressao(_expressao_);
 
     }
 
@@ -36,7 +36,7 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
         return new AMultiploDefinicaoParametrosReais(
             cloneNode(this._definicaoParametrosReais_),
             cloneNode(this._virgula_),
-            cloneNode(this._parametroReal_));
+            cloneNode(this._expressao_));
     }
 
     @Override
@@ -95,16 +95,16 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
         this._virgula_ = node;
     }
 
-    public PParametroReal getParametroReal()
+    public PExpressao getExpressao()
     {
-        return this._parametroReal_;
+        return this._expressao_;
     }
 
-    public void setParametroReal(PParametroReal node)
+    public void setExpressao(PExpressao node)
     {
-        if(this._parametroReal_ != null)
+        if(this._expressao_ != null)
         {
-            this._parametroReal_.parent(null);
+            this._expressao_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
             node.parent(this);
         }
 
-        this._parametroReal_ = node;
+        this._expressao_ = node;
     }
 
     @Override
@@ -126,7 +126,7 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
         return ""
             + toString(this._definicaoParametrosReais_)
             + toString(this._virgula_)
-            + toString(this._parametroReal_);
+            + toString(this._expressao_);
     }
 
     @Override
@@ -145,9 +145,9 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
             return;
         }
 
-        if(this._parametroReal_ == child)
+        if(this._expressao_ == child)
         {
-            this._parametroReal_ = null;
+            this._expressao_ = null;
             return;
         }
 
@@ -170,9 +170,9 @@ public final class AMultiploDefinicaoParametrosReais extends PDefinicaoParametro
             return;
         }
 
-        if(this._parametroReal_ == oldChild)
+        if(this._expressao_ == oldChild)
         {
-            setParametroReal((PParametroReal) newChild);
+            setExpressao((PExpressao) newChild);
             return;
         }
 

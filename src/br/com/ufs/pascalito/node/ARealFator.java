@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AExpressaoParametroReal extends PParametroReal
+public final class ARealFator extends PFator
 {
-    private PExpressao _expressao_;
+    private TConstReal _constReal_;
 
-    public AExpressaoParametroReal()
+    public ARealFator()
     {
         // Constructor
     }
 
-    public AExpressaoParametroReal(
-        @SuppressWarnings("hiding") PExpressao _expressao_)
+    public ARealFator(
+        @SuppressWarnings("hiding") TConstReal _constReal_)
     {
         // Constructor
-        setExpressao(_expressao_);
+        setConstReal(_constReal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AExpressaoParametroReal(
-            cloneNode(this._expressao_));
+        return new ARealFator(
+            cloneNode(this._constReal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAExpressaoParametroReal(this);
+        ((Analysis) sw).caseARealFator(this);
     }
 
-    public PExpressao getExpressao()
+    public TConstReal getConstReal()
     {
-        return this._expressao_;
+        return this._constReal_;
     }
 
-    public void setExpressao(PExpressao node)
+    public void setConstReal(TConstReal node)
     {
-        if(this._expressao_ != null)
+        if(this._constReal_ != null)
         {
-            this._expressao_.parent(null);
+            this._constReal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AExpressaoParametroReal extends PParametroReal
             node.parent(this);
         }
 
-        this._expressao_ = node;
+        this._constReal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressao_);
+            + toString(this._constReal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressao_ == child)
+        if(this._constReal_ == child)
         {
-            this._expressao_ = null;
+            this._constReal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AExpressaoParametroReal extends PParametroReal
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressao_ == oldChild)
+        if(this._constReal_ == oldChild)
         {
-            setExpressao((PExpressao) newChild);
+            setConstReal((TConstReal) newChild);
             return;
         }
 

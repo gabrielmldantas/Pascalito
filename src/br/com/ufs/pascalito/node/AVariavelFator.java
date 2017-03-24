@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosReais
+public final class AVariavelFator extends PFator
 {
-    private PExpressao _expressao_;
+    private PAcessoVariavel _acessoVariavel_;
 
-    public AUnicoDefinicaoParametrosReais()
+    public AVariavelFator()
     {
         // Constructor
     }
 
-    public AUnicoDefinicaoParametrosReais(
-        @SuppressWarnings("hiding") PExpressao _expressao_)
+    public AVariavelFator(
+        @SuppressWarnings("hiding") PAcessoVariavel _acessoVariavel_)
     {
         // Constructor
-        setExpressao(_expressao_);
+        setAcessoVariavel(_acessoVariavel_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AUnicoDefinicaoParametrosReais(
-            cloneNode(this._expressao_));
+        return new AVariavelFator(
+            cloneNode(this._acessoVariavel_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoDefinicaoParametrosReais(this);
+        ((Analysis) sw).caseAVariavelFator(this);
     }
 
-    public PExpressao getExpressao()
+    public PAcessoVariavel getAcessoVariavel()
     {
-        return this._expressao_;
+        return this._acessoVariavel_;
     }
 
-    public void setExpressao(PExpressao node)
+    public void setAcessoVariavel(PAcessoVariavel node)
     {
-        if(this._expressao_ != null)
+        if(this._acessoVariavel_ != null)
         {
-            this._expressao_.parent(null);
+            this._acessoVariavel_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
             node.parent(this);
         }
 
-        this._expressao_ = node;
+        this._acessoVariavel_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressao_);
+            + toString(this._acessoVariavel_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressao_ == child)
+        if(this._acessoVariavel_ == child)
         {
-            this._expressao_ = null;
+            this._acessoVariavel_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressao_ == oldChild)
+        if(this._acessoVariavel_ == oldChild)
         {
-            setExpressao((PExpressao) newChild);
+            setAcessoVariavel((PAcessoVariavel) newChild);
             return;
         }
 

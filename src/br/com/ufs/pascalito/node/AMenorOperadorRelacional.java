@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosReais
+public final class AMenorOperadorRelacional extends POperadorRelacional
 {
-    private PExpressao _expressao_;
+    private TMenor _menor_;
 
-    public AUnicoDefinicaoParametrosReais()
+    public AMenorOperadorRelacional()
     {
         // Constructor
     }
 
-    public AUnicoDefinicaoParametrosReais(
-        @SuppressWarnings("hiding") PExpressao _expressao_)
+    public AMenorOperadorRelacional(
+        @SuppressWarnings("hiding") TMenor _menor_)
     {
         // Constructor
-        setExpressao(_expressao_);
+        setMenor(_menor_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AUnicoDefinicaoParametrosReais(
-            cloneNode(this._expressao_));
+        return new AMenorOperadorRelacional(
+            cloneNode(this._menor_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoDefinicaoParametrosReais(this);
+        ((Analysis) sw).caseAMenorOperadorRelacional(this);
     }
 
-    public PExpressao getExpressao()
+    public TMenor getMenor()
     {
-        return this._expressao_;
+        return this._menor_;
     }
 
-    public void setExpressao(PExpressao node)
+    public void setMenor(TMenor node)
     {
-        if(this._expressao_ != null)
+        if(this._menor_ != null)
         {
-            this._expressao_.parent(null);
+            this._menor_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
             node.parent(this);
         }
 
-        this._expressao_ = node;
+        this._menor_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._expressao_);
+            + toString(this._menor_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._expressao_ == child)
+        if(this._menor_ == child)
         {
-            this._expressao_ = null;
+            this._menor_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AUnicoDefinicaoParametrosReais extends PDefinicaoParametrosRe
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._expressao_ == oldChild)
+        if(this._menor_ == oldChild)
         {
-            setExpressao((PExpressao) newChild);
+            setMenor((TMenor) newChild);
             return;
         }
 
