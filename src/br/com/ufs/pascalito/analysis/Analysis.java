@@ -95,6 +95,7 @@ public interface Analysis extends Switch
     void caseAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node);
     void caseAAtribuicaoSentencaSimples(AAtribuicaoSentencaSimples node);
     void caseAProcedureSentencaSimples(AProcedureSentencaSimples node);
+    void caseAGotoSentencaSimples(AGotoSentencaSimples node);
     void caseAEmptySentencaSimples(AEmptySentencaSimples node);
     void caseASentencaAtribuicao(ASentencaAtribuicao node);
     void caseASentencaProcedure(ASentencaProcedure node);
@@ -102,7 +103,10 @@ public interface Analysis extends Switch
     void caseAEmptyParametrosReais(AEmptyParametrosReais node);
     void caseAUnicoDefinicaoParametrosReais(AUnicoDefinicaoParametrosReais node);
     void caseAMultiploDefinicaoParametrosReais(AMultiploDefinicaoParametrosReais node);
-    void caseASentencaEstruturada(ASentencaEstruturada node);
+    void caseACompostaSentencaEstruturada(ACompostaSentencaEstruturada node);
+    void caseAWhileSentencaEstruturada(AWhileSentencaEstruturada node);
+    void caseASentencaWhile(ASentencaWhile node);
+    void caseASentencaGoto(ASentencaGoto node);
     void caseAAcessoVariavel(AAcessoVariavel node);
     void caseAIndexadaAcessoVariavel(AIndexadaAcessoVariavel node);
     void caseAVariavelIndexada(AVariavelIndexada node);
@@ -157,6 +161,7 @@ public interface Analysis extends Switch
     void caseTProcedure(TProcedure node);
     void caseTDo(TDo node);
     void caseTType(TType node);
+    void caseTGoto(TGoto node);
     void caseTConstBooleana(TConstBooleana node);
     void caseTAnd(TAnd node);
     void caseTOr(TOr node);

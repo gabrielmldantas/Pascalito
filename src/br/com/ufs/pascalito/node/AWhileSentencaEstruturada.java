@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASentencaEstruturada extends PSentencaEstruturada
+public final class AWhileSentencaEstruturada extends PSentencaEstruturada
 {
-    private PSentencaComposta _sentencaComposta_;
+    private PSentencaWhile _sentencaWhile_;
 
-    public ASentencaEstruturada()
+    public AWhileSentencaEstruturada()
     {
         // Constructor
     }
 
-    public ASentencaEstruturada(
-        @SuppressWarnings("hiding") PSentencaComposta _sentencaComposta_)
+    public AWhileSentencaEstruturada(
+        @SuppressWarnings("hiding") PSentencaWhile _sentencaWhile_)
     {
         // Constructor
-        setSentencaComposta(_sentencaComposta_);
+        setSentencaWhile(_sentencaWhile_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASentencaEstruturada(
-            cloneNode(this._sentencaComposta_));
+        return new AWhileSentencaEstruturada(
+            cloneNode(this._sentencaWhile_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASentencaEstruturada(this);
+        ((Analysis) sw).caseAWhileSentencaEstruturada(this);
     }
 
-    public PSentencaComposta getSentencaComposta()
+    public PSentencaWhile getSentencaWhile()
     {
-        return this._sentencaComposta_;
+        return this._sentencaWhile_;
     }
 
-    public void setSentencaComposta(PSentencaComposta node)
+    public void setSentencaWhile(PSentencaWhile node)
     {
-        if(this._sentencaComposta_ != null)
+        if(this._sentencaWhile_ != null)
         {
-            this._sentencaComposta_.parent(null);
+            this._sentencaWhile_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ASentencaEstruturada extends PSentencaEstruturada
             node.parent(this);
         }
 
-        this._sentencaComposta_ = node;
+        this._sentencaWhile_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._sentencaComposta_);
+            + toString(this._sentencaWhile_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._sentencaComposta_ == child)
+        if(this._sentencaWhile_ == child)
         {
-            this._sentencaComposta_ = null;
+            this._sentencaWhile_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ASentencaEstruturada extends PSentencaEstruturada
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._sentencaComposta_ == oldChild)
+        if(this._sentencaWhile_ == oldChild)
         {
-            setSentencaComposta((PSentencaComposta) newChild);
+            setSentencaWhile((PSentencaWhile) newChild);
             return;
         }
 

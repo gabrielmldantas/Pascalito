@@ -573,6 +573,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAGotoSentencaSimples(AGotoSentencaSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAEmptySentencaSimples(AEmptySentencaSimples node)
     {
         defaultCase(node);
@@ -615,7 +621,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseASentencaEstruturada(ASentencaEstruturada node)
+    public void caseACompostaSentencaEstruturada(ACompostaSentencaEstruturada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAWhileSentencaEstruturada(AWhileSentencaEstruturada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaWhile(ASentencaWhile node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaGoto(ASentencaGoto node)
     {
         defaultCase(node);
     }
@@ -934,6 +958,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTType(TType node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTGoto(TGoto node)
     {
         defaultCase(node);
     }

@@ -2103,6 +2103,27 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAProcedureSentencaSimples(node);
     }
 
+    public void inAGotoSentencaSimples(AGotoSentencaSimples node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAGotoSentencaSimples(AGotoSentencaSimples node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAGotoSentencaSimples(AGotoSentencaSimples node)
+    {
+        inAGotoSentencaSimples(node);
+        if(node.getSentencaGoto() != null)
+        {
+            node.getSentencaGoto().apply(this);
+        }
+        outAGotoSentencaSimples(node);
+    }
+
     public void inAEmptySentencaSimples(AEmptySentencaSimples node)
     {
         defaultIn(node);
@@ -2270,25 +2291,104 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAMultiploDefinicaoParametrosReais(node);
     }
 
-    public void inASentencaEstruturada(ASentencaEstruturada node)
+    public void inACompostaSentencaEstruturada(ACompostaSentencaEstruturada node)
     {
         defaultIn(node);
     }
 
-    public void outASentencaEstruturada(ASentencaEstruturada node)
+    public void outACompostaSentencaEstruturada(ACompostaSentencaEstruturada node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASentencaEstruturada(ASentencaEstruturada node)
+    public void caseACompostaSentencaEstruturada(ACompostaSentencaEstruturada node)
     {
-        inASentencaEstruturada(node);
+        inACompostaSentencaEstruturada(node);
         if(node.getSentencaComposta() != null)
         {
             node.getSentencaComposta().apply(this);
         }
-        outASentencaEstruturada(node);
+        outACompostaSentencaEstruturada(node);
+    }
+
+    public void inAWhileSentencaEstruturada(AWhileSentencaEstruturada node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAWhileSentencaEstruturada(AWhileSentencaEstruturada node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAWhileSentencaEstruturada(AWhileSentencaEstruturada node)
+    {
+        inAWhileSentencaEstruturada(node);
+        if(node.getSentencaWhile() != null)
+        {
+            node.getSentencaWhile().apply(this);
+        }
+        outAWhileSentencaEstruturada(node);
+    }
+
+    public void inASentencaWhile(ASentencaWhile node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASentencaWhile(ASentencaWhile node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASentencaWhile(ASentencaWhile node)
+    {
+        inASentencaWhile(node);
+        if(node.getSentenca() != null)
+        {
+            node.getSentenca().apply(this);
+        }
+        if(node.getDo() != null)
+        {
+            node.getDo().apply(this);
+        }
+        if(node.getExpressao() != null)
+        {
+            node.getExpressao().apply(this);
+        }
+        if(node.getWhile() != null)
+        {
+            node.getWhile().apply(this);
+        }
+        outASentencaWhile(node);
+    }
+
+    public void inASentencaGoto(ASentencaGoto node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASentencaGoto(ASentencaGoto node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASentencaGoto(ASentencaGoto node)
+    {
+        inASentencaGoto(node);
+        if(node.getLabel() != null)
+        {
+            node.getLabel().apply(this);
+        }
+        if(node.getGoto() != null)
+        {
+            node.getGoto().apply(this);
+        }
+        outASentencaGoto(node);
     }
 
     public void inAAcessoVariavel(AAcessoVariavel node)
