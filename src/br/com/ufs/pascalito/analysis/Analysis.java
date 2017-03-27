@@ -182,7 +182,6 @@ public interface Analysis extends Switch
     void caseTConstInteiro(TConstInteiro node);
     void caseTConstReal(TConstReal node);
     void caseTBlank(TBlank node);
-    void caseTConstString(TConstString node);
     void caseTMenor(TMenor node);
     void caseTMenorIgual(TMenorIgual node);
     void caseTMaior(TMaior node);
@@ -199,6 +198,10 @@ public interface Analysis extends Switch
     void caseTComentBlocoCorpo(TComentBlocoCorpo node);
     void caseTAsterico(TAsterico node);
     void caseTBarra(TBarra node);
+    void caseTConstString(TConstString node);
+    void caseTNewline(TNewline node);
+    void caseTConstStringCorpo(TConstStringCorpo node);
+    void caseTAspaSimples(TAspaSimples node);
     void caseEOF(EOF node);
     void caseInvalidToken(InvalidToken node);
 }

@@ -9,10 +9,12 @@ Helpers
     eol = cr lf | cr | lf;
     blank = (' ' | tab | eol)+;
     ascii = [0 .. 0x7F];
+    aspa_simples = ''';
     ascii_sem_newline = [ascii - [cr + lf]];
     ascii_sem_asterisco = [ascii - '*'];
     ascii_sem_asterico_barra = [ascii_sem_asterisco - '/'];
-    ascii_sem_aspa_simples_newline = [ascii_sem_newline - '''];
+    ascii_sem_aspa_simples_newline = [ascii_sem_newline - aspa_simples];
+    
     
     coment_linha = '//' ascii_sem_newline* eol;
     coment_bloco_inicio = '/*';
@@ -46,7 +48,8 @@ Helpers
     
 States
 	normal,
-	comment;
+	comment,
+	string;
 
 Tokens
 {normal}    integer = i n t e g e r;
@@ -92,7 +95,6 @@ Tokens
 {normal}	const_inteiro = digito digito*;
 {normal}	const_real = digito* '.' digito digito* (e ('+' | '-')? digito digito*)?;
 {normal}    blank = blank;
-{normal}    const_string = ''' ascii_sem_aspa_simples_newline* ''';
 {normal}	menor = '<';
 {normal}	menor_igual = '<=';
 {normal}	maior = '>';
@@ -111,6 +113,11 @@ Tokens
 {comment}	coment_bloco_corpo = ascii_sem_asterico_barra*;
 {comment}	asterico = '*';
 {comment}	barra = '/';
+
+{normal->string, string}    const_string = aspa_simples;
+{string, normal}	newline = eol;
+{string}	const_string_corpo = ascii_sem_aspa_simples_newline*;
+{string}	aspa_simples = ''';
 
 Ignored Tokens
 	blank,
