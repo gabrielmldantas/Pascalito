@@ -114,10 +114,10 @@ Tokens
 {comment}	asterico = '*';
 {comment}	barra = '/';
 
-{normal->string, string}    const_string = aspa_simples;
-{string, normal}	newline = eol;
+{normal->string}    const_string = aspa_simples;
 {string}	const_string_corpo = ascii_sem_aspa_simples_newline*;
-{string}	aspa_simples = ''';
+{string}	aspa_simples = aspa_simples;
+{string}	newline = eol;
 
 Ignored Tokens
 	blank,

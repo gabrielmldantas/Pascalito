@@ -1191,12 +1191,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTNewline(TNewline node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTConstStringCorpo(TConstStringCorpo node)
     {
         defaultCase(node);
@@ -1204,6 +1198,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTAspaSimples(TAspaSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTNewline(TNewline node)
     {
         defaultCase(node);
     }

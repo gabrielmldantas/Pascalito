@@ -346,19 +346,19 @@ class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTNewline(@SuppressWarnings("unused") TNewline node)
+    public void caseTConstStringCorpo(@SuppressWarnings("unused") TConstStringCorpo node)
     {
         this.index = 56;
     }
 
     @Override
-    public void caseTConstStringCorpo(@SuppressWarnings("unused") TConstStringCorpo node)
+    public void caseTAspaSimples(@SuppressWarnings("unused") TAspaSimples node)
     {
         this.index = 57;
     }
 
     @Override
-    public void caseTAspaSimples(@SuppressWarnings("unused") TAspaSimples node)
+    public void caseTNewline(@SuppressWarnings("unused") TNewline node)
     {
         this.index = 58;
     }

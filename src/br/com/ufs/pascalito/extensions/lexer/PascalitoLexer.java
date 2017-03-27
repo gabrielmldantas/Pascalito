@@ -8,10 +8,12 @@ import br.com.ufs.pascalito.lexer.Lexer;
 import br.com.ufs.pascalito.lexer.LexerException;
 import br.com.ufs.pascalito.node.EOF;
 import br.com.ufs.pascalito.node.InvalidToken;
+import br.com.ufs.pascalito.node.TAspaSimples;
 import br.com.ufs.pascalito.node.TComentBloco;
 import br.com.ufs.pascalito.node.TComentBlocoFim;
 import br.com.ufs.pascalito.node.TConstString;
 import br.com.ufs.pascalito.node.TNewline;
+import br.com.ufs.pascalito.node.Token;
 
 public class PascalitoLexer extends Lexer {
 	
@@ -39,26 +41,29 @@ public class PascalitoLexer extends Lexer {
 		}
 	}
 
-	private void tratarString() {
+	private void tratarString() throws IOException {
 		if (constString == null) {
 			constString = (TConstString) token;
 			text = new StringBuffer(constString.getText());
 			count = 1;
 			token = null;
-		} else if (token instanceof EOF || (token instanceof TNewline && count % 2 != 0)) {
+		} else if (token instanceof EOF || token instanceof TNewline) {
 			throw new PascalitoLexerException(new InvalidToken(text.toString(), constString.getLine(), constString.getPos()), "Literal string desbalanceado");
 		} else {
 			text.append(token.getText());
-			if (token instanceof TConstString) {
+			if (token instanceof TAspaSimples) {
 				count++;
 			}
-			if (count != 0) {
-				token = null;
-			} else {
+			
+			if (!(token instanceof TAspaSimples) && count % 2 == 0) {
 				constString.setText(text.toString());
+				Token oldToken = token;
 				token = constString;
 				state = State.NORMAL;
 				constString = null;
+				unread(oldToken);
+			} else {
+				token = null;
 			}
 		}
 	}

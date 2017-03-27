@@ -7,14 +7,14 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class TAspaSimples extends Token
 {
-    public TAspaSimples()
+    public TAspaSimples(String text)
     {
-        super.setText("\'");
+        setText(text);
     }
 
-    public TAspaSimples(int line, int pos)
+    public TAspaSimples(String text, int line, int pos)
     {
-        super.setText("\'");
+        setText(text);
         setLine(line);
         setPos(pos);
     }
@@ -22,18 +22,12 @@ public final class TAspaSimples extends Token
     @Override
     public Object clone()
     {
-      return new TAspaSimples(getLine(), getPos());
+      return new TAspaSimples(getText(), getLine(), getPos());
     }
 
     @Override
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseTAspaSimples(this);
-    }
-
-    @Override
-    public void setText(@SuppressWarnings("unused") String text)
-    {
-        throw new RuntimeException("Cannot change TAspaSimples text.");
     }
 }

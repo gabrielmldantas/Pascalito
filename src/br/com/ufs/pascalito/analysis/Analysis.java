@@ -199,9 +199,9 @@ public interface Analysis extends Switch
     void caseTAsterico(TAsterico node);
     void caseTBarra(TBarra node);
     void caseTConstString(TConstString node);
-    void caseTNewline(TNewline node);
     void caseTConstStringCorpo(TConstStringCorpo node);
     void caseTAspaSimples(TAspaSimples node);
+    void caseTNewline(TNewline node);
     void caseEOF(EOF node);
     void caseInvalidToken(InvalidToken node);
 }
