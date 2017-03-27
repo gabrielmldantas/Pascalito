@@ -177,6 +177,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseADeclaracaoTipos(ADeclaracaoTipos node)
     {
         defaultCase(node);
@@ -285,13 +297,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAInteiroConstante(AInteiroConstante node)
+    public void caseANumeroConstante(ANumeroConstante node)
     {
         defaultCase(node);
     }
 
     @Override
     public void caseAStringConstante(AStringConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANumeroConstanteSemSinal(ANumeroConstanteSemSinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringConstanteSemSinal(AStringConstanteSemSinal node)
     {
         defaultCase(node);
     }
@@ -693,13 +717,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAUnicoExpressaoSimples(AUnicoExpressaoSimples node)
+    public void caseAUnicoComSinalExpressaoSimples(AUnicoComSinalExpressaoSimples node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAMultiploExpressaoSimples(AMultiploExpressaoSimples node)
+    public void caseAUnicoSemSinalExpressaoSimples(AUnicoSemSinalExpressaoSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploSemSinalExpressaoSimples(AMultiploSemSinalExpressaoSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiploComSinalExpressaoSimples(AMultiploComSinalExpressaoSimples node)
     {
         defaultCase(node);
     }
@@ -723,19 +759,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAInteiroFator(AInteiroFator node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseARealFator(ARealFator node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseAStringFator(AStringFator node)
+    public void caseAConstanteSemSinalFator(AConstanteSemSinalFator node)
     {
         defaultCase(node);
     }
@@ -747,7 +771,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAFator(AFator node)
+    public void caseANotFator(ANotFator node)
     {
         defaultCase(node);
     }
@@ -789,13 +813,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseASomaOperadorAditivo(ASomaOperadorAditivo node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseASubtracaoOperadorAditivo(ASubtracaoOperadorAditivo node)
+    public void caseASomaSubOperadorAditivo(ASomaSubOperadorAditivo node)
     {
         defaultCase(node);
     }
@@ -1125,13 +1143,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTSoma(TSoma node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTSubtracao(TSubtracao node)
+    public void caseTSinal(TSinal node)
     {
         defaultCase(node);
     }

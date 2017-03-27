@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AInteiroFator extends PFator
+public final class AConstanteSemSinalFator extends PFator
 {
-    private TConstInteiro _constInteiro_;
+    private PConstanteSemSinal _constanteSemSinal_;
 
-    public AInteiroFator()
+    public AConstanteSemSinalFator()
     {
         // Constructor
     }
 
-    public AInteiroFator(
-        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
+    public AConstanteSemSinalFator(
+        @SuppressWarnings("hiding") PConstanteSemSinal _constanteSemSinal_)
     {
         // Constructor
-        setConstInteiro(_constInteiro_);
+        setConstanteSemSinal(_constanteSemSinal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AInteiroFator(
-            cloneNode(this._constInteiro_));
+        return new AConstanteSemSinalFator(
+            cloneNode(this._constanteSemSinal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAInteiroFator(this);
+        ((Analysis) sw).caseAConstanteSemSinalFator(this);
     }
 
-    public TConstInteiro getConstInteiro()
+    public PConstanteSemSinal getConstanteSemSinal()
     {
-        return this._constInteiro_;
+        return this._constanteSemSinal_;
     }
 
-    public void setConstInteiro(TConstInteiro node)
+    public void setConstanteSemSinal(PConstanteSemSinal node)
     {
-        if(this._constInteiro_ != null)
+        if(this._constanteSemSinal_ != null)
         {
-            this._constInteiro_.parent(null);
+            this._constanteSemSinal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AInteiroFator extends PFator
             node.parent(this);
         }
 
-        this._constInteiro_ = node;
+        this._constanteSemSinal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._constInteiro_);
+            + toString(this._constanteSemSinal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._constInteiro_ == child)
+        if(this._constanteSemSinal_ == child)
         {
-            this._constInteiro_ = null;
+            this._constanteSemSinal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AInteiroFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._constInteiro_ == oldChild)
+        if(this._constanteSemSinal_ == oldChild)
         {
-            setConstInteiro((TConstInteiro) newChild);
+            setConstanteSemSinal((PConstanteSemSinal) newChild);
             return;
         }
 

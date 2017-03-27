@@ -2,29 +2,34 @@
 
 package br.com.ufs.pascalito.node;
 
+import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AMultiploExpressaoSimples extends PExpressaoSimples
+public final class AMultiploComSinalExpressaoSimples extends PExpressaoSimples
 {
     private PExpressaoSimples _expressaoSimples_;
     private POperadorAditivo _operadorAditivo_;
+    private final LinkedList<TSinal> _sinal_ = new LinkedList<TSinal>();
     private PTermo _termo_;
 
-    public AMultiploExpressaoSimples()
+    public AMultiploComSinalExpressaoSimples()
     {
         // Constructor
     }
 
-    public AMultiploExpressaoSimples(
+    public AMultiploComSinalExpressaoSimples(
         @SuppressWarnings("hiding") PExpressaoSimples _expressaoSimples_,
         @SuppressWarnings("hiding") POperadorAditivo _operadorAditivo_,
+        @SuppressWarnings("hiding") List<?> _sinal_,
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
         setExpressaoSimples(_expressaoSimples_);
 
         setOperadorAditivo(_operadorAditivo_);
+
+        setSinal(_sinal_);
 
         setTermo(_termo_);
 
@@ -33,16 +38,17 @@ public final class AMultiploExpressaoSimples extends PExpressaoSimples
     @Override
     public Object clone()
     {
-        return new AMultiploExpressaoSimples(
+        return new AMultiploComSinalExpressaoSimples(
             cloneNode(this._expressaoSimples_),
             cloneNode(this._operadorAditivo_),
+            cloneList(this._sinal_),
             cloneNode(this._termo_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAMultiploExpressaoSimples(this);
+        ((Analysis) sw).caseAMultiploComSinalExpressaoSimples(this);
     }
 
     public PExpressaoSimples getExpressaoSimples()
@@ -95,6 +101,32 @@ public final class AMultiploExpressaoSimples extends PExpressaoSimples
         this._operadorAditivo_ = node;
     }
 
+    public LinkedList<TSinal> getSinal()
+    {
+        return this._sinal_;
+    }
+
+    public void setSinal(List<?> list)
+    {
+        for(TSinal e : this._sinal_)
+        {
+            e.parent(null);
+        }
+        this._sinal_.clear();
+
+        for(Object obj_e : list)
+        {
+            TSinal e = (TSinal) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._sinal_.add(e);
+        }
+    }
+
     public PTermo getTermo()
     {
         return this._termo_;
@@ -126,6 +158,7 @@ public final class AMultiploExpressaoSimples extends PExpressaoSimples
         return ""
             + toString(this._expressaoSimples_)
             + toString(this._operadorAditivo_)
+            + toString(this._sinal_)
             + toString(this._termo_);
     }
 
@@ -142,6 +175,11 @@ public final class AMultiploExpressaoSimples extends PExpressaoSimples
         if(this._operadorAditivo_ == child)
         {
             this._operadorAditivo_ = null;
+            return;
+        }
+
+        if(this._sinal_.remove(child))
+        {
             return;
         }
 
@@ -168,6 +206,24 @@ public final class AMultiploExpressaoSimples extends PExpressaoSimples
         {
             setOperadorAditivo((POperadorAditivo) newChild);
             return;
+        }
+
+        for(ListIterator<TSinal> i = this._sinal_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((TSinal) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(this._termo_ == oldChild)

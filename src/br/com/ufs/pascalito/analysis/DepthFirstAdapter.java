@@ -461,6 +461,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outALabel(node);
     }
 
+    public void inAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    {
+        inAInteiroConstNumeroSemSinal(node);
+        if(node.getConstInteiro() != null)
+        {
+            node.getConstInteiro().apply(this);
+        }
+        outAInteiroConstNumeroSemSinal(node);
+    }
+
+    public void inARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
+    {
+        inARealConstNumeroSemSinal(node);
+        if(node.getConstReal() != null)
+        {
+            node.getConstReal().apply(this);
+        }
+        outARealConstNumeroSemSinal(node);
+    }
+
     public void inADeclaracaoTipos(ADeclaracaoTipos node)
     {
         defaultIn(node);
@@ -903,25 +945,29 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outATipoSubrange(node);
     }
 
-    public void inAInteiroConstante(AInteiroConstante node)
+    public void inANumeroConstante(ANumeroConstante node)
     {
         defaultIn(node);
     }
 
-    public void outAInteiroConstante(AInteiroConstante node)
+    public void outANumeroConstante(ANumeroConstante node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAInteiroConstante(AInteiroConstante node)
+    public void caseANumeroConstante(ANumeroConstante node)
     {
-        inAInteiroConstante(node);
-        if(node.getConstInteiro() != null)
+        inANumeroConstante(node);
+        if(node.getSinal() != null)
         {
-            node.getConstInteiro().apply(this);
+            node.getSinal().apply(this);
         }
-        outAInteiroConstante(node);
+        if(node.getConstNumeroSemSinal() != null)
+        {
+            node.getConstNumeroSemSinal().apply(this);
+        }
+        outANumeroConstante(node);
     }
 
     public void inAStringConstante(AStringConstante node)
@@ -943,6 +989,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getConstString().apply(this);
         }
         outAStringConstante(node);
+    }
+
+    public void inANumeroConstanteSemSinal(ANumeroConstanteSemSinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outANumeroConstanteSemSinal(ANumeroConstanteSemSinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseANumeroConstanteSemSinal(ANumeroConstanteSemSinal node)
+    {
+        inANumeroConstanteSemSinal(node);
+        if(node.getConstNumeroSemSinal() != null)
+        {
+            node.getConstNumeroSemSinal().apply(this);
+        }
+        outANumeroConstanteSemSinal(node);
+    }
+
+    public void inAStringConstanteSemSinal(AStringConstanteSemSinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAStringConstanteSemSinal(AStringConstanteSemSinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAStringConstanteSemSinal(AStringConstanteSemSinal node)
+    {
+        inAStringConstanteSemSinal(node);
+        if(node.getConstString() != null)
+        {
+            node.getConstString().apply(this);
+        }
+        outAStringConstanteSemSinal(node);
     }
 
     public void inADeclaracoesVariaveis(ADeclaracoesVariaveis node)
@@ -2583,41 +2671,69 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAEmptyExpressaoRelacional(node);
     }
 
-    public void inAUnicoExpressaoSimples(AUnicoExpressaoSimples node)
+    public void inAUnicoComSinalExpressaoSimples(AUnicoComSinalExpressaoSimples node)
     {
         defaultIn(node);
     }
 
-    public void outAUnicoExpressaoSimples(AUnicoExpressaoSimples node)
+    public void outAUnicoComSinalExpressaoSimples(AUnicoComSinalExpressaoSimples node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAUnicoExpressaoSimples(AUnicoExpressaoSimples node)
+    public void caseAUnicoComSinalExpressaoSimples(AUnicoComSinalExpressaoSimples node)
     {
-        inAUnicoExpressaoSimples(node);
+        inAUnicoComSinalExpressaoSimples(node);
+        {
+            List<TSinal> copy = new ArrayList<TSinal>(node.getSinal());
+            for(TSinal e : copy)
+            {
+                e.apply(this);
+            }
+        }
         if(node.getTermo() != null)
         {
             node.getTermo().apply(this);
         }
-        outAUnicoExpressaoSimples(node);
+        outAUnicoComSinalExpressaoSimples(node);
     }
 
-    public void inAMultiploExpressaoSimples(AMultiploExpressaoSimples node)
+    public void inAUnicoSemSinalExpressaoSimples(AUnicoSemSinalExpressaoSimples node)
     {
         defaultIn(node);
     }
 
-    public void outAMultiploExpressaoSimples(AMultiploExpressaoSimples node)
+    public void outAUnicoSemSinalExpressaoSimples(AUnicoSemSinalExpressaoSimples node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAMultiploExpressaoSimples(AMultiploExpressaoSimples node)
+    public void caseAUnicoSemSinalExpressaoSimples(AUnicoSemSinalExpressaoSimples node)
     {
-        inAMultiploExpressaoSimples(node);
+        inAUnicoSemSinalExpressaoSimples(node);
+        if(node.getTermo() != null)
+        {
+            node.getTermo().apply(this);
+        }
+        outAUnicoSemSinalExpressaoSimples(node);
+    }
+
+    public void inAMultiploSemSinalExpressaoSimples(AMultiploSemSinalExpressaoSimples node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploSemSinalExpressaoSimples(AMultiploSemSinalExpressaoSimples node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploSemSinalExpressaoSimples(AMultiploSemSinalExpressaoSimples node)
+    {
+        inAMultiploSemSinalExpressaoSimples(node);
         if(node.getExpressaoSimples() != null)
         {
             node.getExpressaoSimples().apply(this);
@@ -2630,7 +2746,43 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getTermo().apply(this);
         }
-        outAMultiploExpressaoSimples(node);
+        outAMultiploSemSinalExpressaoSimples(node);
+    }
+
+    public void inAMultiploComSinalExpressaoSimples(AMultiploComSinalExpressaoSimples node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMultiploComSinalExpressaoSimples(AMultiploComSinalExpressaoSimples node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMultiploComSinalExpressaoSimples(AMultiploComSinalExpressaoSimples node)
+    {
+        inAMultiploComSinalExpressaoSimples(node);
+        if(node.getExpressaoSimples() != null)
+        {
+            node.getExpressaoSimples().apply(this);
+        }
+        if(node.getOperadorAditivo() != null)
+        {
+            node.getOperadorAditivo().apply(this);
+        }
+        {
+            List<TSinal> copy = new ArrayList<TSinal>(node.getSinal());
+            for(TSinal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getTermo() != null)
+        {
+            node.getTermo().apply(this);
+        }
+        outAMultiploComSinalExpressaoSimples(node);
     }
 
     public void inAUnicoTermo(AUnicoTermo node)
@@ -2704,67 +2856,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAVariavelFator(node);
     }
 
-    public void inAInteiroFator(AInteiroFator node)
+    public void inAConstanteSemSinalFator(AConstanteSemSinalFator node)
     {
         defaultIn(node);
     }
 
-    public void outAInteiroFator(AInteiroFator node)
+    public void outAConstanteSemSinalFator(AConstanteSemSinalFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAInteiroFator(AInteiroFator node)
+    public void caseAConstanteSemSinalFator(AConstanteSemSinalFator node)
     {
-        inAInteiroFator(node);
-        if(node.getConstInteiro() != null)
+        inAConstanteSemSinalFator(node);
+        if(node.getConstanteSemSinal() != null)
         {
-            node.getConstInteiro().apply(this);
+            node.getConstanteSemSinal().apply(this);
         }
-        outAInteiroFator(node);
-    }
-
-    public void inARealFator(ARealFator node)
-    {
-        defaultIn(node);
-    }
-
-    public void outARealFator(ARealFator node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseARealFator(ARealFator node)
-    {
-        inARealFator(node);
-        if(node.getConstReal() != null)
-        {
-            node.getConstReal().apply(this);
-        }
-        outARealFator(node);
-    }
-
-    public void inAStringFator(AStringFator node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAStringFator(AStringFator node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAStringFator(AStringFator node)
-    {
-        inAStringFator(node);
-        if(node.getConstString() != null)
-        {
-            node.getConstString().apply(this);
-        }
-        outAStringFator(node);
+        outAConstanteSemSinalFator(node);
     }
 
     public void inAExpressaoFator(AExpressaoFator node)
@@ -2796,20 +2906,20 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAExpressaoFator(node);
     }
 
-    public void inAFator(AFator node)
+    public void inANotFator(ANotFator node)
     {
         defaultIn(node);
     }
 
-    public void outAFator(AFator node)
+    public void outANotFator(ANotFator node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAFator(AFator node)
+    public void caseANotFator(ANotFator node)
     {
-        inAFator(node);
+        inANotFator(node);
         if(node.getNot() != null)
         {
             node.getNot().apply(this);
@@ -2818,7 +2928,7 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getFator().apply(this);
         }
-        outAFator(node);
+        outANotFator(node);
     }
 
     public void inAMenorOperadorRelacional(AMenorOperadorRelacional node)
@@ -2947,46 +3057,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outADiferenteOperadorRelacional(node);
     }
 
-    public void inASomaOperadorAditivo(ASomaOperadorAditivo node)
+    public void inASomaSubOperadorAditivo(ASomaSubOperadorAditivo node)
     {
         defaultIn(node);
     }
 
-    public void outASomaOperadorAditivo(ASomaOperadorAditivo node)
+    public void outASomaSubOperadorAditivo(ASomaSubOperadorAditivo node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASomaOperadorAditivo(ASomaOperadorAditivo node)
+    public void caseASomaSubOperadorAditivo(ASomaSubOperadorAditivo node)
     {
-        inASomaOperadorAditivo(node);
-        if(node.getSoma() != null)
+        inASomaSubOperadorAditivo(node);
+        if(node.getSinal() != null)
         {
-            node.getSoma().apply(this);
+            node.getSinal().apply(this);
         }
-        outASomaOperadorAditivo(node);
-    }
-
-    public void inASubtracaoOperadorAditivo(ASubtracaoOperadorAditivo node)
-    {
-        defaultIn(node);
-    }
-
-    public void outASubtracaoOperadorAditivo(ASubtracaoOperadorAditivo node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseASubtracaoOperadorAditivo(ASubtracaoOperadorAditivo node)
-    {
-        inASubtracaoOperadorAditivo(node);
-        if(node.getSubtracao() != null)
-        {
-            node.getSubtracao().apply(this);
-        }
-        outASubtracaoOperadorAditivo(node);
+        outASomaSubOperadorAditivo(node);
     }
 
     public void inAOrOperadorAditivo(AOrOperadorAditivo node)

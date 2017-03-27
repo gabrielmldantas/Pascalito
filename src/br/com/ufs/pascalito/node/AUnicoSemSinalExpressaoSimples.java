@@ -5,16 +5,16 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoExpressaoSimples extends PExpressaoSimples
+public final class AUnicoSemSinalExpressaoSimples extends PExpressaoSimples
 {
     private PTermo _termo_;
 
-    public AUnicoExpressaoSimples()
+    public AUnicoSemSinalExpressaoSimples()
     {
         // Constructor
     }
 
-    public AUnicoExpressaoSimples(
+    public AUnicoSemSinalExpressaoSimples(
         @SuppressWarnings("hiding") PTermo _termo_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class AUnicoExpressaoSimples extends PExpressaoSimples
     @Override
     public Object clone()
     {
-        return new AUnicoExpressaoSimples(
+        return new AUnicoSemSinalExpressaoSimples(
             cloneNode(this._termo_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoExpressaoSimples(this);
+        ((Analysis) sw).caseAUnicoSemSinalExpressaoSimples(this);
     }
 
     public PTermo getTermo()

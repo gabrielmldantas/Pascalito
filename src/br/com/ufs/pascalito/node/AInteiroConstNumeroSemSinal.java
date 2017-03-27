@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASubtracaoOperadorAditivo extends POperadorAditivo
+public final class AInteiroConstNumeroSemSinal extends PConstNumeroSemSinal
 {
-    private TSubtracao _subtracao_;
+    private TConstInteiro _constInteiro_;
 
-    public ASubtracaoOperadorAditivo()
+    public AInteiroConstNumeroSemSinal()
     {
         // Constructor
     }
 
-    public ASubtracaoOperadorAditivo(
-        @SuppressWarnings("hiding") TSubtracao _subtracao_)
+    public AInteiroConstNumeroSemSinal(
+        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
     {
         // Constructor
-        setSubtracao(_subtracao_);
+        setConstInteiro(_constInteiro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASubtracaoOperadorAditivo(
-            cloneNode(this._subtracao_));
+        return new AInteiroConstNumeroSemSinal(
+            cloneNode(this._constInteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASubtracaoOperadorAditivo(this);
+        ((Analysis) sw).caseAInteiroConstNumeroSemSinal(this);
     }
 
-    public TSubtracao getSubtracao()
+    public TConstInteiro getConstInteiro()
     {
-        return this._subtracao_;
+        return this._constInteiro_;
     }
 
-    public void setSubtracao(TSubtracao node)
+    public void setConstInteiro(TConstInteiro node)
     {
-        if(this._subtracao_ != null)
+        if(this._constInteiro_ != null)
         {
-            this._subtracao_.parent(null);
+            this._constInteiro_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ASubtracaoOperadorAditivo extends POperadorAditivo
             node.parent(this);
         }
 
-        this._subtracao_ = node;
+        this._constInteiro_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._subtracao_);
+            + toString(this._constInteiro_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._subtracao_ == child)
+        if(this._constInteiro_ == child)
         {
-            this._subtracao_ = null;
+            this._constInteiro_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ASubtracaoOperadorAditivo extends POperadorAditivo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._subtracao_ == oldChild)
+        if(this._constInteiro_ == oldChild)
         {
-            setSubtracao((TSubtracao) newChild);
+            setConstInteiro((TConstInteiro) newChild);
             return;
         }
 

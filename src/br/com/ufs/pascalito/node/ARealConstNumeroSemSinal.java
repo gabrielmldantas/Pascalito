@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASomaOperadorAditivo extends POperadorAditivo
+public final class ARealConstNumeroSemSinal extends PConstNumeroSemSinal
 {
-    private TSoma _soma_;
+    private TConstReal _constReal_;
 
-    public ASomaOperadorAditivo()
+    public ARealConstNumeroSemSinal()
     {
         // Constructor
     }
 
-    public ASomaOperadorAditivo(
-        @SuppressWarnings("hiding") TSoma _soma_)
+    public ARealConstNumeroSemSinal(
+        @SuppressWarnings("hiding") TConstReal _constReal_)
     {
         // Constructor
-        setSoma(_soma_);
+        setConstReal(_constReal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASomaOperadorAditivo(
-            cloneNode(this._soma_));
+        return new ARealConstNumeroSemSinal(
+            cloneNode(this._constReal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASomaOperadorAditivo(this);
+        ((Analysis) sw).caseARealConstNumeroSemSinal(this);
     }
 
-    public TSoma getSoma()
+    public TConstReal getConstReal()
     {
-        return this._soma_;
+        return this._constReal_;
     }
 
-    public void setSoma(TSoma node)
+    public void setConstReal(TConstReal node)
     {
-        if(this._soma_ != null)
+        if(this._constReal_ != null)
         {
-            this._soma_.parent(null);
+            this._constReal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ASomaOperadorAditivo extends POperadorAditivo
             node.parent(this);
         }
 
-        this._soma_ = node;
+        this._constReal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._soma_);
+            + toString(this._constReal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._soma_ == child)
+        if(this._constReal_ == child)
         {
-            this._soma_ = null;
+            this._constReal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ASomaOperadorAditivo extends POperadorAditivo
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._soma_ == oldChild)
+        if(this._constReal_ == oldChild)
         {
-            setSoma((TSoma) newChild);
+            setConstReal((TConstReal) newChild);
             return;
         }
 

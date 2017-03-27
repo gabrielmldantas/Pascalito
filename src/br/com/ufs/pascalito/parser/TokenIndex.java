@@ -292,80 +292,74 @@ class TokenIndex extends AnalysisAdapter
     }
 
     @Override
-    public void caseTSoma(@SuppressWarnings("unused") TSoma node)
+    public void caseTSinal(@SuppressWarnings("unused") TSinal node)
     {
         this.index = 47;
     }
 
     @Override
-    public void caseTSubtracao(@SuppressWarnings("unused") TSubtracao node)
+    public void caseTMultiplicacao(@SuppressWarnings("unused") TMultiplicacao node)
     {
         this.index = 48;
     }
 
     @Override
-    public void caseTMultiplicacao(@SuppressWarnings("unused") TMultiplicacao node)
+    public void caseTDivisao(@SuppressWarnings("unused") TDivisao node)
     {
         this.index = 49;
     }
 
     @Override
-    public void caseTDivisao(@SuppressWarnings("unused") TDivisao node)
+    public void caseTComentBlocoFim(@SuppressWarnings("unused") TComentBlocoFim node)
     {
         this.index = 50;
     }
 
     @Override
-    public void caseTComentBlocoFim(@SuppressWarnings("unused") TComentBlocoFim node)
+    public void caseTComentBlocoCorpo(@SuppressWarnings("unused") TComentBlocoCorpo node)
     {
         this.index = 51;
     }
 
     @Override
-    public void caseTComentBlocoCorpo(@SuppressWarnings("unused") TComentBlocoCorpo node)
+    public void caseTAsterico(@SuppressWarnings("unused") TAsterico node)
     {
         this.index = 52;
     }
 
     @Override
-    public void caseTAsterico(@SuppressWarnings("unused") TAsterico node)
+    public void caseTBarra(@SuppressWarnings("unused") TBarra node)
     {
         this.index = 53;
     }
 
     @Override
-    public void caseTBarra(@SuppressWarnings("unused") TBarra node)
+    public void caseTConstString(@SuppressWarnings("unused") TConstString node)
     {
         this.index = 54;
     }
 
     @Override
-    public void caseTConstString(@SuppressWarnings("unused") TConstString node)
+    public void caseTConstStringCorpo(@SuppressWarnings("unused") TConstStringCorpo node)
     {
         this.index = 55;
     }
 
     @Override
-    public void caseTConstStringCorpo(@SuppressWarnings("unused") TConstStringCorpo node)
+    public void caseTAspaSimples(@SuppressWarnings("unused") TAspaSimples node)
     {
         this.index = 56;
     }
 
     @Override
-    public void caseTAspaSimples(@SuppressWarnings("unused") TAspaSimples node)
+    public void caseTNewline(@SuppressWarnings("unused") TNewline node)
     {
         this.index = 57;
     }
 
     @Override
-    public void caseTNewline(@SuppressWarnings("unused") TNewline node)
-    {
-        this.index = 58;
-    }
-
-    @Override
     public void caseEOF(@SuppressWarnings("unused") EOF node)
     {
-        this.index = 59;
+        this.index = 58;
     }
 }

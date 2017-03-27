@@ -101,8 +101,7 @@ Tokens
 {normal}	maior_igual = '>=';
 {normal}	diferente = '<>';
 {normal}	igual = '=';
-{normal}	soma = '+';
-{normal}	subtracao = '-';
+{normal}	sinal = '+' | '-';
 {normal}	multiplicacao = '*';
 {normal}	divisao = '/';
 
@@ -137,6 +136,8 @@ Productions
 	labels = {unico} P.label | {multiplo} labels virgula P.label;
 	label = const_inteiro;
 	
+	const_numero_sem_sinal = {inteiro} const_inteiro | {real} const_real;
+	
 	declaracao_tipos = type definicao_tipos ponto_e_virgula | {empty};
 	definicao_tipos = {unico} identificador igual denotador_tipo | {multiplo} definicao_tipos virgula denotador_tipo;
 	denotador_tipo = {existente} identificador | {novo} novo_tipo | {ordinal} identificador_tipo_ordinal;
@@ -148,7 +149,8 @@ Productions
 	tipo_enumerado = abre_parenteses identificadores fecha_parenteses;
 	tipo_subrange = [inicio]:constante ponto_ponto [fim]:constante;
 	
-	constante = {inteiro} const_inteiro | {string} const_string;
+	constante = {numero} sinal? const_numero_sem_sinal | {string} const_string;
+	constante_sem_sinal = {numero} const_numero_sem_sinal | {string} const_string;
 	
 	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
 	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
@@ -204,10 +206,10 @@ Productions
 	
 	expressao = expressao_simples expressao_relacional;
 	expressao_relacional = operador_relacional expressao_simples | {empty};
-	expressao_simples = {unico} termo | {multiplo} expressao_simples operador_aditivo termo;
+	expressao_simples = {unico_com_sinal} sinal+ termo | {unico_sem_sinal} termo | {multiplo_sem_sinal} expressao_simples operador_aditivo termo | {multiplo_com_sinal} expressao_simples operador_aditivo sinal+ termo;
 	termo = {unico} fator | {multiplo} termo operador_multiplicativo fator;
-	fator = {variavel} acesso_variavel | {inteiro} const_inteiro | {real} const_real | {string} const_string | {expressao} abre_parenteses expressao fecha_parenteses | not fator;
+	fator = {variavel} acesso_variavel | {constante_sem_sinal} constante_sem_sinal | {expressao} abre_parenteses expressao fecha_parenteses | {not} not fator;
 	operador_relacional = {menor} menor | {menor_igual} menor_igual | {maior} maior | {maior_igual} maior_igual | {igual} igual | {diferente} diferente;
-	operador_aditivo = {soma} soma | {subtracao} subtracao | {or} or;
+	operador_aditivo = {soma_sub} sinal | {or} or;
 	operador_multiplicativo = {multiplicacao} multiplicacao | {divisao} divisao | {and} and | {div} div | {mod} mod;
 	

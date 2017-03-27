@@ -5,17 +5,17 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AFator extends PFator
+public final class ANotFator extends PFator
 {
     private TNot _not_;
     private PFator _fator_;
 
-    public AFator()
+    public ANotFator()
     {
         // Constructor
     }
 
-    public AFator(
+    public ANotFator(
         @SuppressWarnings("hiding") TNot _not_,
         @SuppressWarnings("hiding") PFator _fator_)
     {
@@ -29,7 +29,7 @@ public final class AFator extends PFator
     @Override
     public Object clone()
     {
-        return new AFator(
+        return new ANotFator(
             cloneNode(this._not_),
             cloneNode(this._fator_));
     }
@@ -37,7 +37,7 @@ public final class AFator extends PFator
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAFator(this);
+        ((Analysis) sw).caseANotFator(this);
     }
 
     public TNot getNot()

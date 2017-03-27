@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AInteiroConstante extends PConstante
+public final class AStringConstanteSemSinal extends PConstanteSemSinal
 {
-    private TConstInteiro _constInteiro_;
+    private TConstString _constString_;
 
-    public AInteiroConstante()
+    public AStringConstanteSemSinal()
     {
         // Constructor
     }
 
-    public AInteiroConstante(
-        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
+    public AStringConstanteSemSinal(
+        @SuppressWarnings("hiding") TConstString _constString_)
     {
         // Constructor
-        setConstInteiro(_constInteiro_);
+        setConstString(_constString_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AInteiroConstante(
-            cloneNode(this._constInteiro_));
+        return new AStringConstanteSemSinal(
+            cloneNode(this._constString_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAInteiroConstante(this);
+        ((Analysis) sw).caseAStringConstanteSemSinal(this);
     }
 
-    public TConstInteiro getConstInteiro()
+    public TConstString getConstString()
     {
-        return this._constInteiro_;
+        return this._constString_;
     }
 
-    public void setConstInteiro(TConstInteiro node)
+    public void setConstString(TConstString node)
     {
-        if(this._constInteiro_ != null)
+        if(this._constString_ != null)
         {
-            this._constInteiro_.parent(null);
+            this._constString_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AInteiroConstante extends PConstante
             node.parent(this);
         }
 
-        this._constInteiro_ = node;
+        this._constString_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._constInteiro_);
+            + toString(this._constString_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._constInteiro_ == child)
+        if(this._constString_ == child)
         {
-            this._constInteiro_ = null;
+            this._constString_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AInteiroConstante extends PConstante
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._constInteiro_ == oldChild)
+        if(this._constString_ == oldChild)
         {
-            setConstInteiro((TConstInteiro) newChild);
+            setConstString((TConstString) newChild);
             return;
         }
 

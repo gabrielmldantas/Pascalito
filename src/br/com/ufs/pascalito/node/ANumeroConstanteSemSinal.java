@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AStringFator extends PFator
+public final class ANumeroConstanteSemSinal extends PConstanteSemSinal
 {
-    private TConstString _constString_;
+    private PConstNumeroSemSinal _constNumeroSemSinal_;
 
-    public AStringFator()
+    public ANumeroConstanteSemSinal()
     {
         // Constructor
     }
 
-    public AStringFator(
-        @SuppressWarnings("hiding") TConstString _constString_)
+    public ANumeroConstanteSemSinal(
+        @SuppressWarnings("hiding") PConstNumeroSemSinal _constNumeroSemSinal_)
     {
         // Constructor
-        setConstString(_constString_);
+        setConstNumeroSemSinal(_constNumeroSemSinal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AStringFator(
-            cloneNode(this._constString_));
+        return new ANumeroConstanteSemSinal(
+            cloneNode(this._constNumeroSemSinal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAStringFator(this);
+        ((Analysis) sw).caseANumeroConstanteSemSinal(this);
     }
 
-    public TConstString getConstString()
+    public PConstNumeroSemSinal getConstNumeroSemSinal()
     {
-        return this._constString_;
+        return this._constNumeroSemSinal_;
     }
 
-    public void setConstString(TConstString node)
+    public void setConstNumeroSemSinal(PConstNumeroSemSinal node)
     {
-        if(this._constString_ != null)
+        if(this._constNumeroSemSinal_ != null)
         {
-            this._constString_.parent(null);
+            this._constNumeroSemSinal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AStringFator extends PFator
             node.parent(this);
         }
 
-        this._constString_ = node;
+        this._constNumeroSemSinal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._constString_);
+            + toString(this._constNumeroSemSinal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._constString_ == child)
+        if(this._constNumeroSemSinal_ == child)
         {
-            this._constString_ = null;
+            this._constNumeroSemSinal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AStringFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._constString_ == oldChild)
+        if(this._constNumeroSemSinal_ == oldChild)
         {
-            setConstString((TConstString) newChild);
+            setConstNumeroSemSinal((PConstNumeroSemSinal) newChild);
             return;
         }
 

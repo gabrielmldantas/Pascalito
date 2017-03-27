@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ARealFator extends PFator
+public final class ASomaSubOperadorAditivo extends POperadorAditivo
 {
-    private TConstReal _constReal_;
+    private TSinal _sinal_;
 
-    public ARealFator()
+    public ASomaSubOperadorAditivo()
     {
         // Constructor
     }
 
-    public ARealFator(
-        @SuppressWarnings("hiding") TConstReal _constReal_)
+    public ASomaSubOperadorAditivo(
+        @SuppressWarnings("hiding") TSinal _sinal_)
     {
         // Constructor
-        setConstReal(_constReal_);
+        setSinal(_sinal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ARealFator(
-            cloneNode(this._constReal_));
+        return new ASomaSubOperadorAditivo(
+            cloneNode(this._sinal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseARealFator(this);
+        ((Analysis) sw).caseASomaSubOperadorAditivo(this);
     }
 
-    public TConstReal getConstReal()
+    public TSinal getSinal()
     {
-        return this._constReal_;
+        return this._sinal_;
     }
 
-    public void setConstReal(TConstReal node)
+    public void setSinal(TSinal node)
     {
-        if(this._constReal_ != null)
+        if(this._sinal_ != null)
         {
-            this._constReal_.parent(null);
+            this._sinal_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ARealFator extends PFator
             node.parent(this);
         }
 
-        this._constReal_ = node;
+        this._sinal_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._constReal_);
+            + toString(this._sinal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._constReal_ == child)
+        if(this._sinal_ == child)
         {
-            this._constReal_ = null;
+            this._sinal_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ARealFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._constReal_ == oldChild)
+        if(this._sinal_ == oldChild)
         {
-            setConstReal((TConstReal) newChild);
+            setSinal((TSinal) newChild);
             return;
         }
 
