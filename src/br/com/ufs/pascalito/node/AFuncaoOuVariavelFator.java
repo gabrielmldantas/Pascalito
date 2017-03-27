@@ -5,16 +5,16 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AProcedureSentencaSimples extends PSentencaSimples
+public final class AFuncaoOuVariavelFator extends PFator
 {
     private PSentencaProcFuncao _sentencaProcFuncao_;
 
-    public AProcedureSentencaSimples()
+    public AFuncaoOuVariavelFator()
     {
         // Constructor
     }
 
-    public AProcedureSentencaSimples(
+    public AFuncaoOuVariavelFator(
         @SuppressWarnings("hiding") PSentencaProcFuncao _sentencaProcFuncao_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class AProcedureSentencaSimples extends PSentencaSimples
     @Override
     public Object clone()
     {
-        return new AProcedureSentencaSimples(
+        return new AFuncaoOuVariavelFator(
             cloneNode(this._sentencaProcFuncao_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAProcedureSentencaSimples(this);
+        ((Analysis) sw).caseAFuncaoOuVariavelFator(this);
     }
 
     public PSentencaProcFuncao getSentencaProcFuncao()

@@ -615,7 +615,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseASentencaProcedure(ASentencaProcedure node)
+    public void caseASentencaProcFuncao(ASentencaProcFuncao node)
     {
         defaultCase(node);
     }
@@ -753,12 +753,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAVariavelFator(AVariavelFator node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseAConstanteSemSinalFator(AConstanteSemSinalFator node)
     {
         defaultCase(node);
@@ -772,6 +766,18 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseANotFator(ANotFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFuncaoOuVariavelFator(AFuncaoOuVariavelFator node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarIndexadaFator(AVarIndexadaFator node)
     {
         defaultCase(node);
     }

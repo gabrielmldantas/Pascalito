@@ -5,17 +5,17 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASentencaProcedure extends PSentencaProcedure
+public final class ASentencaProcFuncao extends PSentencaProcFuncao
 {
     private TIdentificador _identificador_;
     private PParametrosReais _parametrosReais_;
 
-    public ASentencaProcedure()
+    public ASentencaProcFuncao()
     {
         // Constructor
     }
 
-    public ASentencaProcedure(
+    public ASentencaProcFuncao(
         @SuppressWarnings("hiding") TIdentificador _identificador_,
         @SuppressWarnings("hiding") PParametrosReais _parametrosReais_)
     {
@@ -29,7 +29,7 @@ public final class ASentencaProcedure extends PSentencaProcedure
     @Override
     public Object clone()
     {
-        return new ASentencaProcedure(
+        return new ASentencaProcFuncao(
             cloneNode(this._identificador_),
             cloneNode(this._parametrosReais_));
     }
@@ -37,7 +37,7 @@ public final class ASentencaProcedure extends PSentencaProcedure
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASentencaProcedure(this);
+        ((Analysis) sw).caseASentencaProcFuncao(this);
     }
 
     public TIdentificador getIdentificador()

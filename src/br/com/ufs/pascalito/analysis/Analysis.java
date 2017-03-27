@@ -102,7 +102,7 @@ public interface Analysis extends Switch
     void caseAGotoSentencaSimples(AGotoSentencaSimples node);
     void caseAEmptySentencaSimples(AEmptySentencaSimples node);
     void caseASentencaAtribuicao(ASentencaAtribuicao node);
-    void caseASentencaProcedure(ASentencaProcedure node);
+    void caseASentencaProcFuncao(ASentencaProcFuncao node);
     void caseAParametrosReais(AParametrosReais node);
     void caseAEmptyParametrosReais(AEmptyParametrosReais node);
     void caseAUnicoDefinicaoParametrosReais(AUnicoDefinicaoParametrosReais node);
@@ -125,10 +125,11 @@ public interface Analysis extends Switch
     void caseAMultiploComSinalExpressaoSimples(AMultiploComSinalExpressaoSimples node);
     void caseAUnicoTermo(AUnicoTermo node);
     void caseAMultiploTermo(AMultiploTermo node);
-    void caseAVariavelFator(AVariavelFator node);
     void caseAConstanteSemSinalFator(AConstanteSemSinalFator node);
     void caseAExpressaoFator(AExpressaoFator node);
     void caseANotFator(ANotFator node);
+    void caseAFuncaoOuVariavelFator(AFuncaoOuVariavelFator node);
+    void caseAVarIndexadaFator(AVarIndexadaFator node);
     void caseAMenorOperadorRelacional(AMenorOperadorRelacional node);
     void caseAMenorIgualOperadorRelacional(AMenorIgualOperadorRelacional node);
     void caseAMaiorOperadorRelacional(AMaiorOperadorRelacional node);

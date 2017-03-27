@@ -2184,9 +2184,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAProcedureSentencaSimples(AProcedureSentencaSimples node)
     {
         inAProcedureSentencaSimples(node);
-        if(node.getSentencaProcedure() != null)
+        if(node.getSentencaProcFuncao() != null)
         {
-            node.getSentencaProcedure().apply(this);
+            node.getSentencaProcFuncao().apply(this);
         }
         outAProcedureSentencaSimples(node);
     }
@@ -2258,20 +2258,20 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outASentencaAtribuicao(node);
     }
 
-    public void inASentencaProcedure(ASentencaProcedure node)
+    public void inASentencaProcFuncao(ASentencaProcFuncao node)
     {
         defaultIn(node);
     }
 
-    public void outASentencaProcedure(ASentencaProcedure node)
+    public void outASentencaProcFuncao(ASentencaProcFuncao node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseASentencaProcedure(ASentencaProcedure node)
+    public void caseASentencaProcFuncao(ASentencaProcFuncao node)
     {
-        inASentencaProcedure(node);
+        inASentencaProcFuncao(node);
         if(node.getParametrosReais() != null)
         {
             node.getParametrosReais().apply(this);
@@ -2280,7 +2280,7 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getIdentificador().apply(this);
         }
-        outASentencaProcedure(node);
+        outASentencaProcFuncao(node);
     }
 
     public void inAParametrosReais(AParametrosReais node)
@@ -2837,27 +2837,6 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAMultiploTermo(node);
     }
 
-    public void inAVariavelFator(AVariavelFator node)
-    {
-        defaultIn(node);
-    }
-
-    public void outAVariavelFator(AVariavelFator node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseAVariavelFator(AVariavelFator node)
-    {
-        inAVariavelFator(node);
-        if(node.getAcessoVariavel() != null)
-        {
-            node.getAcessoVariavel().apply(this);
-        }
-        outAVariavelFator(node);
-    }
-
     public void inAConstanteSemSinalFator(AConstanteSemSinalFator node)
     {
         defaultIn(node);
@@ -2931,6 +2910,48 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getNot().apply(this);
         }
         outANotFator(node);
+    }
+
+    public void inAFuncaoOuVariavelFator(AFuncaoOuVariavelFator node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncaoOuVariavelFator(AFuncaoOuVariavelFator node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFuncaoOuVariavelFator(AFuncaoOuVariavelFator node)
+    {
+        inAFuncaoOuVariavelFator(node);
+        if(node.getSentencaProcFuncao() != null)
+        {
+            node.getSentencaProcFuncao().apply(this);
+        }
+        outAFuncaoOuVariavelFator(node);
+    }
+
+    public void inAVarIndexadaFator(AVarIndexadaFator node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVarIndexadaFator(AVarIndexadaFator node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVarIndexadaFator(AVarIndexadaFator node)
+    {
+        inAVarIndexadaFator(node);
+        if(node.getVariavelIndexada() != null)
+        {
+            node.getVariavelIndexada().apply(this);
+        }
+        outAVarIndexadaFator(node);
     }
 
     public void inAMenorOperadorRelacional(AMenorOperadorRelacional node)

@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVariavelFator extends PFator
+public final class AVarIndexadaFator extends PFator
 {
-    private PAcessoVariavel _acessoVariavel_;
+    private PVariavelIndexada _variavelIndexada_;
 
-    public AVariavelFator()
+    public AVarIndexadaFator()
     {
         // Constructor
     }
 
-    public AVariavelFator(
-        @SuppressWarnings("hiding") PAcessoVariavel _acessoVariavel_)
+    public AVarIndexadaFator(
+        @SuppressWarnings("hiding") PVariavelIndexada _variavelIndexada_)
     {
         // Constructor
-        setAcessoVariavel(_acessoVariavel_);
+        setVariavelIndexada(_variavelIndexada_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVariavelFator(
-            cloneNode(this._acessoVariavel_));
+        return new AVarIndexadaFator(
+            cloneNode(this._variavelIndexada_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVariavelFator(this);
+        ((Analysis) sw).caseAVarIndexadaFator(this);
     }
 
-    public PAcessoVariavel getAcessoVariavel()
+    public PVariavelIndexada getVariavelIndexada()
     {
-        return this._acessoVariavel_;
+        return this._variavelIndexada_;
     }
 
-    public void setAcessoVariavel(PAcessoVariavel node)
+    public void setVariavelIndexada(PVariavelIndexada node)
     {
-        if(this._acessoVariavel_ != null)
+        if(this._variavelIndexada_ != null)
         {
-            this._acessoVariavel_.parent(null);
+            this._variavelIndexada_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AVariavelFator extends PFator
             node.parent(this);
         }
 
-        this._acessoVariavel_ = node;
+        this._variavelIndexada_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._acessoVariavel_);
+            + toString(this._variavelIndexada_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._acessoVariavel_ == child)
+        if(this._variavelIndexada_ == child)
         {
-            this._acessoVariavel_ = null;
+            this._variavelIndexada_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AVariavelFator extends PFator
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._acessoVariavel_ == oldChild)
+        if(this._variavelIndexada_ == oldChild)
         {
-            setAcessoVariavel((PAcessoVariavel) newChild);
+            setVariavelIndexada((PVariavelIndexada) newChild);
             return;
         }
 

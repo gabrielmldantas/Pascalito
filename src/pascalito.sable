@@ -187,10 +187,10 @@ Productions
 	label_sentenca = P.label dois_pontos | {empty};
 	definicao_sentenca = {simples} sentenca_simples | {estruturada} sentenca_estruturada;
 	
-	sentenca_simples = {atribuicao} sentenca_atribuicao | {procedure} sentenca_procedure | {goto} sentenca_goto | {empty};
+	sentenca_simples = {atribuicao} sentenca_atribuicao | {procedure} sentenca_proc_funcao | {goto} sentenca_goto | {empty};
 	sentenca_atribuicao = acesso_variavel atribuicao expressao;
 	
-	sentenca_procedure = identificador parametros_reais;
+	sentenca_proc_funcao = identificador parametros_reais;
 	parametros_reais = abre_parenteses definicao_parametros_reais fecha_parenteses | {empty};
 	definicao_parametros_reais = {unico} expressao | {multiplo} definicao_parametros_reais virgula expressao;
 	
@@ -208,7 +208,7 @@ Productions
 	expressao_relacional = operador_relacional expressao_simples | {empty};
 	expressao_simples = {unico_com_sinal} sinal+ termo | {unico_sem_sinal} termo | {multiplo_sem_sinal} expressao_simples operador_aditivo termo | {multiplo_com_sinal} expressao_simples operador_aditivo sinal+ termo;
 	termo = {unico} fator | {multiplo} termo operador_multiplicativo fator;
-	fator = {variavel} acesso_variavel | {constante_sem_sinal} constante_sem_sinal | {expressao} abre_parenteses expressao fecha_parenteses | {not} not fator;
+	fator = {constante_sem_sinal} constante_sem_sinal | {expressao} abre_parenteses expressao fecha_parenteses | {not} not fator | {funcao_ou_variavel} sentenca_proc_funcao | {var_indexada} variavel_indexada;
 	operador_relacional = {menor} menor | {menor_igual} menor_igual | {maior} maior | {maior_igual} maior_igual | {igual} igual | {diferente} diferente;
 	operador_aditivo = {soma_sub} sinal | {or} or;
 	operador_multiplicativo = {multiplicacao} multiplicacao | {divisao} divisao | {and} and | {div} div | {mod} mod;
