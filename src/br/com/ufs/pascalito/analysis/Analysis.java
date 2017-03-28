@@ -33,6 +33,7 @@ public interface Analysis extends Switch
     void caseAEmptyDeclaracaoTipos(AEmptyDeclaracaoTipos node);
     void caseAUnicoDefinicaoTipos(AUnicoDefinicaoTipos node);
     void caseAMultiploDefinicaoTipos(AMultiploDefinicaoTipos node);
+    void caseADefinicaoTipo(ADefinicaoTipo node);
     void caseAExistenteDenotadorTipo(AExistenteDenotadorTipo node);
     void caseANovoDenotadorTipo(ANovoDenotadorTipo node);
     void caseAOrdinalDenotadorTipo(AOrdinalDenotadorTipo node);

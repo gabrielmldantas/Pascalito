@@ -7,9 +7,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AUnicoDefinicaoTipos extends PDefinicaoTipos
 {
-    private TIdentificador _identificador_;
-    private TIgual _igual_;
-    private PDenotadorTipo _denotadorTipo_;
+    private PDefinicaoTipo _definicaoTipo_;
 
     public AUnicoDefinicaoTipos()
     {
@@ -17,16 +15,10 @@ public final class AUnicoDefinicaoTipos extends PDefinicaoTipos
     }
 
     public AUnicoDefinicaoTipos(
-        @SuppressWarnings("hiding") TIdentificador _identificador_,
-        @SuppressWarnings("hiding") TIgual _igual_,
-        @SuppressWarnings("hiding") PDenotadorTipo _denotadorTipo_)
+        @SuppressWarnings("hiding") PDefinicaoTipo _definicaoTipo_)
     {
         // Constructor
-        setIdentificador(_identificador_);
-
-        setIgual(_igual_);
-
-        setDenotadorTipo(_denotadorTipo_);
+        setDefinicaoTipo(_definicaoTipo_);
 
     }
 
@@ -34,9 +26,7 @@ public final class AUnicoDefinicaoTipos extends PDefinicaoTipos
     public Object clone()
     {
         return new AUnicoDefinicaoTipos(
-            cloneNode(this._identificador_),
-            cloneNode(this._igual_),
-            cloneNode(this._denotadorTipo_));
+            cloneNode(this._definicaoTipo_));
     }
 
     @Override
@@ -45,16 +35,16 @@ public final class AUnicoDefinicaoTipos extends PDefinicaoTipos
         ((Analysis) sw).caseAUnicoDefinicaoTipos(this);
     }
 
-    public TIdentificador getIdentificador()
+    public PDefinicaoTipo getDefinicaoTipo()
     {
-        return this._identificador_;
+        return this._definicaoTipo_;
     }
 
-    public void setIdentificador(TIdentificador node)
+    public void setDefinicaoTipo(PDefinicaoTipo node)
     {
-        if(this._identificador_ != null)
+        if(this._definicaoTipo_ != null)
         {
-            this._identificador_.parent(null);
+            this._definicaoTipo_.parent(null);
         }
 
         if(node != null)
@@ -67,87 +57,23 @@ public final class AUnicoDefinicaoTipos extends PDefinicaoTipos
             node.parent(this);
         }
 
-        this._identificador_ = node;
-    }
-
-    public TIgual getIgual()
-    {
-        return this._igual_;
-    }
-
-    public void setIgual(TIgual node)
-    {
-        if(this._igual_ != null)
-        {
-            this._igual_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._igual_ = node;
-    }
-
-    public PDenotadorTipo getDenotadorTipo()
-    {
-        return this._denotadorTipo_;
-    }
-
-    public void setDenotadorTipo(PDenotadorTipo node)
-    {
-        if(this._denotadorTipo_ != null)
-        {
-            this._denotadorTipo_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._denotadorTipo_ = node;
+        this._definicaoTipo_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._identificador_)
-            + toString(this._igual_)
-            + toString(this._denotadorTipo_);
+            + toString(this._definicaoTipo_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._identificador_ == child)
+        if(this._definicaoTipo_ == child)
         {
-            this._identificador_ = null;
-            return;
-        }
-
-        if(this._igual_ == child)
-        {
-            this._igual_ = null;
-            return;
-        }
-
-        if(this._denotadorTipo_ == child)
-        {
-            this._denotadorTipo_ = null;
+            this._definicaoTipo_ = null;
             return;
         }
 
@@ -158,21 +84,9 @@ public final class AUnicoDefinicaoTipos extends PDefinicaoTipos
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._identificador_ == oldChild)
+        if(this._definicaoTipo_ == oldChild)
         {
-            setIdentificador((TIdentificador) newChild);
-            return;
-        }
-
-        if(this._igual_ == oldChild)
-        {
-            setIgual((TIgual) newChild);
-            return;
-        }
-
-        if(this._denotadorTipo_ == oldChild)
-        {
-            setDenotadorTipo((PDenotadorTipo) newChild);
+            setDefinicaoTipo((PDefinicaoTipo) newChild);
             return;
         }
 

@@ -137,7 +137,8 @@ Productions
 	const_numero_sem_sinal = const_inteiro;
 	
 	declaracao_tipos = type definicao_tipos ponto_e_virgula | {empty};
-	definicao_tipos = {unico} identificador igual denotador_tipo | {multiplo} definicao_tipos virgula denotador_tipo;
+	definicao_tipos = {unico} definicao_tipo | {multiplo} definicao_tipos ponto_e_virgula definicao_tipo;
+	definicao_tipo = identificador igual denotador_tipo;
 	denotador_tipo = {existente} identificador | {novo} novo_tipo | {ordinal} identificador_tipo_ordinal;
 	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
 	tipo_array = array abre_colchete tipos_ordinais fecha_colchete of denotador_tipo;

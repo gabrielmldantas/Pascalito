@@ -8,8 +8,8 @@ import br.com.ufs.pascalito.analysis.*;
 public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
 {
     private PDefinicaoTipos _definicaoTipos_;
-    private TVirgula _virgula_;
-    private PDenotadorTipo _denotadorTipo_;
+    private TPontoEVirgula _pontoEVirgula_;
+    private PDefinicaoTipo _definicaoTipo_;
 
     public AMultiploDefinicaoTipos()
     {
@@ -18,15 +18,15 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
 
     public AMultiploDefinicaoTipos(
         @SuppressWarnings("hiding") PDefinicaoTipos _definicaoTipos_,
-        @SuppressWarnings("hiding") TVirgula _virgula_,
-        @SuppressWarnings("hiding") PDenotadorTipo _denotadorTipo_)
+        @SuppressWarnings("hiding") TPontoEVirgula _pontoEVirgula_,
+        @SuppressWarnings("hiding") PDefinicaoTipo _definicaoTipo_)
     {
         // Constructor
         setDefinicaoTipos(_definicaoTipos_);
 
-        setVirgula(_virgula_);
+        setPontoEVirgula(_pontoEVirgula_);
 
-        setDenotadorTipo(_denotadorTipo_);
+        setDefinicaoTipo(_definicaoTipo_);
 
     }
 
@@ -35,8 +35,8 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
     {
         return new AMultiploDefinicaoTipos(
             cloneNode(this._definicaoTipos_),
-            cloneNode(this._virgula_),
-            cloneNode(this._denotadorTipo_));
+            cloneNode(this._pontoEVirgula_),
+            cloneNode(this._definicaoTipo_));
     }
 
     @Override
@@ -70,16 +70,16 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
         this._definicaoTipos_ = node;
     }
 
-    public TVirgula getVirgula()
+    public TPontoEVirgula getPontoEVirgula()
     {
-        return this._virgula_;
+        return this._pontoEVirgula_;
     }
 
-    public void setVirgula(TVirgula node)
+    public void setPontoEVirgula(TPontoEVirgula node)
     {
-        if(this._virgula_ != null)
+        if(this._pontoEVirgula_ != null)
         {
-            this._virgula_.parent(null);
+            this._pontoEVirgula_.parent(null);
         }
 
         if(node != null)
@@ -92,19 +92,19 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
             node.parent(this);
         }
 
-        this._virgula_ = node;
+        this._pontoEVirgula_ = node;
     }
 
-    public PDenotadorTipo getDenotadorTipo()
+    public PDefinicaoTipo getDefinicaoTipo()
     {
-        return this._denotadorTipo_;
+        return this._definicaoTipo_;
     }
 
-    public void setDenotadorTipo(PDenotadorTipo node)
+    public void setDefinicaoTipo(PDefinicaoTipo node)
     {
-        if(this._denotadorTipo_ != null)
+        if(this._definicaoTipo_ != null)
         {
-            this._denotadorTipo_.parent(null);
+            this._definicaoTipo_.parent(null);
         }
 
         if(node != null)
@@ -117,7 +117,7 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
             node.parent(this);
         }
 
-        this._denotadorTipo_ = node;
+        this._definicaoTipo_ = node;
     }
 
     @Override
@@ -125,8 +125,8 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
     {
         return ""
             + toString(this._definicaoTipos_)
-            + toString(this._virgula_)
-            + toString(this._denotadorTipo_);
+            + toString(this._pontoEVirgula_)
+            + toString(this._definicaoTipo_);
     }
 
     @Override
@@ -139,15 +139,15 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
             return;
         }
 
-        if(this._virgula_ == child)
+        if(this._pontoEVirgula_ == child)
         {
-            this._virgula_ = null;
+            this._pontoEVirgula_ = null;
             return;
         }
 
-        if(this._denotadorTipo_ == child)
+        if(this._definicaoTipo_ == child)
         {
-            this._denotadorTipo_ = null;
+            this._definicaoTipo_ = null;
             return;
         }
 
@@ -164,15 +164,15 @@ public final class AMultiploDefinicaoTipos extends PDefinicaoTipos
             return;
         }
 
-        if(this._virgula_ == oldChild)
+        if(this._pontoEVirgula_ == oldChild)
         {
-            setVirgula((TVirgula) newChild);
+            setPontoEVirgula((TPontoEVirgula) newChild);
             return;
         }
 
-        if(this._denotadorTipo_ == oldChild)
+        if(this._definicaoTipo_ == oldChild)
         {
-            setDenotadorTipo((PDenotadorTipo) newChild);
+            setDefinicaoTipo((PDefinicaoTipo) newChild);
             return;
         }
 

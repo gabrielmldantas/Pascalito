@@ -521,17 +521,9 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAUnicoDefinicaoTipos(AUnicoDefinicaoTipos node)
     {
         inAUnicoDefinicaoTipos(node);
-        if(node.getIdentificador() != null)
+        if(node.getDefinicaoTipo() != null)
         {
-            node.getIdentificador().apply(this);
-        }
-        if(node.getIgual() != null)
-        {
-            node.getIgual().apply(this);
-        }
-        if(node.getDenotadorTipo() != null)
-        {
-            node.getDenotadorTipo().apply(this);
+            node.getDefinicaoTipo().apply(this);
         }
         outAUnicoDefinicaoTipos(node);
     }
@@ -554,15 +546,44 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getDefinicaoTipos().apply(this);
         }
-        if(node.getVirgula() != null)
+        if(node.getPontoEVirgula() != null)
         {
-            node.getVirgula().apply(this);
+            node.getPontoEVirgula().apply(this);
+        }
+        if(node.getDefinicaoTipo() != null)
+        {
+            node.getDefinicaoTipo().apply(this);
+        }
+        outAMultiploDefinicaoTipos(node);
+    }
+
+    public void inADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADefinicaoTipo(ADefinicaoTipo node)
+    {
+        inADefinicaoTipo(node);
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        if(node.getIgual() != null)
+        {
+            node.getIgual().apply(this);
         }
         if(node.getDenotadorTipo() != null)
         {
             node.getDenotadorTipo().apply(this);
         }
-        outAMultiploDefinicaoTipos(node);
+        outADefinicaoTipo(node);
     }
 
     public void inAExistenteDenotadorTipo(AExistenteDenotadorTipo node)

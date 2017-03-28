@@ -521,17 +521,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAUnicoDefinicaoTipos(AUnicoDefinicaoTipos node)
     {
         inAUnicoDefinicaoTipos(node);
-        if(node.getDenotadorTipo() != null)
+        if(node.getDefinicaoTipo() != null)
         {
-            node.getDenotadorTipo().apply(this);
-        }
-        if(node.getIgual() != null)
-        {
-            node.getIgual().apply(this);
-        }
-        if(node.getIdentificador() != null)
-        {
-            node.getIdentificador().apply(this);
+            node.getDefinicaoTipo().apply(this);
         }
         outAUnicoDefinicaoTipos(node);
     }
@@ -550,19 +542,48 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAMultiploDefinicaoTipos(AMultiploDefinicaoTipos node)
     {
         inAMultiploDefinicaoTipos(node);
-        if(node.getDenotadorTipo() != null)
+        if(node.getDefinicaoTipo() != null)
         {
-            node.getDenotadorTipo().apply(this);
+            node.getDefinicaoTipo().apply(this);
         }
-        if(node.getVirgula() != null)
+        if(node.getPontoEVirgula() != null)
         {
-            node.getVirgula().apply(this);
+            node.getPontoEVirgula().apply(this);
         }
         if(node.getDefinicaoTipos() != null)
         {
             node.getDefinicaoTipos().apply(this);
         }
         outAMultiploDefinicaoTipos(node);
+    }
+
+    public void inADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADefinicaoTipo(ADefinicaoTipo node)
+    {
+        inADefinicaoTipo(node);
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        if(node.getIgual() != null)
+        {
+            node.getIgual().apply(this);
+        }
+        if(node.getIdentificador() != null)
+        {
+            node.getIdentificador().apply(this);
+        }
+        outADefinicaoTipo(node);
     }
 
     public void inAExistenteDenotadorTipo(AExistenteDenotadorTipo node)
