@@ -68,7 +68,6 @@ public class PascalitoLexer extends Lexer {
 				state = State.NORMAL;
 				constString = null;
 				unread(oldToken);
-				System.out.println(text.toString());
 			} else {
 				token = null;
 			}
