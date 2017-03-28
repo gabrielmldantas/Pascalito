@@ -555,7 +555,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseASentenca(ASentenca node)
+    public void caseASimplesSentenca(ASimplesSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEstruturadaSentenca(AEstruturadaSentenca node)
     {
         defaultCase(node);
     }
@@ -580,6 +586,42 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseAEstruturadaDefinicaoSentenca(AEstruturadaDefinicaoSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEstruturadaFechadaDefinicaoSentenca(AEstruturadaFechadaDefinicaoSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASimplesDefinicaoSentencaFechada(ASimplesDefinicaoSentencaFechada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEstruturadaDefinicaoSentencaFechada(AEstruturadaDefinicaoSentencaFechada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADefinicaoSentencaSimples(ADefinicaoSentencaSimples node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADefinicaoSentencaEstruturada(ADefinicaoSentencaEstruturada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADefinicaoSentencaEstruturadaFechada(ADefinicaoSentencaEstruturadaFechada node)
     {
         defaultCase(node);
     }
@@ -657,13 +699,67 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIfSentencaEstruturada(AIfSentencaEstruturada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACompostaSentencaEstruturadaFechada(ACompostaSentencaEstruturadaFechada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAWhileSentencaEstruturadaFechada(AWhileSentencaEstruturadaFechada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseASentencaWhile(ASentencaWhile node)
     {
         defaultCase(node);
     }
 
     @Override
+    public void caseAEstruturadaSentencaWhile(AEstruturadaSentencaWhile node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaWhileFechada(ASentencaWhileFechada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseASentencaGoto(ASentencaGoto node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaIf(ASentencaIf node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAElseSentencaIf(AElseSentencaIf node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfSentencaIfFechada(AIfSentencaIfFechada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASentencaIfFechada(ASentencaIfFechada node)
     {
         defaultCase(node);
     }

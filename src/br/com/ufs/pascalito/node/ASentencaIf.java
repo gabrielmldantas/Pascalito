@@ -5,61 +5,61 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASentencaWhile extends PSentencaWhile
+public final class ASentencaIf extends PSentencaIf
 {
-    private TWhile _while_;
+    private TIf _if_;
     private PExpressao _expressao_;
-    private TDo _do_;
-    private PDefinicaoSentencaSimples _definicaoSentencaSimples_;
+    private TThen _then_;
+    private PSentenca _sentenca_;
 
-    public ASentencaWhile()
+    public ASentencaIf()
     {
         // Constructor
     }
 
-    public ASentencaWhile(
-        @SuppressWarnings("hiding") TWhile _while_,
+    public ASentencaIf(
+        @SuppressWarnings("hiding") TIf _if_,
         @SuppressWarnings("hiding") PExpressao _expressao_,
-        @SuppressWarnings("hiding") TDo _do_,
-        @SuppressWarnings("hiding") PDefinicaoSentencaSimples _definicaoSentencaSimples_)
+        @SuppressWarnings("hiding") TThen _then_,
+        @SuppressWarnings("hiding") PSentenca _sentenca_)
     {
         // Constructor
-        setWhile(_while_);
+        setIf(_if_);
 
         setExpressao(_expressao_);
 
-        setDo(_do_);
+        setThen(_then_);
 
-        setDefinicaoSentencaSimples(_definicaoSentencaSimples_);
+        setSentenca(_sentenca_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASentencaWhile(
-            cloneNode(this._while_),
+        return new ASentencaIf(
+            cloneNode(this._if_),
             cloneNode(this._expressao_),
-            cloneNode(this._do_),
-            cloneNode(this._definicaoSentencaSimples_));
+            cloneNode(this._then_),
+            cloneNode(this._sentenca_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASentencaWhile(this);
+        ((Analysis) sw).caseASentencaIf(this);
     }
 
-    public TWhile getWhile()
+    public TIf getIf()
     {
-        return this._while_;
+        return this._if_;
     }
 
-    public void setWhile(TWhile node)
+    public void setIf(TIf node)
     {
-        if(this._while_ != null)
+        if(this._if_ != null)
         {
-            this._while_.parent(null);
+            this._if_.parent(null);
         }
 
         if(node != null)
@@ -72,7 +72,7 @@ public final class ASentencaWhile extends PSentencaWhile
             node.parent(this);
         }
 
-        this._while_ = node;
+        this._if_ = node;
     }
 
     public PExpressao getExpressao()
@@ -100,16 +100,16 @@ public final class ASentencaWhile extends PSentencaWhile
         this._expressao_ = node;
     }
 
-    public TDo getDo()
+    public TThen getThen()
     {
-        return this._do_;
+        return this._then_;
     }
 
-    public void setDo(TDo node)
+    public void setThen(TThen node)
     {
-        if(this._do_ != null)
+        if(this._then_ != null)
         {
-            this._do_.parent(null);
+            this._then_.parent(null);
         }
 
         if(node != null)
@@ -122,19 +122,19 @@ public final class ASentencaWhile extends PSentencaWhile
             node.parent(this);
         }
 
-        this._do_ = node;
+        this._then_ = node;
     }
 
-    public PDefinicaoSentencaSimples getDefinicaoSentencaSimples()
+    public PSentenca getSentenca()
     {
-        return this._definicaoSentencaSimples_;
+        return this._sentenca_;
     }
 
-    public void setDefinicaoSentencaSimples(PDefinicaoSentencaSimples node)
+    public void setSentenca(PSentenca node)
     {
-        if(this._definicaoSentencaSimples_ != null)
+        if(this._sentenca_ != null)
         {
-            this._definicaoSentencaSimples_.parent(null);
+            this._sentenca_.parent(null);
         }
 
         if(node != null)
@@ -147,26 +147,26 @@ public final class ASentencaWhile extends PSentencaWhile
             node.parent(this);
         }
 
-        this._definicaoSentencaSimples_ = node;
+        this._sentenca_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._while_)
+            + toString(this._if_)
             + toString(this._expressao_)
-            + toString(this._do_)
-            + toString(this._definicaoSentencaSimples_);
+            + toString(this._then_)
+            + toString(this._sentenca_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._while_ == child)
+        if(this._if_ == child)
         {
-            this._while_ = null;
+            this._if_ = null;
             return;
         }
 
@@ -176,15 +176,15 @@ public final class ASentencaWhile extends PSentencaWhile
             return;
         }
 
-        if(this._do_ == child)
+        if(this._then_ == child)
         {
-            this._do_ = null;
+            this._then_ = null;
             return;
         }
 
-        if(this._definicaoSentencaSimples_ == child)
+        if(this._sentenca_ == child)
         {
-            this._definicaoSentencaSimples_ = null;
+            this._sentenca_ = null;
             return;
         }
 
@@ -195,9 +195,9 @@ public final class ASentencaWhile extends PSentencaWhile
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._while_ == oldChild)
+        if(this._if_ == oldChild)
         {
-            setWhile((TWhile) newChild);
+            setIf((TIf) newChild);
             return;
         }
 
@@ -207,15 +207,15 @@ public final class ASentencaWhile extends PSentencaWhile
             return;
         }
 
-        if(this._do_ == oldChild)
+        if(this._then_ == oldChild)
         {
-            setDo((TDo) newChild);
+            setThen((TThen) newChild);
             return;
         }
 
-        if(this._definicaoSentencaSimples_ == oldChild)
+        if(this._sentenca_ == oldChild)
         {
-            setDefinicaoSentencaSimples((PDefinicaoSentencaSimples) newChild);
+            setSentenca((PSentenca) newChild);
             return;
         }
 

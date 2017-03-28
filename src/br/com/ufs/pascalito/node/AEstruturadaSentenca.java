@@ -5,16 +5,16 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AEstruturadaDefinicaoSentenca extends PDefinicaoSentenca
+public final class AEstruturadaSentenca extends PSentenca
 {
     private PDefinicaoSentencaEstruturada _definicaoSentencaEstruturada_;
 
-    public AEstruturadaDefinicaoSentenca()
+    public AEstruturadaSentenca()
     {
         // Constructor
     }
 
-    public AEstruturadaDefinicaoSentenca(
+    public AEstruturadaSentenca(
         @SuppressWarnings("hiding") PDefinicaoSentencaEstruturada _definicaoSentencaEstruturada_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class AEstruturadaDefinicaoSentenca extends PDefinicaoSentenca
     @Override
     public Object clone()
     {
-        return new AEstruturadaDefinicaoSentenca(
+        return new AEstruturadaSentenca(
             cloneNode(this._definicaoSentencaEstruturada_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAEstruturadaDefinicaoSentenca(this);
+        ((Analysis) sw).caseAEstruturadaSentenca(this);
     }
 
     public PDefinicaoSentencaEstruturada getDefinicaoSentencaEstruturada()

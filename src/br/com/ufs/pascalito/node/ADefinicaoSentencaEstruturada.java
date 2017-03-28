@@ -5,39 +5,39 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASentenca extends PSentenca
+public final class ADefinicaoSentencaEstruturada extends PDefinicaoSentencaEstruturada
 {
     private PLabelSentenca _labelSentenca_;
-    private PDefinicaoSentenca _definicaoSentenca_;
+    private PSentencaEstruturada _sentencaEstruturada_;
 
-    public ASentenca()
+    public ADefinicaoSentencaEstruturada()
     {
         // Constructor
     }
 
-    public ASentenca(
+    public ADefinicaoSentencaEstruturada(
         @SuppressWarnings("hiding") PLabelSentenca _labelSentenca_,
-        @SuppressWarnings("hiding") PDefinicaoSentenca _definicaoSentenca_)
+        @SuppressWarnings("hiding") PSentencaEstruturada _sentencaEstruturada_)
     {
         // Constructor
         setLabelSentenca(_labelSentenca_);
 
-        setDefinicaoSentenca(_definicaoSentenca_);
+        setSentencaEstruturada(_sentencaEstruturada_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASentenca(
+        return new ADefinicaoSentencaEstruturada(
             cloneNode(this._labelSentenca_),
-            cloneNode(this._definicaoSentenca_));
+            cloneNode(this._sentencaEstruturada_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASentenca(this);
+        ((Analysis) sw).caseADefinicaoSentencaEstruturada(this);
     }
 
     public PLabelSentenca getLabelSentenca()
@@ -65,16 +65,16 @@ public final class ASentenca extends PSentenca
         this._labelSentenca_ = node;
     }
 
-    public PDefinicaoSentenca getDefinicaoSentenca()
+    public PSentencaEstruturada getSentencaEstruturada()
     {
-        return this._definicaoSentenca_;
+        return this._sentencaEstruturada_;
     }
 
-    public void setDefinicaoSentenca(PDefinicaoSentenca node)
+    public void setSentencaEstruturada(PSentencaEstruturada node)
     {
-        if(this._definicaoSentenca_ != null)
+        if(this._sentencaEstruturada_ != null)
         {
-            this._definicaoSentenca_.parent(null);
+            this._sentencaEstruturada_.parent(null);
         }
 
         if(node != null)
@@ -87,7 +87,7 @@ public final class ASentenca extends PSentenca
             node.parent(this);
         }
 
-        this._definicaoSentenca_ = node;
+        this._sentencaEstruturada_ = node;
     }
 
     @Override
@@ -95,7 +95,7 @@ public final class ASentenca extends PSentenca
     {
         return ""
             + toString(this._labelSentenca_)
-            + toString(this._definicaoSentenca_);
+            + toString(this._sentencaEstruturada_);
     }
 
     @Override
@@ -108,9 +108,9 @@ public final class ASentenca extends PSentenca
             return;
         }
 
-        if(this._definicaoSentenca_ == child)
+        if(this._sentencaEstruturada_ == child)
         {
-            this._definicaoSentenca_ = null;
+            this._sentencaEstruturada_ = null;
             return;
         }
 
@@ -127,9 +127,9 @@ public final class ASentenca extends PSentenca
             return;
         }
 
-        if(this._definicaoSentenca_ == oldChild)
+        if(this._sentencaEstruturada_ == oldChild)
         {
-            setDefinicaoSentenca((PDefinicaoSentenca) newChild);
+            setSentencaEstruturada((PSentencaEstruturada) newChild);
             return;
         }
 

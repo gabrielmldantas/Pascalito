@@ -5,23 +5,23 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASentencaWhile extends PSentencaWhile
+public final class AEstruturadaSentencaWhile extends PSentencaWhile
 {
     private TWhile _while_;
     private PExpressao _expressao_;
     private TDo _do_;
-    private PDefinicaoSentencaSimples _definicaoSentencaSimples_;
+    private PDefinicaoSentencaEstruturada _definicaoSentencaEstruturada_;
 
-    public ASentencaWhile()
+    public AEstruturadaSentencaWhile()
     {
         // Constructor
     }
 
-    public ASentencaWhile(
+    public AEstruturadaSentencaWhile(
         @SuppressWarnings("hiding") TWhile _while_,
         @SuppressWarnings("hiding") PExpressao _expressao_,
         @SuppressWarnings("hiding") TDo _do_,
-        @SuppressWarnings("hiding") PDefinicaoSentencaSimples _definicaoSentencaSimples_)
+        @SuppressWarnings("hiding") PDefinicaoSentencaEstruturada _definicaoSentencaEstruturada_)
     {
         // Constructor
         setWhile(_while_);
@@ -30,24 +30,24 @@ public final class ASentencaWhile extends PSentencaWhile
 
         setDo(_do_);
 
-        setDefinicaoSentencaSimples(_definicaoSentencaSimples_);
+        setDefinicaoSentencaEstruturada(_definicaoSentencaEstruturada_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASentencaWhile(
+        return new AEstruturadaSentencaWhile(
             cloneNode(this._while_),
             cloneNode(this._expressao_),
             cloneNode(this._do_),
-            cloneNode(this._definicaoSentencaSimples_));
+            cloneNode(this._definicaoSentencaEstruturada_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASentencaWhile(this);
+        ((Analysis) sw).caseAEstruturadaSentencaWhile(this);
     }
 
     public TWhile getWhile()
@@ -125,16 +125,16 @@ public final class ASentencaWhile extends PSentencaWhile
         this._do_ = node;
     }
 
-    public PDefinicaoSentencaSimples getDefinicaoSentencaSimples()
+    public PDefinicaoSentencaEstruturada getDefinicaoSentencaEstruturada()
     {
-        return this._definicaoSentencaSimples_;
+        return this._definicaoSentencaEstruturada_;
     }
 
-    public void setDefinicaoSentencaSimples(PDefinicaoSentencaSimples node)
+    public void setDefinicaoSentencaEstruturada(PDefinicaoSentencaEstruturada node)
     {
-        if(this._definicaoSentencaSimples_ != null)
+        if(this._definicaoSentencaEstruturada_ != null)
         {
-            this._definicaoSentencaSimples_.parent(null);
+            this._definicaoSentencaEstruturada_.parent(null);
         }
 
         if(node != null)
@@ -147,7 +147,7 @@ public final class ASentencaWhile extends PSentencaWhile
             node.parent(this);
         }
 
-        this._definicaoSentencaSimples_ = node;
+        this._definicaoSentencaEstruturada_ = node;
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class ASentencaWhile extends PSentencaWhile
             + toString(this._while_)
             + toString(this._expressao_)
             + toString(this._do_)
-            + toString(this._definicaoSentencaSimples_);
+            + toString(this._definicaoSentencaEstruturada_);
     }
 
     @Override
@@ -182,9 +182,9 @@ public final class ASentencaWhile extends PSentencaWhile
             return;
         }
 
-        if(this._definicaoSentencaSimples_ == child)
+        if(this._definicaoSentencaEstruturada_ == child)
         {
-            this._definicaoSentencaSimples_ = null;
+            this._definicaoSentencaEstruturada_ = null;
             return;
         }
 
@@ -213,9 +213,9 @@ public final class ASentencaWhile extends PSentencaWhile
             return;
         }
 
-        if(this._definicaoSentencaSimples_ == oldChild)
+        if(this._definicaoSentencaEstruturada_ == oldChild)
         {
-            setDefinicaoSentencaSimples((PDefinicaoSentencaSimples) newChild);
+            setDefinicaoSentencaEstruturada((PDefinicaoSentencaEstruturada) newChild);
             return;
         }
 

@@ -5,23 +5,23 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASentencaWhile extends PSentencaWhile
+public final class ASentencaWhileFechada extends PSentencaWhileFechada
 {
     private TWhile _while_;
     private PExpressao _expressao_;
     private TDo _do_;
-    private PDefinicaoSentencaSimples _definicaoSentencaSimples_;
+    private PDefinicaoSentencaFechada _definicaoSentencaFechada_;
 
-    public ASentencaWhile()
+    public ASentencaWhileFechada()
     {
         // Constructor
     }
 
-    public ASentencaWhile(
+    public ASentencaWhileFechada(
         @SuppressWarnings("hiding") TWhile _while_,
         @SuppressWarnings("hiding") PExpressao _expressao_,
         @SuppressWarnings("hiding") TDo _do_,
-        @SuppressWarnings("hiding") PDefinicaoSentencaSimples _definicaoSentencaSimples_)
+        @SuppressWarnings("hiding") PDefinicaoSentencaFechada _definicaoSentencaFechada_)
     {
         // Constructor
         setWhile(_while_);
@@ -30,24 +30,24 @@ public final class ASentencaWhile extends PSentencaWhile
 
         setDo(_do_);
 
-        setDefinicaoSentencaSimples(_definicaoSentencaSimples_);
+        setDefinicaoSentencaFechada(_definicaoSentencaFechada_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASentencaWhile(
+        return new ASentencaWhileFechada(
             cloneNode(this._while_),
             cloneNode(this._expressao_),
             cloneNode(this._do_),
-            cloneNode(this._definicaoSentencaSimples_));
+            cloneNode(this._definicaoSentencaFechada_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASentencaWhile(this);
+        ((Analysis) sw).caseASentencaWhileFechada(this);
     }
 
     public TWhile getWhile()
@@ -125,16 +125,16 @@ public final class ASentencaWhile extends PSentencaWhile
         this._do_ = node;
     }
 
-    public PDefinicaoSentencaSimples getDefinicaoSentencaSimples()
+    public PDefinicaoSentencaFechada getDefinicaoSentencaFechada()
     {
-        return this._definicaoSentencaSimples_;
+        return this._definicaoSentencaFechada_;
     }
 
-    public void setDefinicaoSentencaSimples(PDefinicaoSentencaSimples node)
+    public void setDefinicaoSentencaFechada(PDefinicaoSentencaFechada node)
     {
-        if(this._definicaoSentencaSimples_ != null)
+        if(this._definicaoSentencaFechada_ != null)
         {
-            this._definicaoSentencaSimples_.parent(null);
+            this._definicaoSentencaFechada_.parent(null);
         }
 
         if(node != null)
@@ -147,7 +147,7 @@ public final class ASentencaWhile extends PSentencaWhile
             node.parent(this);
         }
 
-        this._definicaoSentencaSimples_ = node;
+        this._definicaoSentencaFechada_ = node;
     }
 
     @Override
@@ -157,7 +157,7 @@ public final class ASentencaWhile extends PSentencaWhile
             + toString(this._while_)
             + toString(this._expressao_)
             + toString(this._do_)
-            + toString(this._definicaoSentencaSimples_);
+            + toString(this._definicaoSentencaFechada_);
     }
 
     @Override
@@ -182,9 +182,9 @@ public final class ASentencaWhile extends PSentencaWhile
             return;
         }
 
-        if(this._definicaoSentencaSimples_ == child)
+        if(this._definicaoSentencaFechada_ == child)
         {
-            this._definicaoSentencaSimples_ = null;
+            this._definicaoSentencaFechada_ = null;
             return;
         }
 
@@ -213,9 +213,9 @@ public final class ASentencaWhile extends PSentencaWhile
             return;
         }
 
-        if(this._definicaoSentencaSimples_ == oldChild)
+        if(this._definicaoSentencaFechada_ == oldChild)
         {
-            setDefinicaoSentencaSimples((PDefinicaoSentencaSimples) newChild);
+            setDefinicaoSentencaFechada((PDefinicaoSentencaFechada) newChild);
             return;
         }
 
