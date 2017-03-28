@@ -260,27 +260,6 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAStringIdentificadorTipoOrdinal(node);
     }
 
-    public void inARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
-    {
-        defaultIn(node);
-    }
-
-    public void outARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
-    {
-        inARealIdentificadorTipoOrdinal(node);
-        if(node.getReal() != null)
-        {
-            node.getReal().apply(this);
-        }
-        outARealIdentificadorTipoOrdinal(node);
-    }
-
     public void inABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node)
     {
         defaultIn(node);
@@ -461,46 +440,25 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outALabel(node);
     }
 
-    public void inAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    public void inAConstNumeroSemSinal(AConstNumeroSemSinal node)
     {
         defaultIn(node);
     }
 
-    public void outAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    public void outAConstNumeroSemSinal(AConstNumeroSemSinal node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
+    public void caseAConstNumeroSemSinal(AConstNumeroSemSinal node)
     {
-        inAInteiroConstNumeroSemSinal(node);
+        inAConstNumeroSemSinal(node);
         if(node.getConstInteiro() != null)
         {
             node.getConstInteiro().apply(this);
         }
-        outAInteiroConstNumeroSemSinal(node);
-    }
-
-    public void inARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
-    {
-        defaultIn(node);
-    }
-
-    public void outARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
-    {
-        defaultOut(node);
-    }
-
-    @Override
-    public void caseARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
-    {
-        inARealConstNumeroSemSinal(node);
-        if(node.getConstReal() != null)
-        {
-            node.getConstReal().apply(this);
-        }
-        outARealConstNumeroSemSinal(node);
+        outAConstNumeroSemSinal(node);
     }
 
     public void inADeclaracaoTipos(ADeclaracaoTipos node)

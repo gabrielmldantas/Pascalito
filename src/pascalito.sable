@@ -54,7 +54,6 @@ States
 Tokens
 {normal}    integer = i n t e g e r;
 {normal}    string = s t r i n g;
-{normal}    real = r e a l;
 {normal}    boolean = b o o l e a n;
 {normal}    array = a r r a y;
 {normal}    if = i f;
@@ -93,7 +92,6 @@ Tokens
 {normal}	abre_colchete = '[';
 {normal}	fecha_colchete = ']';
 {normal}	const_inteiro = digito digito*;
-{normal}	const_real = digito* '.' digito digito* (e ('+' | '-')? digito digito*)?;
 {normal}    blank = blank;
 {normal}	menor = '<';
 {normal}	menor_igual = '<=';
@@ -129,14 +127,14 @@ Productions
 	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta;
 	
 	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
-	identificador_tipo_ordinal = {integer} integer | {string} string | {real} real | {boolean} boolean;
+	identificador_tipo_ordinal = {integer} integer | {string} string | {boolean} boolean;
 	identificador_tipo = {identificador} identificador | {ordinal} identificador_tipo_ordinal;
 	
 	declaracao_labels = T.label labels ponto_e_virgula | {empty};
 	labels = {unico} P.label | {multiplo} labels virgula P.label;
 	label = const_inteiro;
 	
-	const_numero_sem_sinal = {inteiro} const_inteiro | {real} const_real;
+	const_numero_sem_sinal = const_inteiro;
 	
 	declaracao_tipos = type definicao_tipos ponto_e_virgula | {empty};
 	definicao_tipos = {unico} identificador igual denotador_tipo | {multiplo} definicao_tipos virgula denotador_tipo;

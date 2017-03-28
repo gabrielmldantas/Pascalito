@@ -123,12 +123,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node)
     {
         defaultCase(node);
@@ -177,13 +171,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseARealConstNumeroSemSinal(ARealConstNumeroSemSinal node)
+    public void caseAConstNumeroSemSinal(AConstNumeroSemSinal node)
     {
         defaultCase(node);
     }
@@ -969,12 +957,6 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTReal(TReal node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
     public void caseTBoolean(TBoolean node)
     {
         defaultCase(node);
@@ -1192,12 +1174,6 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseTConstInteiro(TConstInteiro node)
-    {
-        defaultCase(node);
-    }
-
-    @Override
-    public void caseTConstReal(TConstReal node)
     {
         defaultCase(node);
     }

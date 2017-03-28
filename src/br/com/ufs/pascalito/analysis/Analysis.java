@@ -20,7 +20,6 @@ public interface Analysis extends Switch
     void caseAMultiploIdentificadores(AMultiploIdentificadores node);
     void caseAIntegerIdentificadorTipoOrdinal(AIntegerIdentificadorTipoOrdinal node);
     void caseAStringIdentificadorTipoOrdinal(AStringIdentificadorTipoOrdinal node);
-    void caseARealIdentificadorTipoOrdinal(ARealIdentificadorTipoOrdinal node);
     void caseABooleanIdentificadorTipoOrdinal(ABooleanIdentificadorTipoOrdinal node);
     void caseAIdentificadorIdentificadorTipo(AIdentificadorIdentificadorTipo node);
     void caseAOrdinalIdentificadorTipo(AOrdinalIdentificadorTipo node);
@@ -29,8 +28,7 @@ public interface Analysis extends Switch
     void caseAUnicoLabels(AUnicoLabels node);
     void caseAMultiploLabels(AMultiploLabels node);
     void caseALabel(ALabel node);
-    void caseAInteiroConstNumeroSemSinal(AInteiroConstNumeroSemSinal node);
-    void caseARealConstNumeroSemSinal(ARealConstNumeroSemSinal node);
+    void caseAConstNumeroSemSinal(AConstNumeroSemSinal node);
     void caseADeclaracaoTipos(ADeclaracaoTipos node);
     void caseAEmptyDeclaracaoTipos(AEmptyDeclaracaoTipos node);
     void caseAUnicoDefinicaoTipos(AUnicoDefinicaoTipos node);
@@ -162,7 +160,6 @@ public interface Analysis extends Switch
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);
-    void caseTReal(TReal node);
     void caseTBoolean(TBoolean node);
     void caseTArray(TArray node);
     void caseTIf(TIf node);
@@ -200,7 +197,6 @@ public interface Analysis extends Switch
     void caseTAbreColchete(TAbreColchete node);
     void caseTFechaColchete(TFechaColchete node);
     void caseTConstInteiro(TConstInteiro node);
-    void caseTConstReal(TConstReal node);
     void caseTBlank(TBlank node);
     void caseTMenor(TMenor node);
     void caseTMenorIgual(TMenorIgual node);

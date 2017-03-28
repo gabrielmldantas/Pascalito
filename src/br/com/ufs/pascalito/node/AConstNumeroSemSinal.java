@@ -5,16 +5,16 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AInteiroConstNumeroSemSinal extends PConstNumeroSemSinal
+public final class AConstNumeroSemSinal extends PConstNumeroSemSinal
 {
     private TConstInteiro _constInteiro_;
 
-    public AInteiroConstNumeroSemSinal()
+    public AConstNumeroSemSinal()
     {
         // Constructor
     }
 
-    public AInteiroConstNumeroSemSinal(
+    public AConstNumeroSemSinal(
         @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class AInteiroConstNumeroSemSinal extends PConstNumeroSemSinal
     @Override
     public Object clone()
     {
-        return new AInteiroConstNumeroSemSinal(
+        return new AConstNumeroSemSinal(
             cloneNode(this._constInteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAInteiroConstNumeroSemSinal(this);
+        ((Analysis) sw).caseAConstNumeroSemSinal(this);
     }
 
     public TConstInteiro getConstInteiro()
