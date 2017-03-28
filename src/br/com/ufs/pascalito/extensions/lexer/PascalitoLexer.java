@@ -50,11 +50,14 @@ public class PascalitoLexer extends Lexer {
 		} else if (token instanceof EOF || token instanceof TNewline) {
 			throw new PascalitoLexerException(new InvalidToken(text.toString(), constString.getLine(), constString.getPos()), "Literal string desbalanceado");
 		} else {
-			text.append(token.getText());
-			
 			// Se for aspa simples, dentro da string, aumenta o contador de balanceamento
 			if (token instanceof TAspaSimples) {
 				count++;
+				if (count % 2 != 0) {
+					text.append(token.getText());
+				}
+			} else {
+				text.append(token.getText());
 			}
 			
 			// Se o próximo token não é aspa simples e as aspas estão balanceadas, constroi o token ConstString, transita para o estado NORMAL e devolve o token para a entrada
@@ -65,6 +68,7 @@ public class PascalitoLexer extends Lexer {
 				state = State.NORMAL;
 				constString = null;
 				unread(oldToken);
+				System.out.println(text.toString());
 			} else {
 				token = null;
 			}
