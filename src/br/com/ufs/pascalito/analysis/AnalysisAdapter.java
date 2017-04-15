@@ -195,6 +195,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAMaisSinal(AMaisSinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenosSinal(AMenosSinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);
@@ -471,7 +483,13 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseTSinal(TSinal node)
+    public void caseTSoma(TSoma node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseTSubtracao(TSubtracao node)
     {
         defaultCase(node);
     }

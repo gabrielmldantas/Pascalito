@@ -32,6 +32,8 @@ public interface Analysis extends Switch
     void caseATipoEnumerado(ATipoEnumerado node);
     void caseATipoSubrange(ATipoSubrange node);
     void caseATipoArray(ATipoArray node);
+    void caseAMaisSinal(AMaisSinal node);
+    void caseAMenosSinal(AMenosSinal node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);
@@ -79,7 +81,8 @@ public interface Analysis extends Switch
     void caseTMaiorIgual(TMaiorIgual node);
     void caseTDiferente(TDiferente node);
     void caseTIgual(TIgual node);
-    void caseTSinal(TSinal node);
+    void caseTSoma(TSoma node);
+    void caseTSubtracao(TSubtracao node);
     void caseTMultiplicacao(TMultiplicacao node);
     void caseTDivisao(TDivisao node);
     void caseTComentLinha(TComentLinha node);

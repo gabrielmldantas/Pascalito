@@ -503,4 +503,46 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         }
         outATipoArray(node);
     }
+
+    public void inAMaisSinal(AMaisSinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMaisSinal(AMaisSinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMaisSinal(AMaisSinal node)
+    {
+        inAMaisSinal(node);
+        if(node.getSoma() != null)
+        {
+            node.getSoma().apply(this);
+        }
+        outAMaisSinal(node);
+    }
+
+    public void inAMenosSinal(AMenosSinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAMenosSinal(AMenosSinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAMenosSinal(AMenosSinal node)
+    {
+        inAMenosSinal(node);
+        if(node.getSubtracao() != null)
+        {
+            node.getSubtracao().apply(this);
+        }
+        outAMenosSinal(node);
+    }
 }

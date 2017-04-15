@@ -99,7 +99,8 @@ Tokens
 {normal}	maior_igual = '>=';
 {normal}	diferente = '<>';
 {normal}	igual = '=';
-{normal}	sinal = '+' | '-';
+{normal}	soma = '+';
+{normal}	subtracao = '-';
 {normal}	multiplicacao = '*';
 {normal}	divisao = '/';
 
@@ -171,6 +172,8 @@ Productions
 	tipo_enumerado {-> tipo_enumerado} = abre_parenteses identificadores fecha_parenteses {-> New tipo_enumerado([identificadores.string])};
 	
 	tipo_subrange {-> tipo_subrange} = [inicio]:constante ponto_ponto [fim]:constante {-> New tipo_subrange(inicio, fim) };
+	
+	sinal {-> sinal} = {soma} soma {-> New sinal.mais(soma)} | {subtracao} subtracao {-> New sinal.menos(subtracao)};
 	
 	constante {-> constante} = {numero} sinal? const_inteiro {-> New constante.inteiro(sinal, const_inteiro)} | {string} const_string {-> New constante.string(const_string) };
 	constante_sem_sinal = {numero} const_inteiro | {string} const_string;
@@ -249,7 +252,7 @@ Productions
 Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
 	string = identificador;
-	constante = {inteiro} sinal? const_inteiro | {string} const_string;
+	constante = {inteiro} P.sinal? const_inteiro | {string} const_string;
 	bloco = numero_sem_sinal* definicao_tipo*;
 	numero_sem_sinal = const_inteiro;
 	
@@ -261,3 +264,4 @@ Abstract Syntax Tree
 	tipo_enumerado = P.string*;
 	tipo_subrange = [inicio]:constante [fim]:constante;
 	tipo_array = tipo_id_ou_ordinal+ denotador_tipo;
+	sinal = {mais} soma | {menos} subtracao;

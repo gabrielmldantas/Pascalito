@@ -7,7 +7,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AInteiroConstante extends PConstante
 {
-    private TSinal _sinal_;
+    private PSinal _sinal_;
     private TConstInteiro _constInteiro_;
 
     public AInteiroConstante()
@@ -16,7 +16,7 @@ public final class AInteiroConstante extends PConstante
     }
 
     public AInteiroConstante(
-        @SuppressWarnings("hiding") TSinal _sinal_,
+        @SuppressWarnings("hiding") PSinal _sinal_,
         @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
     {
         // Constructor
@@ -40,12 +40,12 @@ public final class AInteiroConstante extends PConstante
         ((Analysis) sw).caseAInteiroConstante(this);
     }
 
-    public TSinal getSinal()
+    public PSinal getSinal()
     {
         return this._sinal_;
     }
 
-    public void setSinal(TSinal node)
+    public void setSinal(PSinal node)
     {
         if(this._sinal_ != null)
         {
@@ -123,7 +123,7 @@ public final class AInteiroConstante extends PConstante
         // Replace child
         if(this._sinal_ == oldChild)
         {
-            setSinal((TSinal) newChild);
+            setSinal((PSinal) newChild);
             return;
         }
 
