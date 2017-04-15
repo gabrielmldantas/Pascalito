@@ -172,6 +172,14 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     {
         inABloco(node);
         {
+            List<PDeclaracaoVariavel> copy = new ArrayList<PDeclaracaoVariavel>(node.getDeclaracaoVariavel());
+            Collections.reverse(copy);
+            for(PDeclaracaoVariavel e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        {
             List<PDefinicaoTipo> copy = new ArrayList<PDefinicaoTipo>(node.getDefinicaoTipo());
             Collections.reverse(copy);
             for(PDefinicaoTipo e : copy)
@@ -565,5 +573,34 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getSubtracao().apply(this);
         }
         outAMenosSinal(node);
+    }
+
+    public void inADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        inADeclaracaoVariavel(node);
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        {
+            List<PString> copy = new ArrayList<PString>(node.getString());
+            Collections.reverse(copy);
+            for(PString e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outADeclaracaoVariavel(node);
     }
 }

@@ -35,6 +35,7 @@ public interface Analysis extends Switch
     void caseATipoArray(ATipoArray node);
     void caseAMaisSinal(AMaisSinal node);
     void caseAMenosSinal(AMenosSinal node);
+    void caseADeclaracaoVariavel(ADeclaracaoVariavel node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

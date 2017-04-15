@@ -213,6 +213,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);

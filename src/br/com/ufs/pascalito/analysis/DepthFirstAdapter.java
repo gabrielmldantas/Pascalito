@@ -184,6 +184,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        {
+            List<PDeclaracaoVariavel> copy = new ArrayList<PDeclaracaoVariavel>(node.getDeclaracaoVariavel());
+            for(PDeclaracaoVariavel e : copy)
+            {
+                e.apply(this);
+            }
+        }
         outABloco(node);
     }
 
@@ -560,5 +567,33 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getSubtracao().apply(this);
         }
         outAMenosSinal(node);
+    }
+
+    public void inADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        inADeclaracaoVariavel(node);
+        {
+            List<PString> copy = new ArrayList<PString>(node.getString());
+            for(PString e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        outADeclaracaoVariavel(node);
     }
 }

@@ -127,7 +127,7 @@ Productions
 		| {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses ponto_e_virgula bloco ponto {-> New program(New string(identificador), [identificadores.string], bloco) };
 	
 	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta 
-		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo]) };
+		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo], [declaracoes_variaveis.declaracao_variavel]) };
 	
 	identificadores {-> P.string*} = {unico} identificador {-> [New string(identificador)]} 
 		| {multiplo} identificadores virgula identificador {-> [identificadores.string, New string(identificador)]};
@@ -158,6 +158,7 @@ Productions
 		| {ordinal} identificador_tipo_ordinal {-> New denotador_tipo.primitivo(identificador_tipo_ordinal.tipo_primitivo) };
 	
 	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
+	
 	tipo_array {-> tipo_array} = array abre_colchete tipos_ordinais fecha_colchete of denotador_tipo {-> New tipo_array([tipos_ordinais.tipo_id_ou_ordinal], denotador_tipo)};
 	
 	tipos_ordinais {-> tipo_id_ou_ordinal*} = {unico} tipo_ordinal {-> [tipo_ordinal.tipo_id_ou_ordinal]}
@@ -184,9 +185,12 @@ Productions
 		| {string} const_string {-> New constante.string(const_string) }
 		| {boolean} const_booleana {-> New constante.boolean(const_booleana) };
 	
-	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
-	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
-	declaracao_variavel = identificadores dois_pontos denotador_tipo;
+	declaracoes_variaveis {-> declaracao_variavel*} = var declaracao_variaveis ponto_e_virgula {-> [declaracao_variaveis.declaracao_variavel]} | {empty} {-> []};
+	
+	declaracao_variaveis {-> declaracao_variavel*} = {unico} declaracao_variavel {-> [declaracao_variavel.declaracao_variavel] }
+		| {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel {-> [declaracao_variavel.declaracao_variavel, declaracao_variaveis.declaracao_variavel] };
+	
+	declaracao_variavel {-> declaracao_variavel} = identificadores dois_pontos denotador_tipo {-> New declaracao_variavel([identificadores.string], denotador_tipo) };
 	
 	declaracoes_proc_funcoes = declaracao_proc_funcoes | {empty};
 	declaracao_proc_funcoes = {unico} declaracao_proc_funcao | {multiplo} declaracao_proc_funcoes declaracao_proc_funcao;
@@ -259,7 +263,7 @@ Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
 	string = identificador;
 	constante = {inteiro} P.sinal? const_inteiro | {string} const_string | {boolean} const_booleana;
-	bloco = numero_sem_sinal* definicao_tipo*;
+	bloco = numero_sem_sinal* definicao_tipo* declaracao_variavel*;
 	numero_sem_sinal = const_inteiro;
 	
 	definicao_tipo = P.string denotador_tipo;
@@ -271,3 +275,5 @@ Abstract Syntax Tree
 	tipo_subrange = [inicio]:constante [fim]:constante;
 	tipo_array = tipo_id_ou_ordinal+ denotador_tipo;
 	sinal = {mais} soma | {menos} subtracao;
+	
+	declaracao_variavel = P.string* denotador_tipo;	

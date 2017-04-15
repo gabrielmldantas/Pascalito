@@ -1196,6 +1196,7 @@ public class Parser
             // Block
         LinkedList<Object> listNode3 = new LinkedList<Object>();
         LinkedList<Object> listNode5 = new LinkedList<Object>();
+        LinkedList<Object> listNode7 = new LinkedList<Object>();
         {
             // Block
         LinkedList<Object> listNode2 = new LinkedList<Object>();
@@ -1214,8 +1215,17 @@ public class Parser
 	  listNode5.addAll(listNode4);
 	}
         }
+        {
+            // Block
+        LinkedList<Object> listNode6 = new LinkedList<Object>();
+        listNode6 = (LinkedList)nodeArrayList3.get(0);
+	if(listNode6 != null)
+	{
+	  listNode7.addAll(listNode6);
+	}
+        }
 
-        pblocoNode1 = new ABloco(listNode3, listNode5);
+        pblocoNode1 = new ABloco(listNode3, listNode5, listNode7);
         }
 	nodeList.add(pblocoNode1);
         return nodeList;
@@ -2101,6 +2111,17 @@ public class Parser
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        {
+            // Block
+        LinkedList<Object> listNode1 = new LinkedList<Object>();
+        listNode1 = (LinkedList)nodeArrayList2.get(0);
+	if(listNode1 != null)
+	{
+	  listNode2.addAll(listNode1);
+	}
+        }
+	nodeList.add(listNode2);
         return nodeList;
     }
 
@@ -2111,6 +2132,11 @@ public class Parser
     {
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
+        LinkedList<Object> listNode1 = new LinkedList<Object>();
+        {
+            // Block
+        }
+	nodeList.add(listNode1);
         return nodeList;
     }
 
@@ -2122,6 +2148,17 @@ public class Parser
         @SuppressWarnings("hiding") ArrayList<Object> nodeList = new ArrayList<Object>();
 
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        {
+            // Block
+        PDeclaracaoVariavel pdeclaracaovariavelNode1;
+        pdeclaracaovariavelNode1 = (PDeclaracaoVariavel)nodeArrayList1.get(0);
+	if(pdeclaracaovariavelNode1 != null)
+	{
+	  listNode2.add(pdeclaracaovariavelNode1);
+	}
+        }
+	nodeList.add(listNode2);
         return nodeList;
     }
 
@@ -2135,6 +2172,23 @@ public class Parser
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        {
+            // Block
+        PDeclaracaoVariavel pdeclaracaovariavelNode1;
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        pdeclaracaovariavelNode1 = (PDeclaracaoVariavel)nodeArrayList3.get(0);
+        listNode2 = (LinkedList)nodeArrayList1.get(0);
+	if(pdeclaracaovariavelNode1 != null)
+	{
+	  listNode3.add(pdeclaracaovariavelNode1);
+	}
+	if(listNode2 != null)
+	{
+	  listNode3.addAll(listNode2);
+	}
+        }
+	nodeList.add(listNode3);
         return nodeList;
     }
 
@@ -2148,6 +2202,25 @@ public class Parser
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList3 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList2 = pop();
         @SuppressWarnings("unused") ArrayList<Object> nodeArrayList1 = pop();
+        PDeclaracaoVariavel pdeclaracaovariavelNode1;
+        {
+            // Block
+        LinkedList<Object> listNode3 = new LinkedList<Object>();
+        PDenotadorTipo pdenotadortipoNode4;
+        {
+            // Block
+        LinkedList<Object> listNode2 = new LinkedList<Object>();
+        listNode2 = (LinkedList)nodeArrayList1.get(0);
+	if(listNode2 != null)
+	{
+	  listNode3.addAll(listNode2);
+	}
+        }
+        pdenotadortipoNode4 = (PDenotadorTipo)nodeArrayList3.get(0);
+
+        pdeclaracaovariavelNode1 = new ADeclaracaoVariavel(listNode3, pdenotadortipoNode4);
+        }
+	nodeList.add(pdeclaracaovariavelNode1);
         return nodeList;
     }
 
