@@ -122,19 +122,21 @@ Ignored Tokens
 	coment_linha;
 	
 Productions
-	program = cabecalho_programa ponto_e_virgula bloco ponto;
-	cabecalho_programa = {unico} T.program identificador | {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses;
-	bloco = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta;
+	program {-> P.program} = {unico} T.program identificador ponto_e_virgula bloco ponto {-> New program(New string(identificador), [], bloco) }
+		| {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses ponto_e_virgula bloco ponto {-> New program(New string(identificador), [identificadores.string], bloco) };
 	
-	identificadores = {unico} identificador | {multiplo} identificadores virgula identificador;
+	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta {-> New bloco([declaracao_labels.numero_sem_sinal]) };
+	
+	identificadores {-> P.string*} = {unico} identificador {-> [New string(identificador)]} 
+		| {multiplo} identificadores virgula identificador {-> [identificadores.string, New string(identificador)]};
 	identificador_tipo_ordinal = {integer} integer | {string} string | {boolean} boolean;
 	identificador_tipo = {identificador} identificador | {ordinal} identificador_tipo_ordinal;
 	
-	declaracao_labels = T.label labels ponto_e_virgula | {empty};
-	labels = {unico} P.label | {multiplo} labels virgula P.label;
-	label = const_inteiro;
-	
-	const_numero_sem_sinal = const_inteiro;
+	declaracao_labels {-> P.numero_sem_sinal*} = T.label labels ponto_e_virgula {-> [labels.numero_sem_sinal]}
+		| {empty} {-> []};
+	labels {-> P.numero_sem_sinal*} = {unico} P.label {-> [label.numero_sem_sinal]} 
+		| {multiplo} labels virgula P.label {-> [label.numero_sem_sinal, labels.numero_sem_sinal]};
+	label {-> P.numero_sem_sinal} = const_inteiro {-> New numero_sem_sinal(const_inteiro) };
 	
 	declaracao_tipos = type definicao_tipos ponto_e_virgula | {empty};
 	definicao_tipos = {unico} definicao_tipo | {multiplo} definicao_tipos ponto_e_virgula definicao_tipo;
@@ -148,8 +150,8 @@ Productions
 	tipo_enumerado = abre_parenteses identificadores fecha_parenteses;
 	tipo_subrange = [inicio]:constante ponto_ponto [fim]:constante;
 	
-	constante = {numero} sinal? const_numero_sem_sinal | {string} const_string;
-	constante_sem_sinal = {numero} const_numero_sem_sinal | {string} const_string;
+	constante = {numero} sinal? const_inteiro | {string} const_string;
+	constante_sem_sinal = {numero} const_inteiro | {string} const_string;
 	
 	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
 	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
@@ -222,3 +224,8 @@ Productions
 	operador_aditivo = {soma_sub} sinal | {or} or;
 	operador_multiplicativo = {multiplicacao} multiplicacao | {divisao} divisao | {and} and | {div} div | {mod} mod;
 	
+Abstract Syntax Tree
+	program = [id]:P.string [ids]:P.string* bloco;
+	string = identificador;
+	bloco = numero_sem_sinal*;
+	numero_sem_sinal = const_inteiro;

@@ -2,15 +2,15 @@
 
 package br.com.ufs.pascalito.node;
 
+import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
 public final class AProgram extends PProgram
 {
-    private PCabecalhoPrograma _cabecalhoPrograma_;
-    private TPontoEVirgula _pontoEVirgula_;
+    private PString _id_;
+    private final LinkedList<PString> _ids_ = new LinkedList<PString>();
     private PBloco _bloco_;
-    private TPonto _ponto_;
 
     public AProgram()
     {
@@ -18,19 +18,16 @@ public final class AProgram extends PProgram
     }
 
     public AProgram(
-        @SuppressWarnings("hiding") PCabecalhoPrograma _cabecalhoPrograma_,
-        @SuppressWarnings("hiding") TPontoEVirgula _pontoEVirgula_,
-        @SuppressWarnings("hiding") PBloco _bloco_,
-        @SuppressWarnings("hiding") TPonto _ponto_)
+        @SuppressWarnings("hiding") PString _id_,
+        @SuppressWarnings("hiding") List<?> _ids_,
+        @SuppressWarnings("hiding") PBloco _bloco_)
     {
         // Constructor
-        setCabecalhoPrograma(_cabecalhoPrograma_);
+        setId(_id_);
 
-        setPontoEVirgula(_pontoEVirgula_);
+        setIds(_ids_);
 
         setBloco(_bloco_);
-
-        setPonto(_ponto_);
 
     }
 
@@ -38,10 +35,9 @@ public final class AProgram extends PProgram
     public Object clone()
     {
         return new AProgram(
-            cloneNode(this._cabecalhoPrograma_),
-            cloneNode(this._pontoEVirgula_),
-            cloneNode(this._bloco_),
-            cloneNode(this._ponto_));
+            cloneNode(this._id_),
+            cloneList(this._ids_),
+            cloneNode(this._bloco_));
     }
 
     @Override
@@ -50,16 +46,16 @@ public final class AProgram extends PProgram
         ((Analysis) sw).caseAProgram(this);
     }
 
-    public PCabecalhoPrograma getCabecalhoPrograma()
+    public PString getId()
     {
-        return this._cabecalhoPrograma_;
+        return this._id_;
     }
 
-    public void setCabecalhoPrograma(PCabecalhoPrograma node)
+    public void setId(PString node)
     {
-        if(this._cabecalhoPrograma_ != null)
+        if(this._id_ != null)
         {
-            this._cabecalhoPrograma_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -72,32 +68,33 @@ public final class AProgram extends PProgram
             node.parent(this);
         }
 
-        this._cabecalhoPrograma_ = node;
+        this._id_ = node;
     }
 
-    public TPontoEVirgula getPontoEVirgula()
+    public LinkedList<PString> getIds()
     {
-        return this._pontoEVirgula_;
+        return this._ids_;
     }
 
-    public void setPontoEVirgula(TPontoEVirgula node)
+    public void setIds(List<?> list)
     {
-        if(this._pontoEVirgula_ != null)
+        for(PString e : this._ids_)
         {
-            this._pontoEVirgula_.parent(null);
+            e.parent(null);
         }
+        this._ids_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PString e = (PString) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._ids_.add(e);
         }
-
-        this._pontoEVirgula_ = node;
     }
 
     public PBloco getBloco()
@@ -125,66 +122,33 @@ public final class AProgram extends PProgram
         this._bloco_ = node;
     }
 
-    public TPonto getPonto()
-    {
-        return this._ponto_;
-    }
-
-    public void setPonto(TPonto node)
-    {
-        if(this._ponto_ != null)
-        {
-            this._ponto_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._ponto_ = node;
-    }
-
     @Override
     public String toString()
     {
         return ""
-            + toString(this._cabecalhoPrograma_)
-            + toString(this._pontoEVirgula_)
-            + toString(this._bloco_)
-            + toString(this._ponto_);
+            + toString(this._id_)
+            + toString(this._ids_)
+            + toString(this._bloco_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._cabecalhoPrograma_ == child)
+        if(this._id_ == child)
         {
-            this._cabecalhoPrograma_ = null;
+            this._id_ = null;
             return;
         }
 
-        if(this._pontoEVirgula_ == child)
+        if(this._ids_.remove(child))
         {
-            this._pontoEVirgula_ = null;
             return;
         }
 
         if(this._bloco_ == child)
         {
             this._bloco_ = null;
-            return;
-        }
-
-        if(this._ponto_ == child)
-        {
-            this._ponto_ = null;
             return;
         }
 
@@ -195,27 +159,33 @@ public final class AProgram extends PProgram
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._cabecalhoPrograma_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setCabecalhoPrograma((PCabecalhoPrograma) newChild);
+            setId((PString) newChild);
             return;
         }
 
-        if(this._pontoEVirgula_ == oldChild)
+        for(ListIterator<PString> i = this._ids_.listIterator(); i.hasNext();)
         {
-            setPontoEVirgula((TPontoEVirgula) newChild);
-            return;
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PString) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         if(this._bloco_ == oldChild)
         {
             setBloco((PBloco) newChild);
-            return;
-        }
-
-        if(this._ponto_ == oldChild)
-        {
-            setPonto((TPonto) newChild);
             return;
         }
 

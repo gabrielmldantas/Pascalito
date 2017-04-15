@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class ASimplesSentenca extends PSentenca
+public final class AString extends PString
 {
-    private PDefinicaoSentencaSimples _definicaoSentencaSimples_;
+    private TIdentificador _identificador_;
 
-    public ASimplesSentenca()
+    public AString()
     {
         // Constructor
     }
 
-    public ASimplesSentenca(
-        @SuppressWarnings("hiding") PDefinicaoSentencaSimples _definicaoSentencaSimples_)
+    public AString(
+        @SuppressWarnings("hiding") TIdentificador _identificador_)
     {
         // Constructor
-        setDefinicaoSentencaSimples(_definicaoSentencaSimples_);
+        setIdentificador(_identificador_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new ASimplesSentenca(
-            cloneNode(this._definicaoSentencaSimples_));
+        return new AString(
+            cloneNode(this._identificador_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseASimplesSentenca(this);
+        ((Analysis) sw).caseAString(this);
     }
 
-    public PDefinicaoSentencaSimples getDefinicaoSentencaSimples()
+    public TIdentificador getIdentificador()
     {
-        return this._definicaoSentencaSimples_;
+        return this._identificador_;
     }
 
-    public void setDefinicaoSentencaSimples(PDefinicaoSentencaSimples node)
+    public void setIdentificador(TIdentificador node)
     {
-        if(this._definicaoSentencaSimples_ != null)
+        if(this._identificador_ != null)
         {
-            this._definicaoSentencaSimples_.parent(null);
+            this._identificador_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ASimplesSentenca extends PSentenca
             node.parent(this);
         }
 
-        this._definicaoSentencaSimples_ = node;
+        this._identificador_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._definicaoSentencaSimples_);
+            + toString(this._identificador_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._definicaoSentencaSimples_ == child)
+        if(this._identificador_ == child)
         {
-            this._definicaoSentencaSimples_ = null;
+            this._identificador_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ASimplesSentenca extends PSentenca
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._definicaoSentencaSimples_ == oldChild)
+        if(this._identificador_ == oldChild)
         {
-            setDefinicaoSentencaSimples((PDefinicaoSentencaSimples) newChild);
+            setIdentificador((TIdentificador) newChild);
             return;
         }
 

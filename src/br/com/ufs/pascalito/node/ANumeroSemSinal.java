@@ -5,46 +5,46 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AUnicoSequenciaSentencas extends PSequenciaSentencas
+public final class ANumeroSemSinal extends PNumeroSemSinal
 {
-    private PSentenca _sentenca_;
+    private TConstInteiro _constInteiro_;
 
-    public AUnicoSequenciaSentencas()
+    public ANumeroSemSinal()
     {
         // Constructor
     }
 
-    public AUnicoSequenciaSentencas(
-        @SuppressWarnings("hiding") PSentenca _sentenca_)
+    public ANumeroSemSinal(
+        @SuppressWarnings("hiding") TConstInteiro _constInteiro_)
     {
         // Constructor
-        setSentenca(_sentenca_);
+        setConstInteiro(_constInteiro_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AUnicoSequenciaSentencas(
-            cloneNode(this._sentenca_));
+        return new ANumeroSemSinal(
+            cloneNode(this._constInteiro_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAUnicoSequenciaSentencas(this);
+        ((Analysis) sw).caseANumeroSemSinal(this);
     }
 
-    public PSentenca getSentenca()
+    public TConstInteiro getConstInteiro()
     {
-        return this._sentenca_;
+        return this._constInteiro_;
     }
 
-    public void setSentenca(PSentenca node)
+    public void setConstInteiro(TConstInteiro node)
     {
-        if(this._sentenca_ != null)
+        if(this._constInteiro_ != null)
         {
-            this._sentenca_.parent(null);
+            this._constInteiro_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class AUnicoSequenciaSentencas extends PSequenciaSentencas
             node.parent(this);
         }
 
-        this._sentenca_ = node;
+        this._constInteiro_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._sentenca_);
+            + toString(this._constInteiro_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._sentenca_ == child)
+        if(this._constInteiro_ == child)
         {
-            this._sentenca_ = null;
+            this._constInteiro_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class AUnicoSequenciaSentencas extends PSequenciaSentencas
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._sentenca_ == oldChild)
+        if(this._constInteiro_ == oldChild)
         {
-            setSentenca((PSentenca) newChild);
+            setConstInteiro((TConstInteiro) newChild);
             return;
         }
 

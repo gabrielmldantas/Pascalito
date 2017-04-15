@@ -2,7 +2,7 @@
 
 package br.com.ufs.pascalito.node;
 
-public abstract class PTipoEnumerado extends Node
+public abstract class PString extends Node
 {
     // Empty body
 }

@@ -2,16 +2,13 @@
 
 package br.com.ufs.pascalito.node;
 
+import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
 public final class ABloco extends PBloco
 {
-    private PDeclaracaoLabels _declaracaoLabels_;
-    private PDeclaracaoTipos _declaracaoTipos_;
-    private PDeclaracoesVariaveis _declaracoesVariaveis_;
-    private PDeclaracoesProcFuncoes _declaracoesProcFuncoes_;
-    private PSentencaComposta _sentencaComposta_;
+    private final LinkedList<PNumeroSemSinal> _numeroSemSinal_ = new LinkedList<PNumeroSemSinal>();
 
     public ABloco()
     {
@@ -19,22 +16,10 @@ public final class ABloco extends PBloco
     }
 
     public ABloco(
-        @SuppressWarnings("hiding") PDeclaracaoLabels _declaracaoLabels_,
-        @SuppressWarnings("hiding") PDeclaracaoTipos _declaracaoTipos_,
-        @SuppressWarnings("hiding") PDeclaracoesVariaveis _declaracoesVariaveis_,
-        @SuppressWarnings("hiding") PDeclaracoesProcFuncoes _declaracoesProcFuncoes_,
-        @SuppressWarnings("hiding") PSentencaComposta _sentencaComposta_)
+        @SuppressWarnings("hiding") List<?> _numeroSemSinal_)
     {
         // Constructor
-        setDeclaracaoLabels(_declaracaoLabels_);
-
-        setDeclaracaoTipos(_declaracaoTipos_);
-
-        setDeclaracoesVariaveis(_declaracoesVariaveis_);
-
-        setDeclaracoesProcFuncoes(_declaracoesProcFuncoes_);
-
-        setSentencaComposta(_sentencaComposta_);
+        setNumeroSemSinal(_numeroSemSinal_);
 
     }
 
@@ -42,11 +27,7 @@ public final class ABloco extends PBloco
     public Object clone()
     {
         return new ABloco(
-            cloneNode(this._declaracaoLabels_),
-            cloneNode(this._declaracaoTipos_),
-            cloneNode(this._declaracoesVariaveis_),
-            cloneNode(this._declaracoesProcFuncoes_),
-            cloneNode(this._sentencaComposta_));
+            cloneList(this._numeroSemSinal_));
     }
 
     @Override
@@ -55,173 +36,45 @@ public final class ABloco extends PBloco
         ((Analysis) sw).caseABloco(this);
     }
 
-    public PDeclaracaoLabels getDeclaracaoLabels()
+    public LinkedList<PNumeroSemSinal> getNumeroSemSinal()
     {
-        return this._declaracaoLabels_;
+        return this._numeroSemSinal_;
     }
 
-    public void setDeclaracaoLabels(PDeclaracaoLabels node)
+    public void setNumeroSemSinal(List<?> list)
     {
-        if(this._declaracaoLabels_ != null)
+        for(PNumeroSemSinal e : this._numeroSemSinal_)
         {
-            this._declaracaoLabels_.parent(null);
+            e.parent(null);
         }
+        this._numeroSemSinal_.clear();
 
-        if(node != null)
+        for(Object obj_e : list)
         {
-            if(node.parent() != null)
+            PNumeroSemSinal e = (PNumeroSemSinal) obj_e;
+            if(e.parent() != null)
             {
-                node.parent().removeChild(node);
+                e.parent().removeChild(e);
             }
 
-            node.parent(this);
+            e.parent(this);
+            this._numeroSemSinal_.add(e);
         }
-
-        this._declaracaoLabels_ = node;
-    }
-
-    public PDeclaracaoTipos getDeclaracaoTipos()
-    {
-        return this._declaracaoTipos_;
-    }
-
-    public void setDeclaracaoTipos(PDeclaracaoTipos node)
-    {
-        if(this._declaracaoTipos_ != null)
-        {
-            this._declaracaoTipos_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._declaracaoTipos_ = node;
-    }
-
-    public PDeclaracoesVariaveis getDeclaracoesVariaveis()
-    {
-        return this._declaracoesVariaveis_;
-    }
-
-    public void setDeclaracoesVariaveis(PDeclaracoesVariaveis node)
-    {
-        if(this._declaracoesVariaveis_ != null)
-        {
-            this._declaracoesVariaveis_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._declaracoesVariaveis_ = node;
-    }
-
-    public PDeclaracoesProcFuncoes getDeclaracoesProcFuncoes()
-    {
-        return this._declaracoesProcFuncoes_;
-    }
-
-    public void setDeclaracoesProcFuncoes(PDeclaracoesProcFuncoes node)
-    {
-        if(this._declaracoesProcFuncoes_ != null)
-        {
-            this._declaracoesProcFuncoes_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._declaracoesProcFuncoes_ = node;
-    }
-
-    public PSentencaComposta getSentencaComposta()
-    {
-        return this._sentencaComposta_;
-    }
-
-    public void setSentencaComposta(PSentencaComposta node)
-    {
-        if(this._sentencaComposta_ != null)
-        {
-            this._sentencaComposta_.parent(null);
-        }
-
-        if(node != null)
-        {
-            if(node.parent() != null)
-            {
-                node.parent().removeChild(node);
-            }
-
-            node.parent(this);
-        }
-
-        this._sentencaComposta_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._declaracaoLabels_)
-            + toString(this._declaracaoTipos_)
-            + toString(this._declaracoesVariaveis_)
-            + toString(this._declaracoesProcFuncoes_)
-            + toString(this._sentencaComposta_);
+            + toString(this._numeroSemSinal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._declaracaoLabels_ == child)
+        if(this._numeroSemSinal_.remove(child))
         {
-            this._declaracaoLabels_ = null;
-            return;
-        }
-
-        if(this._declaracaoTipos_ == child)
-        {
-            this._declaracaoTipos_ = null;
-            return;
-        }
-
-        if(this._declaracoesVariaveis_ == child)
-        {
-            this._declaracoesVariaveis_ = null;
-            return;
-        }
-
-        if(this._declaracoesProcFuncoes_ == child)
-        {
-            this._declaracoesProcFuncoes_ = null;
-            return;
-        }
-
-        if(this._sentencaComposta_ == child)
-        {
-            this._sentencaComposta_ = null;
             return;
         }
 
@@ -232,34 +85,22 @@ public final class ABloco extends PBloco
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._declaracaoLabels_ == oldChild)
+        for(ListIterator<PNumeroSemSinal> i = this._numeroSemSinal_.listIterator(); i.hasNext();)
         {
-            setDeclaracaoLabels((PDeclaracaoLabels) newChild);
-            return;
-        }
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PNumeroSemSinal) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
 
-        if(this._declaracaoTipos_ == oldChild)
-        {
-            setDeclaracaoTipos((PDeclaracaoTipos) newChild);
-            return;
-        }
-
-        if(this._declaracoesVariaveis_ == oldChild)
-        {
-            setDeclaracoesVariaveis((PDeclaracoesVariaveis) newChild);
-            return;
-        }
-
-        if(this._declaracoesProcFuncoes_ == oldChild)
-        {
-            setDeclaracoesProcFuncoes((PDeclaracoesProcFuncoes) newChild);
-            return;
-        }
-
-        if(this._sentencaComposta_ == oldChild)
-        {
-            setSentencaComposta((PSentencaComposta) newChild);
-            return;
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
         }
 
         throw new RuntimeException("Not a child.");
