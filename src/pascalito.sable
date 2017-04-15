@@ -221,7 +221,7 @@ Productions
 	spec_param_array = {valor} spec_param_array_valor | {variavel} spec_param_array_variavel;
 	spec_param_array_valor = identificadores dois_pontos schema_array;
 	spec_param_array_variavel = var identificadores dois_pontos schema_array;
-	schema_array = array abre_colchete spec_tipos_indices fecha_colchete of abre_parenteses identificador_schema_array fecha_parenteses;
+	schema_array = array abre_colchete spec_tipos_indices fecha_colchete of identificador_schema_array;
 	spec_tipos_indices = {unico} spec_tipo_indice | {multiplo} spec_tipos_indices ponto_e_virgula spec_tipo_indice;
 	spec_tipo_indice = [inicio]:identificador ponto_ponto [fim]:identificador dois_pontos identificador_tipo_ordinal;
 	identificador_schema_array = {identificador} identificador | {array} schema_array;
