@@ -191,6 +191,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        {
+            List<PDeclaracaoProcOuFuncao> copy = new ArrayList<PDeclaracaoProcOuFuncao>(node.getDeclaracaoProcOuFuncao());
+            for(PDeclaracaoProcOuFuncao e : copy)
+            {
+                e.apply(this);
+            }
+        }
         outABloco(node);
     }
 
@@ -429,6 +436,48 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outASubrangeTipoIdOuOrdinal(node);
     }
 
+    public void inAIdTipoIdOuPrimitivo(AIdTipoIdOuPrimitivo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdTipoIdOuPrimitivo(AIdTipoIdOuPrimitivo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdTipoIdOuPrimitivo(AIdTipoIdOuPrimitivo node)
+    {
+        inAIdTipoIdOuPrimitivo(node);
+        if(node.getTipoIdentificador() != null)
+        {
+            node.getTipoIdentificador().apply(this);
+        }
+        outAIdTipoIdOuPrimitivo(node);
+    }
+
+    public void inAPrimitivoTipoIdOuPrimitivo(APrimitivoTipoIdOuPrimitivo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAPrimitivoTipoIdOuPrimitivo(APrimitivoTipoIdOuPrimitivo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAPrimitivoTipoIdOuPrimitivo(APrimitivoTipoIdOuPrimitivo node)
+    {
+        inAPrimitivoTipoIdOuPrimitivo(node);
+        if(node.getTipoPrimitivo() != null)
+        {
+            node.getTipoPrimitivo().apply(this);
+        }
+        outAPrimitivoTipoIdOuPrimitivo(node);
+    }
+
     public void inATipoIdentificador(ATipoIdentificador node)
     {
         defaultIn(node);
@@ -595,5 +644,167 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getDenotadorTipo().apply(this);
         }
         outADeclaracaoVariavel(node);
+    }
+
+    public void inAProcedureDeclaracaoProcOuFuncao(AProcedureDeclaracaoProcOuFuncao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAProcedureDeclaracaoProcOuFuncao(AProcedureDeclaracaoProcOuFuncao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAProcedureDeclaracaoProcOuFuncao(AProcedureDeclaracaoProcOuFuncao node)
+    {
+        inAProcedureDeclaracaoProcOuFuncao(node);
+        if(node.getDeclaracaoProcedure() != null)
+        {
+            node.getDeclaracaoProcedure().apply(this);
+        }
+        outAProcedureDeclaracaoProcOuFuncao(node);
+    }
+
+    public void inAFuncaoDeclaracaoProcOuFuncao(AFuncaoDeclaracaoProcOuFuncao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAFuncaoDeclaracaoProcOuFuncao(AFuncaoDeclaracaoProcOuFuncao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAFuncaoDeclaracaoProcOuFuncao(AFuncaoDeclaracaoProcOuFuncao node)
+    {
+        inAFuncaoDeclaracaoProcOuFuncao(node);
+        if(node.getDeclaracaoFuncao() != null)
+        {
+            node.getDeclaracaoFuncao().apply(this);
+        }
+        outAFuncaoDeclaracaoProcOuFuncao(node);
+    }
+
+    public void inADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        inADeclaracaoProcedure(node);
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        {
+            List<PParametroFormal> copy = new ArrayList<PParametroFormal>(node.getParametroFormal());
+            for(PParametroFormal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getBloco() != null)
+        {
+            node.getBloco().apply(this);
+        }
+        outADeclaracaoProcedure(node);
+    }
+
+    public void inAVarParametroFormal(AVarParametroFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVarParametroFormal(AVarParametroFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVarParametroFormal(AVarParametroFormal node)
+    {
+        inAVarParametroFormal(node);
+        {
+            List<PVarFormal> copy = new ArrayList<PVarFormal>(node.getVarFormal());
+            for(PVarFormal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outAVarParametroFormal(node);
+    }
+
+    public void inAVarFormal(AVarFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAVarFormal(AVarFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAVarFormal(AVarFormal node)
+    {
+        inAVarFormal(node);
+        {
+            List<PString> copy = new ArrayList<PString>(node.getString());
+            for(PString e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getTipoIdOuPrimitivo() != null)
+        {
+            node.getTipoIdOuPrimitivo().apply(this);
+        }
+        outAVarFormal(node);
+    }
+
+    public void inADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADeclaracaoFuncao(ADeclaracaoFuncao node)
+    {
+        inADeclaracaoFuncao(node);
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        {
+            List<PParametroFormal> copy = new ArrayList<PParametroFormal>(node.getParametroFormal());
+            for(PParametroFormal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getTipoIdOuPrimitivo() != null)
+        {
+            node.getTipoIdOuPrimitivo().apply(this);
+        }
+        if(node.getBloco() != null)
+        {
+            node.getBloco().apply(this);
+        }
+        outADeclaracaoFuncao(node);
     }
 }

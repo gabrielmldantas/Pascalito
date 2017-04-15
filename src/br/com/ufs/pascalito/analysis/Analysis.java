@@ -29,6 +29,8 @@ public interface Analysis extends Switch
     void caseAIdTipoIdOuOrdinal(AIdTipoIdOuOrdinal node);
     void caseAEnumeradoTipoIdOuOrdinal(AEnumeradoTipoIdOuOrdinal node);
     void caseASubrangeTipoIdOuOrdinal(ASubrangeTipoIdOuOrdinal node);
+    void caseAIdTipoIdOuPrimitivo(AIdTipoIdOuPrimitivo node);
+    void caseAPrimitivoTipoIdOuPrimitivo(APrimitivoTipoIdOuPrimitivo node);
     void caseATipoIdentificador(ATipoIdentificador node);
     void caseATipoEnumerado(ATipoEnumerado node);
     void caseATipoSubrange(ATipoSubrange node);
@@ -36,6 +38,12 @@ public interface Analysis extends Switch
     void caseAMaisSinal(AMaisSinal node);
     void caseAMenosSinal(AMenosSinal node);
     void caseADeclaracaoVariavel(ADeclaracaoVariavel node);
+    void caseAProcedureDeclaracaoProcOuFuncao(AProcedureDeclaracaoProcOuFuncao node);
+    void caseAFuncaoDeclaracaoProcOuFuncao(AFuncaoDeclaracaoProcOuFuncao node);
+    void caseADeclaracaoProcedure(ADeclaracaoProcedure node);
+    void caseAVarParametroFormal(AVarParametroFormal node);
+    void caseAVarFormal(AVarFormal node);
+    void caseADeclaracaoFuncao(ADeclaracaoFuncao node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

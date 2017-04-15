@@ -127,7 +127,7 @@ Productions
 		| {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses ponto_e_virgula bloco ponto {-> New program(New string(identificador), [identificadores.string], bloco) };
 	
 	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta 
-		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo], [declaracoes_variaveis.declaracao_variavel]) };
+		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo], [declaracoes_variaveis.declaracao_variavel], [declaracoes_proc_funcoes.declaracao_proc_ou_funcao]) };
 	
 	identificadores {-> P.string*} = {unico} identificador {-> [New string(identificador)]} 
 		| {multiplo} identificadores virgula identificador {-> [identificadores.string, New string(identificador)]};
@@ -136,7 +136,8 @@ Productions
 		| {string} string {-> New tipo_primitivo.string(T.string)} 
 		| {boolean} boolean {-> New tipo_primitivo.boolean(boolean)};
 	
-	identificador_tipo = {identificador} identificador | {ordinal} identificador_tipo_ordinal;
+	identificador_tipo {-> tipo_id_ou_primitivo} = {identificador} identificador {-> New tipo_id_ou_primitivo.id(New tipo_identificador(New string(identificador))) } 
+		| {ordinal} identificador_tipo_ordinal {-> New tipo_id_ou_primitivo.primitivo(identificador_tipo_ordinal.tipo_primitivo) };
 	
 	declaracao_labels {-> P.numero_sem_sinal*} = T.label labels ponto_e_virgula {-> [labels.numero_sem_sinal]}
 		| {empty} {-> []};
@@ -192,21 +193,30 @@ Productions
 	
 	declaracao_variavel {-> declaracao_variavel} = identificadores dois_pontos denotador_tipo {-> New declaracao_variavel([identificadores.string], denotador_tipo) };
 	
-	declaracoes_proc_funcoes = declaracao_proc_funcoes | {empty};
-	declaracao_proc_funcoes = {unico} declaracao_proc_funcao | {multiplo} declaracao_proc_funcoes declaracao_proc_funcao;
-	declaracao_proc_funcao = {procedure} declaracao_procedure ponto_e_virgula | {funcao} declaracao_funcao ponto_e_virgula;
-	declaracao_procedure = cabecalho_procedure ponto_e_virgula bloco;
-	declaracao_funcao = cabecalho_funcao ponto_e_virgula bloco;
+	declaracoes_proc_funcoes {-> declaracao_proc_ou_funcao*} = declaracao_proc_funcoes {-> [declaracao_proc_funcoes.declaracao_proc_ou_funcao]} | {empty} {-> []};
 	
-	cabecalho_procedure = procedure identificador parametros_formais;
-	cabecalho_funcao = function identificador parametros_formais dois_pontos tipo_resultado;
+	declaracao_proc_funcoes {-> declaracao_proc_ou_funcao*} = {unico} declaracao_proc_funcao {-> [declaracao_proc_funcao.declaracao_proc_ou_funcao] }
+		| {multiplo} declaracao_proc_funcoes declaracao_proc_funcao {-> [declaracao_proc_funcao.declaracao_proc_ou_funcao, declaracao_proc_funcoes.declaracao_proc_ou_funcao] };
+	
+	declaracao_proc_funcao {-> declaracao_proc_ou_funcao} = {procedure} declaracao_procedure ponto_e_virgula {-> New declaracao_proc_ou_funcao.procedure(declaracao_procedure) } 
+		| {funcao} declaracao_funcao ponto_e_virgula {-> New declaracao_proc_ou_funcao.funcao(declaracao_funcao) };
+	
+	declaracao_procedure {-> P.declaracao_procedure} = procedure identificador parametros_formais ponto_e_virgula bloco {-> New declaracao_procedure(New string(identificador), [parametros_formais.parametro_formal], bloco)};
+	
+	declaracao_funcao {-> P.declaracao_funcao} = function identificador parametros_formais dois_pontos tipo_resultado ponto_e_virgula bloco {-> New declaracao_funcao(New string(identificador), [parametros_formais.parametro_formal], tipo_resultado.tipo_id_ou_primitivo, bloco)};
+	
+	parametros_formais {-> parametro_formal*} = abre_parenteses secao_parametros_formais fecha_parenteses {-> [secao_parametros_formais.parametro_formal]} 
+		| {empty} {-> []};
 		
-	parametros_formais = abre_parenteses secao_parametros_formais fecha_parenteses | {empty};
-	secao_parametros_formais = {unico} secao_parametro_formal | {multiplo} secao_parametros_formais ponto_e_virgula secao_parametro_formal;
-	secao_parametro_formal = {valor} spec_param_valor | {variavel} spec_param_variavel | {array} spec_param_array;
+	secao_parametros_formais {-> parametro_formal*} = {unico} secao_parametro_formal {-> [secao_parametro_formal.parametro_formal]} 
+		| {multiplo} secao_parametros_formais ponto_e_virgula secao_parametro_formal {-> [secao_parametro_formal.parametro_formal, secao_parametros_formais.parametro_formal]};
+	
+	secao_parametro_formal {-> parametro_formal} = {variavel} spec_param_variavel {-> New parametro_formal.var([spec_param_variavel.var_formal]) };
 	
 	spec_param_valor = identificadores dois_pontos identificador_tipo;
-	spec_param_variavel = var identificadores dois_pontos identificador_tipo;
+	
+	spec_param_variavel {-> var_formal} = var identificadores dois_pontos identificador_tipo {-> New var_formal([identificadores.string], identificador_tipo.tipo_id_ou_primitivo)};
+	
 	spec_param_array = {valor} spec_param_array_valor | {variavel} spec_param_array_variavel;
 	spec_param_array_valor = identificadores dois_pontos schema_array;
 	spec_param_array_variavel = var identificadores dois_pontos schema_array;
@@ -215,7 +225,8 @@ Productions
 	spec_tipo_indice = [inicio]:identificador ponto_ponto [fim]:identificador dois_pontos identificador_tipo_ordinal;
 	identificador_schema_array = {identificador} identificador | {array} schema_array;
 	
-	tipo_resultado = {existente} identificador | {ordinal} identificador_tipo_ordinal;
+	tipo_resultado {-> tipo_id_ou_primitivo} = {existente} identificador {-> New tipo_id_ou_primitivo.id(New tipo_identificador(New string(identificador)))}
+		| {ordinal} identificador_tipo_ordinal {-> New tipo_id_ou_primitivo.primitivo(identificador_tipo_ordinal.tipo_primitivo)};
 	
 	sentenca_composta = begin sequencia_sentencas end;
 	sequencia_sentencas = {unico} sentenca | {multiplo} sequencia_sentencas ponto_e_virgula sentenca;
@@ -263,17 +274,25 @@ Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
 	string = identificador;
 	constante = {inteiro} P.sinal? const_inteiro | {string} const_string | {boolean} const_booleana;
-	bloco = numero_sem_sinal* definicao_tipo* declaracao_variavel*;
+	bloco = numero_sem_sinal* definicao_tipo* declaracao_variavel* declaracao_proc_ou_funcao*;
 	numero_sem_sinal = const_inteiro;
 	
 	definicao_tipo = P.string denotador_tipo;
 	denotador_tipo = {primitivo} tipo_primitivo | {id_ou_ordinal} tipo_id_ou_ordinal | {array} tipo_array;
 	tipo_primitivo = {integer} integer | {string} T.string | {boolean} boolean;
 	tipo_id_ou_ordinal = {id} tipo_identificador | {enumerado} tipo_enumerado | {subrange} tipo_subrange;
+	tipo_id_ou_primitivo = {id} tipo_identificador | {primitivo} tipo_primitivo;
 	tipo_identificador = P.string;
 	tipo_enumerado = P.string*;
 	tipo_subrange = [inicio]:constante [fim]:constante;
 	tipo_array = tipo_id_ou_ordinal+ denotador_tipo;
 	sinal = {mais} soma | {menos} subtracao;
 	
-	declaracao_variavel = P.string* denotador_tipo;	
+	declaracao_variavel = P.string* denotador_tipo;
+	
+	declaracao_proc_ou_funcao = {procedure} declaracao_procedure | {funcao} declaracao_funcao;
+	declaracao_procedure = P.string parametro_formal* bloco;
+	parametro_formal = {var} var_formal*;
+	var_formal = P.string* tipo_id_ou_primitivo;
+	
+	declaracao_funcao = P.string parametro_formal* tipo_id_ou_primitivo bloco;

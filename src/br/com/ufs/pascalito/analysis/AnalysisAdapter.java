@@ -177,6 +177,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAIdTipoIdOuPrimitivo(AIdTipoIdOuPrimitivo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrimitivoTipoIdOuPrimitivo(APrimitivoTipoIdOuPrimitivo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseATipoIdentificador(ATipoIdentificador node)
     {
         defaultCase(node);
@@ -214,6 +226,42 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseADeclaracaoVariavel(ADeclaracaoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProcedureDeclaracaoProcOuFuncao(AProcedureDeclaracaoProcOuFuncao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFuncaoDeclaracaoProcOuFuncao(AFuncaoDeclaracaoProcOuFuncao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoProcedure(ADeclaracaoProcedure node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarParametroFormal(AVarParametroFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarFormal(AVarFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADeclaracaoFuncao(ADeclaracaoFuncao node)
     {
         defaultCase(node);
     }

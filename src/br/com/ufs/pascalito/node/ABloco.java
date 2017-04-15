@@ -11,6 +11,7 @@ public final class ABloco extends PBloco
     private final LinkedList<PNumeroSemSinal> _numeroSemSinal_ = new LinkedList<PNumeroSemSinal>();
     private final LinkedList<PDefinicaoTipo> _definicaoTipo_ = new LinkedList<PDefinicaoTipo>();
     private final LinkedList<PDeclaracaoVariavel> _declaracaoVariavel_ = new LinkedList<PDeclaracaoVariavel>();
+    private final LinkedList<PDeclaracaoProcOuFuncao> _declaracaoProcOuFuncao_ = new LinkedList<PDeclaracaoProcOuFuncao>();
 
     public ABloco()
     {
@@ -20,7 +21,8 @@ public final class ABloco extends PBloco
     public ABloco(
         @SuppressWarnings("hiding") List<?> _numeroSemSinal_,
         @SuppressWarnings("hiding") List<?> _definicaoTipo_,
-        @SuppressWarnings("hiding") List<?> _declaracaoVariavel_)
+        @SuppressWarnings("hiding") List<?> _declaracaoVariavel_,
+        @SuppressWarnings("hiding") List<?> _declaracaoProcOuFuncao_)
     {
         // Constructor
         setNumeroSemSinal(_numeroSemSinal_);
@@ -28,6 +30,8 @@ public final class ABloco extends PBloco
         setDefinicaoTipo(_definicaoTipo_);
 
         setDeclaracaoVariavel(_declaracaoVariavel_);
+
+        setDeclaracaoProcOuFuncao(_declaracaoProcOuFuncao_);
 
     }
 
@@ -37,7 +41,8 @@ public final class ABloco extends PBloco
         return new ABloco(
             cloneList(this._numeroSemSinal_),
             cloneList(this._definicaoTipo_),
-            cloneList(this._declaracaoVariavel_));
+            cloneList(this._declaracaoVariavel_),
+            cloneList(this._declaracaoProcOuFuncao_));
     }
 
     @Override
@@ -124,13 +129,40 @@ public final class ABloco extends PBloco
         }
     }
 
+    public LinkedList<PDeclaracaoProcOuFuncao> getDeclaracaoProcOuFuncao()
+    {
+        return this._declaracaoProcOuFuncao_;
+    }
+
+    public void setDeclaracaoProcOuFuncao(List<?> list)
+    {
+        for(PDeclaracaoProcOuFuncao e : this._declaracaoProcOuFuncao_)
+        {
+            e.parent(null);
+        }
+        this._declaracaoProcOuFuncao_.clear();
+
+        for(Object obj_e : list)
+        {
+            PDeclaracaoProcOuFuncao e = (PDeclaracaoProcOuFuncao) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._declaracaoProcOuFuncao_.add(e);
+        }
+    }
+
     @Override
     public String toString()
     {
         return ""
             + toString(this._numeroSemSinal_)
             + toString(this._definicaoTipo_)
-            + toString(this._declaracaoVariavel_);
+            + toString(this._declaracaoVariavel_)
+            + toString(this._declaracaoProcOuFuncao_);
     }
 
     @Override
@@ -148,6 +180,11 @@ public final class ABloco extends PBloco
         }
 
         if(this._declaracaoVariavel_.remove(child))
+        {
+            return;
+        }
+
+        if(this._declaracaoProcOuFuncao_.remove(child))
         {
             return;
         }
@@ -202,6 +239,24 @@ public final class ABloco extends PBloco
                 if(newChild != null)
                 {
                     i.set((PDeclaracaoVariavel) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        for(ListIterator<PDeclaracaoProcOuFuncao> i = this._declaracaoProcOuFuncao_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PDeclaracaoProcOuFuncao) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;
