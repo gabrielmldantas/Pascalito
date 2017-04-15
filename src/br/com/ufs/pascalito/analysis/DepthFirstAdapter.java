@@ -720,44 +720,68 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outADeclaracaoProcedure(node);
     }
 
-    public void inAVarParametroFormal(AVarParametroFormal node)
+    public void inAValorParametroFormal(AValorParametroFormal node)
     {
         defaultIn(node);
     }
 
-    public void outAVarParametroFormal(AVarParametroFormal node)
+    public void outAValorParametroFormal(AValorParametroFormal node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAVarParametroFormal(AVarParametroFormal node)
+    public void caseAValorParametroFormal(AValorParametroFormal node)
     {
-        inAVarParametroFormal(node);
+        inAValorParametroFormal(node);
         {
-            List<PVarFormal> copy = new ArrayList<PVarFormal>(node.getVarFormal());
-            for(PVarFormal e : copy)
+            List<PValorFormal> copy = new ArrayList<PValorFormal>(node.getValorFormal());
+            for(PValorFormal e : copy)
             {
                 e.apply(this);
             }
         }
-        outAVarParametroFormal(node);
+        outAValorParametroFormal(node);
     }
 
-    public void inAVarFormal(AVarFormal node)
+    public void inARefParametroFormal(ARefParametroFormal node)
     {
         defaultIn(node);
     }
 
-    public void outAVarFormal(AVarFormal node)
+    public void outARefParametroFormal(ARefParametroFormal node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAVarFormal(AVarFormal node)
+    public void caseARefParametroFormal(ARefParametroFormal node)
     {
-        inAVarFormal(node);
+        inARefParametroFormal(node);
+        {
+            List<PRefFormal> copy = new ArrayList<PRefFormal>(node.getRefFormal());
+            for(PRefFormal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outARefParametroFormal(node);
+    }
+
+    public void inAValorFormal(AValorFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAValorFormal(AValorFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAValorFormal(AValorFormal node)
+    {
+        inAValorFormal(node);
         {
             List<PString> copy = new ArrayList<PString>(node.getString());
             for(PString e : copy)
@@ -769,7 +793,35 @@ public class DepthFirstAdapter extends AnalysisAdapter
         {
             node.getTipoIdOuPrimitivo().apply(this);
         }
-        outAVarFormal(node);
+        outAValorFormal(node);
+    }
+
+    public void inARefFormal(ARefFormal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outARefFormal(ARefFormal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseARefFormal(ARefFormal node)
+    {
+        inARefFormal(node);
+        {
+            List<PString> copy = new ArrayList<PString>(node.getString());
+            for(PString e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getTipoIdOuPrimitivo() != null)
+        {
+            node.getTipoIdOuPrimitivo().apply(this);
+        }
+        outARefFormal(node);
     }
 
     public void inADeclaracaoFuncao(ADeclaracaoFuncao node)

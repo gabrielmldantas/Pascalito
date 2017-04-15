@@ -6,59 +6,59 @@ import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVarParametroFormal extends PParametroFormal
+public final class ARefParametroFormal extends PParametroFormal
 {
-    private final LinkedList<PVarFormal> _varFormal_ = new LinkedList<PVarFormal>();
+    private final LinkedList<PRefFormal> _refFormal_ = new LinkedList<PRefFormal>();
 
-    public AVarParametroFormal()
+    public ARefParametroFormal()
     {
         // Constructor
     }
 
-    public AVarParametroFormal(
-        @SuppressWarnings("hiding") List<?> _varFormal_)
+    public ARefParametroFormal(
+        @SuppressWarnings("hiding") List<?> _refFormal_)
     {
         // Constructor
-        setVarFormal(_varFormal_);
+        setRefFormal(_refFormal_);
 
     }
 
     @Override
     public Object clone()
     {
-        return new AVarParametroFormal(
-            cloneList(this._varFormal_));
+        return new ARefParametroFormal(
+            cloneList(this._refFormal_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVarParametroFormal(this);
+        ((Analysis) sw).caseARefParametroFormal(this);
     }
 
-    public LinkedList<PVarFormal> getVarFormal()
+    public LinkedList<PRefFormal> getRefFormal()
     {
-        return this._varFormal_;
+        return this._refFormal_;
     }
 
-    public void setVarFormal(List<?> list)
+    public void setRefFormal(List<?> list)
     {
-        for(PVarFormal e : this._varFormal_)
+        for(PRefFormal e : this._refFormal_)
         {
             e.parent(null);
         }
-        this._varFormal_.clear();
+        this._refFormal_.clear();
 
         for(Object obj_e : list)
         {
-            PVarFormal e = (PVarFormal) obj_e;
+            PRefFormal e = (PRefFormal) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._varFormal_.add(e);
+            this._refFormal_.add(e);
         }
     }
 
@@ -66,14 +66,14 @@ public final class AVarParametroFormal extends PParametroFormal
     public String toString()
     {
         return ""
-            + toString(this._varFormal_);
+            + toString(this._refFormal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._varFormal_.remove(child))
+        if(this._refFormal_.remove(child))
         {
             return;
         }
@@ -85,13 +85,13 @@ public final class AVarParametroFormal extends PParametroFormal
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        for(ListIterator<PVarFormal> i = this._varFormal_.listIterator(); i.hasNext();)
+        for(ListIterator<PRefFormal> i = this._refFormal_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PVarFormal) newChild);
+                    i.set((PRefFormal) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

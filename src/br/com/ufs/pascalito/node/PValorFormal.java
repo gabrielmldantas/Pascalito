@@ -2,7 +2,7 @@
 
 package br.com.ufs.pascalito.node;
 
-public abstract class PVarFormal extends Node
+public abstract class PValorFormal extends Node
 {
     // Empty body
 }

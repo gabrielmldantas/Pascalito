@@ -249,13 +249,25 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAVarParametroFormal(AVarParametroFormal node)
+    public void caseAValorParametroFormal(AValorParametroFormal node)
     {
         defaultCase(node);
     }
 
     @Override
-    public void caseAVarFormal(AVarFormal node)
+    public void caseARefParametroFormal(ARefParametroFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAValorFormal(AValorFormal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseARefFormal(ARefFormal node)
     {
         defaultCase(node);
     }

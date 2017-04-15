@@ -211,11 +211,12 @@ Productions
 	secao_parametros_formais {-> parametro_formal*} = {unico} secao_parametro_formal {-> [secao_parametro_formal.parametro_formal]} 
 		| {multiplo} secao_parametros_formais ponto_e_virgula secao_parametro_formal {-> [secao_parametro_formal.parametro_formal, secao_parametros_formais.parametro_formal]};
 	
-	secao_parametro_formal {-> parametro_formal} = {variavel} spec_param_variavel {-> New parametro_formal.var([spec_param_variavel.var_formal]) };
+	secao_parametro_formal {-> parametro_formal} = {ref} spec_param_ref {-> New parametro_formal.ref([spec_param_ref.ref_formal]) }
+		| {valor} spec_param_valor {-> New parametro_formal.valor([spec_param_valor.valor_formal])};
 	
-	spec_param_valor = identificadores dois_pontos identificador_tipo;
+	spec_param_valor {-> valor_formal} = identificadores dois_pontos identificador_tipo {-> New valor_formal([identificadores.string], identificador_tipo.tipo_id_ou_primitivo)};
 	
-	spec_param_variavel {-> var_formal} = var identificadores dois_pontos identificador_tipo {-> New var_formal([identificadores.string], identificador_tipo.tipo_id_ou_primitivo)};
+	spec_param_ref {-> ref_formal} = var identificadores dois_pontos identificador_tipo {-> New ref_formal([identificadores.string], identificador_tipo.tipo_id_ou_primitivo)};
 	
 	spec_param_array = {valor} spec_param_array_valor | {variavel} spec_param_array_variavel;
 	spec_param_array_valor = identificadores dois_pontos schema_array;
@@ -292,7 +293,8 @@ Abstract Syntax Tree
 	
 	declaracao_proc_ou_funcao = {procedure} declaracao_procedure | {funcao} declaracao_funcao;
 	declaracao_procedure = P.string parametro_formal* bloco;
-	parametro_formal = {var} var_formal*;
-	var_formal = P.string* tipo_id_ou_primitivo;
+	parametro_formal = {valor} valor_formal* | {ref} ref_formal*;
+	valor_formal = P.string* tipo_id_ou_primitivo;
+	ref_formal = P.string* tipo_id_ou_primitivo;
 	
 	declaracao_funcao = P.string parametro_formal* tipo_id_ou_primitivo bloco;

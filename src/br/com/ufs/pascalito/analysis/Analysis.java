@@ -41,8 +41,10 @@ public interface Analysis extends Switch
     void caseAProcedureDeclaracaoProcOuFuncao(AProcedureDeclaracaoProcOuFuncao node);
     void caseAFuncaoDeclaracaoProcOuFuncao(AFuncaoDeclaracaoProcOuFuncao node);
     void caseADeclaracaoProcedure(ADeclaracaoProcedure node);
-    void caseAVarParametroFormal(AVarParametroFormal node);
-    void caseAVarFormal(AVarFormal node);
+    void caseAValorParametroFormal(AValorParametroFormal node);
+    void caseARefParametroFormal(ARefParametroFormal node);
+    void caseAValorFormal(AValorFormal node);
+    void caseARefFormal(ARefFormal node);
     void caseADeclaracaoFuncao(ADeclaracaoFuncao node);
 
     void caseTInteger(TInteger node);

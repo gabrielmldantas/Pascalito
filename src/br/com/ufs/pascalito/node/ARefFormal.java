@@ -6,17 +6,17 @@ import java.util.*;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AVarFormal extends PVarFormal
+public final class ARefFormal extends PRefFormal
 {
     private final LinkedList<PString> _string_ = new LinkedList<PString>();
     private PTipoIdOuPrimitivo _tipoIdOuPrimitivo_;
 
-    public AVarFormal()
+    public ARefFormal()
     {
         // Constructor
     }
 
-    public AVarFormal(
+    public ARefFormal(
         @SuppressWarnings("hiding") List<?> _string_,
         @SuppressWarnings("hiding") PTipoIdOuPrimitivo _tipoIdOuPrimitivo_)
     {
@@ -30,7 +30,7 @@ public final class AVarFormal extends PVarFormal
     @Override
     public Object clone()
     {
-        return new AVarFormal(
+        return new ARefFormal(
             cloneList(this._string_),
             cloneNode(this._tipoIdOuPrimitivo_));
     }
@@ -38,7 +38,7 @@ public final class AVarFormal extends PVarFormal
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAVarFormal(this);
+        ((Analysis) sw).caseARefFormal(this);
     }
 
     public LinkedList<PString> getString()
