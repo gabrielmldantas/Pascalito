@@ -16,6 +16,7 @@ public interface Analysis extends Switch
     void caseAString(AString node);
     void caseAInteiroConstante(AInteiroConstante node);
     void caseAStringConstante(AStringConstante node);
+    void caseABooleanConstante(ABooleanConstante node);
     void caseABloco(ABloco node);
     void caseANumeroSemSinal(ANumeroSemSinal node);
     void caseADefinicaoTipo(ADefinicaoTipo node);

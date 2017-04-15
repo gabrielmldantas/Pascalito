@@ -99,6 +99,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseABooleanConstante(ABooleanConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseABloco(ABloco node)
     {
         defaultCase(node);

@@ -173,10 +173,16 @@ Productions
 	
 	tipo_subrange {-> tipo_subrange} = [inicio]:constante ponto_ponto [fim]:constante {-> New tipo_subrange(inicio, fim) };
 	
-	sinal {-> sinal} = {soma} soma {-> New sinal.mais(soma)} | {subtracao} subtracao {-> New sinal.menos(subtracao)};
+	sinal {-> sinal} = {soma} soma {-> New sinal.mais(soma)} 
+		| {subtracao} subtracao {-> New sinal.menos(subtracao)};
 	
-	constante {-> constante} = {numero} sinal? const_inteiro {-> New constante.inteiro(sinal, const_inteiro)} | {string} const_string {-> New constante.string(const_string) };
-	constante_sem_sinal = {numero} const_inteiro | {string} const_string;
+	constante {-> constante} = {numero} sinal? const_inteiro {-> New constante.inteiro(sinal, const_inteiro)} 
+		| {string} const_string {-> New constante.string(const_string) }
+		| {boolean} const_booleana {-> New constante.boolean(const_booleana) };
+	
+	constante_sem_sinal {-> constante} = {numero} const_inteiro {-> New constante.inteiro(Null, const_inteiro) } 
+		| {string} const_string {-> New constante.string(const_string) }
+		| {boolean} const_booleana {-> New constante.boolean(const_booleana) };
 	
 	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
 	declaracao_variaveis = {unico} declaracao_variavel | {multiplo} declaracao_variaveis ponto_e_virgula declaracao_variavel;
@@ -252,7 +258,7 @@ Productions
 Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
 	string = identificador;
-	constante = {inteiro} P.sinal? const_inteiro | {string} const_string;
+	constante = {inteiro} P.sinal? const_inteiro | {string} const_string | {boolean} const_booleana;
 	bloco = numero_sem_sinal* definicao_tipo*;
 	numero_sem_sinal = const_inteiro;
 	

@@ -136,6 +136,27 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAStringConstante(node);
     }
 
+    public void inABooleanConstante(ABooleanConstante node)
+    {
+        defaultIn(node);
+    }
+
+    public void outABooleanConstante(ABooleanConstante node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseABooleanConstante(ABooleanConstante node)
+    {
+        inABooleanConstante(node);
+        if(node.getConstBooleana() != null)
+        {
+            node.getConstBooleana().apply(this);
+        }
+        outABooleanConstante(node);
+    }
+
     public void inABloco(ABloco node)
     {
         defaultIn(node);
