@@ -129,6 +129,12 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
     {
         defaultCase(node);
@@ -178,6 +184,12 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseATipoSubrange(ATipoSubrange node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoArray(ATipoArray node)
     {
         defaultCase(node);
     }

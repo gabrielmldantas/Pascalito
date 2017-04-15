@@ -21,6 +21,7 @@ public interface Analysis extends Switch
     void caseADefinicaoTipo(ADefinicaoTipo node);
     void caseAPrimitivoDenotadorTipo(APrimitivoDenotadorTipo node);
     void caseAIdOuOrdinalDenotadorTipo(AIdOuOrdinalDenotadorTipo node);
+    void caseAArrayDenotadorTipo(AArrayDenotadorTipo node);
     void caseAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node);
     void caseAStringTipoPrimitivo(AStringTipoPrimitivo node);
     void caseABooleanTipoPrimitivo(ABooleanTipoPrimitivo node);
@@ -30,6 +31,7 @@ public interface Analysis extends Switch
     void caseATipoIdentificador(ATipoIdentificador node);
     void caseATipoEnumerado(ATipoEnumerado node);
     void caseATipoSubrange(ATipoSubrange node);
+    void caseATipoArray(ATipoArray node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

@@ -157,7 +157,7 @@ Productions
 		| {ordinal} identificador_tipo_ordinal {-> New denotador_tipo.primitivo(identificador_tipo_ordinal.tipo_primitivo) };
 	
 	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
-	tipo_array = array abre_colchete  fecha_colchete of denotador_tipo;
+	tipo_array {-> tipo_array} = array abre_colchete tipos_ordinais fecha_colchete of denotador_tipo {-> New tipo_array([tipos_ordinais.tipo_id_ou_ordinal], denotador_tipo)};
 	
 	tipos_ordinais {-> tipo_id_ou_ordinal*} = {unico} tipo_ordinal {-> [tipo_ordinal.tipo_id_ou_ordinal]}
 		| {multiplo} tipos_ordinais virgula tipo_ordinal {-> [tipo_ordinal.tipo_id_ou_ordinal, tipos_ordinais.tipo_id_ou_ordinal]};
@@ -254,9 +254,10 @@ Abstract Syntax Tree
 	numero_sem_sinal = const_inteiro;
 	
 	definicao_tipo = P.string denotador_tipo;
-	denotador_tipo = {primitivo} tipo_primitivo | {id_ou_ordinal} tipo_id_ou_ordinal;
+	denotador_tipo = {primitivo} tipo_primitivo | {id_ou_ordinal} tipo_id_ou_ordinal | {array} tipo_array;
 	tipo_primitivo = {integer} integer | {string} T.string | {boolean} boolean;
 	tipo_id_ou_ordinal = {id} tipo_identificador | {enumerado} tipo_enumerado | {subrange} tipo_subrange;
 	tipo_identificador = P.string;
 	tipo_enumerado = P.string*;
 	tipo_subrange = [inicio]:constante [fim]:constante;
+	tipo_array = tipo_id_ou_ordinal+ denotador_tipo;

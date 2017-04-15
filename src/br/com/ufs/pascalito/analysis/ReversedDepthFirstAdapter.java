@@ -257,6 +257,27 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAIdOuOrdinalDenotadorTipo(node);
     }
 
+    public void inAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        inAArrayDenotadorTipo(node);
+        if(node.getTipoArray() != null)
+        {
+            node.getTipoArray().apply(this);
+        }
+        outAArrayDenotadorTipo(node);
+    }
+
     public void inAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
     {
         defaultIn(node);
@@ -452,5 +473,34 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getInicio().apply(this);
         }
         outATipoSubrange(node);
+    }
+
+    public void inATipoArray(ATipoArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATipoArray(ATipoArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATipoArray(ATipoArray node)
+    {
+        inATipoArray(node);
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        {
+            List<PTipoIdOuOrdinal> copy = new ArrayList<PTipoIdOuOrdinal>(node.getTipoIdOuOrdinal());
+            Collections.reverse(copy);
+            for(PTipoIdOuOrdinal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outATipoArray(node);
     }
 }

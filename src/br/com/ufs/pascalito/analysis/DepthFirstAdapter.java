@@ -254,6 +254,27 @@ public class DepthFirstAdapter extends AnalysisAdapter
         outAIdOuOrdinalDenotadorTipo(node);
     }
 
+    public void inAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAArrayDenotadorTipo(AArrayDenotadorTipo node)
+    {
+        inAArrayDenotadorTipo(node);
+        if(node.getTipoArray() != null)
+        {
+            node.getTipoArray().apply(this);
+        }
+        outAArrayDenotadorTipo(node);
+    }
+
     public void inAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
     {
         defaultIn(node);
@@ -448,5 +469,33 @@ public class DepthFirstAdapter extends AnalysisAdapter
             node.getFim().apply(this);
         }
         outATipoSubrange(node);
+    }
+
+    public void inATipoArray(ATipoArray node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATipoArray(ATipoArray node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATipoArray(ATipoArray node)
+    {
+        inATipoArray(node);
+        {
+            List<PTipoIdOuOrdinal> copy = new ArrayList<PTipoIdOuOrdinal>(node.getTipoIdOuOrdinal());
+            for(PTipoIdOuOrdinal e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        outATipoArray(node);
     }
 }
