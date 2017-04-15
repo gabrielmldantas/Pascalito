@@ -9,6 +9,7 @@ import br.com.ufs.pascalito.analysis.*;
 public final class ABloco extends PBloco
 {
     private final LinkedList<PNumeroSemSinal> _numeroSemSinal_ = new LinkedList<PNumeroSemSinal>();
+    private final LinkedList<PDefinicaoTipo> _definicaoTipo_ = new LinkedList<PDefinicaoTipo>();
 
     public ABloco()
     {
@@ -16,10 +17,13 @@ public final class ABloco extends PBloco
     }
 
     public ABloco(
-        @SuppressWarnings("hiding") List<?> _numeroSemSinal_)
+        @SuppressWarnings("hiding") List<?> _numeroSemSinal_,
+        @SuppressWarnings("hiding") List<?> _definicaoTipo_)
     {
         // Constructor
         setNumeroSemSinal(_numeroSemSinal_);
+
+        setDefinicaoTipo(_definicaoTipo_);
 
     }
 
@@ -27,7 +31,8 @@ public final class ABloco extends PBloco
     public Object clone()
     {
         return new ABloco(
-            cloneList(this._numeroSemSinal_));
+            cloneList(this._numeroSemSinal_),
+            cloneList(this._definicaoTipo_));
     }
 
     @Override
@@ -62,11 +67,38 @@ public final class ABloco extends PBloco
         }
     }
 
+    public LinkedList<PDefinicaoTipo> getDefinicaoTipo()
+    {
+        return this._definicaoTipo_;
+    }
+
+    public void setDefinicaoTipo(List<?> list)
+    {
+        for(PDefinicaoTipo e : this._definicaoTipo_)
+        {
+            e.parent(null);
+        }
+        this._definicaoTipo_.clear();
+
+        for(Object obj_e : list)
+        {
+            PDefinicaoTipo e = (PDefinicaoTipo) obj_e;
+            if(e.parent() != null)
+            {
+                e.parent().removeChild(e);
+            }
+
+            e.parent(this);
+            this._definicaoTipo_.add(e);
+        }
+    }
+
     @Override
     public String toString()
     {
         return ""
-            + toString(this._numeroSemSinal_);
+            + toString(this._numeroSemSinal_)
+            + toString(this._definicaoTipo_);
     }
 
     @Override
@@ -74,6 +106,11 @@ public final class ABloco extends PBloco
     {
         // Remove child
         if(this._numeroSemSinal_.remove(child))
+        {
+            return;
+        }
+
+        if(this._definicaoTipo_.remove(child))
         {
             return;
         }
@@ -92,6 +129,24 @@ public final class ABloco extends PBloco
                 if(newChild != null)
                 {
                     i.set((PNumeroSemSinal) newChild);
+                    newChild.parent(this);
+                    oldChild.parent(null);
+                    return;
+                }
+
+                i.remove();
+                oldChild.parent(null);
+                return;
+            }
+        }
+
+        for(ListIterator<PDefinicaoTipo> i = this._definicaoTipo_.listIterator(); i.hasNext();)
+        {
+            if(i.next() == oldChild)
+            {
+                if(newChild != null)
+                {
+                    i.set((PDefinicaoTipo) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

@@ -14,8 +14,22 @@ public interface Analysis extends Switch
     void caseStart(Start node);
     void caseAProgram(AProgram node);
     void caseAString(AString node);
+    void caseAInteiroConstante(AInteiroConstante node);
+    void caseAStringConstante(AStringConstante node);
     void caseABloco(ABloco node);
     void caseANumeroSemSinal(ANumeroSemSinal node);
+    void caseADefinicaoTipo(ADefinicaoTipo node);
+    void caseAPrimitivoDenotadorTipo(APrimitivoDenotadorTipo node);
+    void caseAIdOuOrdinalDenotadorTipo(AIdOuOrdinalDenotadorTipo node);
+    void caseAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node);
+    void caseAStringTipoPrimitivo(AStringTipoPrimitivo node);
+    void caseABooleanTipoPrimitivo(ABooleanTipoPrimitivo node);
+    void caseAIdTipoIdOuOrdinal(AIdTipoIdOuOrdinal node);
+    void caseAEnumeradoTipoIdOuOrdinal(AEnumeradoTipoIdOuOrdinal node);
+    void caseASubrangeTipoIdOuOrdinal(ASubrangeTipoIdOuOrdinal node);
+    void caseATipoIdentificador(ATipoIdentificador node);
+    void caseATipoEnumerado(ATipoEnumerado node);
+    void caseATipoSubrange(ATipoSubrange node);
 
     void caseTInteger(TInteger node);
     void caseTString(TString node);

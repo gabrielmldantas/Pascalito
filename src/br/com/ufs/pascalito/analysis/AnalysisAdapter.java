@@ -87,6 +87,18 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAInteiroConstante(AInteiroConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringConstante(AStringConstante node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseABloco(ABloco node)
     {
         defaultCase(node);
@@ -94,6 +106,78 @@ public class AnalysisAdapter implements Analysis
 
     @Override
     public void caseANumeroSemSinal(ANumeroSemSinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAPrimitivoDenotadorTipo(APrimitivoDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdOuOrdinalDenotadorTipo(AIdOuOrdinalDenotadorTipo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAStringTipoPrimitivo(AStringTipoPrimitivo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseABooleanTipoPrimitivo(ABooleanTipoPrimitivo node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIdTipoIdOuOrdinal(AIdTipoIdOuOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAEnumeradoTipoIdOuOrdinal(AEnumeradoTipoIdOuOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASubrangeTipoIdOuOrdinal(ASubrangeTipoIdOuOrdinal node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoIdentificador(ATipoIdentificador node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoEnumerado(ATipoEnumerado node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseATipoSubrange(ATipoSubrange node)
     {
         defaultCase(node);
     }

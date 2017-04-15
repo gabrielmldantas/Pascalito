@@ -90,6 +90,52 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAString(node);
     }
 
+    public void inAInteiroConstante(AInteiroConstante node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAInteiroConstante(AInteiroConstante node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAInteiroConstante(AInteiroConstante node)
+    {
+        inAInteiroConstante(node);
+        if(node.getConstInteiro() != null)
+        {
+            node.getConstInteiro().apply(this);
+        }
+        if(node.getSinal() != null)
+        {
+            node.getSinal().apply(this);
+        }
+        outAInteiroConstante(node);
+    }
+
+    public void inAStringConstante(AStringConstante node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAStringConstante(AStringConstante node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAStringConstante(AStringConstante node)
+    {
+        inAStringConstante(node);
+        if(node.getConstString() != null)
+        {
+            node.getConstString().apply(this);
+        }
+        outAStringConstante(node);
+    }
+
     public void inABloco(ABloco node)
     {
         defaultIn(node);
@@ -104,6 +150,14 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABloco(ABloco node)
     {
         inABloco(node);
+        {
+            List<PDefinicaoTipo> copy = new ArrayList<PDefinicaoTipo>(node.getDefinicaoTipo());
+            Collections.reverse(copy);
+            for(PDefinicaoTipo e : copy)
+            {
+                e.apply(this);
+            }
+        }
         {
             List<PNumeroSemSinal> copy = new ArrayList<PNumeroSemSinal>(node.getNumeroSemSinal());
             Collections.reverse(copy);
@@ -134,5 +188,269 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getConstInteiro().apply(this);
         }
         outANumeroSemSinal(node);
+    }
+
+    public void inADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outADefinicaoTipo(ADefinicaoTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseADefinicaoTipo(ADefinicaoTipo node)
+    {
+        inADefinicaoTipo(node);
+        if(node.getDenotadorTipo() != null)
+        {
+            node.getDenotadorTipo().apply(this);
+        }
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        outADefinicaoTipo(node);
+    }
+
+    public void inAPrimitivoDenotadorTipo(APrimitivoDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAPrimitivoDenotadorTipo(APrimitivoDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAPrimitivoDenotadorTipo(APrimitivoDenotadorTipo node)
+    {
+        inAPrimitivoDenotadorTipo(node);
+        if(node.getTipoPrimitivo() != null)
+        {
+            node.getTipoPrimitivo().apply(this);
+        }
+        outAPrimitivoDenotadorTipo(node);
+    }
+
+    public void inAIdOuOrdinalDenotadorTipo(AIdOuOrdinalDenotadorTipo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdOuOrdinalDenotadorTipo(AIdOuOrdinalDenotadorTipo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdOuOrdinalDenotadorTipo(AIdOuOrdinalDenotadorTipo node)
+    {
+        inAIdOuOrdinalDenotadorTipo(node);
+        if(node.getTipoIdOuOrdinal() != null)
+        {
+            node.getTipoIdOuOrdinal().apply(this);
+        }
+        outAIdOuOrdinalDenotadorTipo(node);
+    }
+
+    public void inAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIntegerTipoPrimitivo(AIntegerTipoPrimitivo node)
+    {
+        inAIntegerTipoPrimitivo(node);
+        if(node.getInteger() != null)
+        {
+            node.getInteger().apply(this);
+        }
+        outAIntegerTipoPrimitivo(node);
+    }
+
+    public void inAStringTipoPrimitivo(AStringTipoPrimitivo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAStringTipoPrimitivo(AStringTipoPrimitivo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAStringTipoPrimitivo(AStringTipoPrimitivo node)
+    {
+        inAStringTipoPrimitivo(node);
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        outAStringTipoPrimitivo(node);
+    }
+
+    public void inABooleanTipoPrimitivo(ABooleanTipoPrimitivo node)
+    {
+        defaultIn(node);
+    }
+
+    public void outABooleanTipoPrimitivo(ABooleanTipoPrimitivo node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseABooleanTipoPrimitivo(ABooleanTipoPrimitivo node)
+    {
+        inABooleanTipoPrimitivo(node);
+        if(node.getBoolean() != null)
+        {
+            node.getBoolean().apply(this);
+        }
+        outABooleanTipoPrimitivo(node);
+    }
+
+    public void inAIdTipoIdOuOrdinal(AIdTipoIdOuOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAIdTipoIdOuOrdinal(AIdTipoIdOuOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAIdTipoIdOuOrdinal(AIdTipoIdOuOrdinal node)
+    {
+        inAIdTipoIdOuOrdinal(node);
+        if(node.getTipoIdentificador() != null)
+        {
+            node.getTipoIdentificador().apply(this);
+        }
+        outAIdTipoIdOuOrdinal(node);
+    }
+
+    public void inAEnumeradoTipoIdOuOrdinal(AEnumeradoTipoIdOuOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outAEnumeradoTipoIdOuOrdinal(AEnumeradoTipoIdOuOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseAEnumeradoTipoIdOuOrdinal(AEnumeradoTipoIdOuOrdinal node)
+    {
+        inAEnumeradoTipoIdOuOrdinal(node);
+        if(node.getTipoEnumerado() != null)
+        {
+            node.getTipoEnumerado().apply(this);
+        }
+        outAEnumeradoTipoIdOuOrdinal(node);
+    }
+
+    public void inASubrangeTipoIdOuOrdinal(ASubrangeTipoIdOuOrdinal node)
+    {
+        defaultIn(node);
+    }
+
+    public void outASubrangeTipoIdOuOrdinal(ASubrangeTipoIdOuOrdinal node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseASubrangeTipoIdOuOrdinal(ASubrangeTipoIdOuOrdinal node)
+    {
+        inASubrangeTipoIdOuOrdinal(node);
+        if(node.getTipoSubrange() != null)
+        {
+            node.getTipoSubrange().apply(this);
+        }
+        outASubrangeTipoIdOuOrdinal(node);
+    }
+
+    public void inATipoIdentificador(ATipoIdentificador node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATipoIdentificador(ATipoIdentificador node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATipoIdentificador(ATipoIdentificador node)
+    {
+        inATipoIdentificador(node);
+        if(node.getString() != null)
+        {
+            node.getString().apply(this);
+        }
+        outATipoIdentificador(node);
+    }
+
+    public void inATipoEnumerado(ATipoEnumerado node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATipoEnumerado(ATipoEnumerado node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATipoEnumerado(ATipoEnumerado node)
+    {
+        inATipoEnumerado(node);
+        {
+            List<PString> copy = new ArrayList<PString>(node.getString());
+            Collections.reverse(copy);
+            for(PString e : copy)
+            {
+                e.apply(this);
+            }
+        }
+        outATipoEnumerado(node);
+    }
+
+    public void inATipoSubrange(ATipoSubrange node)
+    {
+        defaultIn(node);
+    }
+
+    public void outATipoSubrange(ATipoSubrange node)
+    {
+        defaultOut(node);
+    }
+
+    @Override
+    public void caseATipoSubrange(ATipoSubrange node)
+    {
+        inATipoSubrange(node);
+        if(node.getFim() != null)
+        {
+            node.getFim().apply(this);
+        }
+        if(node.getInicio() != null)
+        {
+            node.getInicio().apply(this);
+        }
+        outATipoSubrange(node);
     }
 }

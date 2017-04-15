@@ -125,32 +125,54 @@ Productions
 	program {-> P.program} = {unico} T.program identificador ponto_e_virgula bloco ponto {-> New program(New string(identificador), [], bloco) }
 		| {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses ponto_e_virgula bloco ponto {-> New program(New string(identificador), [identificadores.string], bloco) };
 	
-	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta {-> New bloco([declaracao_labels.numero_sem_sinal]) };
+	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta 
+		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo]) };
 	
 	identificadores {-> P.string*} = {unico} identificador {-> [New string(identificador)]} 
 		| {multiplo} identificadores virgula identificador {-> [identificadores.string, New string(identificador)]};
-	identificador_tipo_ordinal = {integer} integer | {string} string | {boolean} boolean;
+	
+	identificador_tipo_ordinal {-> tipo_primitivo} = {integer} integer {-> New tipo_primitivo.integer(integer)} 
+		| {string} string {-> New tipo_primitivo.string(T.string)} 
+		| {boolean} boolean {-> New tipo_primitivo.boolean(boolean)};
+	
 	identificador_tipo = {identificador} identificador | {ordinal} identificador_tipo_ordinal;
 	
 	declaracao_labels {-> P.numero_sem_sinal*} = T.label labels ponto_e_virgula {-> [labels.numero_sem_sinal]}
 		| {empty} {-> []};
+		
 	labels {-> P.numero_sem_sinal*} = {unico} P.label {-> [label.numero_sem_sinal]} 
 		| {multiplo} labels virgula P.label {-> [label.numero_sem_sinal, labels.numero_sem_sinal]};
+		
 	label {-> P.numero_sem_sinal} = const_inteiro {-> New numero_sem_sinal(const_inteiro) };
 	
-	declaracao_tipos = type definicao_tipos ponto_e_virgula | {empty};
-	definicao_tipos = {unico} definicao_tipo | {multiplo} definicao_tipos ponto_e_virgula definicao_tipo;
-	definicao_tipo = identificador igual denotador_tipo;
-	denotador_tipo = {existente} identificador | {novo} novo_tipo | {ordinal} identificador_tipo_ordinal;
-	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
-	tipo_array = array abre_colchete tipos_ordinais fecha_colchete of denotador_tipo;
-	tipos_ordinais = {unico} tipo_ordinal | {multiplo} tipos_ordinais virgula tipo_ordinal;
-	tipo_ordinal = {novo} novo_tipo_ordinal | {existente} identificador;
-	novo_tipo_ordinal = {enumerado} tipo_enumerado | {subrange} tipo_subrange;
-	tipo_enumerado = abre_parenteses identificadores fecha_parenteses;
-	tipo_subrange = [inicio]:constante ponto_ponto [fim]:constante;
+	declaracao_tipos {-> definicao_tipo*} = type definicao_tipos ponto_e_virgula {-> [definicao_tipos.definicao_tipo]} 
+		| {empty} {-> []};
 	
-	constante = {numero} sinal? const_inteiro | {string} const_string;
+	definicao_tipos {-> definicao_tipo*} = {unico} definicao_tipo {-> [definicao_tipo]} 
+		| {multiplo} definicao_tipos ponto_e_virgula definicao_tipo {-> [definicao_tipo, definicao_tipos.definicao_tipo] };
+	
+	definicao_tipo {-> definicao_tipo} = identificador igual denotador_tipo {-> New definicao_tipo(New string(identificador), denotador_tipo) };
+	
+	denotador_tipo {-> denotador_tipo} = {existente} identificador {-> New denotador_tipo.id_ou_ordinal(New tipo_id_ou_ordinal.id(New tipo_identificador(New string(identificador))))}
+		| {ordinal} identificador_tipo_ordinal {-> New denotador_tipo.primitivo(identificador_tipo_ordinal.tipo_primitivo) };
+	
+	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
+	tipo_array = array abre_colchete  fecha_colchete of denotador_tipo;
+	
+	tipos_ordinais {-> tipo_id_ou_ordinal*} = {unico} tipo_ordinal {-> [tipo_ordinal.tipo_id_ou_ordinal]}
+		| {multiplo} tipos_ordinais virgula tipo_ordinal {-> [tipo_ordinal.tipo_id_ou_ordinal, tipos_ordinais.tipo_id_ou_ordinal]};
+		
+	tipo_ordinal {-> tipo_id_ou_ordinal} = {novo} novo_tipo_ordinal {-> novo_tipo_ordinal.tipo_id_ou_ordinal} 
+		| {existente} identificador {-> New tipo_id_ou_ordinal.id(New tipo_identificador(New string(identificador)))};
+		
+	novo_tipo_ordinal {-> tipo_id_ou_ordinal} = {enumerado} tipo_enumerado {-> New tipo_id_ou_ordinal.enumerado(tipo_enumerado)}
+		| {subrange} tipo_subrange {-> New tipo_id_ou_ordinal.subrange(tipo_subrange)};
+		
+	tipo_enumerado {-> tipo_enumerado} = abre_parenteses identificadores fecha_parenteses {-> New tipo_enumerado([identificadores.string])};
+	
+	tipo_subrange {-> tipo_subrange} = [inicio]:constante ponto_ponto [fim]:constante {-> New tipo_subrange(inicio, fim) };
+	
+	constante {-> constante} = {numero} sinal? const_inteiro {-> New constante.inteiro(sinal, const_inteiro)} | {string} const_string {-> New constante.string(const_string) };
 	constante_sem_sinal = {numero} const_inteiro | {string} const_string;
 	
 	declaracoes_variaveis = var declaracao_variaveis ponto_e_virgula | {empty};
@@ -227,5 +249,14 @@ Productions
 Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
 	string = identificador;
-	bloco = numero_sem_sinal*;
+	constante = {inteiro} sinal? const_inteiro | {string} const_string;
+	bloco = numero_sem_sinal* definicao_tipo*;
 	numero_sem_sinal = const_inteiro;
+	
+	definicao_tipo = P.string denotador_tipo;
+	denotador_tipo = {primitivo} tipo_primitivo | {id_ou_ordinal} tipo_id_ou_ordinal;
+	tipo_primitivo = {integer} integer | {string} T.string | {boolean} boolean;
+	tipo_id_ou_ordinal = {id} tipo_identificador | {enumerado} tipo_enumerado | {subrange} tipo_subrange;
+	tipo_identificador = P.string;
+	tipo_enumerado = P.string*;
+	tipo_subrange = [inicio]:constante [fim]:constante;
