@@ -279,6 +279,198 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
+    public void caseAVaziaSentenca(AVaziaSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAtribuicaoSentenca(AAtribuicaoSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAProcedureSentenca(AProcedureSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAGotoSentenca(AGotoSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIfSentenca(AIfSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAWhileSentenca(AWhileSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseACompostaSentenca(ACompostaSentenca node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelAcessoVariavel(AVariavelAcessoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVarIndexadaAcessoVariavel(AVarIndexadaAcessoVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavel(AVariavel node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelIndexada(AVariavelIndexada node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAVariavelExpressao(AVariavelExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpBinAritExpressao(AExpBinAritExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpBinBooleanExpressao(AExpBinBooleanExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAExpRelacionalExpressao(AExpRelacionalExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASignedExpressao(ASignedExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseANotExpressao(ANotExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAFuncaoExpressao(AFuncaoExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAConstanteExpressao(AConstanteExpressao node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADivOperadorAritmeticoBinario(ADivOperadorAritmeticoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAModOperadorAritmeticoBinario(AModOperadorAritmeticoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseASomaSubOperadorAritmeticoBinario(ASomaSubOperadorAritmeticoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMultiplicacaoOperadorAritmeticoBinario(AMultiplicacaoOperadorAritmeticoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADivisaoOperadorAritmeticoBinario(ADivisaoOperadorAritmeticoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAAndOperadorBooleanoBinario(AAndOperadorBooleanoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAOrOperadorBooleanoBinario(AOrOperadorBooleanoBinario node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAIgualOperadorRelacional(AIgualOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseADiferenteOperadorRelacional(ADiferenteOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorOperadorRelacional(AMaiorOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMaiorIgualOperadorRelacional(AMaiorIgualOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorOperadorRelacional(AMenorOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
+    public void caseAMenorIgualOperadorRelacional(AMenorIgualOperadorRelacional node)
+    {
+        defaultCase(node);
+    }
+
+    @Override
     public void caseTInteger(TInteger node)
     {
         defaultCase(node);

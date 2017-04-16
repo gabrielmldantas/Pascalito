@@ -229,47 +229,104 @@ Productions
 	tipo_resultado {-> tipo_id_ou_primitivo} = {existente} identificador {-> New tipo_id_ou_primitivo.id(New tipo_identificador(New string(identificador)))}
 		| {ordinal} identificador_tipo_ordinal {-> New tipo_id_ou_primitivo.primitivo(identificador_tipo_ordinal.tipo_primitivo)};
 	
-	sentenca_composta = begin sequencia_sentencas end;
-	sequencia_sentencas = {unico} sentenca | {multiplo} sequencia_sentencas ponto_e_virgula sentenca;
-	sentenca = {simples} definicao_sentenca_simples | {estruturada} definicao_sentenca_estruturada;
+	sentenca_composta {-> sentenca} = begin sequencia_sentencas end {-> New sentenca.composta([sequencia_sentencas.sentenca])};
+	
+	sequencia_sentencas {-> sentenca*} = {unico} sentenca {-> [sentenca.sentenca]}
+		| {multiplo} sequencia_sentencas ponto_e_virgula sentenca {-> [sentenca.sentenca, sequencia_sentencas.sentenca]};
+	
+	sentenca {-> sentenca} = {simples} definicao_sentenca_simples {-> definicao_sentenca_simples.sentenca} 
+		| {estruturada} definicao_sentenca_estruturada {-> definicao_sentenca_estruturada.sentenca};
+	
 	label_sentenca = P.label dois_pontos | {empty};
 	
-	definicao_sentenca = {simples} definicao_sentenca_simples | {estruturada} definicao_sentenca_estruturada | {estruturada_fechada} definicao_sentenca_estruturada_fechada;
-	definicao_sentenca_fechada = {simples} definicao_sentenca_simples | {estruturada} definicao_sentenca_estruturada_fechada;
-	definicao_sentenca_simples = label_sentenca sentenca_simples;
-	definicao_sentenca_estruturada = label_sentenca sentenca_estruturada;
-	definicao_sentenca_estruturada_fechada = label_sentenca sentenca_estruturada_fechada;
+	definicao_sentenca {->sentenca} = {simples} definicao_sentenca_simples {-> definicao_sentenca_simples.sentenca} 
+		| {estruturada} definicao_sentenca_estruturada {-> definicao_sentenca_estruturada.sentenca} 
+		| {estruturada_fechada} definicao_sentenca_estruturada_fechada {-> definicao_sentenca_estruturada_fechada.sentenca};
 	
-	sentenca_simples = {atribuicao} sentenca_atribuicao | {procedure} sentenca_proc_funcao | {goto} sentenca_goto | {empty};
-	sentenca_atribuicao = acesso_variavel atribuicao expressao;
+	definicao_sentenca_fechada {-> sentenca} = {simples} definicao_sentenca_simples {-> definicao_sentenca_simples.sentenca}
+		| {estruturada} definicao_sentenca_estruturada_fechada {-> definicao_sentenca_estruturada_fechada.sentenca};
 	
-	sentenca_proc_funcao = identificador parametros_reais;
-	parametros_reais = abre_parenteses definicao_parametros_reais fecha_parenteses | {empty};
-	definicao_parametros_reais = {unico} expressao | {multiplo} definicao_parametros_reais virgula expressao;
+	definicao_sentenca_simples {-> sentenca} = label_sentenca sentenca_simples {-> sentenca_simples.sentenca};
 	
-	sentenca_estruturada = {composta} sentenca_composta | {while} sentenca_while | {if} sentenca_if;
-	sentenca_estruturada_fechada = {composta} sentenca_composta | {while} sentenca_while_fechada;
+	definicao_sentenca_estruturada {-> sentenca} = label_sentenca sentenca_estruturada {-> sentenca_estruturada.sentenca};
 	
-	sentenca_while = while expressao do definicao_sentenca_simples | {estruturada} while expressao do definicao_sentenca_estruturada;
-	sentenca_while_fechada = while expressao do definicao_sentenca_fechada;
+	definicao_sentenca_estruturada_fechada {-> sentenca} = label_sentenca sentenca_estruturada_fechada {-> sentenca_estruturada_fechada.sentenca};
 	
-	sentenca_goto = goto P.label;
+	sentenca_simples {-> sentenca} = {atribuicao} sentenca_atribuicao  {-> sentenca_atribuicao.sentenca }
+		| {procedure} sentenca_proc_funcao {-> sentenca_proc_funcao.sentenca}
+		| {goto} sentenca_goto {-> sentenca_goto.sentenca} 
+		| {empty} {-> New sentenca.vazia()};
+		
+	sentenca_atribuicao {-> sentenca} = acesso_variavel atribuicao expressao {-> New sentenca.atribuicao(acesso_variavel.acesso_variavel, expressao.expressao)};
 	
-	sentenca_if = if expressao then sentenca | {else} if expressao then sentenca_if_fechada else sentenca;
-	sentenca_if_fechada = {if} if expressao then [parte_if]:sentenca_if_fechada else sentenca_if_fechada | definicao_sentenca_fechada;
+	sentenca_proc_funcao {-> sentenca} = identificador parametros_reais {-> New sentenca.procedure(New string(identificador), [parametros_reais.expressao]) };
 	
-	acesso_variavel = identificador | {indexada} variavel_indexada;
-	variavel_indexada = acesso_variavel abre_colchete expressoes fecha_colchete;
-	expressoes = {unico} expressao | {multiplo} expressoes virgula expressao;
+	parametros_reais {-> expressao*} = abre_parenteses definicao_parametros_reais fecha_parenteses {-> [definicao_parametros_reais.expressao]}
+		| {empty} {-> []};
 	
-	expressao = expressao_simples expressao_relacional;
-	expressao_relacional = operador_relacional expressao_simples | {empty};
-	expressao_simples = {unico_com_sinal} sinal+ termo | {unico_sem_sinal} termo | {multiplo_sem_sinal} expressao_simples operador_aditivo termo | {multiplo_com_sinal} expressao_simples operador_aditivo sinal+ termo;
-	termo = {unico} fator | {multiplo} termo operador_multiplicativo fator;
-	fator = {constante_sem_sinal} constante_sem_sinal | {expressao} abre_parenteses expressao fecha_parenteses | {not} not fator | {funcao_ou_variavel} sentenca_proc_funcao | {var_indexada} variavel_indexada;
-	operador_relacional = {menor} menor | {menor_igual} menor_igual | {maior} maior | {maior_igual} maior_igual | {igual} igual | {diferente} diferente;
-	operador_aditivo = {soma_sub} sinal | {or} or;
-	operador_multiplicativo = {multiplicacao} multiplicacao | {divisao} divisao | {and} and | {div} div | {mod} mod;
+	definicao_parametros_reais {-> expressao*} = {unico} expressao {-> [expressao.expressao]}
+		| {multiplo} definicao_parametros_reais virgula expressao {-> [expressao.expressao, definicao_parametros_reais.expressao]};
+	
+	sentenca_estruturada {-> sentenca} = {composta} sentenca_composta {-> sentenca_composta.sentenca} 
+		| {while} sentenca_while {-> sentenca_while.sentenca}
+		| {if} sentenca_if {-> sentenca_if.sentenca};
+	
+	sentenca_estruturada_fechada {-> sentenca} = {composta} sentenca_composta {-> sentenca_composta.sentenca}
+		| {while} sentenca_while_fechada {-> sentenca_while_fechada.sentenca};
+	
+	sentenca_while {-> sentenca} = while expressao do definicao_sentenca_simples {-> New sentenca.while(expressao.expressao, definicao_sentenca_simples.sentenca) }
+		| {estruturada} while expressao do definicao_sentenca_estruturada {-> New sentenca.while(expressao.expressao, definicao_sentenca_estruturada.sentenca) };
+	
+	sentenca_while_fechada {->sentenca} = while expressao do definicao_sentenca_fechada {-> New sentenca.while(expressao.expressao, definicao_sentenca_fechada.sentenca) };
+	
+	sentenca_goto {-> sentenca} = goto P.label {-> New sentenca.goto(P.label.numero_sem_sinal) };
+	
+	sentenca_if {-> sentenca} = if expressao then sentenca {-> New sentenca.if(expressao.expressao, sentenca.sentenca, New sentenca.vazia())} 
+		| {else} if expressao then sentenca_if_fechada else sentenca {-> New sentenca.if(expressao.expressao, sentenca_if_fechada.sentenca, sentenca.sentenca)};
+		
+	sentenca_if_fechada {-> sentenca} = {if} if expressao then [parte_if]:sentenca_if_fechada else sentenca_if_fechada {-> New sentenca.if(expressao.expressao, parte_if.sentenca, sentenca_if_fechada.sentenca)} 
+		| definicao_sentenca_fechada {-> definicao_sentenca_fechada.sentenca};
+	
+	acesso_variavel {-> acesso_variavel} = identificador {-> New acesso_variavel.variavel(New variavel(New string(identificador))) } 
+		| {indexada} variavel_indexada {-> New acesso_variavel.var_indexada(variavel_indexada.variavel_indexada)};
+		
+	variavel_indexada {-> variavel_indexada} = acesso_variavel abre_colchete expressoes fecha_colchete {-> New variavel_indexada(acesso_variavel.acesso_variavel, [expressoes.expressao])};
+	
+	expressoes {-> expressao*} = {unico} expressao {-> [expressao.expressao]}
+		| {multiplo} expressoes virgula expressao {-> [expressao.expressao, expressoes.expressao]};
+	
+	expressao {-> expressao} = expressao_simples {-> expressao_simples.expressao}
+		| {relacional} [esq]:expressao_simples operador_relacional [dir]:expressao_simples {-> New expressao.exp_relacional(operador_relacional.operador_relacional, esq.expressao, dir.expressao)};
+	
+	expressao_simples {-> expressao} = {unico_com_sinal} sinal+ termo {-> New expressao.signed([sinal.sinal], termo.expressao)} 
+		| {unico_sem_sinal} termo {-> termo.expressao}
+		| {multiplo_sem_sinal} expressao_simples sinal termo {-> New expressao.exp_bin_arit(New operador_aritmetico_binario.soma_sub(sinal.sinal), expressao_simples.expressao, termo.expressao) } 
+		| {multiplo_com_sinal} expressao_simples sinal [sinais_adicionais]:sinal+ termo {-> New expressao.exp_bin_arit(New operador_aritmetico_binario.soma_sub(sinal.sinal), expressao_simples.expressao, New expressao.signed([sinais_adicionais.sinal], termo.expressao)) }
+		| {multiplo_sem_sinal_or} expressao_simples or termo {-> New expressao.exp_bin_boolean(New operador_booleano_binario.or(or), expressao_simples.expressao, termo.expressao)} 
+		| {multiplo_com_sinal_or} expressao_simples sinal or termo {-> New expressao.exp_bin_boolean(New operador_booleano_binario.or(or), expressao_simples.expressao, New expressao.signed([sinal], termo.expressao))};
+
+	termo {-> expressao} = {unico} fator {-> fator.expressao} 
+		| {multiplo_multiplicativo} termo operador_multiplicativo fator {-> New expressao.exp_bin_arit(operador_multiplicativo.operador_aritmetico_binario, termo.expressao, fator.expressao) }
+		| {multiplo_and} termo and fator {-> New expressao.exp_bin_boolean(New operador_booleano_binario.and(and), termo.expressao, fator.expressao)};
+
+	fator {-> expressao} = {constante_sem_sinal} constante_sem_sinal {-> New expressao.constante(constante_sem_sinal.constante) }
+		| {expressao} abre_parenteses expressao fecha_parenteses {-> expressao.expressao}
+		| {not} not fator {-> New expressao.not(fator.expressao)}
+		| {funcao_ou_variavel} identificador parametros_reais {-> New expressao.funcao(New string(identificador), [parametros_reais.expressao])}
+		| {var_indexada} variavel_indexada {-> New expressao.variavel(New acesso_variavel.var_indexada(variavel_indexada.variavel_indexada))};
+
+	operador_relacional {-> operador_relacional} = {menor} menor {-> New operador_relacional.menor(menor)} 
+		| {menor_igual} menor_igual {-> New operador_relacional.menor_igual(menor_igual)}
+		| {maior} maior {-> New operador_relacional.maior(maior)}
+		| {maior_igual} maior_igual {-> New operador_relacional.maior_igual(maior_igual)}
+		| {igual} igual {-> New operador_relacional.igual(igual)}
+		| {diferente} diferente {-> New operador_relacional.diferente(diferente)};
+
+	operador_multiplicativo {-> operador_aritmetico_binario} = 
+		{multiplicacao} multiplicacao {-> New operador_aritmetico_binario.multiplicacao(multiplicacao)}
+		| {divisao} divisao {-> New operador_aritmetico_binario.divisao(divisao)}
+		| {div} div {-> New operador_aritmetico_binario.div(div)}
+		| {mod} mod {-> New operador_aritmetico_binario.mod(mod)};
 	
 Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
@@ -298,3 +355,18 @@ Abstract Syntax Tree
 	ref_formal = P.string* tipo_id_ou_primitivo;
 	
 	declaracao_funcao = P.string parametro_formal* tipo_id_ou_primitivo bloco;
+	
+	sentenca = {vazia} | {atribuicao} acesso_variavel expressao | {procedure} P.string expressao* | {goto} numero_sem_sinal
+		| {if} expressao [if]:sentenca [else]:sentenca | {while} expressao sentenca | {composta} sentenca*;
+	
+	acesso_variavel = {variavel} variavel | {var_indexada} variavel_indexada;
+	variavel = P.string;
+	variavel_indexada = acesso_variavel expressao+;
+	
+	expressao = {variavel} acesso_variavel | {exp_bin_arit} operador_aritmetico_binario [esq]:expressao [dir]:expressao | {exp_bin_boolean} operador_booleano_binario [esq]:expressao [dir]:expressao
+		| {exp_relacional} operador_relacional [esq]:expressao [dir]:expressao | {signed} sinal+ expressao | {not} expressao | {funcao} P.string expressao*
+		| {constante} constante;
+
+	operador_aritmetico_binario = {div} div | {mod} mod | {soma_sub} sinal | {multiplicacao} multiplicacao | {divisao} divisao;
+	operador_booleano_binario = {and} and | {or} or;
+	operador_relacional = {igual} igual | {diferente} diferente | {maior} maior | {maior_igual} maior_igual | {menor} menor | {menor_igual} menor_igual;
