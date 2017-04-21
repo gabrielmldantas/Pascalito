@@ -8,6 +8,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AProcedureSentenca extends PSentenca
 {
+    private PNumeroSemSinal _numeroSemSinal_;
     private PString _string_;
     private final LinkedList<PExpressao> _expressao_ = new LinkedList<PExpressao>();
 
@@ -17,10 +18,13 @@ public final class AProcedureSentenca extends PSentenca
     }
 
     public AProcedureSentenca(
+        @SuppressWarnings("hiding") PNumeroSemSinal _numeroSemSinal_,
         @SuppressWarnings("hiding") PString _string_,
         @SuppressWarnings("hiding") List<?> _expressao_)
     {
         // Constructor
+        setNumeroSemSinal(_numeroSemSinal_);
+
         setString(_string_);
 
         setExpressao(_expressao_);
@@ -31,6 +35,7 @@ public final class AProcedureSentenca extends PSentenca
     public Object clone()
     {
         return new AProcedureSentenca(
+            cloneNode(this._numeroSemSinal_),
             cloneNode(this._string_),
             cloneList(this._expressao_));
     }
@@ -39,6 +44,31 @@ public final class AProcedureSentenca extends PSentenca
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAProcedureSentenca(this);
+    }
+
+    public PNumeroSemSinal getNumeroSemSinal()
+    {
+        return this._numeroSemSinal_;
+    }
+
+    public void setNumeroSemSinal(PNumeroSemSinal node)
+    {
+        if(this._numeroSemSinal_ != null)
+        {
+            this._numeroSemSinal_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._numeroSemSinal_ = node;
     }
 
     public PString getString()
@@ -96,6 +126,7 @@ public final class AProcedureSentenca extends PSentenca
     public String toString()
     {
         return ""
+            + toString(this._numeroSemSinal_)
             + toString(this._string_)
             + toString(this._expressao_);
     }
@@ -104,6 +135,12 @@ public final class AProcedureSentenca extends PSentenca
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._numeroSemSinal_ == child)
+        {
+            this._numeroSemSinal_ = null;
+            return;
+        }
+
         if(this._string_ == child)
         {
             this._string_ = null;
@@ -122,6 +159,12 @@ public final class AProcedureSentenca extends PSentenca
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._numeroSemSinal_ == oldChild)
+        {
+            setNumeroSemSinal((PNumeroSemSinal) newChild);
+            return;
+        }
+
         if(this._string_ == oldChild)
         {
             setString((PString) newChild);

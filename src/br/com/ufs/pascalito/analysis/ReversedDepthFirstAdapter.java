@@ -171,6 +171,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseABloco(ABloco node)
     {
         inABloco(node);
+        if(node.getSentenca() != null)
+        {
+            node.getSentenca().apply(this);
+        }
         {
             List<PDeclaracaoProcOuFuncao> copy = new ArrayList<PDeclaracaoProcOuFuncao>(node.getDeclaracaoProcOuFuncao());
             Collections.reverse(copy);
@@ -888,6 +892,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAVaziaSentenca(AVaziaSentenca node)
     {
         inAVaziaSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         outAVaziaSentenca(node);
     }
 
@@ -912,6 +920,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         if(node.getAcessoVariavel() != null)
         {
             node.getAcessoVariavel().apply(this);
+        }
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
         }
         outAAtribuicaoSentenca(node);
     }
@@ -942,6 +954,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getString().apply(this);
         }
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         outAProcedureSentenca(node);
     }
 
@@ -959,9 +975,13 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAGotoSentenca(AGotoSentenca node)
     {
         inAGotoSentenca(node);
-        if(node.getNumeroSemSinal() != null)
+        if(node.getJump() != null)
         {
-            node.getNumeroSemSinal().apply(this);
+            node.getJump().apply(this);
+        }
+        if(node.getLabel() != null)
+        {
+            node.getLabel().apply(this);
         }
         outAGotoSentenca(node);
     }
@@ -992,6 +1012,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getExpressao().apply(this);
         }
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         outAIfSentenca(node);
     }
 
@@ -1017,6 +1041,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getExpressao().apply(this);
         }
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         outAWhileSentenca(node);
     }
 
@@ -1041,6 +1069,10 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             {
                 e.apply(this);
             }
+        }
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
         }
         outACompostaSentenca(node);
     }

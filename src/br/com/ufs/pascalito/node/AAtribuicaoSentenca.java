@@ -7,6 +7,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AAtribuicaoSentenca extends PSentenca
 {
+    private PNumeroSemSinal _numeroSemSinal_;
     private PAcessoVariavel _acessoVariavel_;
     private PExpressao _expressao_;
 
@@ -16,10 +17,13 @@ public final class AAtribuicaoSentenca extends PSentenca
     }
 
     public AAtribuicaoSentenca(
+        @SuppressWarnings("hiding") PNumeroSemSinal _numeroSemSinal_,
         @SuppressWarnings("hiding") PAcessoVariavel _acessoVariavel_,
         @SuppressWarnings("hiding") PExpressao _expressao_)
     {
         // Constructor
+        setNumeroSemSinal(_numeroSemSinal_);
+
         setAcessoVariavel(_acessoVariavel_);
 
         setExpressao(_expressao_);
@@ -30,6 +34,7 @@ public final class AAtribuicaoSentenca extends PSentenca
     public Object clone()
     {
         return new AAtribuicaoSentenca(
+            cloneNode(this._numeroSemSinal_),
             cloneNode(this._acessoVariavel_),
             cloneNode(this._expressao_));
     }
@@ -38,6 +43,31 @@ public final class AAtribuicaoSentenca extends PSentenca
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseAAtribuicaoSentenca(this);
+    }
+
+    public PNumeroSemSinal getNumeroSemSinal()
+    {
+        return this._numeroSemSinal_;
+    }
+
+    public void setNumeroSemSinal(PNumeroSemSinal node)
+    {
+        if(this._numeroSemSinal_ != null)
+        {
+            this._numeroSemSinal_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._numeroSemSinal_ = node;
     }
 
     public PAcessoVariavel getAcessoVariavel()
@@ -94,6 +124,7 @@ public final class AAtribuicaoSentenca extends PSentenca
     public String toString()
     {
         return ""
+            + toString(this._numeroSemSinal_)
             + toString(this._acessoVariavel_)
             + toString(this._expressao_);
     }
@@ -102,6 +133,12 @@ public final class AAtribuicaoSentenca extends PSentenca
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._numeroSemSinal_ == child)
+        {
+            this._numeroSemSinal_ = null;
+            return;
+        }
+
         if(this._acessoVariavel_ == child)
         {
             this._acessoVariavel_ = null;
@@ -121,6 +158,12 @@ public final class AAtribuicaoSentenca extends PSentenca
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._numeroSemSinal_ == oldChild)
+        {
+            setNumeroSemSinal((PNumeroSemSinal) newChild);
+            return;
+        }
+
         if(this._acessoVariavel_ == oldChild)
         {
             setAcessoVariavel((PAcessoVariavel) newChild);

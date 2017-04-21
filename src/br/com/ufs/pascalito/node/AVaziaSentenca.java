@@ -7,16 +7,26 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AVaziaSentenca extends PSentenca
 {
+    private PNumeroSemSinal _numeroSemSinal_;
 
     public AVaziaSentenca()
     {
         // Constructor
     }
 
+    public AVaziaSentenca(
+        @SuppressWarnings("hiding") PNumeroSemSinal _numeroSemSinal_)
+    {
+        // Constructor
+        setNumeroSemSinal(_numeroSemSinal_);
+
+    }
+
     @Override
     public Object clone()
     {
-        return new AVaziaSentenca();
+        return new AVaziaSentenca(
+            cloneNode(this._numeroSemSinal_));
     }
 
     @Override
@@ -25,16 +35,48 @@ public final class AVaziaSentenca extends PSentenca
         ((Analysis) sw).caseAVaziaSentenca(this);
     }
 
+    public PNumeroSemSinal getNumeroSemSinal()
+    {
+        return this._numeroSemSinal_;
+    }
+
+    public void setNumeroSemSinal(PNumeroSemSinal node)
+    {
+        if(this._numeroSemSinal_ != null)
+        {
+            this._numeroSemSinal_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._numeroSemSinal_ = node;
+    }
+
     @Override
     public String toString()
     {
-        return "";
+        return ""
+            + toString(this._numeroSemSinal_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._numeroSemSinal_ == child)
+        {
+            this._numeroSemSinal_ = null;
+            return;
+        }
+
         throw new RuntimeException("Not a child.");
     }
 
@@ -42,6 +84,12 @@ public final class AVaziaSentenca extends PSentenca
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._numeroSemSinal_ == oldChild)
+        {
+            setNumeroSemSinal((PNumeroSemSinal) newChild);
+            return;
+        }
+
         throw new RuntimeException("Not a child.");
     }
 }

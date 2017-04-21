@@ -12,6 +12,7 @@ public final class ABloco extends PBloco
     private final LinkedList<PDefinicaoTipo> _definicaoTipo_ = new LinkedList<PDefinicaoTipo>();
     private final LinkedList<PDeclaracaoVariavel> _declaracaoVariavel_ = new LinkedList<PDeclaracaoVariavel>();
     private final LinkedList<PDeclaracaoProcOuFuncao> _declaracaoProcOuFuncao_ = new LinkedList<PDeclaracaoProcOuFuncao>();
+    private PSentenca _sentenca_;
 
     public ABloco()
     {
@@ -22,7 +23,8 @@ public final class ABloco extends PBloco
         @SuppressWarnings("hiding") List<?> _numeroSemSinal_,
         @SuppressWarnings("hiding") List<?> _definicaoTipo_,
         @SuppressWarnings("hiding") List<?> _declaracaoVariavel_,
-        @SuppressWarnings("hiding") List<?> _declaracaoProcOuFuncao_)
+        @SuppressWarnings("hiding") List<?> _declaracaoProcOuFuncao_,
+        @SuppressWarnings("hiding") PSentenca _sentenca_)
     {
         // Constructor
         setNumeroSemSinal(_numeroSemSinal_);
@@ -33,6 +35,8 @@ public final class ABloco extends PBloco
 
         setDeclaracaoProcOuFuncao(_declaracaoProcOuFuncao_);
 
+        setSentenca(_sentenca_);
+
     }
 
     @Override
@@ -42,7 +46,8 @@ public final class ABloco extends PBloco
             cloneList(this._numeroSemSinal_),
             cloneList(this._definicaoTipo_),
             cloneList(this._declaracaoVariavel_),
-            cloneList(this._declaracaoProcOuFuncao_));
+            cloneList(this._declaracaoProcOuFuncao_),
+            cloneNode(this._sentenca_));
     }
 
     @Override
@@ -155,6 +160,31 @@ public final class ABloco extends PBloco
         }
     }
 
+    public PSentenca getSentenca()
+    {
+        return this._sentenca_;
+    }
+
+    public void setSentenca(PSentenca node)
+    {
+        if(this._sentenca_ != null)
+        {
+            this._sentenca_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._sentenca_ = node;
+    }
+
     @Override
     public String toString()
     {
@@ -162,7 +192,8 @@ public final class ABloco extends PBloco
             + toString(this._numeroSemSinal_)
             + toString(this._definicaoTipo_)
             + toString(this._declaracaoVariavel_)
-            + toString(this._declaracaoProcOuFuncao_);
+            + toString(this._declaracaoProcOuFuncao_)
+            + toString(this._sentenca_);
     }
 
     @Override
@@ -186,6 +217,12 @@ public final class ABloco extends PBloco
 
         if(this._declaracaoProcOuFuncao_.remove(child))
         {
+            return;
+        }
+
+        if(this._sentenca_ == child)
+        {
+            this._sentenca_ = null;
             return;
         }
 
@@ -266,6 +303,12 @@ public final class ABloco extends PBloco
                 oldChild.parent(null);
                 return;
             }
+        }
+
+        if(this._sentenca_ == oldChild)
+        {
+            setSentenca((PSentenca) newChild);
+            return;
         }
 
         throw new RuntimeException("Not a child.");

@@ -7,7 +7,8 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AGotoSentenca extends PSentenca
 {
-    private PNumeroSemSinal _numeroSemSinal_;
+    private PNumeroSemSinal _label_;
+    private PNumeroSemSinal _jump_;
 
     public AGotoSentenca()
     {
@@ -15,10 +16,13 @@ public final class AGotoSentenca extends PSentenca
     }
 
     public AGotoSentenca(
-        @SuppressWarnings("hiding") PNumeroSemSinal _numeroSemSinal_)
+        @SuppressWarnings("hiding") PNumeroSemSinal _label_,
+        @SuppressWarnings("hiding") PNumeroSemSinal _jump_)
     {
         // Constructor
-        setNumeroSemSinal(_numeroSemSinal_);
+        setLabel(_label_);
+
+        setJump(_jump_);
 
     }
 
@@ -26,7 +30,8 @@ public final class AGotoSentenca extends PSentenca
     public Object clone()
     {
         return new AGotoSentenca(
-            cloneNode(this._numeroSemSinal_));
+            cloneNode(this._label_),
+            cloneNode(this._jump_));
     }
 
     @Override
@@ -35,16 +40,16 @@ public final class AGotoSentenca extends PSentenca
         ((Analysis) sw).caseAGotoSentenca(this);
     }
 
-    public PNumeroSemSinal getNumeroSemSinal()
+    public PNumeroSemSinal getLabel()
     {
-        return this._numeroSemSinal_;
+        return this._label_;
     }
 
-    public void setNumeroSemSinal(PNumeroSemSinal node)
+    public void setLabel(PNumeroSemSinal node)
     {
-        if(this._numeroSemSinal_ != null)
+        if(this._label_ != null)
         {
-            this._numeroSemSinal_.parent(null);
+            this._label_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +62,55 @@ public final class AGotoSentenca extends PSentenca
             node.parent(this);
         }
 
-        this._numeroSemSinal_ = node;
+        this._label_ = node;
+    }
+
+    public PNumeroSemSinal getJump()
+    {
+        return this._jump_;
+    }
+
+    public void setJump(PNumeroSemSinal node)
+    {
+        if(this._jump_ != null)
+        {
+            this._jump_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._jump_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._numeroSemSinal_);
+            + toString(this._label_)
+            + toString(this._jump_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._numeroSemSinal_ == child)
+        if(this._label_ == child)
         {
-            this._numeroSemSinal_ = null;
+            this._label_ = null;
+            return;
+        }
+
+        if(this._jump_ == child)
+        {
+            this._jump_ = null;
             return;
         }
 
@@ -84,9 +121,15 @@ public final class AGotoSentenca extends PSentenca
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._numeroSemSinal_ == oldChild)
+        if(this._label_ == oldChild)
         {
-            setNumeroSemSinal((PNumeroSemSinal) newChild);
+            setLabel((PNumeroSemSinal) newChild);
+            return;
+        }
+
+        if(this._jump_ == oldChild)
+        {
+            setJump((PNumeroSemSinal) newChild);
             return;
         }
 

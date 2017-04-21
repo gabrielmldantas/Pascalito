@@ -8,6 +8,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class ACompostaSentenca extends PSentenca
 {
+    private PNumeroSemSinal _numeroSemSinal_;
     private final LinkedList<PSentenca> _sentenca_ = new LinkedList<PSentenca>();
 
     public ACompostaSentenca()
@@ -16,9 +17,12 @@ public final class ACompostaSentenca extends PSentenca
     }
 
     public ACompostaSentenca(
+        @SuppressWarnings("hiding") PNumeroSemSinal _numeroSemSinal_,
         @SuppressWarnings("hiding") List<?> _sentenca_)
     {
         // Constructor
+        setNumeroSemSinal(_numeroSemSinal_);
+
         setSentenca(_sentenca_);
 
     }
@@ -27,6 +31,7 @@ public final class ACompostaSentenca extends PSentenca
     public Object clone()
     {
         return new ACompostaSentenca(
+            cloneNode(this._numeroSemSinal_),
             cloneList(this._sentenca_));
     }
 
@@ -34,6 +39,31 @@ public final class ACompostaSentenca extends PSentenca
     public void apply(Switch sw)
     {
         ((Analysis) sw).caseACompostaSentenca(this);
+    }
+
+    public PNumeroSemSinal getNumeroSemSinal()
+    {
+        return this._numeroSemSinal_;
+    }
+
+    public void setNumeroSemSinal(PNumeroSemSinal node)
+    {
+        if(this._numeroSemSinal_ != null)
+        {
+            this._numeroSemSinal_.parent(null);
+        }
+
+        if(node != null)
+        {
+            if(node.parent() != null)
+            {
+                node.parent().removeChild(node);
+            }
+
+            node.parent(this);
+        }
+
+        this._numeroSemSinal_ = node;
     }
 
     public LinkedList<PSentenca> getSentenca()
@@ -66,6 +96,7 @@ public final class ACompostaSentenca extends PSentenca
     public String toString()
     {
         return ""
+            + toString(this._numeroSemSinal_)
             + toString(this._sentenca_);
     }
 
@@ -73,6 +104,12 @@ public final class ACompostaSentenca extends PSentenca
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
+        if(this._numeroSemSinal_ == child)
+        {
+            this._numeroSemSinal_ = null;
+            return;
+        }
+
         if(this._sentenca_.remove(child))
         {
             return;
@@ -85,6 +122,12 @@ public final class ACompostaSentenca extends PSentenca
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
+        if(this._numeroSemSinal_ == oldChild)
+        {
+            setNumeroSemSinal((PNumeroSemSinal) newChild);
+            return;
+        }
+
         for(ListIterator<PSentenca> i = this._sentenca_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)

@@ -127,7 +127,7 @@ Productions
 		| {multiplo} T.program identificador abre_parenteses identificadores fecha_parenteses ponto_e_virgula bloco ponto {-> New program(New string(identificador), [identificadores.string], bloco) };
 	
 	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta 
-		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo], [declaracoes_variaveis.declaracao_variavel], [declaracoes_proc_funcoes.declaracao_proc_ou_funcao]) };
+		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo], [declaracoes_variaveis.declaracao_variavel], [declaracoes_proc_funcoes.declaracao_proc_ou_funcao], sentenca_composta.sentenca) };
 	
 	identificadores {-> P.string*} = {unico} identificador {-> [New string(identificador)]} 
 		| {multiplo} identificadores virgula identificador {-> [identificadores.string, New string(identificador)]};
@@ -229,15 +229,15 @@ Productions
 	tipo_resultado {-> tipo_id_ou_primitivo} = {existente} identificador {-> New tipo_id_ou_primitivo.id(New tipo_identificador(New string(identificador)))}
 		| {ordinal} identificador_tipo_ordinal {-> New tipo_id_ou_primitivo.primitivo(identificador_tipo_ordinal.tipo_primitivo)};
 	
-	sentenca_composta {-> sentenca} = begin sequencia_sentencas end {-> New sentenca.composta([sequencia_sentencas.sentenca])};
+	sentenca_composta {-> sentenca} = label_sentenca begin sequencia_sentencas end {-> New sentenca.composta(label_sentenca.numero_sem_sinal, [sequencia_sentencas.sentenca])};
 	
 	sequencia_sentencas {-> sentenca*} = {unico} sentenca {-> [sentenca.sentenca]}
 		| {multiplo} sequencia_sentencas ponto_e_virgula sentenca {-> [sentenca.sentenca, sequencia_sentencas.sentenca]};
 	
+	label_sentenca {-> numero_sem_sinal?} = P.label dois_pontos {-> label.numero_sem_sinal} | {empty} {-> Null};
+	
 	sentenca {-> sentenca} = {simples} definicao_sentenca_simples {-> definicao_sentenca_simples.sentenca} 
 		| {estruturada} definicao_sentenca_estruturada {-> definicao_sentenca_estruturada.sentenca};
-	
-	label_sentenca = P.label dois_pontos | {empty};
 	
 	definicao_sentenca {->sentenca} = {simples} definicao_sentenca_simples {-> definicao_sentenca_simples.sentenca} 
 		| {estruturada} definicao_sentenca_estruturada {-> definicao_sentenca_estruturada.sentenca} 
@@ -246,20 +246,20 @@ Productions
 	definicao_sentenca_fechada {-> sentenca} = {simples} definicao_sentenca_simples {-> definicao_sentenca_simples.sentenca}
 		| {estruturada} definicao_sentenca_estruturada_fechada {-> definicao_sentenca_estruturada_fechada.sentenca};
 	
-	definicao_sentenca_simples {-> sentenca} = label_sentenca sentenca_simples {-> sentenca_simples.sentenca};
+	definicao_sentenca_simples {-> sentenca} = sentenca_simples {-> sentenca_simples.sentenca};
 	
-	definicao_sentenca_estruturada {-> sentenca} = label_sentenca sentenca_estruturada {-> sentenca_estruturada.sentenca};
+	definicao_sentenca_estruturada {-> sentenca} = sentenca_estruturada {-> sentenca_estruturada.sentenca};
 	
-	definicao_sentenca_estruturada_fechada {-> sentenca} = label_sentenca sentenca_estruturada_fechada {-> sentenca_estruturada_fechada.sentenca};
+	definicao_sentenca_estruturada_fechada {-> sentenca} = sentenca_estruturada_fechada {-> sentenca_estruturada_fechada.sentenca};
 	
 	sentenca_simples {-> sentenca} = {atribuicao} sentenca_atribuicao  {-> sentenca_atribuicao.sentenca }
 		| {procedure} sentenca_proc_funcao {-> sentenca_proc_funcao.sentenca}
 		| {goto} sentenca_goto {-> sentenca_goto.sentenca} 
-		| {empty} {-> New sentenca.vazia()};
+		| {empty} label_sentenca {-> New sentenca.vazia(label_sentenca.numero_sem_sinal)};
 		
-	sentenca_atribuicao {-> sentenca} = acesso_variavel atribuicao expressao {-> New sentenca.atribuicao(acesso_variavel.acesso_variavel, expressao.expressao)};
+	sentenca_atribuicao {-> sentenca} = label_sentenca acesso_variavel atribuicao expressao {-> New sentenca.atribuicao(label_sentenca.numero_sem_sinal, acesso_variavel.acesso_variavel, expressao.expressao)};
 	
-	sentenca_proc_funcao {-> sentenca} = identificador parametros_reais {-> New sentenca.procedure(New string(identificador), [parametros_reais.expressao]) };
+	sentenca_proc_funcao {-> sentenca} = label_sentenca identificador parametros_reais {-> New sentenca.procedure(label_sentenca.numero_sem_sinal, New string(identificador), [parametros_reais.expressao]) };
 	
 	parametros_reais {-> expressao*} = abre_parenteses definicao_parametros_reais fecha_parenteses {-> [definicao_parametros_reais.expressao]}
 		| {empty} {-> []};
@@ -274,17 +274,17 @@ Productions
 	sentenca_estruturada_fechada {-> sentenca} = {composta} sentenca_composta {-> sentenca_composta.sentenca}
 		| {while} sentenca_while_fechada {-> sentenca_while_fechada.sentenca};
 	
-	sentenca_while {-> sentenca} = while expressao do definicao_sentenca_simples {-> New sentenca.while(expressao.expressao, definicao_sentenca_simples.sentenca) }
-		| {estruturada} while expressao do definicao_sentenca_estruturada {-> New sentenca.while(expressao.expressao, definicao_sentenca_estruturada.sentenca) };
+	sentenca_while {-> sentenca} = label_sentenca while expressao do definicao_sentenca_simples {-> New sentenca.while(label_sentenca.numero_sem_sinal, expressao.expressao, definicao_sentenca_simples.sentenca) }
+		| {estruturada} label_sentenca while expressao do definicao_sentenca_estruturada {-> New sentenca.while(label_sentenca.numero_sem_sinal, expressao.expressao, definicao_sentenca_estruturada.sentenca) };
 	
-	sentenca_while_fechada {->sentenca} = while expressao do definicao_sentenca_fechada {-> New sentenca.while(expressao.expressao, definicao_sentenca_fechada.sentenca) };
+	sentenca_while_fechada {->sentenca} = label_sentenca while expressao do definicao_sentenca_fechada {-> New sentenca.while(label_sentenca.numero_sem_sinal, expressao.expressao, definicao_sentenca_fechada.sentenca) };
 	
-	sentenca_goto {-> sentenca} = goto P.label {-> New sentenca.goto(P.label.numero_sem_sinal) };
+	sentenca_goto {-> sentenca} = label_sentenca goto P.label {-> New sentenca.goto(label_sentenca.numero_sem_sinal, P.label.numero_sem_sinal) };
 	
-	sentenca_if {-> sentenca} = if expressao then sentenca {-> New sentenca.if(expressao.expressao, sentenca.sentenca, New sentenca.vazia())} 
-		| {else} if expressao then sentenca_if_fechada else sentenca {-> New sentenca.if(expressao.expressao, sentenca_if_fechada.sentenca, sentenca.sentenca)};
+	sentenca_if {-> sentenca} = label_sentenca if expressao then sentenca {-> New sentenca.if(label_sentenca.numero_sem_sinal, expressao.expressao, sentenca.sentenca, New sentenca.vazia(Null))} 
+		| {else} label_sentenca if expressao then sentenca_if_fechada else sentenca {-> New sentenca.if(label_sentenca.numero_sem_sinal, expressao.expressao, sentenca_if_fechada.sentenca, sentenca.sentenca)};
 		
-	sentenca_if_fechada {-> sentenca} = {if} if expressao then [parte_if]:sentenca_if_fechada else sentenca_if_fechada {-> New sentenca.if(expressao.expressao, parte_if.sentenca, sentenca_if_fechada.sentenca)} 
+	sentenca_if_fechada {-> sentenca} = {if} label_sentenca if expressao then [parte_if]:sentenca_if_fechada else sentenca_if_fechada {-> New sentenca.if(label_sentenca.numero_sem_sinal, expressao.expressao, parte_if.sentenca, sentenca_if_fechada.sentenca)} 
 		| definicao_sentenca_fechada {-> definicao_sentenca_fechada.sentenca};
 	
 	acesso_variavel {-> acesso_variavel} = identificador {-> New acesso_variavel.variavel(New variavel(New string(identificador))) } 
@@ -332,7 +332,7 @@ Abstract Syntax Tree
 	program = [id]:P.string [ids]:P.string* bloco;
 	string = identificador;
 	constante = {inteiro} P.sinal? const_inteiro | {string} const_string | {boolean} const_booleana;
-	bloco = numero_sem_sinal* definicao_tipo* declaracao_variavel* declaracao_proc_ou_funcao*;
+	bloco = numero_sem_sinal* definicao_tipo* declaracao_variavel* declaracao_proc_ou_funcao* sentenca;
 	numero_sem_sinal = const_inteiro;
 	
 	definicao_tipo = P.string denotador_tipo;
@@ -356,8 +356,10 @@ Abstract Syntax Tree
 	
 	declaracao_funcao = P.string parametro_formal* tipo_id_ou_primitivo bloco;
 	
-	sentenca = {vazia} | {atribuicao} acesso_variavel expressao | {procedure} P.string expressao* | {goto} numero_sem_sinal
-		| {if} expressao [if]:sentenca [else]:sentenca | {while} expressao sentenca | {composta} sentenca*;
+	sentenca = {vazia} numero_sem_sinal? | {atribuicao} numero_sem_sinal? acesso_variavel expressao 
+		| {procedure} numero_sem_sinal? P.string expressao* | {goto} [label]:numero_sem_sinal? [jump]:numero_sem_sinal
+		| {if} numero_sem_sinal? expressao [if]:sentenca [else]:sentenca | {while} numero_sem_sinal? expressao sentenca 
+		| {composta} numero_sem_sinal? sentenca*;
 	
 	acesso_variavel = {variavel} variavel | {var_indexada} variavel_indexada;
 	variavel = P.string;

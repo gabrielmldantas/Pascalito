@@ -198,6 +198,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
+        if(node.getSentenca() != null)
+        {
+            node.getSentenca().apply(this);
+        }
         outABloco(node);
     }
 
@@ -874,6 +878,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAVaziaSentenca(AVaziaSentenca node)
     {
         inAVaziaSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         outAVaziaSentenca(node);
     }
 
@@ -891,6 +899,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAAtribuicaoSentenca(AAtribuicaoSentenca node)
     {
         inAAtribuicaoSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         if(node.getAcessoVariavel() != null)
         {
             node.getAcessoVariavel().apply(this);
@@ -916,6 +928,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAProcedureSentenca(AProcedureSentenca node)
     {
         inAProcedureSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         if(node.getString() != null)
         {
             node.getString().apply(this);
@@ -944,9 +960,13 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAGotoSentenca(AGotoSentenca node)
     {
         inAGotoSentenca(node);
-        if(node.getNumeroSemSinal() != null)
+        if(node.getLabel() != null)
         {
-            node.getNumeroSemSinal().apply(this);
+            node.getLabel().apply(this);
+        }
+        if(node.getJump() != null)
+        {
+            node.getJump().apply(this);
         }
         outAGotoSentenca(node);
     }
@@ -965,6 +985,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAIfSentenca(AIfSentenca node)
     {
         inAIfSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         if(node.getExpressao() != null)
         {
             node.getExpressao().apply(this);
@@ -994,6 +1018,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseAWhileSentenca(AWhileSentenca node)
     {
         inAWhileSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         if(node.getExpressao() != null)
         {
             node.getExpressao().apply(this);
@@ -1019,6 +1047,10 @@ public class DepthFirstAdapter extends AnalysisAdapter
     public void caseACompostaSentenca(ACompostaSentenca node)
     {
         inACompostaSentenca(node);
+        if(node.getNumeroSemSinal() != null)
+        {
+            node.getNumeroSemSinal().apply(this);
+        }
         {
             List<PSentenca> copy = new ArrayList<PSentenca>(node.getSentenca());
             for(PSentenca e : copy)
