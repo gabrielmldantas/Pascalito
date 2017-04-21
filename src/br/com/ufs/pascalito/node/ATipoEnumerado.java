@@ -8,7 +8,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class ATipoEnumerado extends PTipoEnumerado
 {
-    private final LinkedList<PString> _string_ = new LinkedList<PString>();
+    private final LinkedList<PId> _id_ = new LinkedList<PId>();
 
     public ATipoEnumerado()
     {
@@ -16,10 +16,10 @@ public final class ATipoEnumerado extends PTipoEnumerado
     }
 
     public ATipoEnumerado(
-        @SuppressWarnings("hiding") List<?> _string_)
+        @SuppressWarnings("hiding") List<?> _id_)
     {
         // Constructor
-        setString(_string_);
+        setId(_id_);
 
     }
 
@@ -27,7 +27,7 @@ public final class ATipoEnumerado extends PTipoEnumerado
     public Object clone()
     {
         return new ATipoEnumerado(
-            cloneList(this._string_));
+            cloneList(this._id_));
     }
 
     @Override
@@ -36,29 +36,29 @@ public final class ATipoEnumerado extends PTipoEnumerado
         ((Analysis) sw).caseATipoEnumerado(this);
     }
 
-    public LinkedList<PString> getString()
+    public LinkedList<PId> getId()
     {
-        return this._string_;
+        return this._id_;
     }
 
-    public void setString(List<?> list)
+    public void setId(List<?> list)
     {
-        for(PString e : this._string_)
+        for(PId e : this._id_)
         {
             e.parent(null);
         }
-        this._string_.clear();
+        this._id_.clear();
 
         for(Object obj_e : list)
         {
-            PString e = (PString) obj_e;
+            PId e = (PId) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._string_.add(e);
+            this._id_.add(e);
         }
     }
 
@@ -66,14 +66,14 @@ public final class ATipoEnumerado extends PTipoEnumerado
     public String toString()
     {
         return ""
-            + toString(this._string_);
+            + toString(this._id_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._string_.remove(child))
+        if(this._id_.remove(child))
         {
             return;
         }
@@ -85,13 +85,13 @@ public final class ATipoEnumerado extends PTipoEnumerado
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        for(ListIterator<PString> i = this._string_.listIterator(); i.hasNext();)
+        for(ListIterator<PId> i = this._id_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PString) newChild);
+                    i.set((PId) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

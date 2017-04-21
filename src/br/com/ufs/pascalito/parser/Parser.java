@@ -1083,7 +1083,7 @@ public class Parser
         PProgram pprogramNode1;
         {
             // Block
-        PString pstringNode2;
+        PId pidNode2;
         LinkedList<Object> listNode4 = new LinkedList<Object>();
         PBloco pblocoNode5;
         {
@@ -1091,14 +1091,14 @@ public class Parser
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList2.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
         {
             // Block
         }
         pblocoNode5 = (PBloco)nodeArrayList4.get(0);
 
-        pprogramNode1 = new AProgram(pstringNode2, listNode4, pblocoNode5);
+        pprogramNode1 = new AProgram(pidNode2, listNode4, pblocoNode5);
         }
 	nodeList.add(pprogramNode1);
         return nodeList;
@@ -1122,7 +1122,7 @@ public class Parser
         PProgram pprogramNode1;
         {
             // Block
-        PString pstringNode2;
+        PId pidNode2;
         LinkedList<Object> listNode5 = new LinkedList<Object>();
         PBloco pblocoNode6;
         {
@@ -1130,7 +1130,7 @@ public class Parser
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList2.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
         {
             // Block
@@ -1143,7 +1143,7 @@ public class Parser
         }
         pblocoNode6 = (PBloco)nodeArrayList7.get(0);
 
-        pprogramNode1 = new AProgram(pstringNode2, listNode5, pblocoNode6);
+        pprogramNode1 = new AProgram(pidNode2, listNode5, pblocoNode6);
         }
 	nodeList.add(pprogramNode1);
         return nodeList;
@@ -1224,17 +1224,17 @@ public class Parser
         LinkedList<Object> listNode3 = new LinkedList<Object>();
         {
             // Block
-        PString pstringNode1;
+        PId pidNode1;
         {
             // Block
         TIdentificador tidentificadorNode2;
         tidentificadorNode2 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode1 = new AString(tidentificadorNode2);
+        pidNode1 = new AId(tidentificadorNode2);
         }
-	if(pstringNode1 != null)
+	if(pidNode1 != null)
 	{
-	  listNode3.add(pstringNode1);
+	  listNode3.add(pidNode1);
 	}
         }
 	nodeList.add(listNode3);
@@ -1255,22 +1255,22 @@ public class Parser
         {
             // Block
         LinkedList<Object> listNode1 = new LinkedList<Object>();
-        PString pstringNode2;
+        PId pidNode2;
         listNode1 = (LinkedList)nodeArrayList1.get(0);
         {
             // Block
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList3.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
 	if(listNode1 != null)
 	{
 	  listNode4.addAll(listNode1);
 	}
-	if(pstringNode2 != null)
+	if(pidNode2 != null)
 	{
-	  listNode4.add(pstringNode2);
+	  listNode4.add(pidNode2);
 	}
         }
 	nodeList.add(listNode4);
@@ -1351,16 +1351,16 @@ public class Parser
         PTipoIdentificador ptipoidentificadorNode2;
         {
             // Block
-        PString pstringNode3;
+        PId pidNode3;
         {
             // Block
         TIdentificador tidentificadorNode4;
         tidentificadorNode4 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode3 = new AString(tidentificadorNode4);
+        pidNode3 = new AId(tidentificadorNode4);
         }
 
-        ptipoidentificadorNode2 = new ATipoIdentificador(pstringNode3);
+        ptipoidentificadorNode2 = new ATipoIdentificador(pidNode3);
         }
 
         ptipoidouprimitivoNode1 = new AIdTipoIdOuPrimitivo(ptipoidentificadorNode2);
@@ -1604,18 +1604,18 @@ public class Parser
         PDefinicaoTipo pdefinicaotipoNode1;
         {
             // Block
-        PString pstringNode2;
+        PId pidNode2;
         PDenotadorTipo pdenotadortipoNode4;
         {
             // Block
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
         pdenotadortipoNode4 = (PDenotadorTipo)nodeArrayList3.get(0);
 
-        pdefinicaotipoNode1 = new ADefinicaoTipo(pstringNode2, pdenotadortipoNode4);
+        pdefinicaotipoNode1 = new ADefinicaoTipo(pidNode2, pdenotadortipoNode4);
         }
 	nodeList.add(pdefinicaotipoNode1);
         return nodeList;
@@ -1638,16 +1638,16 @@ public class Parser
         PTipoIdentificador ptipoidentificadorNode3;
         {
             // Block
-        PString pstringNode4;
+        PId pidNode4;
         {
             // Block
         TIdentificador tidentificadorNode5;
         tidentificadorNode5 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode4 = new AString(tidentificadorNode5);
+        pidNode4 = new AId(tidentificadorNode5);
         }
 
-        ptipoidentificadorNode3 = new ATipoIdentificador(pstringNode4);
+        ptipoidentificadorNode3 = new ATipoIdentificador(pidNode4);
         }
 
         ptipoidouordinalNode2 = new AIdTipoIdOuOrdinal(ptipoidentificadorNode3);
@@ -1816,16 +1816,16 @@ public class Parser
         PTipoIdentificador ptipoidentificadorNode2;
         {
             // Block
-        PString pstringNode3;
+        PId pidNode3;
         {
             // Block
         TIdentificador tidentificadorNode4;
         tidentificadorNode4 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode3 = new AString(tidentificadorNode4);
+        pidNode3 = new AId(tidentificadorNode4);
         }
 
-        ptipoidentificadorNode2 = new ATipoIdentificador(pstringNode3);
+        ptipoidentificadorNode2 = new ATipoIdentificador(pidNode3);
         }
 
         ptipoidouordinalNode1 = new AIdTipoIdOuOrdinal(ptipoidentificadorNode2);
@@ -2381,7 +2381,7 @@ public class Parser
         PDeclaracaoProcedure pdeclaracaoprocedureNode1;
         {
             // Block
-        PString pstringNode2;
+        PId pidNode2;
         LinkedList<Object> listNode5 = new LinkedList<Object>();
         PBloco pblocoNode6;
         {
@@ -2389,7 +2389,7 @@ public class Parser
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList2.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
         {
             // Block
@@ -2402,7 +2402,7 @@ public class Parser
         }
         pblocoNode6 = (PBloco)nodeArrayList5.get(0);
 
-        pdeclaracaoprocedureNode1 = new ADeclaracaoProcedure(pstringNode2, listNode5, pblocoNode6);
+        pdeclaracaoprocedureNode1 = new ADeclaracaoProcedure(pidNode2, listNode5, pblocoNode6);
         }
 	nodeList.add(pdeclaracaoprocedureNode1);
         return nodeList;
@@ -2425,7 +2425,7 @@ public class Parser
         PDeclaracaoFuncao pdeclaracaofuncaoNode1;
         {
             // Block
-        PString pstringNode2;
+        PId pidNode2;
         LinkedList<Object> listNode5 = new LinkedList<Object>();
         PTipoIdOuPrimitivo ptipoidouprimitivoNode6;
         PBloco pblocoNode7;
@@ -2434,7 +2434,7 @@ public class Parser
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList2.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
         {
             // Block
@@ -2448,7 +2448,7 @@ public class Parser
         ptipoidouprimitivoNode6 = (PTipoIdOuPrimitivo)nodeArrayList5.get(0);
         pblocoNode7 = (PBloco)nodeArrayList7.get(0);
 
-        pdeclaracaofuncaoNode1 = new ADeclaracaoFuncao(pstringNode2, listNode5, ptipoidouprimitivoNode6, pblocoNode7);
+        pdeclaracaofuncaoNode1 = new ADeclaracaoFuncao(pidNode2, listNode5, ptipoidouprimitivoNode6, pblocoNode7);
         }
 	nodeList.add(pdeclaracaofuncaoNode1);
         return nodeList;
@@ -2806,16 +2806,16 @@ public class Parser
         PTipoIdentificador ptipoidentificadorNode2;
         {
             // Block
-        PString pstringNode3;
+        PId pidNode3;
         {
             // Block
         TIdentificador tidentificadorNode4;
         tidentificadorNode4 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode3 = new AString(tidentificadorNode4);
+        pidNode3 = new AId(tidentificadorNode4);
         }
 
-        ptipoidentificadorNode2 = new ATipoIdentificador(pstringNode3);
+        ptipoidentificadorNode2 = new ATipoIdentificador(pidNode3);
         }
 
         ptipoidouprimitivoNode1 = new AIdTipoIdOuPrimitivo(ptipoidentificadorNode2);
@@ -3199,7 +3199,7 @@ public class Parser
         {
             // Block
         PNumeroSemSinal pnumerosemsinalNode2;
-        PString pstringNode3;
+        PId pidNode3;
         LinkedList<Object> listNode6 = new LinkedList<Object>();
         pnumerosemsinalNode2 = (PNumeroSemSinal)nodeArrayList1.get(0);
         {
@@ -3207,7 +3207,7 @@ public class Parser
         TIdentificador tidentificadorNode4;
         tidentificadorNode4 = (TIdentificador)nodeArrayList2.get(0);
 
-        pstringNode3 = new AString(tidentificadorNode4);
+        pidNode3 = new AId(tidentificadorNode4);
         }
         {
             // Block
@@ -3219,7 +3219,7 @@ public class Parser
 	}
         }
 
-        psentencaNode1 = new AProcedureSentenca(pnumerosemsinalNode2, pstringNode3, listNode6);
+        psentencaNode1 = new AProcedureSentenca(pnumerosemsinalNode2, pidNode3, listNode6);
         }
 	nodeList.add(psentencaNode1);
         return nodeList;
@@ -3621,16 +3621,16 @@ public class Parser
         PVariavel pvariavelNode2;
         {
             // Block
-        PString pstringNode3;
+        PId pidNode3;
         {
             // Block
         TIdentificador tidentificadorNode4;
         tidentificadorNode4 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode3 = new AString(tidentificadorNode4);
+        pidNode3 = new AId(tidentificadorNode4);
         }
 
-        pvariavelNode2 = new AVariavel(pstringNode3);
+        pvariavelNode2 = new AVariavel(pidNode3);
         }
 
         pacessovariavelNode1 = new AVariavelAcessoVariavel(pvariavelNode2);
@@ -4132,14 +4132,14 @@ public class Parser
         PExpressao pexpressaoNode1;
         {
             // Block
-        PString pstringNode2;
+        PId pidNode2;
         LinkedList<Object> listNode5 = new LinkedList<Object>();
         {
             // Block
         TIdentificador tidentificadorNode3;
         tidentificadorNode3 = (TIdentificador)nodeArrayList1.get(0);
 
-        pstringNode2 = new AString(tidentificadorNode3);
+        pidNode2 = new AId(tidentificadorNode3);
         }
         {
             // Block
@@ -4151,7 +4151,7 @@ public class Parser
 	}
         }
 
-        pexpressaoNode1 = new AFuncaoExpressao(pstringNode2, listNode5);
+        pexpressaoNode1 = new AFuncaoExpressao(pidNode2, listNode5);
         }
 	nodeList.add(pexpressaoNode1);
         return nodeList;

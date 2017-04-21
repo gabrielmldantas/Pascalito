@@ -8,7 +8,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
 {
-    private PString _string_;
+    private PId _id_;
     private final LinkedList<PParametroFormal> _parametroFormal_ = new LinkedList<PParametroFormal>();
     private PTipoIdOuPrimitivo _tipoIdOuPrimitivo_;
     private PBloco _bloco_;
@@ -19,13 +19,13 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
     }
 
     public ADeclaracaoFuncao(
-        @SuppressWarnings("hiding") PString _string_,
+        @SuppressWarnings("hiding") PId _id_,
         @SuppressWarnings("hiding") List<?> _parametroFormal_,
         @SuppressWarnings("hiding") PTipoIdOuPrimitivo _tipoIdOuPrimitivo_,
         @SuppressWarnings("hiding") PBloco _bloco_)
     {
         // Constructor
-        setString(_string_);
+        setId(_id_);
 
         setParametroFormal(_parametroFormal_);
 
@@ -39,7 +39,7 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
     public Object clone()
     {
         return new ADeclaracaoFuncao(
-            cloneNode(this._string_),
+            cloneNode(this._id_),
             cloneList(this._parametroFormal_),
             cloneNode(this._tipoIdOuPrimitivo_),
             cloneNode(this._bloco_));
@@ -51,16 +51,16 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
         ((Analysis) sw).caseADeclaracaoFuncao(this);
     }
 
-    public PString getString()
+    public PId getId()
     {
-        return this._string_;
+        return this._id_;
     }
 
-    public void setString(PString node)
+    public void setId(PId node)
     {
-        if(this._string_ != null)
+        if(this._id_ != null)
         {
-            this._string_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -73,7 +73,7 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
             node.parent(this);
         }
 
-        this._string_ = node;
+        this._id_ = node;
     }
 
     public LinkedList<PParametroFormal> getParametroFormal()
@@ -156,7 +156,7 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
     public String toString()
     {
         return ""
-            + toString(this._string_)
+            + toString(this._id_)
             + toString(this._parametroFormal_)
             + toString(this._tipoIdOuPrimitivo_)
             + toString(this._bloco_);
@@ -166,9 +166,9 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._string_ == child)
+        if(this._id_ == child)
         {
-            this._string_ = null;
+            this._id_ = null;
             return;
         }
 
@@ -196,9 +196,9 @@ public final class ADeclaracaoFuncao extends PDeclaracaoFuncao
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._string_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setString((PString) newChild);
+            setId((PId) newChild);
             return;
         }
 

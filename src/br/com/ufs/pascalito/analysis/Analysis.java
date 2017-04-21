@@ -13,7 +13,7 @@ public interface Analysis extends Switch
 
     void caseStart(Start node);
     void caseAProgram(AProgram node);
-    void caseAString(AString node);
+    void caseAId(AId node);
     void caseAInteiroConstante(AInteiroConstante node);
     void caseAStringConstante(AStringConstante node);
     void caseABooleanConstante(ABooleanConstante node);

@@ -8,8 +8,8 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AProgram extends PProgram
 {
-    private PString _id_;
-    private final LinkedList<PString> _ids_ = new LinkedList<PString>();
+    private PId _id_;
+    private final LinkedList<PId> _ids_ = new LinkedList<PId>();
     private PBloco _bloco_;
 
     public AProgram()
@@ -18,7 +18,7 @@ public final class AProgram extends PProgram
     }
 
     public AProgram(
-        @SuppressWarnings("hiding") PString _id_,
+        @SuppressWarnings("hiding") PId _id_,
         @SuppressWarnings("hiding") List<?> _ids_,
         @SuppressWarnings("hiding") PBloco _bloco_)
     {
@@ -46,12 +46,12 @@ public final class AProgram extends PProgram
         ((Analysis) sw).caseAProgram(this);
     }
 
-    public PString getId()
+    public PId getId()
     {
         return this._id_;
     }
 
-    public void setId(PString node)
+    public void setId(PId node)
     {
         if(this._id_ != null)
         {
@@ -71,14 +71,14 @@ public final class AProgram extends PProgram
         this._id_ = node;
     }
 
-    public LinkedList<PString> getIds()
+    public LinkedList<PId> getIds()
     {
         return this._ids_;
     }
 
     public void setIds(List<?> list)
     {
-        for(PString e : this._ids_)
+        for(PId e : this._ids_)
         {
             e.parent(null);
         }
@@ -86,7 +86,7 @@ public final class AProgram extends PProgram
 
         for(Object obj_e : list)
         {
-            PString e = (PString) obj_e;
+            PId e = (PId) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
@@ -161,17 +161,17 @@ public final class AProgram extends PProgram
         // Replace child
         if(this._id_ == oldChild)
         {
-            setId((PString) newChild);
+            setId((PId) newChild);
             return;
         }
 
-        for(ListIterator<PString> i = this._ids_.listIterator(); i.hasNext();)
+        for(ListIterator<PId> i = this._ids_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PString) newChild);
+                    i.set((PId) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

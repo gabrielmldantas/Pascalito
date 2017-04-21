@@ -8,7 +8,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class AValorFormal extends PValorFormal
 {
-    private final LinkedList<PString> _string_ = new LinkedList<PString>();
+    private final LinkedList<PId> _id_ = new LinkedList<PId>();
     private PTipoIdOuPrimitivo _tipoIdOuPrimitivo_;
 
     public AValorFormal()
@@ -17,11 +17,11 @@ public final class AValorFormal extends PValorFormal
     }
 
     public AValorFormal(
-        @SuppressWarnings("hiding") List<?> _string_,
+        @SuppressWarnings("hiding") List<?> _id_,
         @SuppressWarnings("hiding") PTipoIdOuPrimitivo _tipoIdOuPrimitivo_)
     {
         // Constructor
-        setString(_string_);
+        setId(_id_);
 
         setTipoIdOuPrimitivo(_tipoIdOuPrimitivo_);
 
@@ -31,7 +31,7 @@ public final class AValorFormal extends PValorFormal
     public Object clone()
     {
         return new AValorFormal(
-            cloneList(this._string_),
+            cloneList(this._id_),
             cloneNode(this._tipoIdOuPrimitivo_));
     }
 
@@ -41,29 +41,29 @@ public final class AValorFormal extends PValorFormal
         ((Analysis) sw).caseAValorFormal(this);
     }
 
-    public LinkedList<PString> getString()
+    public LinkedList<PId> getId()
     {
-        return this._string_;
+        return this._id_;
     }
 
-    public void setString(List<?> list)
+    public void setId(List<?> list)
     {
-        for(PString e : this._string_)
+        for(PId e : this._id_)
         {
             e.parent(null);
         }
-        this._string_.clear();
+        this._id_.clear();
 
         for(Object obj_e : list)
         {
-            PString e = (PString) obj_e;
+            PId e = (PId) obj_e;
             if(e.parent() != null)
             {
                 e.parent().removeChild(e);
             }
 
             e.parent(this);
-            this._string_.add(e);
+            this._id_.add(e);
         }
     }
 
@@ -96,7 +96,7 @@ public final class AValorFormal extends PValorFormal
     public String toString()
     {
         return ""
-            + toString(this._string_)
+            + toString(this._id_)
             + toString(this._tipoIdOuPrimitivo_);
     }
 
@@ -104,7 +104,7 @@ public final class AValorFormal extends PValorFormal
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._string_.remove(child))
+        if(this._id_.remove(child))
         {
             return;
         }
@@ -122,13 +122,13 @@ public final class AValorFormal extends PValorFormal
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        for(ListIterator<PString> i = this._string_.listIterator(); i.hasNext();)
+        for(ListIterator<PId> i = this._id_.listIterator(); i.hasNext();)
         {
             if(i.next() == oldChild)
             {
                 if(newChild != null)
                 {
-                    i.set((PString) newChild);
+                    i.set((PId) newChild);
                     newChild.parent(this);
                     oldChild.parent(null);
                     return;

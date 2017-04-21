@@ -7,7 +7,7 @@ import br.com.ufs.pascalito.analysis.*;
 @SuppressWarnings("nls")
 public final class ATipoIdentificador extends PTipoIdentificador
 {
-    private PString _string_;
+    private PId _id_;
 
     public ATipoIdentificador()
     {
@@ -15,10 +15,10 @@ public final class ATipoIdentificador extends PTipoIdentificador
     }
 
     public ATipoIdentificador(
-        @SuppressWarnings("hiding") PString _string_)
+        @SuppressWarnings("hiding") PId _id_)
     {
         // Constructor
-        setString(_string_);
+        setId(_id_);
 
     }
 
@@ -26,7 +26,7 @@ public final class ATipoIdentificador extends PTipoIdentificador
     public Object clone()
     {
         return new ATipoIdentificador(
-            cloneNode(this._string_));
+            cloneNode(this._id_));
     }
 
     @Override
@@ -35,16 +35,16 @@ public final class ATipoIdentificador extends PTipoIdentificador
         ((Analysis) sw).caseATipoIdentificador(this);
     }
 
-    public PString getString()
+    public PId getId()
     {
-        return this._string_;
+        return this._id_;
     }
 
-    public void setString(PString node)
+    public void setId(PId node)
     {
-        if(this._string_ != null)
+        if(this._id_ != null)
         {
-            this._string_.parent(null);
+            this._id_.parent(null);
         }
 
         if(node != null)
@@ -57,23 +57,23 @@ public final class ATipoIdentificador extends PTipoIdentificador
             node.parent(this);
         }
 
-        this._string_ = node;
+        this._id_ = node;
     }
 
     @Override
     public String toString()
     {
         return ""
-            + toString(this._string_);
+            + toString(this._id_);
     }
 
     @Override
     void removeChild(@SuppressWarnings("unused") Node child)
     {
         // Remove child
-        if(this._string_ == child)
+        if(this._id_ == child)
         {
-            this._string_ = null;
+            this._id_ = null;
             return;
         }
 
@@ -84,9 +84,9 @@ public final class ATipoIdentificador extends PTipoIdentificador
     void replaceChild(@SuppressWarnings("unused") Node oldChild, @SuppressWarnings("unused") Node newChild)
     {
         // Replace child
-        if(this._string_ == oldChild)
+        if(this._id_ == oldChild)
         {
-            setString((PString) newChild);
+            setId((PId) newChild);
             return;
         }
 

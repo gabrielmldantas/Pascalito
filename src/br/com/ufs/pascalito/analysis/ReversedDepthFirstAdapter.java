@@ -55,9 +55,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getBloco().apply(this);
         }
         {
-            List<PString> copy = new ArrayList<PString>(node.getIds());
+            List<PId> copy = new ArrayList<PId>(node.getIds());
             Collections.reverse(copy);
-            for(PString e : copy)
+            for(PId e : copy)
             {
                 e.apply(this);
             }
@@ -69,25 +69,25 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         outAProgram(node);
     }
 
-    public void inAString(AString node)
+    public void inAId(AId node)
     {
         defaultIn(node);
     }
 
-    public void outAString(AString node)
+    public void outAId(AId node)
     {
         defaultOut(node);
     }
 
     @Override
-    public void caseAString(AString node)
+    public void caseAId(AId node)
     {
-        inAString(node);
+        inAId(node);
         if(node.getIdentificador() != null)
         {
             node.getIdentificador().apply(this);
         }
-        outAString(node);
+        outAId(node);
     }
 
     public void inAInteiroConstante(AInteiroConstante node)
@@ -249,9 +249,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
         {
             node.getDenotadorTipo().apply(this);
         }
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         outADefinicaoTipo(node);
     }
@@ -501,9 +501,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseATipoIdentificador(ATipoIdentificador node)
     {
         inATipoIdentificador(node);
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         outATipoIdentificador(node);
     }
@@ -523,9 +523,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     {
         inATipoEnumerado(node);
         {
-            List<PString> copy = new ArrayList<PString>(node.getString());
+            List<PId> copy = new ArrayList<PId>(node.getId());
             Collections.reverse(copy);
-            for(PString e : copy)
+            for(PId e : copy)
             {
                 e.apply(this);
             }
@@ -648,9 +648,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getDenotadorTipo().apply(this);
         }
         {
-            List<PString> copy = new ArrayList<PString>(node.getString());
+            List<PId> copy = new ArrayList<PId>(node.getId());
             Collections.reverse(copy);
-            for(PString e : copy)
+            for(PId e : copy)
             {
                 e.apply(this);
             }
@@ -726,9 +726,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         outADeclaracaoProcedure(node);
     }
@@ -802,9 +802,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getTipoIdOuPrimitivo().apply(this);
         }
         {
-            List<PString> copy = new ArrayList<PString>(node.getString());
+            List<PId> copy = new ArrayList<PId>(node.getId());
             Collections.reverse(copy);
-            for(PString e : copy)
+            for(PId e : copy)
             {
                 e.apply(this);
             }
@@ -831,9 +831,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
             node.getTipoIdOuPrimitivo().apply(this);
         }
         {
-            List<PString> copy = new ArrayList<PString>(node.getString());
+            List<PId> copy = new ArrayList<PId>(node.getId());
             Collections.reverse(copy);
-            for(PString e : copy)
+            for(PId e : copy)
             {
                 e.apply(this);
             }
@@ -871,9 +871,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         outADeclaracaoFuncao(node);
     }
@@ -950,9 +950,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         if(node.getNumeroSemSinal() != null)
         {
@@ -1133,9 +1133,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
     public void caseAVariavel(AVariavel node)
     {
         inAVariavel(node);
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         outAVariavel(node);
     }
@@ -1349,9 +1349,9 @@ public class ReversedDepthFirstAdapter extends AnalysisAdapter
                 e.apply(this);
             }
         }
-        if(node.getString() != null)
+        if(node.getId() != null)
         {
-            node.getString().apply(this);
+            node.getId().apply(this);
         }
         outAFuncaoExpressao(node);
     }

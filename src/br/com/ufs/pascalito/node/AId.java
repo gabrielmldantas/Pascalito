@@ -5,16 +5,16 @@ package br.com.ufs.pascalito.node;
 import br.com.ufs.pascalito.analysis.*;
 
 @SuppressWarnings("nls")
-public final class AString extends PString
+public final class AId extends PId
 {
     private TIdentificador _identificador_;
 
-    public AString()
+    public AId()
     {
         // Constructor
     }
 
-    public AString(
+    public AId(
         @SuppressWarnings("hiding") TIdentificador _identificador_)
     {
         // Constructor
@@ -25,14 +25,14 @@ public final class AString extends PString
     @Override
     public Object clone()
     {
-        return new AString(
+        return new AId(
             cloneNode(this._identificador_));
     }
 
     @Override
     public void apply(Switch sw)
     {
-        ((Analysis) sw).caseAString(this);
+        ((Analysis) sw).caseAId(this);
     }
 
     public TIdentificador getIdentificador()

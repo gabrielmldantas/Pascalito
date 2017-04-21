@@ -81,7 +81,7 @@ public class AnalysisAdapter implements Analysis
     }
 
     @Override
-    public void caseAString(AString node)
+    public void caseAId(AId node)
     {
         defaultCase(node);
     }
