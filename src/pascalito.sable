@@ -129,7 +129,7 @@ Productions
 	bloco {-> P.bloco} = declaracao_labels declaracao_tipos declaracoes_variaveis declaracoes_proc_funcoes sentenca_composta 
 		{-> New bloco([declaracao_labels.numero_sem_sinal], [declaracao_tipos.definicao_tipo], [declaracoes_variaveis.declaracao_variavel], [declaracoes_proc_funcoes.declaracao_proc_ou_funcao], sentenca_composta.sentenca) };
 	
-	identificadores {-> P.id*} = {unico} identificador {-> [New id(identificador)]} 
+	identificadores {-> id*} = {unico} identificador {-> [New id(identificador)]} 
 		| {multiplo} identificadores virgula identificador {-> [identificadores.id, New id(identificador)]};
 	
 	identificador_tipo_ordinal {-> tipo_primitivo} = {integer} integer {-> New tipo_primitivo.integer(integer)} 
@@ -331,44 +331,44 @@ Productions
 		| {mod} mod {-> New operador_aritmetico_binario.mod(mod)};
 	
 Abstract Syntax Tree
-	program = [id]:P.id [ids]:P.id* bloco;
+	program = [id]:id [ids]:id* bloco;
 	id = identificador;
 	constante = {inteiro} P.sinal? const_inteiro | {string} const_string | {boolean} const_booleana;
 	bloco = numero_sem_sinal* definicao_tipo* declaracao_variavel* declaracao_proc_ou_funcao* sentenca;
 	numero_sem_sinal = const_inteiro;
 	
-	definicao_tipo = P.id denotador_tipo;
+	definicao_tipo = id denotador_tipo;
 	denotador_tipo = {primitivo} tipo_primitivo | {id_ou_ordinal} tipo_id_ou_ordinal | {array} tipo_array;
 	tipo_primitivo = {integer} integer | {string} string | {boolean} boolean;
 	tipo_id_ou_ordinal = {id} tipo_identificador | {enumerado} tipo_enumerado | {subrange} tipo_subrange;
 	tipo_id_ou_primitivo = {id} tipo_identificador | {primitivo} tipo_primitivo;
-	tipo_identificador = P.id;
-	tipo_enumerado = P.id*;
+	tipo_identificador = id;
+	tipo_enumerado = id*;
 	tipo_subrange = [inicio]:constante [fim]:constante;
 	tipo_array = tipo_id_ou_ordinal+ denotador_tipo;
 	sinal = {mais} soma | {menos} subtracao;
 	
-	declaracao_variavel = P.id* denotador_tipo;
+	declaracao_variavel = id* denotador_tipo;
 	
 	declaracao_proc_ou_funcao = {procedure} declaracao_procedure | {funcao} declaracao_funcao;
-	declaracao_procedure = P.id parametro_formal* bloco;
+	declaracao_procedure = id parametro_formal* bloco;
 	parametro_formal = {valor} valor_formal* | {ref} ref_formal*;
-	valor_formal = P.id* tipo_id_ou_primitivo;
-	ref_formal = P.id* tipo_id_ou_primitivo;
+	valor_formal = id* tipo_id_ou_primitivo;
+	ref_formal = id* tipo_id_ou_primitivo;
 	
-	declaracao_funcao = P.id parametro_formal* tipo_id_ou_primitivo bloco;
+	declaracao_funcao = id parametro_formal* tipo_id_ou_primitivo bloco;
 	
 	sentenca = {vazia} numero_sem_sinal? | {atribuicao} numero_sem_sinal? acesso_variavel expressao 
-		| {procedure} numero_sem_sinal? P.id expressao* | {goto} [label]:numero_sem_sinal? [jump]:numero_sem_sinal
+		| {procedure} numero_sem_sinal? id expressao* | {goto} [label]:numero_sem_sinal? [jump]:numero_sem_sinal
 		| {if} numero_sem_sinal? expressao [if]:sentenca [else]:sentenca | {while} numero_sem_sinal? expressao sentenca 
 		| {composta} numero_sem_sinal? sentenca*;
 	
 	acesso_variavel = {variavel} variavel | {var_indexada} variavel_indexada;
-	variavel = P.id;
+	variavel = id;
 	variavel_indexada = acesso_variavel expressao+;
 	
 	expressao = {variavel} acesso_variavel | {exp_bin_arit} operador_aritmetico_binario [esq]:expressao [dir]:expressao | {exp_bin_boolean} operador_booleano_binario [esq]:expressao [dir]:expressao
-		| {exp_relacional} operador_relacional [esq]:expressao [dir]:expressao | {signed} sinal+ expressao | {not} expressao | {funcao} P.id expressao*
+		| {exp_relacional} operador_relacional [esq]:expressao [dir]:expressao | {signed} sinal+ expressao | {not} expressao | {funcao} id expressao*
 		| {constante} constante;
 
 	operador_aritmetico_binario = {div} div | {mod} mod | {soma_sub} sinal | {multiplicacao} multiplicacao | {divisao} divisao;
