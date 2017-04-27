@@ -156,9 +156,11 @@ Productions
 	definicao_tipo {-> definicao_tipo} = identificador igual denotador_tipo {-> New definicao_tipo(New id(identificador), denotador_tipo) };
 	
 	denotador_tipo {-> denotador_tipo} = {existente} identificador {-> New denotador_tipo.id_ou_ordinal(New tipo_id_ou_ordinal.id(New tipo_identificador(New id(identificador))))}
-		| {ordinal} identificador_tipo_ordinal {-> New denotador_tipo.primitivo(identificador_tipo_ordinal.tipo_primitivo) };
+		| {ordinal} identificador_tipo_ordinal {-> New denotador_tipo.primitivo(identificador_tipo_ordinal.tipo_primitivo) }
+		| {novo} novo_tipo {-> novo_tipo.denotador_tipo};
 	
-	novo_tipo = {ordinal} novo_tipo_ordinal | {array} tipo_array;
+	novo_tipo {-> denotador_tipo} = {ordinal} novo_tipo_ordinal {-> New denotador_tipo.id_ou_ordinal(novo_tipo_ordinal.tipo_id_ou_ordinal)} 
+		| {array} tipo_array {-> New denotador_tipo.array(tipo_array.tipo_array)};
 	
 	tipo_array {-> tipo_array} = array abre_colchete tipos_ordinais fecha_colchete of denotador_tipo {-> New tipo_array([tipos_ordinais.tipo_id_ou_ordinal], denotador_tipo)};
 	
