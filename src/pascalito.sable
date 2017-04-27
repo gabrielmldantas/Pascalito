@@ -213,8 +213,9 @@ Productions
 	secao_parametros_formais {-> parametro_formal*} = {unico} secao_parametro_formal {-> [secao_parametro_formal.parametro_formal]} 
 		| {multiplo} secao_parametros_formais ponto_e_virgula secao_parametro_formal {-> [secao_parametro_formal.parametro_formal, secao_parametros_formais.parametro_formal]};
 	
-	secao_parametro_formal {-> parametro_formal} = {ref} spec_param_ref {-> New parametro_formal.ref([spec_param_ref.ref_formal]) }
-		| {valor} spec_param_valor {-> New parametro_formal.valor([spec_param_valor.valor_formal])};
+	secao_parametro_formal {-> parametro_formal?} = {ref} spec_param_ref {-> New parametro_formal.ref([spec_param_ref.ref_formal]) }
+		| {valor} spec_param_valor {-> New parametro_formal.valor([spec_param_valor.valor_formal])}
+		| {array} spec_param_array {-> Null};
 	
 	spec_param_valor {-> valor_formal} = identificadores dois_pontos identificador_tipo {-> New valor_formal([identificadores.id], identificador_tipo.tipo_id_ou_primitivo)};
 	
